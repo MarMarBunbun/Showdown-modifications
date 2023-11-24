@@ -3146,6 +3146,20 @@ const Moves = {
     inherit: true,
 	flags: { protect: 1, mirror: 1, speed: 1 }
   },
+ impulse: {
+    num: 587,
+    accuracy: 100,
+    basePower: 140,
+    category: "Physical",
+    name: "Impulse",
+    pp: 10,
+    priority: 0,
+    flags: { protect: 1, mirror: 1, bypasssub: 1 },
+    secondary: null,
+    target: "allAdjacent",
+    type: "Normal",
+    contestType: "Tough"
+  },
   infernalblade: {
     num: 983,
     accuracy: 95,
