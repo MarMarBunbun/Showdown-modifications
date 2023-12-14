@@ -22,6 +22,47 @@ __export(conditions_exports, {
 });
 module.exports = __toCommonJS(conditions_exports);
 const Conditions = {
+  fst: {
+    name: "fst",
+    effectType: "Status",
+    onStart(target, source, sourceEffect) {
+      if (sourceEffect && sourceEffect.id === "coldorb") {
+        this.add("-status", target, "fst", "[from] item: Cold Orb");
+      } else if (sourceEffect && sourceEffect.effectType === "Ability") {
+        this.add("-status", target, "fst", "[from] ability: " + sourceEffect.name, "[of] " + source);
+      } else {
+        this.add("-status", target, "fst");
+      }
+    },
+    // Damage reduction is handled directly in the sim/battle.js damage function
+    onResidualOrder: 10,
+    onResidual(pokemon) {
+      this.damage(pokemon.baseMaxhp / 16);
+    },
+	onBeforeMovePriority: 10,
+    onBeforeMove(pokemon, target, move) {
+      if (move.flags["defrost"])
+        return;
+      if (this.randomChance(1, 5)) {
+        pokemon.cureStatus();
+        return;
+      }
+      this.add("cant", pokemon, "fst");
+      return false;
+    },
+    onModifyMove(move, pokemon) {
+      if (move.flags["defrost"]) {
+        this.add("-curestatus", pokemon, "fst", "[from] move: " + move);
+        pokemon.clearStatus();
+      }
+    },
+    onAfterMoveSecondary(target, source, move) {
+      if (move.thawsTarget) {
+        target.cureStatus();
+      }
+    }
+  },
+  // weather is implemented here since it's so important to the game
   acidrain: {
     name: "AcidRain",
     effectType: "Weather",
