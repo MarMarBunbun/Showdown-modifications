@@ -34,6 +34,21 @@ const Items = {
     gen: 7,
     isNonstandard: "Past"
   },
+  amplifier: {
+    name: "Amplifier",
+    spritenum: 3143,
+    fling: {
+      basePower: 30
+    },
+    onBasePowerPriority: 15,
+    onBasePower(basePower, user, target, move) {
+      if (move && move.type === "sound") {
+        return this.chainModify([4915, 4096]);
+      }
+    },
+    num: 3143,
+    gen: 2
+  },
   analysismap: {
     name: "Analysis Map",
     fling: {
@@ -95,6 +110,21 @@ const Items = {
     },
     num: 3000,
     gen: 4
+  },
+  bookofsins: {
+    name: "Book of Sins",
+    spritenum: 3146,
+    fling: {
+      basePower: 30
+    },
+    onBasePowerPriority: 15,
+    onBasePower(basePower, user, target, move) {
+      if (move && move.type === "blood") {
+        return this.chainModify([4915, 4096]);
+      }
+    },
+    num: 3146,
+    gen: 2
   },
   clouddust: {
     name: "Cloud dust",
@@ -413,6 +443,21 @@ const Items = {
     gen: 7,
     isNonstandard: "Past"
   },
+  ereader: {
+    name: "E-Reader",
+    spritenum: 3138,
+    fling: {
+      basePower: 30
+    },
+    onBasePowerPriority: 15,
+    onBasePower(basePower, user, target, move) {
+      if (move && move.type === "digital") {
+        return this.chainModify([4915, 4096]);
+      }
+    },
+    num: 3138,
+    gen: 2
+  },
   everlite: {
     name: "EVerlite",
     spritenum: 3004,
@@ -507,6 +552,21 @@ const Items = {
     num: 3098,
     gen: 4
   },
+  gamecartridge: {
+    name: "Game Cartridge",
+    spritenum: 3136,
+    fling: {
+      basePower: 30
+    },
+    onBasePowerPriority: 15,
+    onBasePower(basePower, user, target, move) {
+      if (move && move.type === "questionmark") {
+        return this.chainModify([4915, 4096]);
+      }
+    },
+    num: 3136,
+    gen: 2
+  },
   gunkplate: {
     name: "Gunk Plate",
     spritenum: 3104,
@@ -600,6 +660,21 @@ const Items = {
     num: 3108,
     gen: 4
   },
+  industrialfan: {
+    name: "Industrial Fan",
+    spritenum: 3144,
+    fling: {
+      basePower: 30
+    },
+    onBasePowerPriority: 15,
+    onBasePower(basePower, user, target, move) {
+      if (move && move.type === "wind") {
+        return this.chainModify([4915, 4096]);
+      }
+    },
+    num: 3144,
+    gen: 2
+  },
   iveolite: {
     name: "Iveolite",
     spritenum: 3008,
@@ -620,6 +695,21 @@ const Items = {
     },
     num: 3008,
     gen: 5
+  },
+  lightbulb: {
+    name: "Lightbulb",
+    spritenum: 3139,
+    fling: {
+      basePower: 30
+    },
+    onBasePowerPriority: 15,
+    onBasePower(basePower, user, target, move) {
+      if (move && move.type === "light") {
+        return this.chainModify([4915, 4096]);
+      }
+    },
+    num: 3139,
+    gen: 2
   },
   lightgem: {
     name: "Light Gem",
@@ -688,6 +778,21 @@ const Items = {
     num: 3101,
     gen: 4
   },
+  lunargeode: {
+    name: "Lunar Geode",
+    spritenum: 3137,
+    fling: {
+      basePower: 30
+    },
+    onBasePowerPriority: 15,
+    onBasePower(basePower, user, target, move) {
+      if (move && move.type === "crystal") {
+        return this.chainModify([4915, 4096]);
+      }
+    },
+    num: 3137,
+    gen: 2
+  },
   luxiumz: {
     name: "Luxium Z",
     spritenum: 3087,
@@ -713,6 +818,21 @@ const Items = {
     itemUser: ["Mewtwo-Armored"],
     num: 3027,
     gen: 8
+  },
+  moisturecream: {
+    name: "Moisture Cream",
+    spritenum: 3142,
+    fling: {
+      basePower: 30
+    },
+    onBasePowerPriority: 15,
+    onBasePower(basePower, user, target, move) {
+      if (move && move.type === "slime") {
+        return this.chainModify([4915, 4096]);
+      }
+    },
+    num: 3142,
+    gen: 2
   },
   mossshard: {
     name: "Moss Shard",
@@ -955,6 +1075,21 @@ const Items = {
     num: 3097,
     gen: 4
   },
+  radiumgoggles: {
+    name: "Radium Goggles",
+    spritenum: 3140,
+    fling: {
+      basePower: 30
+    },
+    onBasePowerPriority: 15,
+    onBasePower(basePower, user, target, move) {
+      if (move && move.type === "nuclear") {
+        return this.chainModify([4915, 4096]);
+      }
+    },
+    num: 3140,
+    gen: 2
+  },
   raggedpebble: {
     name: "Ragged Pebble",
     spritenum: 3012,
@@ -1152,6 +1287,21 @@ const Items = {
     gen: 9,
     isNonstandard: "Past"
   },
+  tomeofelders: {
+    name: "Tome of Elders",
+    spritenum: 3145,
+    fling: {
+      basePower: 30
+    },
+    onBasePowerPriority: 15,
+    onBasePower(basePower, user, target, move) {
+      if (move && move.type === "eldritch") {
+        return this.chainModify([4915, 4096]);
+      }
+    },
+    num: 3145,
+    gen: 2
+  },
   totemofundying: {
     name: "Totem of Undying",
     spritenum: 3020,
@@ -1168,6 +1318,21 @@ const Items = {
     },
     num: 3020,
     gen: 4
+  },
+  toypickaxe: {
+    name: "Toy Pickaxe",
+    spritenum: 3141,
+    fling: {
+      basePower: 30
+    },
+    onBasePowerPriority: 15,
+    onBasePower(basePower, user, target, move) {
+      if (move && move.type === "plastic") {
+        return this.chainModify([4915, 4096]);
+      }
+    },
+    num: 3141,
+    gen: 2
   },
   tyranitararmor: {
     name: "Tyranitar Armor",
@@ -1214,6 +1379,21 @@ const Items = {
     forcedForme: "Arceus-Eldritch",
     num: 3107,
     gen: 4
+  },
+  vialofdarkness: {
+    name: "Vial of Darkness",
+    spritenum: 3135,
+    fling: {
+      basePower: 30
+    },
+    onBasePowerPriority: 15,
+    onBasePower(basePower, user, target, move) {
+      if (move && move.type === "Shadow") {
+        return this.chainModify([4915, 4096]);
+      }
+    },
+    num: 3135,
+    gen: 2
   },
   visciumz: {
     name: "Viscium Z",
