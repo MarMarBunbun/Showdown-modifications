@@ -24,6 +24,7 @@ import java.util.logging.*;
 public class GravelsExtendedBattles {
 
     public static final Map<ResourceLocation, Fossil> FOSSIL_MAP = new HashMap<>();
+    public static String SHOWDOWN_FOLDER = "";
     public static List<ElementalType> NEW_TYPES = new ArrayList<>();
     public static boolean ICON_MIXIN_INIT = false;
     public static boolean ICON_WIDGET_INIT = false;
@@ -38,7 +39,7 @@ public class GravelsExtendedBattles {
     public static List<IEvolutionNode> SORTED_SPECIES = new ArrayList<>();
     public static IGravelmonConfig gravelmonConfig;
 
-    public static void init(String minecraftFolder) {
+    public static void init(String showdownFolder) {
         MidnightConfig.init("gravelmon", GravelmonConfig.class);
         gravelmonConfig = new GravelmonConfig();
         BANNED_LABELS = gravelmonConfig.getBannedLabels();
@@ -46,7 +47,7 @@ public class GravelsExtendedBattles {
         IMPLEMENTED_TYPES = gravelmonConfig.getImplementedTypes();
         ADD_STARTERS = gravelmonConfig.getShouldAddStarters();
         PASSWORDS = gravelmonConfig.getPasswords();
-        ShowdownFileManager.injectShowdown(minecraftFolder);
+        ShowdownFileManager.injectShowdown(showdownFolder);
 
         PokemonSpecies.INSTANCE.getObservable().subscribe(Priority.LOWEST, pokemonSpecies -> {
             speciesFinished = true;

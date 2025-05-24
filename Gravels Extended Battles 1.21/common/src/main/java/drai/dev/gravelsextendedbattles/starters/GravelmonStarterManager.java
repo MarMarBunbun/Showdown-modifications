@@ -1,9 +1,12 @@
 package drai.dev.gravelsextendedbattles.starters;
 
 import com.cobblemon.mod.common.*;
+import com.cobblemon.mod.common.api.pokemon.*;
+import com.cobblemon.mod.common.api.pokemon.feature.*;
 import drai.dev.gravelsextendedbattles.*;
 
 import java.util.*;
+import java.util.stream.*;
 
 public class GravelmonStarterManager {
     public static Map<String, List<StarterCategoryDataHolder>> NEW_STARTERS = new HashMap<>();
@@ -34,7 +37,7 @@ public class GravelmonStarterManager {
         }
         currentStarters.forEach(starterCategory -> {
             var starters = new ArrayList<>(starterCategory.component3().stream()
-                    .filter(pokemon -> !SpeciesManager.containsBannedLabels(pokemon.getSpecies(), pokemon.getForm())).toList());
+                    .filter(pokemonProperties -> !SpeciesManager.propertyContainsBannedLabels(pokemonProperties)).toList());
             starterCategory.component3().clear();
             starterCategory.component3().addAll(starters);
         });

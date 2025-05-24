@@ -125,7 +125,8 @@ public class GravelmonConfig extends MidnightConfig implements IGravelmonConfig 
                 "slime",
                 "sound",
                 "wind",
-                "eldritch"
+                "eldritch",
+                "blood"
         );
     }
 }

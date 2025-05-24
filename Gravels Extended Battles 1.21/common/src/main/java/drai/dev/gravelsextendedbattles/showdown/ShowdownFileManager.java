@@ -61,7 +61,7 @@ public class ShowdownFileManager {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        
+
         ShowdownItemManager.injectItems(showdownFolder);
 
         boolean enableFangameTypechart = gravelmonConfig.getEnableOriginalFanGameTypings();

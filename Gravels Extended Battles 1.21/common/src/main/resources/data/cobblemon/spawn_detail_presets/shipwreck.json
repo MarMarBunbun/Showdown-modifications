@@ -1,0 +1,7 @@
+{
+  "condition": {
+    "structures": [
+      "#minecraft:shipwreck"
+    ]
+  }
+}

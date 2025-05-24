@@ -41,6 +41,7 @@ public enum SpawnPreset {
     NEAR_BOOKSHELVES("near_bookshelves"),
     REEF("reef"),
     NETHER_FORTRESS("nether_structures"),
+    UNDERGROUND("underground"),
     NEAR_MUD("near_mud");
 
     SpawnPreset(String name){

@@ -1,0 +1,5 @@
+{
+  "condition": {
+    "neededNearbyBlocks": ["minecraft:magma"]
+  }
+}
