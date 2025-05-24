@@ -7293,6 +7293,24 @@ const Moves = {
     type: "Fighting",
     contestType: "Clever"
   },
+  goeeyencasement: {
+    num: 3773,
+    accuracy: 100,
+    basePower: 85,
+    category: "Physical",
+    name: "Soul Rend",
+    pp: 10,
+    priority: 0,
+    flags: { contact: 1, protect: 1, mirror: 1 },
+    onAfterMoveSecondarySelf(pokemon, target, move) {
+      if (!target || target.fainted || target.hp <= 0)
+        this.boost({ def: 1, spd: 1 }, pokemon, pokemon, move);
+    },
+    secondary: null,
+    target: "normal",
+    type: "Slime",
+    contestType: "Cool"
+  },
   gooeystrike: {
     num: 3196,
     accuracy: 100,
@@ -7969,6 +7987,29 @@ const Moves = {
       if (["darkness"].includes(pokemon.effectiveWeather()))
         move.boosts = { atk: 2, accuracy: 2 };
     }
+  },
+  horizonmaw: {
+    num: 3769,
+    accuracy: 100,
+    basePower: 80,
+    category: "Physical",
+    name: "Horizon Maw",
+    pp: 10,
+    priority: 0,
+    flags: { contact: 1, protect: 1, mirror: 1, bite: 1 },
+    onBasePower(basePower) {
+      if (this.field.getPseudoWeather("gravity")) {
+        return this.chainModify(1.5);
+      }
+    },
+    secondary: {
+      chance: 100,
+      boosts: {
+        spe: -1
+      }
+    },
+    target: "normal",
+    type: "Eldritch"
   },
   hornbuster: {
     num: 3606,
@@ -10559,6 +10600,21 @@ const Moves = {
     type: "Sound",
     contestType: "Cool"
   },
+  nosferatu: {
+    num: 3767,
+    accuracy: 100,
+    basePower: 75,
+    category: "Special",
+    name: "Nosferatu",
+    pp: 10,
+    priority: 0,
+    flags: { protect: 1, mirror: 1, heal: 1, metronome: 1, magic: 1 },
+    drain: [1, 2],
+    secondary: null,
+    target: "normal",
+    type: "Eldritch",
+    contestType: "Clever"
+  },
   nostrilflare: {
     num: 3276,
     accuracy: 90,
@@ -10715,6 +10771,24 @@ const Moves = {
   originpulse: {
     inherit: true,
 	flags: { protect: 1, pulse: 1, mirror: 1, beam: 1, legendary: 1 }
+  },
+  otherworldlyrevelations: {
+    num: 3766,
+    accuracy: 100,
+    basePower: 75,
+    category: "Special",
+    isNonstandard: "Past",
+    name: "Otherworldly Revelations",
+    pp: 15,
+    priority: 0,
+    flags: { protect: 1, mirror: 1, metronome: 1, magic: 1 },
+    secondary: {
+      chance: 10,
+      volatileStatus: "confusion"
+    },
+    target: "normal",
+    type: "Eldritch",
+    contestType: "Beautiful"
   },
   otherworldlytentacles: {
     num: 3569,
@@ -12132,6 +12206,22 @@ const Moves = {
     target: "normal",
     type: "Blood",
     contestType: "Beautiful"
+  },
+  reconstitute: {
+    num: 3771,
+    accuracy: true,
+    basePower: 0,
+    category: "Status",
+    name: "Reconstitute",
+    pp: 5,
+    priority: 0,
+    flags: { snatch: 1, heal: 1, metronome: 1 },
+    heal: [1, 2],
+    secondary: null,
+    target: "self",
+    type: "Slime",
+    zMove: { effect: "clearnegativeboost" },
+    contestType: "Cute"
   },
   reflectivecloak: {
     num: 3322,
@@ -14174,6 +14264,24 @@ const Moves = {
     type: "Ghost",
     contestType: "Clever"
   },
+  soulrend: {
+    num: 3768,
+    accuracy: 100,
+    basePower: 85,
+    category: "Physical",
+    name: "Soul Rend",
+    pp: 10,
+    priority: 0,
+    flags: { contact: 1, protect: 1, mirror: 1, slicing: 1, magic: 1 },
+    onAfterMoveSecondarySelf(pokemon, target, move) {
+      if (!target || target.fainted || target.hp <= 0)
+        this.boost({ atk: 1, spe: 1 }, pokemon, pokemon, move);
+    },
+    secondary: null,
+    target: "normal",
+    type: "Eldritch",
+    contestType: "Cool"
+  },
   soulshock: {
     num: 3685,
     accuracy: 100,
@@ -14655,6 +14763,32 @@ const Moves = {
     type: "Fairy",
     contestType: "Tough"
   },
+  squishstrike: {
+    num: 3770,
+    accuracy: 90,
+    basePower: 30,
+    category: "Physical",
+    name: "Squish Strike",
+    pp: 15,
+    priority: 0,
+    flags: { contact: 1, protect: 1, mirror: 1, metronome: 1 },
+    onModifyMove(move, source) {
+      const hpRatio = source.hp / source.maxhp;
+      if (hpRatio > 0.75) {
+        move.multihit = 1;
+      } else if (hpRatio > 0.5) {
+        move.multihit = 2;
+      } else if (hpRatio > 0.25) {
+        move.multihit = 3;
+      } else {
+        move.multihit = 4;
+      }
+    },
+    target: "normal",
+    type: "Slime",
+    maxMove: { basePower: 130 },
+    contestType: "Tough"
+  },
   sssslash: {
     num: 3489,
     accuracy: 100,
@@ -14789,6 +14923,22 @@ const Moves = {
     target: "normal",
     type: "Cosmic",
     contestType: "Tough"
+  },
+  stealthrock: {
+    inherit: true,
+	sideCondition: "stealthrock",
+    condition: {
+      // this is a side condition
+      onSideStart(side) {
+        this.add("-sidestart", side, "move: Stealth Rock");
+      },
+      onEntryHazard(pokemon) {
+        if (pokemon.hasItem("heavydutyboots"))
+          return;
+        const typeMod = this.clampIntRange(pokemon.runEffectiveness(this.dex.getActiveMove("stealthrock")), -6, 6);
+        this.damage(pokemon.maxhp * Math.pow(2, typeMod) / 8);
+      }
+    }
   },
   steameruption: {
     inherit: true,
@@ -16399,6 +16549,38 @@ const Moves = {
     target: "normal",
     type: "Slime",
     contestType: "Tough"
+  },
+  viscousmimicry: {
+    num: 3772,
+    accuracy: true,
+    basePower: 0,
+    category: "Status",
+    name: "Viscous Mimicry",
+    pp: 10,
+    priority: 0,
+    flags: { bypasssub: 1, allyanim: 1, metronome: 1 },
+    onHit(target, source) {
+      let i;
+      for (i in target.boosts) {
+        source.boosts[i] = target.boosts[i];
+      }
+      const volatilesToCopy = ["focusenergy", "gmaxchistrike", "laserfocus"];
+      for (const volatile of volatilesToCopy) {
+        if (target.volatiles[volatile]) {
+          source.addVolatile(volatile);
+          if (volatile === "gmaxchistrike")
+            source.volatiles[volatile].layers = target.volatiles[volatile].layers;
+        } else {
+          source.removeVolatile(volatile);
+        }
+      }
+      this.add("-copyboost", source, target, "[from] move: Viscous Mimicry");
+    },
+    secondary: null,
+    target: "normal",
+    type: "Slime",
+    zMove: { effect: "heal" },
+    contestType: "Clever"
   },
   voidstar: {
     num: 3445,
