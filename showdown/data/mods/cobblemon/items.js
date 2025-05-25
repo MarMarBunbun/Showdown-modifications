@@ -1349,6 +1349,26 @@ const Items = {
     gen: 7,
     isNonstandard: "Past"
   },
+  reverbplate: {
+    name: "Reverb Plate",
+    spritenum: 3105,
+    onPlate: "Sound",
+    onBasePowerPriority: 15,
+    onBasePower(basePower, user, target, move) {
+      if (move.type === "Sound") {
+        return this.chainModify([4915, 4096]);
+      }
+    },
+    onTakeItem(item, pokemon, source) {
+      if (source && source.baseSpecies.num === 493 || pokemon.baseSpecies.num === 493) {
+        return false;
+      }
+      return true;
+    },
+    forcedForme: "Arceus-Sound",
+    num: 3105,
+    gen: 4
+  },
   sanguiniumz: {
     name: "Sanguinium Z",
     spritenum: 3095,
@@ -1391,26 +1411,6 @@ const Items = {
     num: 3122,
     gen: 7,
     isNonstandard: "Past"
-  },
-  sheetplate: {
-    name: "Sheet Plate",
-    spritenum: 3105,
-    onPlate: "Sound",
-    onBasePowerPriority: 15,
-    onBasePower(basePower, user, target, move) {
-      if (move.type === "Sound") {
-        return this.chainModify([4915, 4096]);
-      }
-    },
-    onTakeItem(item, pokemon, source) {
-      if (source && source.baseSpecies.num === 493 || pokemon.baseSpecies.num === 493) {
-        return false;
-      }
-      return true;
-    },
-    forcedForme: "Arceus-Sound",
-    num: 3105,
-    gen: 4
   },
   slimegem: {
     name: "Slime Gem",
