@@ -65,6 +65,56 @@ const Items = {
     gen: 8,
     isNonstandard: "Past"
   },
+  avocaberry: {
+    name: "Avoca Berry",
+    spritenum: 3155,
+    isBerry: true,
+    naturalGift: {
+      basePower: 60,
+      type: "Sound"
+    },
+    onSourceModifyDamage(damage, source, target, move) {
+      if (move.type === "Sound" && target.getMoveHitData(move).typeMod > 0) {
+        const hitSub = target.volatiles["substitute"] && !move.flags["bypasssub"] && !(move.infiltrates && this.gen >= 6);
+        if (hitSub)
+          return;
+        if (target.eatItem()) {
+          this.debug("-50% reduction");
+          this.add("-enditem", target, this.effect, "[weaken]");
+          return this.chainModify(0.5);
+        }
+      }
+    },
+    onEat() {
+    },
+    num: 3155,
+    gen: 4
+  },
+  benasiberry: {
+    name: "Benasi Berry",
+    spritenum: 3156,
+    isBerry: true,
+    naturalGift: {
+      basePower: 60,
+      type: "Wind"
+    },
+    onSourceModifyDamage(damage, source, target, move) {
+      if (move.type === "Wind" && target.getMoveHitData(move).typeMod > 0) {
+        const hitSub = target.volatiles["substitute"] && !move.flags["bypasssub"] && !(move.infiltrates && this.gen >= 6);
+        if (hitSub)
+          return;
+        if (target.eatItem()) {
+          this.debug("-50% reduction");
+          this.add("-enditem", target, this.effect, "[weaken]");
+          return this.chainModify(0.5);
+        }
+      }
+    },
+    onEat() {
+    },
+    num: 3156,
+    gen: 4
+  },
   bloodgem: {
     name: "Blood Gem",
     spritenum: 3121,
@@ -125,6 +175,56 @@ const Items = {
     },
     num: 3146,
     gen: 2
+  },
+  carababerry: {
+    name: "Caraba Berry",
+    spritenum: 3152,
+    isBerry: true,
+    naturalGift: {
+      basePower: 60,
+      type: "Light"
+    },
+    onSourceModifyDamage(damage, source, target, move) {
+      if (move.type === "Light" && target.getMoveHitData(move).typeMod > 0) {
+        const hitSub = target.volatiles["substitute"] && !move.flags["bypasssub"] && !(move.infiltrates && this.gen >= 6);
+        if (hitSub)
+          return;
+        if (target.eatItem()) {
+          this.debug("-50% reduction");
+          this.add("-enditem", target, this.effect, "[weaken]");
+          return this.chainModify(0.5);
+        }
+      }
+    },
+    onEat() {
+    },
+    num: 3152,
+    gen: 4
+  },
+  chuvaberry: {
+    name: "Chuva Berry",
+    spritenum: 3157,
+    isBerry: true,
+    naturalGift: {
+      basePower: 60,
+      type: "Eldritch"
+    },
+    onSourceModifyDamage(damage, source, target, move) {
+      if (move.type === "Eldritch" && target.getMoveHitData(move).typeMod > 0) {
+        const hitSub = target.volatiles["substitute"] && !move.flags["bypasssub"] && !(move.infiltrates && this.gen >= 6);
+        if (hitSub)
+          return;
+        if (target.eatItem()) {
+          this.debug("-50% reduction");
+          this.add("-enditem", target, this.effect, "[weaken]");
+          return this.chainModify(0.5);
+        }
+      }
+    },
+    onEat() {
+    },
+    num: 3157,
+    gen: 4
   },
   clouddust: {
     name: "Cloud dust",
@@ -399,6 +499,31 @@ const Items = {
     num: 3085,
     gen: 7,
     isNonstandard: "Past"
+  },
+  drashberry: {
+    name: "Drash Berry",
+    spritenum: 3149,
+    isBerry: true,
+    naturalGift: {
+      basePower: 60,
+      type: "Questionmark"
+    },
+    onSourceModifyDamage(damage, source, target, move) {
+      if (move.type === "Questionmark" && target.getMoveHitData(move).typeMod > 0) {
+        const hitSub = target.volatiles["substitute"] && !move.flags["bypasssub"] && !(move.infiltrates && this.gen >= 6);
+        if (hitSub)
+          return;
+        if (target.eatItem()) {
+          this.debug("-50% reduction");
+          this.add("-enditem", target, this.effect, "[weaken]");
+          return this.chainModify(0.5);
+        }
+      }
+    },
+    onEat() {
+    },
+    num: 3149,
+    gen: 4
   },
   eldriumz: {
     name: "Eldrium Z",
@@ -696,6 +821,31 @@ const Items = {
     num: 3008,
     gen: 5
   },
+  jimacaberry: {
+    name: "Jimaca Berry",
+    spritenum: 3150,
+    isBerry: true,
+    naturalGift: {
+      basePower: 60,
+      type: "Crystal"
+    },
+    onSourceModifyDamage(damage, source, target, move) {
+      if (move.type === "Crystal" && target.getMoveHitData(move).typeMod > 0) {
+        const hitSub = target.volatiles["substitute"] && !move.flags["bypasssub"] && !(move.infiltrates && this.gen >= 6);
+        if (hitSub)
+          return;
+        if (target.eatItem()) {
+          this.debug("-50% reduction");
+          this.add("-enditem", target, this.effect, "[weaken]");
+          return this.chainModify(0.5);
+        }
+      }
+    },
+    onEat() {
+    },
+    num: 3150,
+    gen: 4
+  },
   lightbulb: {
     name: "Lightbulb",
     spritenum: 3139,
@@ -805,6 +955,31 @@ const Items = {
     gen: 7,
     isNonstandard: "Past"
   },
+  melirunberry: {
+    name: "Melirun Berry",
+    spritenum: 3147,
+    isBerry: true,
+    naturalGift: {
+      basePower: 60,
+      type: "Cosmic"
+    },
+    onSourceModifyDamage(damage, source, target, move) {
+      if (move.type === "Cosmic" && target.getMoveHitData(move).typeMod > 0) {
+        const hitSub = target.volatiles["substitute"] && !move.flags["bypasssub"] && !(move.infiltrates && this.gen >= 6);
+        if (hitSub)
+          return;
+        if (target.eatItem()) {
+          this.debug("-50% reduction");
+          this.add("-enditem", target, this.effect, "[weaken]");
+          return this.chainModify(0.5);
+        }
+      }
+    },
+    onEat() {
+    },
+    num: 3147,
+    gen: 4
+  },
   mewtwoarmor: {
     name: "Mewtwo Armor",
     spritenum: 3027,
@@ -849,6 +1024,31 @@ const Items = {
     num: 3010,
     gen: 2
   },
+  ninikuberry: {
+    name: "Niniku Berry",
+    spritenum: 3148,
+    isBerry: true,
+    naturalGift: {
+      basePower: 60,
+      type: "Shadow"
+    },
+    onSourceModifyDamage(damage, source, target, move) {
+      if (move.type === "Shadow" && target.getMoveHitData(move).typeMod > 0) {
+        const hitSub = target.volatiles["substitute"] && !move.flags["bypasssub"] && !(move.infiltrates && this.gen >= 6);
+        if (hitSub)
+          return;
+        if (target.eatItem()) {
+          this.debug("-50% reduction");
+          this.add("-enditem", target, this.effect, "[weaken]");
+          return this.chainModify(0.5);
+        }
+      }
+    },
+    onEat() {
+    },
+    num: 3148,
+    gen: 4
+  },
   nucleargem: {
     name: "Nuclear Gem",
     spritenum: 3115,
@@ -891,6 +1091,31 @@ const Items = {
     num: 3128,
     gen: 7,
     isNonstandard: "Past"
+  },
+  okabberry: {
+    name: "Okab Berry",
+    spritenum: 3154,
+    isBerry: true,
+    naturalGift: {
+      basePower: 60,
+      type: "Slime"
+    },
+    onSourceModifyDamage(damage, source, target, move) {
+      if (move.type === "Slime" && target.getMoveHitData(move).typeMod > 0) {
+        const hitSub = target.volatiles["substitute"] && !move.flags["bypasssub"] && !(move.infiltrates && this.gen >= 6);
+        if (hitSub)
+          return;
+        if (target.eatItem()) {
+          this.debug("-50% reduction");
+          this.add("-enditem", target, this.effect, "[weaken]");
+          return this.chainModify(0.5);
+        }
+      }
+    },
+    onEat() {
+    },
+    num: 3154,
+    gen: 4
   },
   penumbraplate: {
     name: "Penumbra Plate",
@@ -1124,13 +1349,33 @@ const Items = {
     gen: 7,
     isNonstandard: "Past"
   },
+  reverbplate: {
+    name: "Reverb Plate",
+    spritenum: 3105,
+    onPlate: "Sound",
+    onBasePowerPriority: 15,
+    onBasePower(basePower, user, target, move) {
+      if (move.type === "Sound") {
+        return this.chainModify([4915, 4096]);
+      }
+    },
+    onTakeItem(item, pokemon, source) {
+      if (source && source.baseSpecies.num === 493 || pokemon.baseSpecies.num === 493) {
+        return false;
+      }
+      return true;
+    },
+    forcedForme: "Arceus-Sound",
+    num: 3105,
+    gen: 4
+  },
   bloodiumz: {
     name: "Bloodium Z",
     spritenum: 3095,
     onTakeItem: false,
     zMove: true,
     zMoveType: "Blood",
-	onPlate: "Blood",
+    onPlate: "Blood",
     forcedForme: "Arceus-Blood",
     num: 3095,
     gen: 7,
@@ -1166,26 +1411,6 @@ const Items = {
     num: 3122,
     gen: 7,
     isNonstandard: "Past"
-  },
-  sheetplate: {
-    name: "Sheet Plate",
-    spritenum: 3105,
-    onPlate: "Sound",
-    onBasePowerPriority: 15,
-    onBasePower(basePower, user, target, move) {
-      if (move.type === "Sound") {
-        return this.chainModify([4915, 4096]);
-      }
-    },
-    onTakeItem(item, pokemon, source) {
-      if (source && source.baseSpecies.num === 493 || pokemon.baseSpecies.num === 493) {
-        return false;
-      }
-      return true;
-    },
-    forcedForme: "Arceus-Sound",
-    num: 3105,
-    gen: 4
   },
   slimegem: {
     name: "Slime Gem",
@@ -1270,6 +1495,31 @@ const Items = {
     num: 3021,
     gen: 4
   },
+  tabakoberry: {
+    name: "Tabako Berry",
+    spritenum: 3153,
+    isBerry: true,
+    naturalGift: {
+      basePower: 60,
+      type: "Plastic"
+    },
+    onSourceModifyDamage(damage, source, target, move) {
+      if (move.type === "Plastic" && target.getMoveHitData(move).typeMod > 0) {
+        const hitSub = target.volatiles["substitute"] && !move.flags["bypasssub"] && !(move.infiltrates && this.gen >= 6);
+        if (hitSub)
+          return;
+        if (target.eatItem()) {
+          this.debug("-50% reduction");
+          this.add("-enditem", target, this.effect, "[weaken]");
+          return this.chainModify(0.5);
+        }
+      }
+    },
+    onEat() {
+    },
+    num: 3153,
+    gen: 4
+  },
   thirdeye: {
     name: "Third Eye",
     fling: {
@@ -1334,6 +1584,31 @@ const Items = {
     num: 3141,
     gen: 2
   },
+  tunabberry: {
+    name: "Tunab Berry",
+    spritenum: 3158,
+    isBerry: true,
+    naturalGift: {
+      basePower: 60,
+      type: "Blood"
+    },
+    onSourceModifyDamage(damage, source, target, move) {
+      if (move.type === "Blood" && target.getMoveHitData(move).typeMod > 0) {
+        const hitSub = target.volatiles["substitute"] && !move.flags["bypasssub"] && !(move.infiltrates && this.gen >= 6);
+        if (hitSub)
+          return;
+        if (target.eatItem()) {
+          this.debug("-50% reduction");
+          this.add("-enditem", target, this.effect, "[weaken]");
+          return this.chainModify(0.5);
+        }
+      }
+    },
+    onEat() {
+    },
+    num: 3158,
+    gen: 4
+  },
   tyranitararmor: {
     name: "Tyranitar Armor",
     spritenum: 3022,
@@ -1378,6 +1653,31 @@ const Items = {
     },
     forcedForme: "Arceus-Eldritch",
     num: 3107,
+    gen: 4
+  },
+  valumberry: {
+    name: "Valum Berry",
+    spritenum: 3151,
+    isBerry: true,
+    naturalGift: {
+      basePower: 60,
+      type: "Digital"
+    },
+    onSourceModifyDamage(damage, source, target, move) {
+      if (move.type === "Digital" && target.getMoveHitData(move).typeMod > 0) {
+        const hitSub = target.volatiles["substitute"] && !move.flags["bypasssub"] && !(move.infiltrates && this.gen >= 6);
+        if (hitSub)
+          return;
+        if (target.eatItem()) {
+          this.debug("-50% reduction");
+          this.add("-enditem", target, this.effect, "[weaken]");
+          return this.chainModify(0.5);
+        }
+      }
+    },
+    onEat() {
+    },
+    num: 3151,
     gen: 4
   },
   vialofdarkness: {
