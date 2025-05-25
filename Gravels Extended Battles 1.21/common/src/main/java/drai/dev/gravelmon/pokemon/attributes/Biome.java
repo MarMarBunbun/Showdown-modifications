@@ -20,6 +20,7 @@ public enum Biome {
     IS_END("#minecraft","is_end"),
     IS_FLORAL("#cobblemon","is_floral"),
     IS_FOREST("#cobblemon","is_forest"),
+    IS_DECIDUOUS_FOREST("#gravelmon","is_deciduous_forest"),
     IS_FREEZING("#cobblemon","is_freezing"),
     IS_FRESHWATER("#cobblemon","is_freshwater"),
     IS_FRIGID("#cobblemon","is_frigid"),

@@ -22,8 +22,8 @@ __export(items_exports, {
 });
 module.exports = __toCommonJS(items_exports);
 const Items = {
-  aeriumz: {
-    name: "Aerium Z",
+  windiumz: {
+    name: "Windium Z",
     spritenum: 3094,
     onTakeItem: false,
     zMove: true,
@@ -345,8 +345,8 @@ const Items = {
     gen: 5,
     isNonstandard: "Past"
   },
-  crystalloniumz: {
-    name: "Crystallonium Z",
+  crystaliumz: {
+    name: "Crystalium Z",
     spritenum: 3084,
     onTakeItem: false,
     zMove: true,
@@ -488,8 +488,8 @@ const Items = {
     gen: 7,
     isNonstandard: "Past"
   },
-  digitiumz: {
-    name: "Digitium Z",
+  digiumz: {
+    name: "Digium Z",
     spritenum: 3085,
     onTakeItem: false,
     zMove: true,
@@ -525,8 +525,8 @@ const Items = {
     num: 3149,
     gen: 4
   },
-  eldrichiumz: {
-    name: "Eldrichium Z",
+  eldriumz: {
+    name: "Eldrium Z",
     spritenum: 3086,
     onTakeItem: false,
     zMove: true,
@@ -943,8 +943,8 @@ const Items = {
     num: 3137,
     gen: 2
   },
-  luxiumz: {
-    name: "Luxium Z",
+  lightiniumz: {
+    name: "Lightinium Z",
     spritenum: 3087,
     onTakeItem: false,
     zMove: true,
@@ -1064,8 +1064,8 @@ const Items = {
     gen: 5,
     isNonstandard: "Past"
   },
-  nucleariumz: {
-    name: "Nuclearium Z",
+  nucliumz: {
+    name: "Nuclium Z",
     spritenum: 3088,
     onTakeItem: false,
     zMove: true,
@@ -1152,7 +1152,7 @@ const Items = {
     gen: 5,
     isNonstandard: "Past"
   },
-  plasticinez: {
+  plastinium: {
     name: "Plasticine Z",
     spritenum: 3089,
     onTakeItem: false,
@@ -1252,8 +1252,8 @@ const Items = {
     gen: 5,
     isNonstandard: "Past"
   },
-  questionmarkiumz: {
-    name: "Questionmarkium Z",
+  mysteriumz: {
+    name: "Mysterium Z",
     spritenum: 3090,
     onTakeItem: false,
     zMove: true,
@@ -1337,8 +1337,8 @@ const Items = {
     num: 3012,
     gen: 3
   },
-  resoniumz: {
-    name: "Resonium Z",
+  soundiumz: {
+    name: "Soundium Z",
     spritenum: 3093,
     onTakeItem: false,
     zMove: true,
@@ -1369,13 +1369,13 @@ const Items = {
     num: 3105,
     gen: 4
   },
-  sanguiniumz: {
-    name: "Sanguinium Z",
+  bloodiumz: {
+    name: "Bloodium Z",
     spritenum: 3095,
     onTakeItem: false,
     zMove: true,
     zMoveType: "Blood",
-	onPlate: "Blood",
+    onPlate: "Blood",
     forcedForme: "Arceus-Blood",
     num: 3095,
     gen: 7,
@@ -1623,8 +1623,8 @@ const Items = {
     num: 3022,
     gen: 8
   },
-  umbriumz: {
-    name: "Umbrium Z",
+  shadiumz: {
+    name: "Shadium Z",
     spritenum: 3091,
     onTakeItem: false,
     zMove: true,
@@ -1695,8 +1695,8 @@ const Items = {
     num: 3135,
     gen: 2
   },
-  visciumz: {
-    name: "Viscium Z",
+  slimiumz: {
+    name: "Slimium Z",
     spritenum: 3092,
     onTakeItem: false,
     zMove: true,
@@ -1754,6 +1754,7 @@ const Items = {
     num: 3015,
     gen: 9,
     isNonstandard: "Past"
-  }
+  },
+
 };
 //# sourceMappingURL=items.js.map

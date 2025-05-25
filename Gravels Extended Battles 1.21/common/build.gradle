@@ -11,4 +11,11 @@ dependencies {
     modImplementation "dev.architectury:architectury:$rootProject.architectury_api_version"
     modImplementation "com.cobblemon:mod:${cobblemon_file}"
     modImplementation "maven.modrinth:midnightlib:Ct1rAic5"
+
+    //Mega showdown compat
+    modImplementation("maven.modrinth:cobblemon-mega-showdown:${megashowdown}-fabric")
+
+    modImplementation("maven.modrinth:supermartijn642s-config-lib:1.1.8-fabric-mc1.21")
+
+    modImplementation("dev.emi:trinkets:3.10.0")
 }

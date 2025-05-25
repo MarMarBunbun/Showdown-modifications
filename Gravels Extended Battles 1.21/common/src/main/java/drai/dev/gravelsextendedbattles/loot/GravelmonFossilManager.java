@@ -11,19 +11,19 @@ import net.minecraft.world.level.storage.loot.entries.*;
 
 import java.util.*;
 import java.util.function.*;
-import java.util.stream.*;
 
 public class GravelmonFossilManager {
     private static final List<LootPool[]> LOOT_POOLS = new ArrayList<>();
-    private static final Map<ResourceLocation, List<Supplier<Item>>> LOOT_POOL_ADDITIONS = new HashMap<>();
+    private static final Map<ResourceLocation, List<Supplier<Item>>> FOSSIL_LOOT_POOL_ADDITIONS = new HashMap<>();
+    public static final Map<ResourceLocation, List<Supplier<Item>>> LOOT_POOL_ADDITIONS = new HashMap<>();
 
     public static void addFossil(ResourceLocation lootTableResourceLocation, Supplier<Item> fossil){
-        LOOT_POOL_ADDITIONS.computeIfAbsent(lootTableResourceLocation, k -> new ArrayList<>()).add(fossil);
+        FOSSIL_LOOT_POOL_ADDITIONS.computeIfAbsent(lootTableResourceLocation, k -> new ArrayList<>()).add(fossil);
     }
 
     public static void addFossil(List<ResourceLocation> lootTableResourceLocations, Supplier<Item> fossil){
         for (ResourceLocation lootTableResourceLocation : lootTableResourceLocations) {
-            LOOT_POOL_ADDITIONS.computeIfAbsent(lootTableResourceLocation, k -> new ArrayList<>()).add(fossil);
+            FOSSIL_LOOT_POOL_ADDITIONS.computeIfAbsent(lootTableResourceLocation, k -> new ArrayList<>()).add(fossil);
         }
     }
 
@@ -66,17 +66,22 @@ public class GravelmonFossilManager {
     }
 
     public static void processFossilAdditions(ResourceLocation id, Consumer<LootPool> tableBuilder) {
+        if(FOSSIL_LOOT_POOL_ADDITIONS.containsKey(id)){
+            LootPool.Builder poolBuilder = new LootPool.Builder();
+            FOSSIL_LOOT_POOL_ADDITIONS.get(id).forEach(itemSupplier -> poolBuilder.add(LootItem.lootTableItem(itemSupplier.get()).setWeight(2)));
+            tableBuilder.accept(poolBuilder.build());
+        }
         if(LOOT_POOL_ADDITIONS.containsKey(id)){
             LootPool.Builder poolBuilder = new LootPool.Builder();
-            LOOT_POOL_ADDITIONS.get(id).forEach(itemSupplier -> poolBuilder.add(LootItem.lootTableItem(itemSupplier.get()).setWeight(2)));
+        LOOT_POOL_ADDITIONS.get(id).forEach(itemSupplier -> poolBuilder.add(LootItem.lootTableItem(itemSupplier.get()).setWeight(5)));
             tableBuilder.accept(poolBuilder.build());
         }
     }
 
     public static void processFossilAdditions(ResourceLocation id, LootTable.Builder tableBuilder) {
-        if(LOOT_POOL_ADDITIONS.containsKey(id)){
+        if(FOSSIL_LOOT_POOL_ADDITIONS.containsKey(id)){
             LootPool.Builder poolBuilder = new LootPool.Builder();
-            LOOT_POOL_ADDITIONS.get(id).forEach(itemSupplier -> poolBuilder.add(LootItem.lootTableItem(itemSupplier.get()).setWeight(2)));
+            FOSSIL_LOOT_POOL_ADDITIONS.get(id).forEach(itemSupplier -> poolBuilder.add(LootItem.lootTableItem(itemSupplier.get()).setWeight(2)));
             tableBuilder.withPool(poolBuilder);
         }
     }

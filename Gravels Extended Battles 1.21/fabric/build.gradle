@@ -8,6 +8,21 @@ architectury {
     fabric()
 }
 
+loom {
+    runs {
+        // This adds a new gradle task that runs the datagen API: "gradlew runDatagen"
+        datagen {
+            inherit server
+            name "Data Generation"
+            vmArg "-Dfabric-api.datagen"
+            vmArg "-Dfabric-api.datagen.output-dir=${file("src/main/generated")}"
+            vmArg "-Dfabric-api.datagen.modid=gravels_extended_battles"
+
+            runDir "build/datagen"
+        }
+    }
+}
+
 configurations {
     common {
         canBeResolved = true
@@ -37,6 +52,13 @@ dependencies {
     modImplementation("com.cobblemon:fabric:${cobblemon_file}") { transitive = false }
     modImplementation "maven.modrinth:midnightlib:Ct1rAic5"
     modImplementation("net.fabricmc:fabric-language-kotlin:${fabric_kotlin}")
+
+    //Mega showdown compat
+    modImplementation("maven.modrinth:cobblemon-mega-showdown:${megashowdown}-fabric")
+
+    modImplementation("maven.modrinth:supermartijn642s-config-lib:1.1.8-fabric-mc1.21")
+
+    modImplementation("dev.emi:trinkets:3.10.0")
 }
 def replaceProperties = [mod_id          : mod_id,
                          mod_name        : mod_name,
