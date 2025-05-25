@@ -5,27 +5,35 @@ import com.cobblemon.mod.common.api.events.*;
 import com.cobblemon.mod.common.api.fossil.*;
 import com.cobblemon.mod.common.api.pokedex.*;
 import com.cobblemon.mod.common.api.pokemon.*;
-import com.cobblemon.mod.common.api.types.*;
+import com.cobblemon.mod.common.api.pokemon.status.*;
+import com.cobblemon.mod.common.api.types.tera.*;
+import com.cobblemon.mod.common.pokemon.status.*;
 import drai.dev.gravelsextendedbattles.interfaces.*;
 import drai.dev.gravelsextendedbattles.loot.*;
 import drai.dev.gravelsextendedbattles.mixin.*;
+import drai.dev.gravelsextendedbattles.registries.*;
 import drai.dev.gravelsextendedbattles.resorting.*;
 import drai.dev.gravelsextendedbattles.resorting.nodes.*;
 import drai.dev.gravelsextendedbattles.showdown.*;
 import drai.dev.gravelsextendedbattles.starters.*;
+import drai.dev.gravelsextendedbattles.types.*;
 import eu.midnightdust.lib.config.*;
 import kotlin.Unit;
+import kotlin.ranges.*;
 import net.minecraft.resources.*;
 
-import java.io.*;
 import java.util.*;
 import java.util.logging.*;
+
+import static com.cobblemon.mod.common.util.MiscUtilsKt.cobblemonResource;
+import static drai.dev.gravelsextendedbattles.registries.GravelsExtendedBattlesItems.TERA_SHARDS;
+import static drai.dev.gravelsextendedbattles.registries.GravelsExtendedBattlesItems.TERA_SHARD_SUPPLIERS;
 
 public class GravelsExtendedBattles {
 
     public static final Map<ResourceLocation, Fossil> FOSSIL_MAP = new HashMap<>();
+    public static final Map<String, TeraType> TERA_TYPES = new HashMap<>();
     public static String SHOWDOWN_FOLDER = "";
-    public static List<ElementalType> NEW_TYPES = new ArrayList<>();
     public static boolean ICON_MIXIN_INIT = false;
     public static boolean ICON_WIDGET_INIT = false;
     public static final String MOD_ID = "gravels_extended_battles";
@@ -39,16 +47,17 @@ public class GravelsExtendedBattles {
     public static List<IEvolutionNode> SORTED_SPECIES = new ArrayList<>();
     public static IGravelmonConfig gravelmonConfig;
 
-    public static void init(String showdownFolder) {
-        MidnightConfig.init("gravelmon", GravelmonConfig.class);
+    static{
         gravelmonConfig = new GravelmonConfig();
+        MidnightConfig.init("gravelmon", GravelmonConfig.class);
         BANNED_LABELS = gravelmonConfig.getBannedLabels();
         ALLOWED_LABELS = gravelmonConfig.getAllowedLabels();
         IMPLEMENTED_TYPES = gravelmonConfig.getImplementedTypes();
         ADD_STARTERS = gravelmonConfig.getShouldAddStarters();
         PASSWORDS = gravelmonConfig.getPasswords();
-        ShowdownFileManager.injectShowdown(showdownFolder);
+    }
 
+    public static void init() {
         PokemonSpecies.INSTANCE.getObservable().subscribe(Priority.LOWEST, pokemonSpecies -> {
             speciesFinished = true;
             applyGravelmonExtensions();
@@ -76,6 +85,14 @@ public class GravelsExtendedBattles {
             if(evolutionCompleteEvent.component1().hasLabels("digimon")) evolutionCompleteEvent.component1().initializeMoveset(true);
             return Unit.INSTANCE;
         });
+
+        GravelsExtendedBattlesItems.touch();
+        GravelsExtendedBattlesItems.register();
+
+        CobblemonEvents.HELD_ITEM_POST.subscribe(Priority.NORMAL, GravelmonEventHandlers::onHeldItemChange);
+
+        Statuses.INSTANCE.registerStatus(new PersistentStatus(cobblemonResource("frostbite"), "fbt",
+                "cobblemon.status.frostbite.apply", "cobblemon.status.frostbite.cure", new IntRange(180, 300)));
     }
 
     private static boolean speciesFinished = false;
@@ -88,17 +105,20 @@ public class GravelsExtendedBattles {
         SpeciesManager.processFormEvolutionAdditions();
         SpeciesManager.processTypeChanges();
         SpeciesManager.processFormBaseScaleAdditions();
+
+        if (gravelmonConfig.getEnableDexResort()) {
+            GravelmonPokedexResorter.resort(pokemonSpecies);
+        }
+
         GravelmonPokedexManager.processPokedexBans(dexes);
         SpeciesManager.banPokemon(pokemonSpecies, ((GravelmonPokemonSpeciesAccessor) (Object) pokemonSpecies));
 
         GravelmonStarterManager.processStarters();
         if(gravelmonConfig.getAutomaticMoveInsertion()) GravelmonMoveSubstitution.substituteMoves();
 
-        //TODO filter dex entries out for banned pokemon, banned/locked regions, and resorting the national dex
-        if (gravelmonConfig.getEnableDexResort()) {
-            GravelmonPokedexResorter.resort(pokemonSpecies);
-        }
-
+        TERA_SHARD_SUPPLIERS.forEach((supplier, teraType) -> {
+            TERA_SHARDS.put(supplier.get(), teraType);
+        });
         speciesFinished = false;
         dexesFinished = false;
     }

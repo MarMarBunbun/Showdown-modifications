@@ -11,6 +11,9 @@
   "icon": "icon.png",
   "environment": "*",
   "entrypoints": {
+    "fabric-datagen": [
+      "drai.dev.gravelsextendedbattles.fabric.datagen.ModDataGenerator"
+    ],
     "main": [
       "drai.dev.gravelsextendedbattles.fabric.GravelsExtendedBattlesFabric"
     ]

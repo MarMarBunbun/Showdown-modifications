@@ -40,6 +40,19 @@ subprojects {
                 includeGroup "maven.modrinth"
             }
         }
+        maven {
+            name = "TerraformersMC"
+            url = uri("https://maven.terraformersmc.com/")
+        }
+        maven {
+            name = "Ladysnake Libs"
+            url = uri("https://maven.ladysnake.org/releases")
+        }
+
+        maven {
+            name = "Illusive Soulworks maven"
+            url = uri("https://maven.theillusivec4.top/")
+        }
     }
 
     dependencies {

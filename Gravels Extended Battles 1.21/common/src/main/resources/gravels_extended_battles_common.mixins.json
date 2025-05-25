@@ -3,6 +3,7 @@
   "package": "drai.dev.gravelsextendedbattles.mixin",
   "compatibilityLevel": "JAVA_21",
   "minVersion": "0.8",
+  "plugin": "drai.dev.gravelsextendedbattles.mixin.MegaShowdownMixinPlugin",
   "client": [
     "TypeIconMixin",
     "TypeWidgetMixin"
@@ -23,11 +24,13 @@
     "PokemonSpawnDetailMixin",
     "PokemonSpeciesAccessor",
     "RegistryLikeIdentifierConditionAccessor",
+    "ShowdownThreadMixin",
     "SimplePokedexDefAccessor",
     "SpeciesMixin",
     "TeraTypesMixin",
     "loot.LootItemAccessor",
     "loot.LootPoolAccessor",
-    "loot.LootTableAccessor"
+    "loot.LootTableAccessor",
+    "megashowdown.TeraTypeHelperMixin"
   ]
 }
