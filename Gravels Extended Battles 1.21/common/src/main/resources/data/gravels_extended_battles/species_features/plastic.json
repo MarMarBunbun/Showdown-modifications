@@ -1,0 +1,6 @@
+{
+    "keys": [ "plastic" ],
+    "type": "flag",
+    "isAspect": true,
+    "default": false
+  }

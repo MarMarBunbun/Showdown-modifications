@@ -1,0 +1,592 @@
+{
+  "target": "cobblemon:arceus",
+  "forms": [
+    {
+      "name": "Blood",
+      "primaryType": "blood",
+      "abilities": [
+        "multitype"
+      ],
+      "baseStats": {
+        "hp": 120,
+        "attack": 120,
+        "defence": 120,
+        "special_attack": 120,
+        "special_defence": 120,
+        "speed": 120
+      },
+      "catchRate": 3,
+      "maleRatio": -1,
+      "baseExperienceYield": 324,
+      "baseFriendship": 0,
+      "evYield": {
+        "hp": 3,
+        "attack": 0,
+        "defence": 0,
+        "special_attack": 0,
+        "special_defence": 0,
+        "speed": 0
+      },
+      "experienceGroup": "slow",
+      "eggCycles": 120,
+      "eggGroups": [
+        "undiscovered"
+      ],
+      "labels": [
+        "gen4",
+        "mythical",
+        "legendary"
+      ],
+      "aspects": [
+        "blood"
+      ],
+      "height": 32,
+      "weight": 3200,
+      "cannotDynamax": false,
+      "battleOnly": false
+    },
+    {
+      "name": "Cosmic",
+      "primaryType": "cosmic",
+      "abilities": [
+        "multitype"
+      ],
+      "baseStats": {
+        "hp": 120,
+        "attack": 120,
+        "defence": 120,
+        "special_attack": 120,
+        "special_defence": 120,
+        "speed": 120
+      },
+      "catchRate": 3,
+      "maleRatio": -1,
+      "baseExperienceYield": 324,
+      "baseFriendship": 0,
+      "evYield": {
+        "hp": 3,
+        "attack": 0,
+        "defence": 0,
+        "special_attack": 0,
+        "special_defence": 0,
+        "speed": 0
+      },
+      "experienceGroup": "slow",
+      "eggCycles": 120,
+      "eggGroups": [
+        "undiscovered"
+      ],
+      "labels": [
+        "gen4",
+        "mythical",
+        "legendary"
+      ],
+      "aspects": [
+        "cosmic"
+      ],
+      "height": 32,
+      "weight": 3200,
+      "cannotDynamax": false,
+      "battleOnly": false
+    },
+    {
+      "name": "Crystal",
+      "primaryType": "crystal",
+      "abilities": [
+        "multitype"
+      ],
+      "baseStats": {
+        "hp": 120,
+        "attack": 120,
+        "defence": 120,
+        "special_attack": 120,
+        "special_defence": 120,
+        "speed": 120
+      },
+      "catchRate": 3,
+      "maleRatio": -1,
+      "baseExperienceYield": 324,
+      "baseFriendship": 0,
+      "evYield": {
+        "hp": 3,
+        "attack": 0,
+        "defence": 0,
+        "special_attack": 0,
+        "special_defence": 0,
+        "speed": 0
+      },
+      "experienceGroup": "slow",
+      "eggCycles": 120,
+      "eggGroups": [
+        "undiscovered"
+      ],
+      "labels": [
+        "gen4",
+        "mythical",
+        "legendary"
+      ],
+      "aspects": [
+        "crystal"
+      ],
+      "height": 32,
+      "weight": 3200,
+      "cannotDynamax": false,
+      "battleOnly": false
+    },
+    {
+      "name": "Digital",
+      "primaryType": "digital",
+      "abilities": [
+        "multitype"
+      ],
+      "baseStats": {
+        "hp": 120,
+        "attack": 120,
+        "defence": 120,
+        "special_attack": 120,
+        "special_defence": 120,
+        "speed": 120
+      },
+      "catchRate": 3,
+      "maleRatio": -1,
+      "baseExperienceYield": 324,
+      "baseFriendship": 0,
+      "evYield": {
+        "hp": 3,
+        "attack": 0,
+        "defence": 0,
+        "special_attack": 0,
+        "special_defence": 0,
+        "speed": 0
+      },
+      "experienceGroup": "slow",
+      "eggCycles": 120,
+      "eggGroups": [
+        "undiscovered"
+      ],
+      "labels": [
+        "gen4",
+        "mythical",
+        "legendary"
+      ],
+      "aspects": [
+        "digital"
+      ],
+      "height": 32,
+      "weight": 3200,
+      "cannotDynamax": false,
+      "battleOnly": false
+    },
+    {
+      "name": "Eldritch",
+      "primaryType": "eldritch",
+      "abilities": [
+        "multitype"
+      ],
+      "baseStats": {
+        "hp": 120,
+        "attack": 120,
+        "defence": 120,
+        "special_attack": 120,
+        "special_defence": 120,
+        "speed": 120
+      },
+      "catchRate": 3,
+      "maleRatio": -1,
+      "baseExperienceYield": 324,
+      "baseFriendship": 0,
+      "evYield": {
+        "hp": 3,
+        "attack": 0,
+        "defence": 0,
+        "special_attack": 0,
+        "special_defence": 0,
+        "speed": 0
+      },
+      "experienceGroup": "slow",
+      "eggCycles": 120,
+      "eggGroups": [
+        "undiscovered"
+      ],
+      "labels": [
+        "gen4",
+        "mythical",
+        "legendary"
+      ],
+      "aspects": [
+        "eldritch"
+      ],
+      "height": 32,
+      "weight": 3200,
+      "cannotDynamax": false,
+      "battleOnly": false
+    },
+    {
+      "name": "Light",
+      "primaryType": "light",
+      "abilities": [
+        "multitype"
+      ],
+      "baseStats": {
+        "hp": 120,
+        "attack": 120,
+        "defence": 120,
+        "special_attack": 120,
+        "special_defence": 120,
+        "speed": 120
+      },
+      "catchRate": 3,
+      "maleRatio": -1,
+      "baseExperienceYield": 324,
+      "baseFriendship": 0,
+      "evYield": {
+        "hp": 3,
+        "attack": 0,
+        "defence": 0,
+        "special_attack": 0,
+        "special_defence": 0,
+        "speed": 0
+      },
+      "experienceGroup": "slow",
+      "eggCycles": 120,
+      "eggGroups": [
+        "undiscovered"
+      ],
+      "labels": [
+        "gen4",
+        "mythical",
+        "legendary"
+      ],
+      "aspects": [
+        "light"
+      ],
+      "height": 32,
+      "weight": 3200,
+      "cannotDynamax": false,
+      "battleOnly": false
+    },
+    {
+      "name": "Nuclear",
+      "primaryType": "nuclear",
+      "abilities": [
+        "multitype"
+      ],
+      "baseStats": {
+        "hp": 120,
+        "attack": 120,
+        "defence": 120,
+        "special_attack": 120,
+        "special_defence": 120,
+        "speed": 120
+      },
+      "catchRate": 3,
+      "maleRatio": -1,
+      "baseExperienceYield": 324,
+      "baseFriendship": 0,
+      "evYield": {
+        "hp": 3,
+        "attack": 0,
+        "defence": 0,
+        "special_attack": 0,
+        "special_defence": 0,
+        "speed": 0
+      },
+      "experienceGroup": "slow",
+      "eggCycles": 120,
+      "eggGroups": [
+        "undiscovered"
+      ],
+      "labels": [
+        "gen4",
+        "mythical",
+        "legendary"
+      ],
+      "aspects": [
+        "nuclear"
+      ],
+      "height": 32,
+      "weight": 3200,
+      "cannotDynamax": false,
+      "battleOnly": false
+    },
+    {
+      "name": "Plastic",
+      "primaryType": "plastic",
+      "abilities": [
+        "multitype"
+      ],
+      "baseStats": {
+        "hp": 120,
+        "attack": 120,
+        "defence": 120,
+        "special_attack": 120,
+        "special_defence": 120,
+        "speed": 120
+      },
+      "catchRate": 3,
+      "maleRatio": -1,
+      "baseExperienceYield": 324,
+      "baseFriendship": 0,
+      "evYield": {
+        "hp": 3,
+        "attack": 0,
+        "defence": 0,
+        "special_attack": 0,
+        "special_defence": 0,
+        "speed": 0
+      },
+      "experienceGroup": "slow",
+      "eggCycles": 120,
+      "eggGroups": [
+        "undiscovered"
+      ],
+      "labels": [
+        "gen4",
+        "mythical",
+        "legendary"
+      ],
+      "aspects": [
+        "plastic"
+      ],
+      "height": 32,
+      "weight": 3200,
+      "cannotDynamax": false,
+      "battleOnly": false
+    },
+    {
+      "name": "Questionmark",
+      "primaryType": "questionmark",
+      "abilities": [
+        "multitype"
+      ],
+      "baseStats": {
+        "hp": 120,
+        "attack": 120,
+        "defence": 120,
+        "special_attack": 120,
+        "special_defence": 120,
+        "speed": 120
+      },
+      "catchRate": 3,
+      "maleRatio": -1,
+      "baseExperienceYield": 324,
+      "baseFriendship": 0,
+      "evYield": {
+        "hp": 3,
+        "attack": 0,
+        "defence": 0,
+        "special_attack": 0,
+        "special_defence": 0,
+        "speed": 0
+      },
+      "experienceGroup": "slow",
+      "eggCycles": 120,
+      "eggGroups": [
+        "undiscovered"
+      ],
+      "labels": [
+        "gen4",
+        "mythical",
+        "legendary"
+      ],
+      "aspects": [
+        "questionmark"
+      ],
+      "height": 32,
+      "weight": 3200,
+      "cannotDynamax": false,
+      "battleOnly": false
+    },
+    {
+      "name": "Shadow",
+      "primaryType": "shadow",
+      "abilities": [
+        "multitype"
+      ],
+      "baseStats": {
+        "hp": 120,
+        "attack": 120,
+        "defence": 120,
+        "special_attack": 120,
+        "special_defence": 120,
+        "speed": 120
+      },
+      "catchRate": 3,
+      "maleRatio": -1,
+      "baseExperienceYield": 324,
+      "baseFriendship": 0,
+      "evYield": {
+        "hp": 3,
+        "attack": 0,
+        "defence": 0,
+        "special_attack": 0,
+        "special_defence": 0,
+        "speed": 0
+      },
+      "experienceGroup": "slow",
+      "eggCycles": 120,
+      "eggGroups": [
+        "undiscovered"
+      ],
+      "labels": [
+        "gen4",
+        "mythical",
+        "legendary"
+      ],
+      "aspects": [
+        "shadow"
+      ],
+      "height": 32,
+      "weight": 3200,
+      "cannotDynamax": false,
+      "battleOnly": false
+    },
+    {
+      "name": "Slime",
+      "primaryType": "slime",
+      "abilities": [
+        "multitype"
+      ],
+      "baseStats": {
+        "hp": 120,
+        "attack": 120,
+        "defence": 120,
+        "special_attack": 120,
+        "special_defence": 120,
+        "speed": 120
+      },
+      "catchRate": 3,
+      "maleRatio": -1,
+      "baseExperienceYield": 324,
+      "baseFriendship": 0,
+      "evYield": {
+        "hp": 3,
+        "attack": 0,
+        "defence": 0,
+        "special_attack": 0,
+        "special_defence": 0,
+        "speed": 0
+      },
+      "experienceGroup": "slow",
+      "eggCycles": 120,
+      "eggGroups": [
+        "undiscovered"
+      ],
+      "labels": [
+        "gen4",
+        "mythical",
+        "legendary"
+      ],
+      "aspects": [
+        "slime"
+      ],
+      "height": 32,
+      "weight": 3200,
+      "cannotDynamax": false,
+      "battleOnly": false
+    },
+    {
+      "name": "Sound",
+      "primaryType": "sound",
+      "abilities": [
+        "multitype"
+      ],
+      "baseStats": {
+        "hp": 120,
+        "attack": 120,
+        "defence": 120,
+        "special_attack": 120,
+        "special_defence": 120,
+        "speed": 120
+      },
+      "catchRate": 3,
+      "maleRatio": -1,
+      "baseExperienceYield": 324,
+      "baseFriendship": 0,
+      "evYield": {
+        "hp": 3,
+        "attack": 0,
+        "defence": 0,
+        "special_attack": 0,
+        "special_defence": 0,
+        "speed": 0
+      },
+      "experienceGroup": "slow",
+      "eggCycles": 120,
+      "eggGroups": [
+        "undiscovered"
+      ],
+      "labels": [
+        "gen4",
+        "mythical",
+        "legendary"
+      ],
+      "aspects": [
+        "sound"
+      ],
+      "height": 32,
+      "weight": 3200,
+      "cannotDynamax": false,
+      "battleOnly": false
+    },
+    {
+      "name": "Wind",
+      "primaryType": "wind",
+      "abilities": [
+        "multitype"
+      ],
+      "baseStats": {
+        "hp": 120,
+        "attack": 120,
+        "defence": 120,
+        "special_attack": 120,
+        "special_defence": 120,
+        "speed": 120
+      },
+      "catchRate": 3,
+      "maleRatio": -1,
+      "baseExperienceYield": 324,
+      "baseFriendship": 0,
+      "evYield": {
+        "hp": 3,
+        "attack": 0,
+        "defence": 0,
+        "special_attack": 0,
+        "special_defence": 0,
+        "speed": 0
+      },
+      "experienceGroup": "slow",
+      "eggCycles": 120,
+      "eggGroups": [
+        "undiscovered"
+      ],
+      "labels": [
+        "gen4",
+        "mythical",
+        "legendary"
+      ],
+      "aspects": [
+        "wind"
+      ],
+      "height": 32,
+      "weight": 3200,
+      "cannotDynamax": false,
+      "battleOnly": false
+    }
+  ],
+  "features": [
+    "blood",
+    "cosmic",
+    "crystal",
+    "digital",
+    "eldritch",
+    "light",
+    "nuclear",
+    "plastic",
+    "questionmark",
+    "shadow",
+    "slime",
+    "sound",
+    "wind"
+  ]
+}

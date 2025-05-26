@@ -1,0 +1,6 @@
+{
+    "keys": [ "crystal" ],
+    "type": "flag",
+    "isAspect": true,
+    "default": false
+  }

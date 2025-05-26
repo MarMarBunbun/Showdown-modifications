@@ -13,6 +13,7 @@
   "cobblemon.type.slime": "Slime",
   "cobblemon.type.sound": "Sound",
   "cobblemon.type.wind": "Wind",
+  "cobblemon.type.blood": "Blood",
   
   "cobblemon.move.asteroidshot": "Asteroid Shot",
   "cobblemon.move.asteroidshot.desc": "The user calls Asteroids to rain from above. This may also leave the target with a burn.",

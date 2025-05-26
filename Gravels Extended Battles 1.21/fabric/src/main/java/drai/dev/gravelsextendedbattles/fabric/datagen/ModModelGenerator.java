@@ -21,23 +21,23 @@ public class ModModelGenerator extends FabricModelProvider {
     @Override
     public void generateItemModels(ItemModelGenerators itemModelGenerator) {
 
-        for (Supplier<Item> value : GravelsExtendedBattlesItems.GEMS) {
+        for (var value : GravelsExtendedBattlesItems.GEMS) {
             itemModelGenerator.generateFlatItem(value.get(), ModelTemplates.FLAT_ITEM);
         }
 
-        for (Supplier<Item> value : GravelsExtendedBattlesItems.MEMORIES) {
+        for (var value : GravelsExtendedBattlesItems.MEMORIES) {
             itemModelGenerator.generateFlatItem(value.get(), ModelTemplates.FLAT_ITEM);
         }
 
-        for (Supplier<Item> value : GravelsExtendedBattlesItems.Z_CRYSTALS.keySet()) {
+        for (var value : GravelsExtendedBattlesItems.Z_CRYSTALS.keySet()) {
             itemModelGenerator.generateFlatItem(value.get(), ModelTemplates.FLAT_ITEM);
         }
 
-        for (Supplier<Item> value : GravelsExtendedBattlesItems.PLATES) {
+        for (var value : GravelsExtendedBattlesItems.PLATES) {
             itemModelGenerator.generateFlatItem(value.get(), ModelTemplates.FLAT_ITEM);
         }
 
-        for (Supplier<Item> value : GravelsExtendedBattlesItems.TERA_SHARDS_BY_TYPE_NAME.values()) {
+        for (var value : GravelsExtendedBattlesItems.TERA_SHARDS_BY_TYPE_NAME.values()) {
             itemModelGenerator.generateFlatItem(value.get(), ModelTemplates.FLAT_ITEM);
         }
     }

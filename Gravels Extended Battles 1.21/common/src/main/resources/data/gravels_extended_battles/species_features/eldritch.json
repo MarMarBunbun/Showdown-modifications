@@ -1,0 +1,6 @@
+{
+    "keys": [ "eldritch" ],
+    "type": "flag",
+    "isAspect": true,
+    "default": false
+  }
