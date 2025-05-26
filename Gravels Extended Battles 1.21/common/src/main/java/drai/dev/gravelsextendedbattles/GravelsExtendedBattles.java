@@ -96,15 +96,6 @@ public class GravelsExtendedBattles {
 
         Statuses.INSTANCE.registerStatus(new PersistentStatus(cobblemonResource("frostbite"), "fbt",
                 "cobblemon.status.frostbite.apply", "cobblemon.status.frostbite.cure", new IntRange(180, 300)));
-
-        CobblemonSpawnPools.WORLD_SPAWN_POOL.getObservable().subscribe(Priority.LOWEST, event->{
-            event.getDetails().forEach(spawnDetail -> {
-                if(spawnDetail instanceof PokemonSpawnDetail pokemonSpawnDetail) {
-                    GravelmonSpawnDetailsManager.modifySpawnDetail(pokemonSpawnDetail);
-                }
-            });
-            return Unit.INSTANCE;
-        });
     }
 
     private static boolean speciesFinished = false;

@@ -141,7 +141,8 @@ public class GravelsExtendedBattlesItems {
     }
 
     public static RegistrySupplier<TypedItem> registerMemoryItem(String name){
-        RegistrySupplier<TypedItem> register = ITEMS.register(name.trim().replaceAll("\\W", ""), () -> new MemoryItem(name.replaceAll("_memory", ""), new Item.Properties()) {
+        RegistrySupplier<TypedItem> register = ITEMS.register(name.trim().replaceAll("\\W", ""), () ->
+                new MemoryItem(name.replaceAll("_memory", ""), new Item.Properties().stacksTo(1)) {
             @Override
             public void appendHoverText(ItemStack itemStack, TooltipContext tooltipContext, List<Component> list, TooltipFlag tooltipFlag) {
                 list.add(Component.translatable("tooltip.gravels_extended_battles." + name + ".tooltip").withStyle(ChatFormatting.GRAY));
@@ -166,7 +167,7 @@ public class GravelsExtendedBattlesItems {
     }
 
     public static RegistrySupplier<TypedItem> registerPlateItem(String name, String type){
-        RegistrySupplier<TypedItem> register = ITEMS.register(name.trim().replaceAll("\\W", ""), () -> new PlateItem(type, new Item.Properties()) {
+        RegistrySupplier<TypedItem> register = ITEMS.register(name.trim().replaceAll("\\W", ""), () -> new PlateItem(type, new Item.Properties().stacksTo(1)) {
             @Override
             public void appendHoverText(ItemStack itemStack, TooltipContext tooltipContext, List<Component> list, TooltipFlag tooltipFlag) {
                 list.add(Component.translatable("tooltip.gravels_extended_battles." + name + ".tooltip").withStyle(ChatFormatting.GRAY));
