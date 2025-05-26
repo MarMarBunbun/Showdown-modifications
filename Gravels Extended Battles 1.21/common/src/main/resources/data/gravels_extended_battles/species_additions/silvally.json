@@ -37,7 +37,7 @@
         "legendary"
       ],
       "aspects": [
-        "blood"
+        "blood-memory"
       ],
       "height": 23,
       "weight": 1005,
@@ -80,7 +80,7 @@
         "legendary"
       ],
       "aspects": [
-        "cosmic"
+        "cosmic-memory"
       ],
       "height": 23,
       "weight": 1005,
@@ -123,7 +123,7 @@
         "legendary"
       ],
       "aspects": [
-        "crystal"
+        "crystal-memory"
       ],
       "height": 23,
       "weight": 1005,
@@ -166,7 +166,7 @@
         "legendary"
       ],
       "aspects": [
-        "digital"
+        "digital-memory"
       ],
       "height": 23,
       "weight": 1005,
@@ -209,7 +209,7 @@
         "legendary"
       ],
       "aspects": [
-        "eldritch"
+        "eldritch-memory"
       ],
       "height": 23,
       "weight": 1005,
@@ -252,7 +252,7 @@
         "legendary"
       ],
       "aspects": [
-        "light"
+        "light-memory"
       ],
       "height": 23,
       "weight": 1005,
@@ -295,7 +295,7 @@
         "legendary"
       ],
       "aspects": [
-        "nuclear"
+        "nuclear-memory"
       ],
       "height": 23,
       "weight": 1005,
@@ -338,7 +338,7 @@
         "legendary"
       ],
       "aspects": [
-        "plastic"
+        "plastic-memory"
       ],
       "height": 23,
       "weight": 1005,
@@ -381,7 +381,7 @@
         "legendary"
       ],
       "aspects": [
-        "questionmark"
+        "questionmark-memory"
       ],
       "height": 23,
       "weight": 1005,
@@ -424,7 +424,7 @@
         "legendary"
       ],
       "aspects": [
-        "shadow"
+        "shadow-memory"
       ],
       "height": 23,
       "weight": 1005,
@@ -467,7 +467,7 @@
         "legendary"
       ],
       "aspects": [
-        "slime"
+        "slime-memory"
       ],
       "height": 23,
       "weight": 1005,
@@ -510,7 +510,7 @@
         "legendary"
       ],
       "aspects": [
-        "sound"
+        "sound-memory"
       ],
       "height": 23,
       "weight": 1005,
@@ -553,7 +553,7 @@
         "legendary"
       ],
       "aspects": [
-        "wind"
+        "wind-memory"
       ],
       "height": 23,
       "weight": 1005,
@@ -562,18 +562,18 @@
     }
   ],
   "features": [
-    "blood",
-    "cosmic",
-    "crystal",
-    "digital",
-    "eldritch",
-    "light",
-    "nuclear",
-    "plastic",
-    "questionmark",
-    "shadow",
-    "slime",
-    "sound",
-    "wind"
+    "blood-memory",
+    "cosmic-memory",
+    "crystal-memory",
+    "digital-memory",
+    "eldritch-memory",
+    "light-memory",
+    "nuclear-memory",
+    "plastic-memory",
+    "questionmark-memory",
+    "shadow-memory",
+    "slime-memory",
+    "sound-memory",
+    "wind-memory"
   ]
 }

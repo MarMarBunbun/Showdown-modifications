@@ -1,7 +1,7 @@
 {
   "type": "choice",
   "keys": [
-    "multitype"
+    "rks_memory"
   ],
   "default": "normal",
   "choices": [
@@ -37,5 +37,5 @@
     "wind"
   ],
   "isAspect": true,
-  "aspectFormat": "{{choice}}-plate"
+  "aspectFormat": "{{choice}}-memory"
 }

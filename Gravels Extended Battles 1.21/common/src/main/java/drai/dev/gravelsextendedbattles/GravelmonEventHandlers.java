@@ -5,6 +5,7 @@ import com.cobblemon.mod.common.api.pokemon.feature.*;
 import com.cobblemon.mod.common.entity.pokemon.*;
 import com.cobblemon.mod.common.net.messages.client.animation.*;
 import com.cobblemon.mod.common.pokemon.*;
+import dev.architectury.platform.*;
 import drai.dev.gravelsextendedbattles.items.*;
 import drai.dev.gravelsextendedbattles.registries.*;
 import kotlin.*;
@@ -22,8 +23,10 @@ public class GravelmonEventHandlers {
         }
 
 //        HeldItemChangeFormes.genesectChange(post);
-        silvallyChange(post);
-        arcuesChange(post);
+        if(Platform.isModLoaded("mega_showdown")) {
+            silvallyChange(post);
+            arcuesChange(post);
+        }
 //        HeldItemChangeFormes.ultraEvent(post);
 //        HeldItemChangeFormes.crownedEvent(post);
 //        HeldItemChangeFormes.ogerponChange(post);

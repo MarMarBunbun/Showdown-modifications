@@ -38,7 +38,7 @@
         "legendary"
       ],
       "aspects": [
-        "blood"
+        "blood-plate"
       ],
       "height": 32,
       "weight": 3200,
@@ -82,7 +82,7 @@
         "legendary"
       ],
       "aspects": [
-        "cosmic"
+        "cosmic-plate"
       ],
       "height": 32,
       "weight": 3200,
@@ -126,7 +126,7 @@
         "legendary"
       ],
       "aspects": [
-        "crystal"
+        "crystal-plate"
       ],
       "height": 32,
       "weight": 3200,
@@ -170,7 +170,7 @@
         "legendary"
       ],
       "aspects": [
-        "digital"
+        "digital-plate"
       ],
       "height": 32,
       "weight": 3200,
@@ -214,7 +214,7 @@
         "legendary"
       ],
       "aspects": [
-        "eldritch"
+        "eldritch-plate"
       ],
       "height": 32,
       "weight": 3200,
@@ -258,7 +258,7 @@
         "legendary"
       ],
       "aspects": [
-        "light"
+        "light-plate"
       ],
       "height": 32,
       "weight": 3200,
@@ -302,7 +302,7 @@
         "legendary"
       ],
       "aspects": [
-        "nuclear"
+        "nuclear-plate"
       ],
       "height": 32,
       "weight": 3200,
@@ -346,7 +346,7 @@
         "legendary"
       ],
       "aspects": [
-        "plastic"
+        "plastic-plate"
       ],
       "height": 32,
       "weight": 3200,
@@ -390,7 +390,7 @@
         "legendary"
       ],
       "aspects": [
-        "questionmark"
+        "questionmark-plate"
       ],
       "height": 32,
       "weight": 3200,
@@ -434,7 +434,7 @@
         "legendary"
       ],
       "aspects": [
-        "shadow"
+        "shadow-plate"
       ],
       "height": 32,
       "weight": 3200,
@@ -478,7 +478,7 @@
         "legendary"
       ],
       "aspects": [
-        "slime"
+        "slime-plate"
       ],
       "height": 32,
       "weight": 3200,
@@ -522,7 +522,7 @@
         "legendary"
       ],
       "aspects": [
-        "sound"
+        "sound-plate"
       ],
       "height": 32,
       "weight": 3200,
@@ -566,7 +566,7 @@
         "legendary"
       ],
       "aspects": [
-        "wind"
+        "wind-plate"
       ],
       "height": 32,
       "weight": 3200,
@@ -575,18 +575,18 @@
     }
   ],
   "features": [
-    "blood",
-    "cosmic",
-    "crystal",
-    "digital",
-    "eldritch",
-    "light",
-    "nuclear",
-    "plastic",
-    "questionmark",
-    "shadow",
-    "slime",
-    "sound",
-    "wind"
+    "blood-plate",
+    "cosmic-plate",
+    "crystal-plate",
+    "digital-plate",
+    "eldritch-plate",
+    "light-plate",
+    "nuclear-plate",
+    "plastic-plate",
+    "questionmark-plate",
+    "shadow-plate",
+    "slime-plate",
+    "sound-plate",
+    "wind-plate"
   ]
 }
