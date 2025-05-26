@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.callback.*;
 public class PokemonSpawnDetailMixin {
     @Inject(method = "isValid", at = @At("HEAD"), cancellable = true, remap = false)
     public void executeInject(CallbackInfoReturnable<Boolean> cir) throws CommandSyntaxException {
-        GravelmonBannedSpawnDetails.checkForBannedPokemon(getSelf(), cir);
+        GravelmonSpawnDetailsManager.checkForBannedPokemon(getSelf(), cir);
     }
 
     public PokemonSpawnDetail getSelf() {

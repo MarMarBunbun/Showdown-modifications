@@ -1,16 +1,16 @@
 {
   "values": [
-    "gravels_extended_battles:bloodium-z",
-    "gravels_extended_battles:cosmium-z",
-    "gravels_extended_battles:crystalium-z",
-    "gravels_extended_battles:digium-z",
-    "gravels_extended_battles:eldrium-z",
-    "gravels_extended_battles:lightium-z",
-    "gravels_extended_battles:mysterium-z",
-    "gravels_extended_battles:nuclium-z",
-    "gravels_extended_battles:plastinium-z",
-    "gravels_extended_battles:shadium-z",
-    "gravels_extended_battles:soundium-z",
-    "gravels_extended_battles:windium-z"
+    "gravels_extended_battles:bloodium_z",
+    "gravels_extended_battles:cosmium_z",
+    "gravels_extended_battles:crystalium_z",
+    "gravels_extended_battles:digium_z",
+    "gravels_extended_battles:eldrium_z",
+    "gravels_extended_battles:lightium_z",
+    "gravels_extended_battles:mysterium_z",
+    "gravels_extended_battles:nuclium_z",
+    "gravels_extended_battles:plastinium_z",
+    "gravels_extended_battles:shadium_z",
+    "gravels_extended_battles:soundium_z",
+    "gravels_extended_battles:windium_z"
   ]
 }

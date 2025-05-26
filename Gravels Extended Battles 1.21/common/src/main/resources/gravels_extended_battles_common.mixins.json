@@ -13,6 +13,7 @@
   },
   "mixins": [
     "CobblemonPreEvolutionAdapterMixin",
+    "CobblemonSpawnPoolsMixin",
     "ElementalTypesMixin",
     "FormDataAccessor",
     "FormDataMixin",

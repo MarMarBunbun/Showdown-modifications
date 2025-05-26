@@ -1,5 +1,7 @@
 package drai.dev.gravelsextendedbattles.interfaces;
 
+import drai.dev.gravelsextendedbattles.*;
+
 import java.util.*;
 
 public interface IGravelmonConfig {
@@ -8,6 +10,7 @@ public interface IGravelmonConfig {
     boolean getAutomaticMoveInsertion();
     List<String> getBannedLabels();
     List<String> getAllowedLabels();
+    List<SpawnModifier> getSpawnModifiers();
     List<String> getImplementedTypes();
     List<String> getPasswords();
     boolean getShouldAddStarters();

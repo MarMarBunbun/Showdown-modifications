@@ -14,14 +14,14 @@ import java.util.function.*;
 
 public class GravelmonFossilManager {
     private static final List<LootPool[]> LOOT_POOLS = new ArrayList<>();
-    private static final Map<ResourceLocation, List<Supplier<Item>>> FOSSIL_LOOT_POOL_ADDITIONS = new HashMap<>();
-    public static final Map<ResourceLocation, List<Supplier<Item>>> LOOT_POOL_ADDITIONS = new HashMap<>();
+    private static final Map<ResourceLocation, List<Supplier<? extends Item>>> FOSSIL_LOOT_POOL_ADDITIONS = new HashMap<>();
+    public static final Map<ResourceLocation, List<Supplier<? extends Item>>> LOOT_POOL_ADDITIONS = new HashMap<>();
 
-    public static void addFossil(ResourceLocation lootTableResourceLocation, Supplier<Item> fossil){
+    public static void addFossil(ResourceLocation lootTableResourceLocation, Supplier<? extends Item> fossil){
         FOSSIL_LOOT_POOL_ADDITIONS.computeIfAbsent(lootTableResourceLocation, k -> new ArrayList<>()).add(fossil);
     }
 
-    public static void addFossil(List<ResourceLocation> lootTableResourceLocations, Supplier<Item> fossil){
+    public static void addFossil(List<ResourceLocation> lootTableResourceLocations, Supplier<? extends Item> fossil){
         for (ResourceLocation lootTableResourceLocation : lootTableResourceLocations) {
             FOSSIL_LOOT_POOL_ADDITIONS.computeIfAbsent(lootTableResourceLocation, k -> new ArrayList<>()).add(fossil);
         }

@@ -1,0 +1,162 @@
+{
+    "species": "cobblemon:arceus",
+    "order": 1,
+    "variations": [
+        {
+            "aspects": [
+                "blood-plate"
+            ],
+            "layers":[
+                {
+                    "name": "emissive",
+                    
+                    "texture": "gravels_extended_battles:textures/pokemon/0493_arceus/arceus_emmisive_blood.png"
+              }
+            ] 
+        },
+        {
+            "aspects": [
+                "cosmic-plate"
+            ],
+            "layers":[
+                {
+                    "name": "emissive",
+
+                    "texture": "gravels_extended_battles:textures/pokemon/0493_arceus/arceus_emmisive_cosmic.png"
+              }
+            ]
+        },
+        {
+            "aspects": [
+                "crystal-plate"
+            ],
+            "layers":[
+                {
+                    "name": "emissive",
+
+                    "texture": "gravels_extended_battles:textures/pokemon/0493_arceus/arceus_emmisive_crystal.png"
+              }
+            ]
+        },
+        {
+            "aspects": [
+                "digital-plate"
+            ],
+            "layers":[
+                {
+                    "name": "emissive",
+
+                    "texture": "gravels_extended_battles:textures/pokemon/0493_arceus/arceus_emmisive_digital.png"
+              }
+            ]
+        },
+        {
+            "aspects": [
+                "eldritch-plate"
+            ],
+            "layers":[
+                {
+                    "name": "emissive",
+
+                    "texture": "gravels_extended_battles:textures/pokemon/0493_arceus/arceus_emmisive_eldritch.png"
+              }
+            ]
+        },
+        {
+            "aspects": [
+                "questionmark-plate"
+            ],
+            "layers":[
+                {
+                    "name": "emissive",
+
+                    "texture": "gravels_extended_battles:textures/pokemon/0493_arceus/arceus_emmisive_questionmark.png"
+              }
+            ]
+        },
+        {
+            "aspects": [
+                "light-plate"
+            ],
+            "layers":[
+                {
+                    "name": "emissive",
+
+                    "texture": "gravels_extended_battles:textures/pokemon/0493_arceus/arceus_emmisive_light.png"
+              }
+            ]
+        },
+        {
+            "aspects": [
+                "nuclear-plate"
+            ],
+            "layers":[
+                {
+                    "name": "emissive",
+
+                    "texture": "gravels_extended_battles:textures/pokemon/0493_arceus/arceus_emmisive_nuclear.png"
+              }
+            ]
+        },
+        {
+            "aspects": [
+                "plastic-plate"
+            ],
+            "layers":[
+                {
+                    "name": "emissive",
+
+                    "texture": "gravels_extended_battles:textures/pokemon/0493_arceus/arceus_emmisive_plastic.png"
+              }
+            ]
+        },
+        {
+            "aspects": [
+                "shadow-plate"
+            ],
+            "layers":[
+                {
+                    "name": "emissive",
+
+                    "texture": "gravels_extended_battles:textures/pokemon/0493_arceus/arceus_emmisive_shadow.png"
+              }
+            ]
+        },
+        {
+            "aspects": [
+                "slime-plate"
+            ],
+            "layers":[
+                {
+                    "name": "emissive",
+
+                    "texture": "gravels_extended_battles:textures/pokemon/0493_arceus/arceus_emmisive_slime.png"
+              }
+            ]
+        },
+        {
+            "aspects": [
+                "sound-plate"
+            ],
+            "layers":[
+                {
+                    "name": "emissive",
+
+                    "texture": "gravels_extended_battles:textures/pokemon/0493_arceus/arceus_emmisive_sound.png"
+              }
+            ]
+        },
+        {
+            "aspects": [
+                "wind-plate"
+            ],
+            "layers":[
+                {
+                    "name": "emissive",
+
+                    "texture": "gravels_extended_battles:textures/pokemon/0493_arceus/arceus_emmisive_wind.png"
+              }
+            ]
+        }
+    ]
+}

@@ -6,11 +6,14 @@ import com.cobblemon.mod.common.api.fossil.*;
 import com.cobblemon.mod.common.api.pokedex.*;
 import com.cobblemon.mod.common.api.pokemon.*;
 import com.cobblemon.mod.common.api.pokemon.status.*;
+import com.cobblemon.mod.common.api.spawning.*;
+import com.cobblemon.mod.common.api.spawning.detail.*;
 import com.cobblemon.mod.common.api.types.tera.*;
 import com.cobblemon.mod.common.pokemon.status.*;
 import drai.dev.gravelsextendedbattles.interfaces.*;
 import drai.dev.gravelsextendedbattles.loot.*;
 import drai.dev.gravelsextendedbattles.mixin.*;
+import drai.dev.gravelsextendedbattles.mixinimpl.*;
 import drai.dev.gravelsextendedbattles.registries.*;
 import drai.dev.gravelsextendedbattles.resorting.*;
 import drai.dev.gravelsextendedbattles.resorting.nodes.*;
@@ -89,7 +92,7 @@ public class GravelsExtendedBattles {
         GravelsExtendedBattlesItems.touch();
         GravelsExtendedBattlesItems.register();
 
-        CobblemonEvents.HELD_ITEM_POST.subscribe(Priority.NORMAL, GravelmonEventHandlers::onHeldItemChange);
+        CobblemonEvents.HELD_ITEM_POST.subscribe(Priority.LOWEST, GravelmonEventHandlers::onHeldItemChange);
 
         Statuses.INSTANCE.registerStatus(new PersistentStatus(cobblemonResource("frostbite"), "fbt",
                 "cobblemon.status.frostbite.apply", "cobblemon.status.frostbite.cure", new IntRange(180, 300)));

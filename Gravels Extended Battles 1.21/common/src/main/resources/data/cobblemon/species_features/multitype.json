@@ -1,0 +1,41 @@
+{
+  "type": "choice",
+  "keys": [
+    "multitype"
+  ],
+  "default": "normal",
+  "choices": [
+    "fighting",
+    "flying",
+    "poison",
+    "ground",
+    "rock",
+    "bug",
+    "ghost",
+    "steel",
+    "fire",
+    "water",
+    "grass",
+    "electric",
+    "psychic",
+    "ice",
+    "dragon",
+    "dark",
+    "fairy",
+    "blood",
+    "cosmic",
+    "crystal",
+    "digital",
+    "eldritch",
+    "light",
+    "nuclear",
+    "plastic",
+    "questionmark",
+    "shadow",
+    "slime",
+    "sound",
+    "wind"
+  ],
+  "isAspect": true,
+  "aspectFormat": "{{choice}}-plate"
+}

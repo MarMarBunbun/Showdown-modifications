@@ -1,14 +1,12 @@
 package drai.dev.gravelsextendedbattles.fabric.datagen;
 
+import drai.dev.gravelsextendedbattles.items.*;
 import drai.dev.gravelsextendedbattles.registries.*;
 import net.fabricmc.fabric.api.datagen.v1.*;
 import net.fabricmc.fabric.api.datagen.v1.provider.*;
 import net.minecraft.core.*;
-import net.minecraft.data.models.model.*;
 import net.minecraft.world.item.*;
-import org.apache.commons.lang3.*;
 
-import java.nio.file.*;
 import java.util.concurrent.*;
 import java.util.function.*;
 
@@ -38,43 +36,46 @@ public class LanguageGenerator extends FabricLanguageProvider {
 
     @Override
     public void generateTranslations(HolderLookup.Provider provider, TranslationBuilder translationBuilder) {
-        for (Supplier<Item> value : GravelsExtendedBattlesItems.GEMS) {
+        for (var value : GravelsExtendedBattlesItems.GEMS) {
+            String itemName = value.get().getDescriptionId().replace("item.gravels_extended_battles.", "");
             if(value == GravelsExtendedBattlesItems.QUESTIONMARK_GEM) {
                 translationBuilder.add(value.get(), "Mystery Gem");
-                continue;
-            }
-            String itemName = value.get().getDescriptionId().replace("item.gravels_extended_battles.", "");
-            translationBuilder.add(value.get(), capitalizeWords(itemName.replace("_", " ")));
-        }
 
-        for (Supplier<Item> value : GravelsExtendedBattlesItems.MEMORIES) {
-            if(value == GravelsExtendedBattlesItems.QUESTIONMARK_MEMORY) {
+            } else {
+                translationBuilder.add(value.get(), capitalizeWords(itemName.replace("_", " ")));
+            }
+
+            var typeName = capitalizeWords(value.get().getType());
+            translationBuilder.add("tooltip.gravels_extended_battles." + itemName + ".tooltip",
+                    "Boosts the power of the holder's first "+typeName+"-type move. Consumed after use.");
+        }
+        translationBuilder.add("tooltip.gravels_extended_battles.consumed_after_use.tooltip",
+                "Consumed after use");
+
+        for (Supplier<TypedItem> value : GravelsExtendedBattlesItems.MEMORIES) {
+            if(value == GravelsExtendedBattlesItems.QUESTION_MARK_MEMORY) {
                 translationBuilder.add(value.get(), "Mystery Memory");
                 continue;
             }
             String itemName = value.get().getDescriptionId().replace("item.gravels_extended_battles.", "");
             translationBuilder.add(value.get(), capitalizeWords(itemName.replace("_", " ")));
-            var typeName = StringUtils.capitalize(itemName.replace("_gem", ""));
+            var typeName = capitalizeWords(value.get().getType());
             translationBuilder.add("tooltip.gravels_extended_battles." + itemName + ".tooltip",
                     "A disc with "+typeName+"-type data. It changes Silvally's type.");
         }
 
-        for (Supplier<Item> value : GravelsExtendedBattlesItems.Z_CRYSTALS.keySet()) {
+        for (Supplier<TypedItem> value : GravelsExtendedBattlesItems.Z_CRYSTALS.keySet()) {
             String itemName = value.get().getDescriptionId().replace("item.gravels_extended_battles.", "");
             translationBuilder.add(value.get(), capitalizeWords(itemName.replace("_", " ")));
-            var typeName = StringUtils.capitalize(itemName.replace("_gem", ""));
+            var typeName = capitalizeWords(value.get().getType());
             translationBuilder.add("tooltip.gravels_extended_battles." + itemName + ".tooltip",
                     "Z-Crystal associated with the "+typeName+" type and allows Pokémon to upgrade their "+typeName+"-type moves to Z-Moves.");
         }
 
-        for (Supplier<Item> value : GravelsExtendedBattlesItems.PLATES) {
-            if(value == GravelsExtendedBattlesItems.QUESTIONMARK_PLATE) {
-                translationBuilder.add(value.get(), "Mystery Plate");
-                continue;
-            }
+        for (Supplier<TypedItem> value : GravelsExtendedBattlesItems.PLATES) {
             String itemName = value.get().getDescriptionId().replace("item.gravels_extended_battles.", "");
             translationBuilder.add(value.get(), capitalizeWords(itemName.replace("_", " ")));
-            var typeName = StringUtils.capitalize(itemName.replace("_gem", ""));
+            var typeName = capitalizeWords(value.get().getType());
             translationBuilder.add("tooltip.gravels_extended_battles." + itemName + ".tooltip",
                     "A tablet that raises the power of "+typeName+"-type moves. When held by Arceus, it changes to the "+typeName+" type.");
         }

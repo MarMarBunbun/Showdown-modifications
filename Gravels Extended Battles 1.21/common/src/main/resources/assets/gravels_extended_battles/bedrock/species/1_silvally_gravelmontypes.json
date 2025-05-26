@@ -1,0 +1,162 @@
+{
+    "species": "cobblemon:silvally",
+    "order": 1,
+    "variations": [
+        {
+            "aspects": [
+                "blood-memory"
+            ],
+            "layers":[
+                {
+                    "name": "emissive",
+                    
+                    "texture": "gravels_extended_battles:textures/pokemon/0773_silvally/silvally_emmisive_blood.png"
+              }
+            ] 
+        },
+        {
+            "aspects": [
+                "cosmic-memory"
+            ],
+            "layers":[
+                {
+                    "name": "emissive",
+
+                    "texture": "gravels_extended_battles:textures/pokemon/0773_silvally/silvally_emmisive_cosmic.png"
+              }
+            ]
+        },
+        {
+            "aspects": [
+                "crystal-memory"
+            ],
+            "layers":[
+                {
+                    "name": "emissive",
+
+                    "texture": "gravels_extended_battles:textures/pokemon/0773_silvally/silvally_emmisive_crystal.png"
+              }
+            ]
+        },
+        {
+            "aspects": [
+                "digital-memory"
+            ],
+            "layers":[
+                {
+                    "name": "emissive",
+
+                    "texture": "gravels_extended_battles:textures/pokemon/0773_silvally/silvally_emmisive_digital.png"
+              }
+            ]
+        },
+        {
+            "aspects": [
+                "eldritch-memory"
+            ],
+            "layers":[
+                {
+                    "name": "emissive",
+
+                    "texture": "gravels_extended_battles:textures/pokemon/0773_silvally/silvally_emmisive_eldritch.png"
+              }
+            ]
+        },
+        {
+            "aspects": [
+                "questionmark-memory"
+            ],
+            "layers":[
+                {
+                    "name": "emissive",
+
+                    "texture": "gravels_extended_battles:textures/pokemon/0773_silvally/silvally_emmisive_questionmark.png"
+              }
+            ]
+        },
+        {
+            "aspects": [
+                "light-memory"
+            ],
+            "layers":[
+                {
+                    "name": "emissive",
+
+                    "texture": "gravels_extended_battles:textures/pokemon/0773_silvally/silvally_emmisive_light.png"
+              }
+            ]
+        },
+        {
+            "aspects": [
+                "nuclear-memory"
+            ],
+            "layers":[
+                {
+                    "name": "emissive",
+
+                    "texture": "gravels_extended_battles:textures/pokemon/0773_silvally/silvally_emmisive_nuclear.png"
+              }
+            ]
+        },
+        {
+            "aspects": [
+                "plastic-memory"
+            ],
+            "layers":[
+                {
+                    "name": "emissive",
+
+                    "texture": "gravels_extended_battles:textures/pokemon/0773_silvally/silvally_emmisive_plastic.png"
+              }
+            ]
+        },
+        {
+            "aspects": [
+                "shadow-memory"
+            ],
+            "layers":[
+                {
+                    "name": "emissive",
+
+                    "texture": "gravels_extended_battles:textures/pokemon/0773_silvally/silvally_emmisive_shadow.png"
+              }
+            ]
+        },
+        {
+            "aspects": [
+                "slime-memory"
+            ],
+            "layers":[
+                {
+                    "name": "emissive",
+
+                    "texture": "gravels_extended_battles:textures/pokemon/0773_silvally/silvally_emmisive_slime.png"
+              }
+            ]
+        },
+        {
+            "aspects": [
+                "sound-memory"
+            ],
+            "layers":[
+                {
+                    "name": "emissive",
+
+                    "texture": "gravels_extended_battles:textures/pokemon/0773_silvally/silvally_emmisive_sound.png"
+              }
+            ]
+        },
+        {
+            "aspects": [
+                "wind-memory"
+            ],
+            "layers":[
+                {
+                    "name": "emissive",
+
+                    "texture": "gravels_extended_battles:textures/pokemon/0773_silvally/silvally_emmisive_wind.png"
+              }
+            ]
+        }
+    ]
+}
