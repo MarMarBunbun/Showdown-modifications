@@ -5,6 +5,7 @@ import com.cobblemon.mod.common.api.pokemon.feature.*;
 import com.cobblemon.mod.common.entity.pokemon.*;
 import com.cobblemon.mod.common.net.messages.client.animation.*;
 import com.cobblemon.mod.common.pokemon.*;
+import com.cobblemon.yajatkaul.mega_showdown.item.custom.*;
 import dev.architectury.platform.*;
 import drai.dev.gravelsextendedbattles.items.*;
 import drai.dev.gravelsextendedbattles.registries.*;
@@ -50,6 +51,10 @@ public class GravelmonEventHandlers {
                 playHeldItemFormeChange(pokemon.getEntity());
                 new StringSpeciesFeature("rks_memory", typedItem.getType()).apply(pokemon);
             }
+            if (!(post.getReceived().getItem() instanceof MemoryItem)) {
+                playHeldItemFormeChange(pokemon.getEntity());
+                new StringSpeciesFeature("multitype","normal").apply(pokemon);
+            }
         }
     }
 
@@ -63,6 +68,11 @@ public class GravelmonEventHandlers {
             if (post.getReceived().getItem() instanceof ZCrystalItem typedItem) {
                 playHeldItemFormeChange(pokemon.getEntity());
                 new StringSpeciesFeature("multitype", typedItem.getType()).apply(pokemon);
+            }
+            if (!(post.getReceived().getItem() instanceof ZCrystalItem)
+                    && !(post.getReceived().getItem() instanceof PlateItem)) {
+                playHeldItemFormeChange(pokemon.getEntity());
+                new StringSpeciesFeature("multitype","normal").apply(pokemon);
             }
         }
     }

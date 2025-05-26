@@ -1,6 +1,0 @@
-{
-    "keys": [ "wind" ],
-    "type": "flag",
-    "isAspect": true,
-    "default": false
-  }

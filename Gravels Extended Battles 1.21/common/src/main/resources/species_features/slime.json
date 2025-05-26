@@ -1,6 +1,0 @@
-{
-    "keys": [ "slime" ],
-    "type": "flag",
-    "isAspect": true,
-    "default": false
-  }

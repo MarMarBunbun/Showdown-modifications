@@ -1,6 +1,0 @@
-{
-    "keys": [ "blood" ],
-    "type": "flag",
-    "isAspect": true,
-    "default": false
-  }

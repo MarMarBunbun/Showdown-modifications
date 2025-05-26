@@ -7,13 +7,15 @@ import java.util.*;
 
 public class GravelmonConfig extends MidnightConfig implements IGravelmonConfig {
     @Entry(name = "Banned Labels: ")
-    public static List<String> bannedLabels = new ArrayList<>(List.of("not_modeled", "joke")); // Array String Lists are also supported
+    public static List<String> bannedLabels = new ArrayList<>(List.of("not_modeled", "joke"));
     @Entry(name = "Allowed Labels: ")
-    public static List<String> allowedLabels = new ArrayList<>();  // Array String Lists are also supported
+    public static List<String> allowedLabels = new ArrayList<>(); 
+    @Entry(name = "Spawn Modifiers (Formatted as <label>:<modifier number>, eg 'delta:1.5'): ")
+    public static List<String> spawnModifiers = new ArrayList<>(); 
     @Entry(name = "Passwords: ")
-    public static List<String> passwords = new ArrayList<>();  // Array String Lists are also supported
+    public static List<String> passwords = new ArrayList<>(); 
     @Entry(name = "Allowed Types: ")
-    public static List<String> implementedTypes = new ArrayList<>(getInitForTypes()); // Array String Lists are also supported
+    public static List<String> implementedTypes = new ArrayList<>(getInitForTypes());
     @Entry(name = "Original Fangame Typings: ")
     public static boolean enableFangameTypechart = false;
     @Entry(name = "Re-sort pokedex in evolution order: ")
@@ -46,6 +48,17 @@ public class GravelmonConfig extends MidnightConfig implements IGravelmonConfig 
     @Override
     public List<String> getAllowedLabels() {
         return allowedLabels;
+    }
+
+    @Override
+    public List<SpawnModifier> getSpawnModifiers() {
+        return spawnModifiers.stream().map(raw-> {
+            String[] parts = raw.split(":");
+            if (parts.length < 2) {
+                System.out.println("Invalid spawn modifier format: " + raw);
+            }
+            return new SpawnModifier(Float.valueOf(parts[0]), parts[1]);
+        }).toList();
     }
 
     @Override

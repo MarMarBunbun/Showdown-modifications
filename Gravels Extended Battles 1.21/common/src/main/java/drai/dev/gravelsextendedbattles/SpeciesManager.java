@@ -118,6 +118,19 @@ public class SpeciesManager {
         return containsBannedLabels(foundForm);
     }
 
+    public static List<String> getLabelsFromProperties(PokemonProperties pokemon) {
+        return SpeciesManager.getLabelsFromSpecies(
+                pokemon.getSpecies(),
+                getAspectsFromProperties(pokemon));
+    }
+
+    public static List<String> getLabelsFromSpecies(String species, Set<String> form) {
+        if (species == null) return List.of();
+        var pokemon = PokemonSpecies.INSTANCE.getByName(species);
+        if (pokemon == null) return List.of();
+        return pokemon.getForm(form).getLabels().stream().toList();
+    }
+
     public static boolean containsBannedLabels(List<String> labels) {
         if (labels == null) return false;
         if (labels.isEmpty()) return false;
@@ -333,12 +346,16 @@ public class SpeciesManager {
     public static boolean propertyContainsBannedLabels(PokemonProperties pokemon) {
         return SpeciesManager.containsBannedLabels(
                 pokemon.getSpecies(),
-                pokemon.getCustomProperties().stream().map(flag -> {
-                    if (flag instanceof FlagSpeciesFeature flagSpeciesFeature && flagSpeciesFeature.getEnabled()) {
-                        return flag.asString().split("=")[0];
-                    }
-                    return "";
-                }).filter(name -> !name.isEmpty()).collect(Collectors.toSet()));
+                getAspectsFromProperties(pokemon));
+    }
+
+    public static @NotNull Set<String> getAspectsFromProperties(PokemonProperties pokemon) {
+        return pokemon.getCustomProperties().stream().map(flag -> {
+            if (flag instanceof FlagSpeciesFeature flagSpeciesFeature && flagSpeciesFeature.getEnabled()) {
+                return flag.asString().split("=")[0];
+            }
+            return "";
+        }).filter(name -> !name.isEmpty()).collect(Collectors.toSet());
     }
 }
 

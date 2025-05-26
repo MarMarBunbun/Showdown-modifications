@@ -1,6 +1,0 @@
-{
-    "keys": [ "nuclear" ],
-    "type": "flag",
-    "isAspect": true,
-    "default": false
-  }

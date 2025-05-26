@@ -1,6 +1,0 @@
-{
-    "keys": [ "sound" ],
-    "type": "flag",
-    "isAspect": true,
-    "default": false
-  }

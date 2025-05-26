@@ -1,6 +1,0 @@
-{
-    "keys": [ "digital" ],
-    "type": "flag",
-    "isAspect": true,
-    "default": false
-  }

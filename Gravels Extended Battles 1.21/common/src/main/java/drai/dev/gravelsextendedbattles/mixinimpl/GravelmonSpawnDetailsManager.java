@@ -1,15 +1,34 @@
 package drai.dev.gravelsextendedbattles.mixinimpl;
 
 import com.cobblemon.mod.common.api.pokemon.*;
-import com.cobblemon.mod.common.api.pokemon.feature.*;
 import com.cobblemon.mod.common.api.spawning.detail.*;
 import drai.dev.gravelsextendedbattles.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
 
-import java.util.stream.*;
+import java.util.*;
 
-public class GravelmonBannedSpawnDetails {
+public class GravelmonSpawnDetailsManager {
     private static boolean notSuppressedYet = true;
+    public static void modifySpawnDetail(PokemonSpawnDetail spawnDetail) {
+        var pokemon = spawnDetail.getPokemon();
+        if (pokemon.getSpecies() != null) {
+            var boosts = getBoostsForSpecies(pokemon);
+            if(boosts.isEmpty()) {
+                return;
+            }
+            boosts.sort(Comparator.comparingDouble(SpawnModifier::getModifier));
+            boosts.stream().findFirst().ifPresent(boost -> {
+                spawnDetail.setWeight(boost.getModifier()* spawnDetail.getWeight());
+            });
+        }
+    }
+
+    private static List<SpawnModifier> getBoostsForSpecies(PokemonProperties properties) {
+        var labels = SpeciesManager.getLabelsFromProperties(properties);
+        if(labels.isEmpty()) return Collections.emptyList();
+        return GravelsExtendedBattles.gravelmonConfig.getSpawnModifiers().stream().filter(spawnModifier -> labels.contains(spawnModifier.getLabel())).toList();
+    }
+
     public static void checkForBannedPokemon(PokemonSpawnDetail spawnDetail, CallbackInfoReturnable<Boolean> cir) {
         var pokemon = spawnDetail.getPokemon();
         if (pokemon.getSpecies() != null) {
