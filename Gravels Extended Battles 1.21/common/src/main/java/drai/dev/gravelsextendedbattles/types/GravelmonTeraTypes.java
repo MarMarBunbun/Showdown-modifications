@@ -9,6 +9,7 @@ import net.minecraft.world.item.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
 
 import java.util.*;
+import java.util.function.*;
 
 public class GravelmonTeraTypes {
     public static final Map<TeraType, ChatFormatting> TERA_TYPES_TO_CHAT_FORMATTING = new HashMap<>();
@@ -35,5 +36,14 @@ public class GravelmonTeraTypes {
                 return;
             }
         }
+    }
+
+    public static TeraType addTeraType(Function<ElementalType, TeraType> func, ElementalType elementalType, ChatFormatting chatFormatting) {
+        var teraType = func.apply(elementalType);
+        GravelsExtendedBattlesItems.touch();
+        var shard = GravelsExtendedBattlesItems.TERA_SHARDS_BY_TYPE_NAME.get(elementalType.getName().toLowerCase());
+        GravelsExtendedBattlesItems.TERA_SHARD_SUPPLIERS.put(shard, teraType);
+        GravelmonTeraTypes.TERA_TYPES_TO_CHAT_FORMATTING.put(teraType, chatFormatting);
+        return teraType;
     }
 }

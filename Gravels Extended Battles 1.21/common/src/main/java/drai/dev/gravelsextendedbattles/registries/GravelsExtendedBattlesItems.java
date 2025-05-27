@@ -25,7 +25,6 @@ public class GravelsExtendedBattlesItems {
     public static final List<RegistrySupplier<TypedItem>> MEMORIES = new ArrayList<>();
 
     public static final Map<RegistrySupplier<Item>, TeraType> TERA_SHARD_SUPPLIERS = new HashMap<>();
-    public static final Map<Item, TeraType> TERA_SHARDS = new HashMap<>();
     public static final Map<String, RegistrySupplier<Item>> TERA_SHARDS_BY_TYPE_NAME = new HashMap<>();
 
     public static final RegistrySupplier<TypedItem> BLOOD_GEM = registerGemItem("blood_gem", "mossy_oubliette_ruins", "deserted_town_center_ruins", "hidden_bunker_ruins");
@@ -48,7 +47,7 @@ public class GravelsExtendedBattlesItems {
     public static final RegistrySupplier<TypedItem> DIGITAL_PLATE = registerPlateItem("binary_plate", "digital");
     public static final RegistrySupplier<TypedItem> ELDRITCH_PLATE = registerPlateItem("unearthly_plate", "eldritch");
     public static final RegistrySupplier<TypedItem> LIGHT_PLATE = registerPlateItem("lumen_plate", "light");
-    public static final RegistrySupplier<TypedItem> QUESTIONMARK_PLATE = registerPlateItem("mystery_plate", "mystery");
+    public static final RegistrySupplier<TypedItem> QUESTIONMARK_PLATE = registerPlateItem("mystery_plate", "questionmark");
     public static final RegistrySupplier<TypedItem> NUCLEAR_PLATE = registerPlateItem("fission_plate", "nuclear");
     public static final RegistrySupplier<TypedItem> PLASTIC_PLATE = registerPlateItem("polymer_plate", "plastic");
     public static final RegistrySupplier<TypedItem> SHADOW_PLATE = registerPlateItem("penumbra_plate", "shadow");

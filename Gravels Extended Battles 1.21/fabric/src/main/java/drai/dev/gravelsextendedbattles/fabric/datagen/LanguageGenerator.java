@@ -55,7 +55,8 @@ public class LanguageGenerator extends FabricLanguageProvider {
         for (Supplier<TypedItem> value : GravelsExtendedBattlesItems.MEMORIES) {
             if(value == GravelsExtendedBattlesItems.QUESTION_MARK_MEMORY) {
                 translationBuilder.add(value.get(), "Mystery Memory");
-                continue;
+            } else {
+                translationBuilder.add(value.get(), capitalizeWords(value.get().getDescriptionId().replace("item.gravels_extended_battles.", "").replace("_", " ")));
             }
             String itemName = value.get().getDescriptionId().replace("item.gravels_extended_battles.", "");
             translationBuilder.add(value.get(), capitalizeWords(itemName.replace("_", " ")));
