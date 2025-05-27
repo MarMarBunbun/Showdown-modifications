@@ -24,30 +24,44 @@ module.exports = __toCommonJS(scripts_exports);
 const Scripts = {
   inherit: "base",
   getEffectiveness(move, target) {
-    // Initialize effectiveness at 1x (neutral)
-    let effectiveness = 1;
     const targetTypes = target.types;
 
-    for (const type of targetTypes) {
-        let typeMod = this.dex.getEffectiveness(move.type, type);
-
-        // Custom rule for Shadow type moves
-        if (move.type === "Shadow") {
-            if (type === "Questionmark" || type === "Crystal") {
-                typeMod = 0; // Neutral damage to Questionmark and Crystal
-            } else if (type === "Light" || type === "Eldritch") {
-                typeMod = 2; // Reduced damage to Light and Eldritch
-            } else {
-                typeMod = 1; // Always apply a single 2x multiplier, regardless of dual types
-            }
-        }
-
-        // Apply type modification for each target type
-        effectiveness *= Math.pow(2, typeMod);
+    if (move.type !== "Shadow") {
+      // Default behavior for non-Shadow types
+      let totalEffectiveness = 0;
+      for (const type of targetTypes) {
+        totalEffectiveness += this.dex.getEffectiveness(move.type, type);
+      }
+      return totalEffectiveness;
     }
 
-    // Return effectiveness clamped to either 0.5 (resisted), 1 (neutral), or 2 (super-effective)
-    return Math.min(effectiveness, 2);
+    // Custom Shadow behavior
+    let typeMods = [];
+
+    for (const type of targetTypes) {
+      let typeMod = this.dex.getEffectiveness(move.type, type);
+
+      if (type === "Questionmark" || type === "Crystal") {
+        typeMod = 0; // Neutral
+      } else if (type === "Light" || type === "Eldritch") {
+        typeMod = 2; // Resisted
+      } else {
+        typeMod = 1; // Super-effective
+      }
+
+      typeMods.push(typeMod);
+    }
+
+    const hasSuperEffective = typeMods.includes(1);
+    const hasResisted = typeMods.includes(2);
+
+    if (hasSuperEffective && !hasResisted) {
+      return 1; // Super-effective
+    } else if (!hasSuperEffective && hasResisted) {
+      return 2; // Resisted
+    } else {
+      return 0; // Neutral (includes mixed 1 and 2 or all 0)
+    }
   }
 };
 //# sourceMappingURL=scripts.js.map

@@ -3703,6 +3703,8 @@ const Moves = {
     secondary: null,
     target: "normal",
     type: "Digital",
+    zMove: { basePower: 120 },
+    maxMove: { basePower: 80 },
     contestType: "Clever"
   },
   darkbargain: {
@@ -5754,6 +5756,8 @@ const Moves = {
     ohko: "Cosmic",
     target: "normal",
     type: "Cosmic",
+    zMove: { basePower: 180 },
+    maxMove: { basePower: 130 },
     contestType: "Beautiful"
   },
   evilwing: {
@@ -7298,7 +7302,7 @@ const Moves = {
     accuracy: 100,
     basePower: 85,
     category: "Physical",
-    name: "Soul Rend",
+    name: "Gooey Encasement",
     pp: 10,
     priority: 0,
     flags: { contact: 1, protect: 1, mirror: 1 },
@@ -8320,6 +8324,7 @@ const Moves = {
 	secondary: null,
     target: "allAdjacentFoes",
     type: "Ice",
+    zMove: { boost: { spe: 1 } },
     contestType: "Cute"
   },
   icewolflcaw: {
@@ -9223,7 +9228,9 @@ const Moves = {
 	status: "tox",
     secondary: null,
     target: "normal",
-    type: "Plastic"
+    type: "Plastic",
+    zMove: { effect: "clearnegativeboost" },
+    contestType: "Tough"
   },
   maxdreadvoid: {
     num: 3704,
@@ -9952,7 +9959,9 @@ const Moves = {
     },
     secondary: null,
     target: "self",
-    type: "Digital"
+    type: "Digital",
+    zMove: { effect: "clearnegativeboost" },
+    contestType: "Tough"
   },
   miraclewill: {
     num: 3259,
@@ -12317,6 +12326,7 @@ const Moves = {
     },
 	target: "self",
 	type: "Digital",
+    zMove: { effect: "clearnegativeboost" },
 	contestType: "Cool"
   },
   regalfang: {
@@ -12831,6 +12841,7 @@ const Moves = {
     secondary: null,
     target: "allySide",
     type: "Rock",
+    zMove: { effect: "clearnegativeboost" },
     contestType: "Beautiful",
   },
   sandsearstorm: {
@@ -13303,6 +13314,7 @@ const Moves = {
     secondary: null,
     target: "normal",
     type: "Shadow",
+    zMove: { boost: { spe: 1 } },
     contestType: "Clever"
   },
   shadowsky: {
@@ -16147,6 +16159,7 @@ const Moves = {
     secondary: null,
     target: "self",
     type: "Normal",
+    zMove: { effect: "clearnegativeboost" },
     contestType: "Clever"
   },
   twisterwind: {
