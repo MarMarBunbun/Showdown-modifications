@@ -29,8 +29,6 @@ import java.util.*;
 import java.util.logging.*;
 
 import static com.cobblemon.mod.common.util.MiscUtilsKt.cobblemonResource;
-import static drai.dev.gravelsextendedbattles.registries.GravelsExtendedBattlesItems.TERA_SHARDS;
-import static drai.dev.gravelsextendedbattles.registries.GravelsExtendedBattlesItems.TERA_SHARD_SUPPLIERS;
 
 public class GravelsExtendedBattles {
 
@@ -118,10 +116,6 @@ public class GravelsExtendedBattles {
 
         GravelmonStarterManager.processStarters();
         if(gravelmonConfig.getAutomaticMoveInsertion()) GravelmonMoveSubstitution.substituteMoves();
-
-        TERA_SHARD_SUPPLIERS.forEach((supplier, teraType) -> {
-            TERA_SHARDS.put(supplier.get(), teraType);
-        });
         speciesFinished = false;
         dexesFinished = false;
     }

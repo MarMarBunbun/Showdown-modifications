@@ -11,16 +11,14 @@ import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
 
+import static drai.dev.gravelsextendedbattles.mixinimpl.GravelmonTeraTypeHelper.getTeraTypeFromShard;
+
 @Mixin(TeraTypeHelper.class)
 public class TeraTypeHelperMixin {
 
     @Inject(method = "getType", at = @At("HEAD"), cancellable = true)
     private static void injected(Item item, CallbackInfoReturnable<TeraType> cir) {
-        var teraShard = GravelsExtendedBattlesItems.TERA_SHARDS.get(item);
-        if(teraShard != null) {
-            cir.setReturnValue(teraShard);
-            cir.cancel();
-        }
+        getTeraTypeFromShard(item, cir);
     }
 
     @Inject(method = "getGlowColorForTeraType", at = @At("HEAD"), cancellable = true)
