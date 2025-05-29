@@ -1120,6 +1120,35 @@ const Moves = {
     type: "Cosmic",
     contestType: "Beautiful"
   },
+  biggeestbang: {
+    num: 3774,
+    accuracy: true,
+    basePower: 200,
+    category: "Physical",
+    isNonstandard: "Past",
+    name: "Biggest Bang",
+    pp: 1,
+    priority: 0,
+    flags: {},
+    ignoreAbility: true,
+    isZ: "arkhaniumz",
+    secondary: {
+      chance: 100,
+      onHit(target, source) {
+        const result = this.random(3);
+        if (result === 0) {
+          target.trySetStatus("brn", source);
+        } else if (result === 1) {
+          target.trySetStatus("par", source);
+        } else {
+          target.trySetStatus("frz", source);
+        }
+      }
+    },
+    target: "allAdjacent",
+    type: "Cosmic",
+    contestType: "Cool"
+  },
   blackhole: {
     num: 3030,
     accuracy: 90,
@@ -2420,7 +2449,7 @@ const Moves = {
     accuracy: 85,
     basePower: 0,
     category: "Status",
-    name: "charmingtweety",
+    name: "charming Tweety",
     pp: 40,
     priority: 0,
     flags: { protect: 1, reflectable: 1, mirror: 1, sound: 1, bypasssub: 1, allyanim: 1 },
@@ -2553,7 +2582,7 @@ const Moves = {
     secondary: null,
     target: "normal",
     type: "Blood",
-    zMove: { boost: { spa: 1 } },
+    zMove: { effect: "clearnegativeboost" },
     contestType: "Tough"
   },
   chomper: {
@@ -5482,7 +5511,7 @@ const Moves = {
     secondary: null,
     target: "self",
     type: "Normal",
-    zMove: { effect: "clearnegativeboost" },
+    zMove: { boost: { atk: 1, def: 1, spa: 1, spd: 1, spe: 1 } },
     contestType: "Beautiful"
   },
   elasticwave: {
@@ -7297,7 +7326,7 @@ const Moves = {
     type: "Fighting",
     contestType: "Clever"
   },
-  goeeyencasement: {
+  gooeyencasement: {
     num: 3773,
     accuracy: 100,
     basePower: 85,
@@ -7516,10 +7545,14 @@ const Moves = {
     boosts: {
       spd: 3
     },
+	onHit(target, source, move) {
+      if (move.isZ) {
+        source.side.addSideCondition("safeguard");
+      }
+    },
     secondary: null,
     target: "self",
     type: "Normal",
-    zMove: { effect: "clearnegativeboost" },
     contestType: "Cute"
   },
   groundpound: {
@@ -8254,7 +8287,7 @@ const Moves = {
     secondary: null,
     target: "normal",
     type: "ice",
-    zMove: { boost: { spa: 1 } },
+    zMove: { boost: { atk: 1 } },
     contestType: "Beautiful"
   },
   iceentomb: {
@@ -9248,7 +9281,7 @@ const Moves = {
         if (!source.volatiles["dynamax"])
           return;
         for (const pokemon of source.foes()) {
-          this.boost({ spe: -1 }, pokemon);
+          this.boost({ spa: -1 }, pokemon);
         }
       }
     },
@@ -9268,13 +9301,7 @@ const Moves = {
     flags: {},
     isMax: true,
     self: {
-      onHit(source) {
-        if (!source.volatiles["dynamax"])
-          return;
-        for (const pokemon of source.foes()) {
-          this.boost({ spe: -1 }, pokemon);
-        }
-      }
+      pseudoWeather: "gravity"
     },
     target: "adjacentFoe",
     type: "Cosmic",
@@ -9292,11 +9319,9 @@ const Moves = {
     flags: {},
     isMax: true,
     self: {
-      onHit(source) {
-        if (!source.volatiles["dynamax"])
-          return;
-        for (const pokemon of source.foes()) {
-          this.boost({ spe: -1 }, pokemon);
+      onHit(target, source, move) {
+        for (const pokemon of source.alliesAndSelf()) {
+          this.heal(pokemon.maxhp / 6, pokemon, source, move);
         }
       }
     },
@@ -9319,9 +9344,7 @@ const Moves = {
       onHit(source) {
         if (!source.volatiles["dynamax"])
           return;
-        for (const pokemon of source.foes()) {
-          this.boost({ spe: -1 }, pokemon);
-        }
+        this.field.setWeather("fallout");
       }
     },
     target: "adjacentFoe",
@@ -9367,8 +9390,8 @@ const Moves = {
       onHit(source) {
         if (!source.volatiles["dynamax"])
           return;
-        for (const pokemon of source.foes()) {
-          this.boost({ spe: -1 }, pokemon);
+        for (const pokemon of source.alliesAndSelf()) {
+          this.boost({ spe: 1 }, pokemon);
         }
       }
     },
@@ -9376,7 +9399,7 @@ const Moves = {
     type: "Digital",
     contestType: "Cool"
   },
-  maxsquestionmark: {
+  maxquestionmark: {
     num: 3708,
     accuracy: true,
     basePower: 10,
@@ -9391,8 +9414,10 @@ const Moves = {
       onHit(source) {
         if (!source.volatiles["dynamax"])
           return;
-        for (const pokemon of source.foes()) {
-          this.boost({ spe: -1 }, pokemon);
+        const stats = ["atk", "def", "spa", "spd", "spe"];
+		const statToLower = this.sample(stats);
+		for (const pokemon of source.foes()) {
+          this.boost({ [statToLower]: -1 }, pokemon);
         }
       }
     },
@@ -9416,7 +9441,7 @@ const Moves = {
         if (!source.volatiles["dynamax"])
           return;
         for (const pokemon of source.foes()) {
-          this.boost({ spe: -1 }, pokemon);
+          this.boost({ spa: -1 }, pokemon);
         }
       }
     },
@@ -9436,11 +9461,9 @@ const Moves = {
     flags: {},
     isMax: true,
     self: {
-      onHit(source) {
-        if (!source.volatiles["dynamax"])
-          return;
-        for (const pokemon of source.foes()) {
-          this.boost({ spe: -1 }, pokemon);
+      onHit(target, source, move) {
+        for (const pokemon of source.alliesAndSelf()) {
+          this.heal(pokemon.maxhp / 6, pokemon, source, move);
         }
       }
     },
@@ -9464,7 +9487,7 @@ const Moves = {
         if (!source.volatiles["dynamax"])
           return;
         for (const pokemon of source.foes()) {
-          this.boost({ spe: -1 }, pokemon);
+          this.boost({ spd: -1 }, pokemon);
         }
       }
     },
@@ -9488,7 +9511,7 @@ const Moves = {
         if (!source.volatiles["dynamax"])
           return;
         for (const pokemon of source.foes()) {
-          this.boost({ spe: -1 }, pokemon);
+          this.boost({ def: -1 }, pokemon);
         }
       }
     },
@@ -9509,11 +9532,7 @@ const Moves = {
     isMax: true,
     self: {
       onHit(source) {
-        if (!source.volatiles["dynamax"])
-          return;
-        for (const pokemon of source.foes()) {
-          this.boost({ spe: -1 }, pokemon);
-        }
+        source.side.addSideCondition("tailwind");
       }
     },
     target: "adjacentFoe",
@@ -9535,9 +9554,7 @@ const Moves = {
       onHit(source) {
         if (!source.volatiles["dynamax"])
           return;
-        for (const pokemon of source.foes()) {
-          this.boost({ spe: -1 }, pokemon);
-        }
+        this.field.setWeather("shadowyaura");
       }
     },
     target: "adjacentFoe",
@@ -9686,7 +9703,7 @@ const Moves = {
     accuracy: 70,
     basePower: 0,
     category: "Status",
-    name: "MEsmer Smoke",
+    name: "Mesmer Smoke",
     pp: 10,
     priority: 0,
     flags: { protect: 1, reflectable: 1, mirror: 1, magic: 1 },
@@ -10696,7 +10713,6 @@ const Moves = {
     pp: 10,
     priority: 0,
     flags: { protect: 1, reflectable: 1, mirror: 1 },
-    // No Guard-like effect for Poison-type users implemented in Scripts#tryMoveHit
     status: "tox",
     secondary: null,
     target: "normal",
@@ -11548,7 +11564,7 @@ const Moves = {
     secondary: null,
     target: "self",
     type: "Rock",
-    zMove: { effect: "clearnegativeboost" },
+    zMove: { boost: { atk: 1 } },
     contestType: "Tough"
   },
   preyingbite: {
@@ -16381,7 +16397,7 @@ const Moves = {
     secondary: null,
     target: "self",
     type: "Ghost",
-    zMove: { effect: "clearnegativeboost" },
+    zMove: { effect: "crit2" },
     contestType: "Cool"
   },
   vcreate: {
@@ -16477,7 +16493,7 @@ const Moves = {
     secondary: null,
     target: "normal",
     type: "ice",
-    zMove: { boost: { spa: 1 } },
+    zMove: { boost: { atk: 1 } },
     contestType: "Beautiful"
   },
   virugait: {

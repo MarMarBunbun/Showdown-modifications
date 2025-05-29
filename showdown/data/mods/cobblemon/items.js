@@ -65,6 +65,17 @@ const Items = {
     gen: 8,
     isNonstandard: "Past"
   },
+  arkhaniumz: {
+    name: "Arkhanium Z",
+    spritenum: 687,
+    onTakeItem: false,
+    zMove: "Biggest Bang",
+    zMoveFrom: "Big Bang",
+    itemUser: ["Arkhaos"],
+    num: 3159,
+    gen: 7,
+    isNonstandard: "Past"
+  },
   avocaberry: {
     name: "Avoca Berry",
     spritenum: 3155,

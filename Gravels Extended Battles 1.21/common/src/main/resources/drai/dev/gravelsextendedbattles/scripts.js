@@ -22,63 +22,6 @@ __export(scripts_exports, {
 });
 module.exports = __toCommonJS(scripts_exports);
 const Scripts = {
-  inherit: "base",
-  getEffectiveness(move, target) {
-    const targetTypes = target.types;
-
-    if (move.type !== "Shadow") {
-      // Default behavior for non-Shadow types
-      let totalEffectiveness = 0;
-      for (const type of targetTypes) {
-        totalEffectiveness += this.dex.getEffectiveness(move.type, type);
-      }
-      return totalEffectiveness;
-    }
-
-    // Custom Shadow behavior
-    let typeMods = [];
-
-    for (const type of targetTypes) {
-      let typeMod = this.dex.getEffectiveness(move.type, type);
-
-      if (type === "Questionmark" || type === "Crystal") {
-        typeMod = 0; // Neutral
-      } else if (type === "Light" || type === "Eldritch") {
-        typeMod = 2; // Resisted
-      } else {
-        typeMod = 1; // Super-effective
-      }
-
-      typeMods.push(typeMod);
-    }
-
-    // Count how many of each effectiveness stage
-    const counts = {
-      0: typeMods.filter(mod => mod === 0).length,
-      1: typeMods.filter(mod => mod === 1).length,
-      2: typeMods.filter(mod => mod === 2).length,
-    };
-
-    let resultEffectiveness = 0;
-
-    if (counts[1] === typeMods.length) {
-      // All are super-effective
-      resultEffectiveness = 1;
-    } else if (counts[2] === typeMods.length) {
-      // All are resisted
-      resultEffectiveness = 2;
-    } else if (counts[1] > 0 && counts[2] === 0) {
-      // Any super-effective and no resisted = super-effective
-      resultEffectiveness = 1;
-    } else if (counts[2] > 0 && counts[1] === 0) {
-      // Any resisted and no super-effective = resisted
-      resultEffectiveness = 2;
-    } else {
-      // Mixed or all neutral = neutral
-      resultEffectiveness = 0;
-    }
-
-    return resultEffectiveness;
-  }
+  inherit: "base"
 };
 //# sourceMappingURL=scripts.js.map

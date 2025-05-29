@@ -64,7 +64,7 @@ public class ShowdownFileManager {
                             "\t\t\tLight: \"Max Radiance\",\n" +
                             "\t\t\tNuclear: \"Max Meltdown\",\n" +
                             "\t\t\tPlastic: \"Max Recast\",\n" +
-                            "\t\t\tQuestionmark: \"Max ???\",\n" +
+                            "\t\t\tQuestionmark: \"Max Questionmark\",\n" +
                             "\t\t\tShadow: \"Max Umbrage\",\n" +
                             "\t\t\tSlime: \"Max Ooze Flood\",\n" +
                             "\t\t\tSound: \"Max Reverb\",\n" +
@@ -82,7 +82,7 @@ public class ShowdownFileManager {
                             "\t\t\tLight: \"Divine Nova\",\n" +
                             "\t\t\tNuclear: \"Core Detonation\",\n" +
                             "\t\t\tPlastic: \"Synthetic Evolution\",\n" +
-                            "\t\t\tQuestionmark: \"??? Protocol\",\n" +
+                            "\t\t\tQuestionmark: \"Questionmark Protocol\",\n" +
                             "\t\t\tShadow: \"Veil of Oblivion\",\n" +
                             "\t\t\tSlime: \"Mucus Tsunami\",\n" +
                             "\t\t\tSound: \"Bass Drop Finale\",\n" +
@@ -97,6 +97,7 @@ public class ShowdownFileManager {
             ShowdownFileManager.exportResource(showdownFolder.replaceAll("data/mods/cobblemon/","server/chat-plugins/"), "datasearch.js");
             ShowdownFileManager.exportResource(showdownFolder.replaceAll("data/mods/cobblemon/","data/text/"), "default.js");
             ShowdownFileManager.exportResource(showdownFolder.replaceAll("data/mods/cobblemon/","config/"), "formats.js");
+            ShowdownFileManager.exportResource(showdownFolder.replaceAll("data/mods/cobblemon/","sim/"), "dex.js");
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

@@ -22,46 +22,6 @@ __export(scripts_exports, {
 });
 module.exports = __toCommonJS(scripts_exports);
 const Scripts = {
-  inherit: "base",
-  getEffectiveness(move, target) {
-    const targetTypes = target.types;
-
-    if (move.type !== "Shadow") {
-      // Default behavior for non-Shadow types
-      let totalEffectiveness = 0;
-      for (const type of targetTypes) {
-        totalEffectiveness += this.dex.getEffectiveness(move.type, type);
-      }
-      return totalEffectiveness;
-    }
-
-    // Custom Shadow behavior
-    let typeMods = [];
-
-    for (const type of targetTypes) {
-      let typeMod = this.dex.getEffectiveness(move.type, type);
-
-      if (type === "Questionmark" || type === "Crystal") {
-        typeMod = 0; // Neutral
-      } else if (type === "Light" || type === "Eldritch") {
-        typeMod = 2; // Resisted
-      } else {
-        typeMod = 1; // Super-effective
-      }
-
-      typeMods.push(typeMod);
-    }
-
-    const hasSuperEffective = typeMods.includes(1);
-    const hasResisted = typeMods.includes(2);
-
-    if (hasSuperEffective && !hasResisted) {
-      return 1; // Super-effective
-    } else if (!hasSuperEffective && hasResisted) {
-      return 2; // Resisted
-    } else {
-      return 0; // Neutral (includes mixed 1 and 2 or all 0)
-    }
-  }
+  inherit: "base"
 };
 //# sourceMappingURL=scripts.js.map
