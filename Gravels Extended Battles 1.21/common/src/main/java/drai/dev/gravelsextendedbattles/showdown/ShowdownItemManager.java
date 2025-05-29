@@ -52,4 +52,25 @@ public class ShowdownItemManager {
             e.printStackTrace();
         }
     }
+
+    public static void patchMegaStones(String showdownFolder) {
+       /* var itemsFilePath = showdownFolder.replace("mods/cobblemon/", "items.js");
+        try {
+            var filePath = Path.of(itemsFilePath);
+            String content = Files.readString(filePath);
+            String newContent = content.replaceAll(
+                            "    onTakeItem\\(item, source\\) \\{\n" +
+                            "      if \\(item.megaEvolves === source.baseSpecies.baseSpecies\\)\n",
+                    """
+                    \tonTakeItem(item, source) {
+                    \t\tif (source.baseSpecies.forme !== "")
+                    \t\t\treturn true;
+                    \t\tif (item.megaEvolves === source.baseSpecies.baseSpecies)
+                    """);
+            Files.writeString(filePath, newContent);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }*/
+    }
 }

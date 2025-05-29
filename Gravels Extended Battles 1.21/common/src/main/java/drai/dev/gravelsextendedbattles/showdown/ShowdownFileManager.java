@@ -5,6 +5,7 @@ import drai.dev.gravelsextendedbattles.*;
 import java.io.*;
 import java.nio.file.*;
 import java.util.*;
+import java.util.regex.*;
 
 import static drai.dev.gravelsextendedbattles.GravelsExtendedBattles.gravelmonConfig;
 
@@ -53,46 +54,56 @@ public class ShowdownFileManager {
             }
         }
         try {
-            ShowdownInjectionManager.injectEntry(
-                    showdownFolder.replaceAll("data/mods/cobblemon/","sim/")+ "battle-actions.js",
-                    "Dragon: \"Max Wyrmwind\"",
-                    ",\n" +
-                            "\t\t\tCosmic: \"Max Galaxy\",\n" +
-                            "\t\t\tCrystal: \"Max Shatterstorm\",\n" +
-                            "\t\t\tDigital: \"Max Overclock\",\n" +
-                            "\t\t\tEldritch: \"Max Dreadvoid\",\n" +
-                            "\t\t\tLight: \"Max Radiance\",\n" +
-                            "\t\t\tNuclear: \"Max Meltdown\",\n" +
-                            "\t\t\tPlastic: \"Max Recast\",\n" +
-                            "\t\t\tQuestionmark: \"Max Questionmark\",\n" +
-                            "\t\t\tShadow: \"Max Umbrage\",\n" +
-                            "\t\t\tSlime: \"Max Ooze Flood\",\n" +
-                            "\t\t\tSound: \"Max Reverb\",\n" +
-                            "\t\t\tWind: \"Max Tempest\",\n" +
-                            "\t\t\tBlood: \"Max Leechrush\""
-                    );
-            ShowdownInjectionManager.injectEntry(
-                    showdownFolder.replaceAll("data/mods/cobblemon/","sim/")+ "battle-actions.js",
-                    "Fairy: \"Twinkle Tackle\"",
-                    ",\n" +
-                            "\t\t\tCosmic: \"Supernova Implosion\",\n" +
-                            "\t\t\tCrystal: \"Prism Breaker Beam\",\n" +
-                            "\t\t\tDigital: \"Code Overload\",\n" +
-                            "\t\t\tEldritch: \"Whispers Beyond the Veil\",\n" +
-                            "\t\t\tLight: \"Divine Nova\",\n" +
-                            "\t\t\tNuclear: \"Core Detonation\",\n" +
-                            "\t\t\tPlastic: \"Synthetic Evolution\",\n" +
-                            "\t\t\tQuestionmark: \"Questionmark Protocol\",\n" +
-                            "\t\t\tShadow: \"Veil of Oblivion\",\n" +
-                            "\t\t\tSlime: \"Mucus Tsunami\",\n" +
-                            "\t\t\tSound: \"Bass Drop Finale\",\n" +
-                            "\t\t\tWind: \"Heaven’s Gale\",\n" +
-                            "\t\t\tBlood: \"Crimson Pact\""
-                    );
-            ShowdownInjectionManager.injectEntry(showdownFolder.replaceAll("data/mods/cobblemon/","sim/")+ "pokemon.js",
-                    "this.modifyStat(\"atk\", 0.5);\n",
-                    "\t\t\tif (this.status === \"fbt\")\n" +
-                            "\t\t\t\tthis.modifyStat(\"spa\", 0.5);");
+            String showdownSimFolder = showdownFolder.replaceAll("data/mods/cobblemon/", "sim/");
+            if(!Files.exists(Paths.get(showdownSimFolder + "battle-actions.js"))) {
+                ShowdownFileManager.exportResource(showdownSimFolder, "battle-actions.js");
+            } else {
+                ShowdownInjectionManager.injectEntry(
+                        showdownSimFolder + "battle-actions.js",
+                        "Dragon: \"Max Wyrmwind\"",
+                        ",\n" +
+                                "\t\t\tCosmic: \"Max Galaxy\",\n" +
+                                "\t\t\tCrystal: \"Max Shatterstorm\",\n" +
+                                "\t\t\tDigital: \"Max Overclock\",\n" +
+                                "\t\t\tEldritch: \"Max Dreadvoid\",\n" +
+                                "\t\t\tLight: \"Max Radiance\",\n" +
+                                "\t\t\tNuclear: \"Max Meltdown\",\n" +
+                                "\t\t\tPlastic: \"Max Recast\",\n" +
+                                "\t\t\tQuestionmark: \"Max Questionmark\",\n" +
+                                "\t\t\tShadow: \"Max Umbrage\",\n" +
+                                "\t\t\tSlime: \"Max Ooze Flood\",\n" +
+                                "\t\t\tSound: \"Max Reverb\",\n" +
+                                "\t\t\tWind: \"Max Tempest\",\n" +
+                                "\t\t\tBlood: \"Max Leechrush\""
+                );
+                ShowdownInjectionManager.injectEntry(
+                        showdownSimFolder + "battle-actions.js",
+                        "Fairy: \"Twinkle Tackle\"",
+                        ",\n" +
+                                "\t\t\tCosmic: \"Supernova Implosion\",\n" +
+                                "\t\t\tCrystal: \"Prism Breaker Beam\",\n" +
+                                "\t\t\tDigital: \"Code Overload\",\n" +
+                                "\t\t\tEldritch: \"Whispers Beyond the Veil\",\n" +
+                                "\t\t\tLight: \"Divine Nova\",\n" +
+                                "\t\t\tNuclear: \"Core Detonation\",\n" +
+                                "\t\t\tPlastic: \"Synthetic Evolution\",\n" +
+                                "\t\t\tQuestionmark: \"Questionmark Protocol\",\n" +
+                                "\t\t\tShadow: \"Veil of Oblivion\",\n" +
+                                "\t\t\tSlime: \"Mucus Tsunami\",\n" +
+                                "\t\t\tSound: \"Bass Drop Finale\",\n" +
+                                "\t\t\tWind: \"Heaven’s Gale\",\n" +
+                                "\t\t\tBlood: \"Crimson Pact\""
+                );
+                injectRefinedMegaCheck(showdownSimFolder);
+            }
+            if(!Files.exists(Paths.get(showdownSimFolder + "pokemon.js"))) {
+                ShowdownFileManager.exportResource(showdownSimFolder, "pokemon.js");
+            } else {
+                ShowdownInjectionManager.injectEntry(showdownSimFolder + "pokemon.js",
+                        "this.modifyStat(\"atk\", 0.5);\n",
+                        "\t\t\tif (this.status === \"fbt\")\n" +
+                                "\t\t\t\tthis.modifyStat(\"spa\", 0.5);");
+            }
             ShowdownFileManager.exportResource(showdownFolder.replaceAll("data/mods/cobblemon/","server/chat-commands/"), "info.js");
             ShowdownFileManager.exportResource(showdownFolder.replaceAll("data/mods/cobblemon/","server/chat-plugins/"), "datasearch.js");
             ShowdownFileManager.exportResource(showdownFolder.replaceAll("data/mods/cobblemon/","data/text/"), "default.js");
@@ -131,6 +142,23 @@ public class ShowdownFileManager {
                     throw new RuntimeException(e);
                 }
             }
+        }
+    }
+
+    public static void injectRefinedMegaCheck(String showdownFolder) throws IOException {
+        String filePath = showdownFolder+"battle-actions.js"; // Replace with your actual path
+        String content = new String(Files.readAllBytes(Paths.get(filePath)));
+
+        var patchPattern = Pattern.compile(
+                "(item.megaEvolves === species.baseSpecies &&)",
+                Pattern.MULTILINE
+        );
+        var patchMatcher = patchPattern.matcher(content);
+        var replacementFunctionForCheck = """
+            item.megaEvolves === species.name && """;
+        if (patchMatcher.find()) {
+            var patchedContent = patchMatcher.replaceFirst(Matcher.quoteReplacement(replacementFunctionForCheck));
+            Files.write(Paths.get(filePath), patchedContent.getBytes(), StandardOpenOption.TRUNCATE_EXISTING);
         }
     }
 }

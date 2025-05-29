@@ -29,19 +29,22 @@ public class ItemModificationEntry {
                   megaEvolves: "%s",
                   itemUser: ["%s"],
                   onTakeItem(item, source) {
-                    const splitItem = item.megaEvolves.includes('-')
-                      ? item.megaEvolves.split('-')
-                      : null;
-                    if(splitItem) {
-                      return splitItem[0]===source.baseSpecies.baseSpecies
-                    } else if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
+                    if(item.megaEvolves.includes('-')) {
+                      const splitItem = item.megaEvolves.split('-');
+                      return !splitItem[0].toUpperCase()===source.baseSpecies.baseSpecies.toUpperCase() &&
+                        !splitItem[1].toUpperCase()===source.baseSpecies.forme.toUpperCase();
+                    }
+                    if (source.baseSpecies.forme !== "")
+                      return true;
+                    if (item.megaEvolves === source.baseSpecies.baseSpecies)
+                      return false;
                     return true;
                   },
                   num: %d,
                   gen: 6,
                   isNonstandard: "Past"
                 }
-            """, getShowdownItemId(), capitalizeWords(megaStoneName.replaceAll("_"," ")), showdownSafeName(resultingMega), showdownSafeName(speciesId), userSpecies, num);
+            """, getShowdownItemId(), capitalizeWords(megaStoneName.replaceAll("_"," ")), showdownSafeName(resultingMega), userSpecies, userSpecies, num);
     }
 
     private String showdownSafeName(String name) {

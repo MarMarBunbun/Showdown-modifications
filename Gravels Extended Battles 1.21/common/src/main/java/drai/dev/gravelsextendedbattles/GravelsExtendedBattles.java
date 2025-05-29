@@ -1,6 +1,7 @@
 package drai.dev.gravelsextendedbattles;
 
 import com.cobblemon.mod.common.api.*;
+import com.cobblemon.mod.common.api.battles.model.*;
 import com.cobblemon.mod.common.api.events.*;
 import com.cobblemon.mod.common.api.fossil.*;
 import com.cobblemon.mod.common.api.pokedex.*;
