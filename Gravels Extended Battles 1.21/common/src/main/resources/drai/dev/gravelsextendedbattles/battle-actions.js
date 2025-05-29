@@ -1795,8 +1795,8 @@ class BattleActions {
 
     if(item.megaEvolves.includes('-')) {
       const splitItem = item.megaEvolves.split('-');
-      if(splitItem[0].toUpperCase()===species.baseSpecies.baseSpecies.toUpperCase() &&
-          splitItem[1].toUpperCase()===species.baseSpecies.forme.toUpperCase() && item.megaStone !== species.name){
+      if(splitItem[0].toUpperCase()===species.baseSpecies.toUpperCase() &&
+          splitItem[1].toUpperCase()===species.forme.toUpperCase() && item.megaStone !== species.name){
         return item.megaStone;
       }
     } else if (item.megaEvolves === species.baseSpecies && item.megaStone !== species.name && species.baseSpecies.forme === "") {

@@ -14,4 +14,5 @@ public interface IGravelmonConfig {
     List<String> getImplementedTypes();
     List<String> getPasswords();
     boolean getShouldAddStarters();
+    boolean unmuteBattleLogs();
 }

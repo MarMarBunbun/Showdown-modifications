@@ -44,7 +44,7 @@ public class ItemModificationEntry {
                   gen: 6,
                   isNonstandard: "Past"
                 }
-            """, getShowdownItemId(), capitalizeWords(megaStoneName.replaceAll("_"," ")), showdownSafeName(resultingMega), showdownSafeName(speciesId), userSpecies, num);
+            """, getShowdownItemId(), capitalizeWords(megaStoneName.replaceAll("_"," ")), showdownSafeName(resultingMega), userSpecies, userSpecies, num);
     }
 
     private String showdownSafeName(String name) {

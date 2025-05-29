@@ -149,52 +149,16 @@ public class ShowdownFileManager {
         String filePath = showdownFolder+"battle-actions.js"; // Replace with your actual path
         String content = new String(Files.readAllBytes(Paths.get(filePath)));
 
-        // Regex pattern to match the entire canMegaEvo function
-        /*Pattern pattern = Pattern.compile(
-                "(const megaForme = megaKey && this\\.dex\\.species\\.get\\(megaKey\\);)",
-                Pattern.MULTILINE
-        );
-        Matcher matcher = pattern.matcher(content);
-
-        // New function implementation
-        String replacementFunction = """
-            const megaForme = megaKey && this.dex.species.get(megaKey);
-
-            if (item.megaEvolves.includes('-')) {
-              const splitItem = item.megaEvolves.split('-');
-              if (
-                splitItem[0].toUpperCase() === species.baseSpecies.baseSpecies.toUpperCase() &&
-                splitItem[1].toUpperCase() === species.baseSpecies.forme.toUpperCase() &&
-                item.megaStone !== species.name
-              ) {
-                return item.megaStone;
-              }
-            }""";
-
-        // Replace the function in the content
-        String updatedContent = null;
-        if (matcher.find()) {
-            updatedContent = matcher.replaceFirst(Matcher.quoteReplacement(replacementFunction));
-            Files.write(Paths.get(filePath), updatedContent.getBytes(), StandardOpenOption.TRUNCATE_EXISTING);
-        } else {
-            return;
-        }*/
-
         var patchPattern = Pattern.compile(
                 "(item.megaEvolves === species.baseSpecies &&)",
                 Pattern.MULTILINE
         );
         var patchMatcher = patchPattern.matcher(content);
         var replacementFunctionForCheck = """
-            item.megaEvolves === species.baseSpecies && !species.name.includes('-') &&""";
-
-        // Replace the function in the content
+            item.megaEvolves === species.name && """;
         if (patchMatcher.find()) {
             var patchedContent = patchMatcher.replaceFirst(Matcher.quoteReplacement(replacementFunctionForCheck));
             Files.write(Paths.get(filePath), patchedContent.getBytes(), StandardOpenOption.TRUNCATE_EXISTING);
-            System.out.println("✅ Successfully patched canMegaEvo.");
-        } else {
-            System.err.println("❌ Failed to find canMegaEvo function.");
         }
     }
 }

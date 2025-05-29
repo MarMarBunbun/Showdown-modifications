@@ -2584,6 +2584,6 @@ const Items = {
     num: 3015,
     gen: 9,
     isNonstandard: "Past"
-  },
+  }
 };
 //# sourceMappingURL=items.js.map
