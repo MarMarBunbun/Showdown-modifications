@@ -35,11 +35,6 @@ public class ShowdownInjectionManager {
             e.printStackTrace();
         }
     }
-
-    public interface ModificationEntry {
-        String getTarget();
-        String getEntry();
-    }
 }
 
 

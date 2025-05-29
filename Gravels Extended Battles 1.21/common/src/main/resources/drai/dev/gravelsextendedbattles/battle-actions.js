@@ -1792,7 +1792,14 @@ class BattleActions {
     if ((this.battle.gen <= 7 || this.battle.ruleTable.has("+pokemontag:past")) && megaForme?.requiredMove && pokemon.baseMoves.includes((0, import_dex.toID)(megaForme.requiredMove)) && !item.zMove) {
       return megaForme.name;
     }
-    if (item.megaEvolves === species.baseSpecies && item.megaStone !== species.name) {
+
+    if(item.megaEvolves.includes('-')) {
+      const splitItem = item.megaEvolves.split('-');
+      if(splitItem[0].toUpperCase()===species.baseSpecies.baseSpecies.toUpperCase() &&
+          splitItem[1].toUpperCase()===species.baseSpecies.forme.toUpperCase() && item.megaStone !== species.name){
+        return item.megaStone;
+      }
+    } else if (item.megaEvolves === species.baseSpecies && item.megaStone !== species.name && species.baseSpecies.forme === "") {
       return item.megaStone;
     }
     return null;
