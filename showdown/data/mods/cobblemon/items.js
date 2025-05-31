@@ -22,16 +22,123 @@ __export(items_exports, {
 });
 module.exports = __toCommonJS(items_exports);
 const Items = {
-  windiumz: {
-    name: "Windium Z",
-    spritenum: 3094,
-    onTakeItem: false,
-    zMove: true,
-    zMoveType: "Wind",
-	onPlate: "Wind",
-    forcedForme: "Arceus-Wind",
-    num: 3094,
-    gen: 7,
+  abomasite: {
+    name: "Abomasite",
+    spritenum: 575,
+    megaStone: "Abomasnow-Mega",
+    megaEvolves: "Abomasnow",
+    itemUser: ["Abomasnow"],
+    onTakeItem(item, source) {
+      if (source.baseSpecies.forme !== "")
+        return true;
+      if (item.megaEvolves === source.baseSpecies.baseSpecies)
+        return false;
+      return true;
+    },
+    num: 674,
+    gen: 6,
+    isNonstandard: "Past"
+  },
+  absolite: {
+    name: "Absolite",
+    spritenum: 576,
+    megaStone: "Absol-Mega",
+    megaEvolves: "Absol",
+    itemUser: ["Absol"],
+    onTakeItem(item, source) {
+      if (source.baseSpecies.forme !== "")
+        return true;
+      if (item.megaEvolves === source.baseSpecies.baseSpecies)
+        return false;
+      return true;
+    },
+    num: 677,
+    gen: 6,
+    isNonstandard: "Past"
+  },
+  aerodactylite: {
+    name: "Aerodactylite",
+    spritenum: 577,
+    megaStone: "Aerodactyl-Mega",
+    megaEvolves: "Aerodactyl",
+    itemUser: ["Aerodactyl"],
+    onTakeItem(item, source) {
+      if (source.baseSpecies.forme !== "")
+        return true;
+      if (item.megaEvolves === source.baseSpecies.baseSpecies)
+        return false;
+      return true;
+    },
+    num: 672,
+    gen: 6,
+    isNonstandard: "Past"
+  },
+  aggronite: {
+    name: "Aggronite",
+    spritenum: 578,
+    megaStone: "Aggron-Mega",
+    megaEvolves: "Aggron",
+    itemUser: ["Aggron"],
+    onTakeItem(item, source) {
+      if (source.baseSpecies.forme !== "")
+        return true;
+      if (item.megaEvolves === source.baseSpecies.baseSpecies)
+        return false;
+      return true;
+    },
+    num: 667,
+    gen: 6,
+    isNonstandard: "Past"
+  },
+  alakazite: {
+    name: "Alakazite",
+    spritenum: 579,
+    megaStone: "Alakazam-Mega",
+    megaEvolves: "Alakazam",
+    itemUser: ["Alakazam"],
+    onTakeItem(item, source) {
+      if (source.baseSpecies.forme !== "")
+        return true;
+      if (item.megaEvolves === source.baseSpecies.baseSpecies)
+        return false;
+      return true;
+    },
+    num: 679,
+    gen: 6,
+    isNonstandard: "Past"
+  },
+  altarianite: {
+    name: "Altarianite",
+    spritenum: 615,
+    megaStone: "Altaria-Mega",
+    megaEvolves: "Altaria",
+    itemUser: ["Altaria"],
+    onTakeItem(item, source) {
+      if (source.baseSpecies.forme !== "")
+        return true;
+      if (item.megaEvolves === source.baseSpecies.baseSpecies)
+        return false;
+      return true;
+    },
+    num: 755,
+    gen: 6,
+    isNonstandard: "Past"
+  },
+  ampharosite: {
+    name: "Ampharosite",
+    spritenum: 580,
+    megaStone: "Ampharos-Mega",
+    megaEvolves: "Ampharos",
+    itemUser: ["Ampharos"],
+    onTakeItem(item, source) {
+      if (source.baseSpecies.forme !== "")
+        return true;
+      if (item.megaEvolves === source.baseSpecies.baseSpecies)
+        return false;
+      return true;
+    },
+    num: 658,
+    gen: 6,
     isNonstandard: "Past"
   },
   amplifier: {
@@ -67,13 +174,30 @@ const Items = {
   },
   arkhaniumz: {
     name: "Arkhanium Z",
-    spritenum: 687,
+    spritenum: 3159,
     onTakeItem: false,
     zMove: "Biggest Bang",
     zMoveFrom: "Big Bang",
     itemUser: ["Arkhaos"],
     num: 3159,
     gen: 7,
+    isNonstandard: "Past"
+  },
+  audinite: {
+    name: "Audinite",
+    spritenum: 617,
+    megaStone: "Audino-Mega",
+    megaEvolves: "Audino",
+    itemUser: ["Audino"],
+    onTakeItem(item, source) {
+      if (source.baseSpecies.forme !== "")
+        return true;
+      if (item.megaEvolves === source.baseSpecies.baseSpecies)
+        return false;
+      return true;
+    },
+    num: 757,
+    gen: 6,
     isNonstandard: "Past"
   },
   avocaberry: {
@@ -101,6 +225,60 @@ const Items = {
     num: 3155,
     gen: 4
   },
+  banettite: {
+    name: "Banettite",
+    spritenum: 582,
+    megaStone: "Banette-Mega",
+    megaEvolves: "Banette",
+    itemUser: ["Banette"],
+    onTakeItem(item, source) {
+      if (source.baseSpecies.forme !== "")
+        return true;
+      if (item.megaEvolves === source.baseSpecies.baseSpecies)
+        return false;
+      return true;
+    },
+    num: 668,
+    gen: 6,
+    isNonstandard: "Past"
+  },
+  bassplate: {
+    name: "Bass Plate",
+    spritenum: 3105,
+    onPlate: "Sound",
+    onBasePowerPriority: 15,
+    onBasePower(basePower, user, target, move) {
+      if (move.type === "Sound") {
+        return this.chainModify([4915, 4096]);
+      }
+    },
+    onTakeItem(item, pokemon, source) {
+      if (source && source.baseSpecies.num === 493 || pokemon.baseSpecies.num === 493) {
+        return false;
+      }
+      return true;
+    },
+    forcedForme: "Arceus-Sound",
+    num: 3105,
+    gen: 4
+  },
+  beedrillite: {
+    name: "Beedrillite",
+    spritenum: 628,
+    megaStone: "Beedrill-Mega",
+    megaEvolves: "Beedrill",
+    itemUser: ["Beedrill"],
+    onTakeItem(item, source) {
+      if (source.baseSpecies.forme !== "")
+        return true;
+      if (item.megaEvolves === source.baseSpecies.baseSpecies)
+        return false;
+      return true;
+    },
+    num: 770,
+    gen: 6,
+    isNonstandard: "Past"
+  },
   benasiberry: {
     name: "Benasi Berry",
     spritenum: 3156,
@@ -125,6 +303,60 @@ const Items = {
     },
     num: 3156,
     gen: 4
+  },
+  binaryplate: {
+    name: "Binary Plate",
+    spritenum: 3100,
+    onPlate: "Digital",
+    onBasePowerPriority: 15,
+    onBasePower(basePower, user, target, move) {
+      if (move.type === "Digital") {
+        return this.chainModify([4915, 4096]);
+      }
+    },
+    onTakeItem(item, pokemon, source) {
+      if (source && source.baseSpecies.num === 493 || pokemon.baseSpecies.num === 493) {
+        return false;
+      }
+      return true;
+    },
+    forcedForme: "Arceus-Digital",
+    num: 3100,
+    gen: 4
+  },
+  blastoisinite: {
+    name: "Blastoisinite",
+    spritenum: 583,
+    megaStone: "Blastoise-Mega",
+    megaEvolves: "Blastoise",
+    itemUser: ["Blastoise"],
+    onTakeItem(item, source) {
+      if (source.baseSpecies.forme !== "")
+        return true;
+      if (item.megaEvolves === source.baseSpecies.baseSpecies)
+        return false;
+      return true;
+    },
+    num: 661,
+    gen: 6,
+    isNonstandard: "Past"
+  },
+  blazikenite: {
+    name: "Blazikenite",
+    spritenum: 584,
+    megaStone: "Blaziken-Mega",
+    megaEvolves: "Blaziken",
+    itemUser: ["Blaziken"],
+    onTakeItem(item, source) {
+      if (source.baseSpecies.forme !== "")
+        return true;
+      if (item.megaEvolves === source.baseSpecies.baseSpecies)
+        return false;
+      return true;
+    },
+    num: 664,
+    gen: 6,
+    isNonstandard: "Past"
   },
   bloodgem: {
     name: "Blood Gem",
@@ -154,6 +386,18 @@ const Items = {
     forcedForme: "Silvally-Blood",
     itemUser: ["Silvally-Blood"],
     num: 3134,
+    gen: 7,
+    isNonstandard: "Past"
+  },
+  bloodiumz: {
+    name: "Bloodium Z",
+    spritenum: 3095,
+    onTakeItem: false,
+    zMove: true,
+    zMoveType: "Blood",
+    onPlate: "Blood",
+    forcedForme: "Arceus-Blood",
+    num: 3095,
     gen: 7,
     isNonstandard: "Past"
   },
@@ -187,6 +431,23 @@ const Items = {
     num: 3146,
     gen: 2
   },
+  cameruptite: {
+    name: "Cameruptite",
+    spritenum: 625,
+    megaStone: "Camerupt-Mega",
+    megaEvolves: "Camerupt",
+    itemUser: ["Camerupt"],
+    onTakeItem(item, source) {
+      if (source.baseSpecies.forme !== "")
+        return true;
+      if (item.megaEvolves === source.baseSpecies.baseSpecies)
+        return false;
+      return true;
+    },
+    num: 767,
+    gen: 6,
+    isNonstandard: "Past"
+  },
   carababerry: {
     name: "Caraba Berry",
     spritenum: 3152,
@@ -211,6 +472,40 @@ const Items = {
     },
     num: 3152,
     gen: 4
+  },
+  charizarditex: {
+    name: "Charizardite X",
+    spritenum: 585,
+    megaStone: "Charizard-Mega-X",
+    megaEvolves: "Charizard",
+    itemUser: ["Charizard"],
+    onTakeItem(item, source) {
+      if (source.baseSpecies.forme !== "")
+        return true;
+      if (item.megaEvolves === source.baseSpecies.baseSpecies)
+        return false;
+      return true;
+    },
+    num: 660,
+    gen: 6,
+    isNonstandard: "Past"
+  },
+  charizarditey: {
+    name: "Charizardite Y",
+    spritenum: 586,
+    megaStone: "Charizard-Mega-Y",
+    megaEvolves: "Charizard",
+    itemUser: ["Charizard"],
+    onTakeItem(item, source) {
+      if (source.baseSpecies.forme !== "")
+        return true;
+      if (item.megaEvolves === source.baseSpecies.baseSpecies)
+        return false;
+      return true;
+    },
+    num: 678,
+    gen: 6,
+    isNonstandard: "Past"
   },
   chuvaberry: {
     name: "Chuva Berry",
@@ -320,26 +615,6 @@ const Items = {
     },
     num: 3002,
     gen: 2
-  },
-  binaryplate: {
-    name: "Binary Plate",
-    spritenum: 3100,
-    onPlate: "Digital",
-    onBasePowerPriority: 15,
-    onBasePower(basePower, user, target, move) {
-      if (move.type === "Digital") {
-        return this.chainModify([4915, 4096]);
-      }
-    },
-    onTakeItem(item, pokemon, source) {
-      if (source && source.baseSpecies.num === 493 || pokemon.baseSpecies.num === 493) {
-        return false;
-      }
-      return true;
-    },
-    forcedForme: "Arceus-Digital",
-    num: 3100,
-    gen: 4
   },
   crystalgem: {
     name: "Cosmic Gem",
@@ -467,6 +742,23 @@ const Items = {
     itemUser: ["Volcarona-Delta-Armored"],
     num: 3026,
     gen: 8
+  },
+  diancite: {
+    name: "Diancite",
+    spritenum: 624,
+    megaStone: "Diancie-Mega",
+    megaEvolves: "Diancie",
+    itemUser: ["Diancie"],
+    onTakeItem(item, source) {
+      if (source.baseSpecies.forme !== "")
+        return true;
+      if (item.megaEvolves === source.baseSpecies.baseSpecies)
+        return false;
+      return true;
+    },
+    num: 764,
+    gen: 6,
+    isNonstandard: "Past"
   },
   digitalgem: {
     name: "Digital Gem",
@@ -688,6 +980,23 @@ const Items = {
     num: 3098,
     gen: 4
   },
+  galladite: {
+    name: "Galladite",
+    spritenum: 616,
+    megaStone: "Gallade-Mega",
+    megaEvolves: "Gallade",
+    itemUser: ["Gallade"],
+    onTakeItem(item, source) {
+      if (source.baseSpecies.forme !== "")
+        return true;
+      if (item.megaEvolves === source.baseSpecies.baseSpecies)
+        return false;
+      return true;
+    },
+    num: 756,
+    gen: 6,
+    isNonstandard: "Past"
+  },
   gamecartridge: {
     name: "Game Cartridge",
     spritenum: 3136,
@@ -703,25 +1012,90 @@ const Items = {
     num: 3136,
     gen: 2
   },
-  stickyplate: {
-    name: "Sticky Plate",
-    spritenum: 3104,
-    onPlate: "Slime",
-    onBasePowerPriority: 15,
-    onBasePower(basePower, user, target, move) {
-      if (move.type === "Slime") {
-        return this.chainModify([4915, 4096]);
-      }
-    },
-    onTakeItem(item, pokemon, source) {
-      if (source && source.baseSpecies.num === 493 || pokemon.baseSpecies.num === 493) {
+  garchompite: {
+    name: "Garchompite",
+    spritenum: 589,
+    megaStone: "Garchomp-Mega",
+    megaEvolves: "Garchomp",
+    itemUser: ["Garchomp"],
+    onTakeItem(item, source) {
+      if (source.baseSpecies.forme !== "")
+        return true;
+      if (item.megaEvolves === source.baseSpecies.baseSpecies)
         return false;
-      }
       return true;
     },
-    forcedForme: "Arceus-Slime",
-    num: 3104,
-    gen: 4
+    num: 683,
+    gen: 6,
+    isNonstandard: "Past"
+  },
+  gardevoirite: {
+    name: "Gardevoirite",
+    spritenum: 587,
+    megaStone: "Gardevoir-Mega",
+    megaEvolves: "Gardevoir",
+    itemUser: ["Gardevoir"],
+    onTakeItem(item, source) {
+      if (source.baseSpecies.forme !== "")
+        return true;
+      if (item.megaEvolves === source.baseSpecies.baseSpecies)
+        return false;
+      return true;
+    },
+    num: 657,
+    gen: 6,
+    isNonstandard: "Past"
+  },
+  gengarite: {
+    name: "Gengarite",
+    spritenum: 588,
+    megaStone: "Gengar-Mega",
+    megaEvolves: "Gengar",
+    itemUser: ["Gengar"],
+    onTakeItem(item, source) {
+      if (source.baseSpecies.forme !== "")
+        return true;
+      if (item.megaEvolves === source.baseSpecies.baseSpecies)
+        return false;
+      return true;
+    },
+    num: 656,
+    gen: 6,
+    isNonstandard: "Past"
+  },
+  glalitite: {
+    name: "Glalitite",
+    spritenum: 623,
+    megaStone: "Glalie-Mega",
+    megaEvolves: "Glalie",
+    itemUser: ["Glalie"],
+    onTakeItem(item, source) {
+      if (source.baseSpecies.forme !== "")
+        return true;
+      if (item.megaEvolves === source.baseSpecies.baseSpecies)
+        return false;
+      return true;
+    },
+    num: 763,
+    gen: 6,
+    isNonstandard: "Past"
+  },
+  gyaradosite: {
+    name: "Gyaradosite",
+    spritenum: 589,
+    megaStone: "Gyarados-Mega",
+    megaEvolves: "Gyarados",
+    itemUser: ["Gyarados"],
+    onTakeItem(item, source) {
+      if (source.baseSpecies.forme !== "")
+        return true;
+      if (item.megaEvolves === source.baseSpecies.baseSpecies)
+        return false;
+      return true;
+    },
+    num: 676,
+    gen: 6,
+    isNonstandard: "Past"
   },
   hafliberry: {
     name: "Hafli Berry",
@@ -759,6 +1133,40 @@ const Items = {
     },
     num: 3019,
     gen: 8,
+    isNonstandard: "Past"
+  },
+  heracronite: {
+    name: "Heracronite",
+    spritenum: 590,
+    megaStone: "Heracross-Mega",
+    megaEvolves: "Heracross",
+    itemUser: ["Heracross"],
+    onTakeItem(item, source) {
+      if (source.baseSpecies.forme !== "")
+        return true;
+      if (item.megaEvolves === source.baseSpecies.baseSpecies)
+        return false;
+      return true;
+    },
+    num: 680,
+    gen: 6,
+    isNonstandard: "Past"
+  },
+  houndoominite: {
+    name: "Houndoominite",
+    spritenum: 591,
+    megaStone: "Houndoom-Mega",
+    megaEvolves: "Houndoom",
+    itemUser: ["Houndoom"],
+    onTakeItem(item, source) {
+      if (source.baseSpecies.forme !== "")
+        return true;
+      if (item.megaEvolves === source.baseSpecies.baseSpecies)
+        return false;
+      return true;
+    },
+    num: 666,
+    gen: 6,
     isNonstandard: "Past"
   },
   iceshard: {
@@ -857,6 +1265,57 @@ const Items = {
     num: 3150,
     gen: 4
   },
+  kangaskhanite: {
+    name: "Kangaskhanite",
+    spritenum: 592,
+    megaStone: "Kangaskhan-Mega",
+    megaEvolves: "Kangaskhan",
+    itemUser: ["Kangaskhan"],
+    onTakeItem(item, source) {
+      if (source.baseSpecies.forme !== "")
+        return true;
+      if (item.megaEvolves === source.baseSpecies.baseSpecies)
+        return false;
+      return true;
+    },
+    num: 675,
+    gen: 6,
+    isNonstandard: "Past"
+  },
+  latiasite: {
+    name: "Latiasite",
+    spritenum: 629,
+    megaStone: "Latias-Mega",
+    megaEvolves: "Latias",
+    itemUser: ["Latias"],
+    onTakeItem(item, source) {
+      if (source.baseSpecies.forme !== "")
+        return true;
+      if (item.megaEvolves === source.baseSpecies.baseSpecies)
+        return false;
+      return true;
+    },
+    num: 684,
+    gen: 6,
+    isNonstandard: "Past"
+  },
+  latiosite: {
+    name: "Latiosite",
+    spritenum: 630,
+    megaStone: "Latios-Mega",
+    megaEvolves: "Latios",
+    itemUser: ["Latios"],
+    onTakeItem(item, source) {
+      if (source.baseSpecies.forme !== "")
+        return true;
+      if (item.megaEvolves === source.baseSpecies.baseSpecies)
+        return false;
+      return true;
+    },
+    num: 685,
+    gen: 6,
+    isNonstandard: "Past"
+  },
   lightbulb: {
     name: "Lightbulb",
     spritenum: 3139,
@@ -919,6 +1378,40 @@ const Items = {
     gen: 9,
     isNonstandard: "Past"
   },
+  lopunnite: {
+    name: "Lopunnite",
+    spritenum: 626,
+    megaStone: "Lopunny-Mega",
+    megaEvolves: "Lopunny",
+    itemUser: ["Lopunny"],
+    onTakeItem(item, source) {
+      if (source.baseSpecies.forme !== "")
+        return true;
+      if (item.megaEvolves === source.baseSpecies.baseSpecies)
+        return false;
+      return true;
+    },
+    num: 768,
+    gen: 6,
+    isNonstandard: "Past"
+  },
+  lucarionite: {
+    name: "Lucarionite",
+    spritenum: 594,
+    megaStone: "Lucario-Mega",
+    megaEvolves: "Lucario",
+    itemUser: ["Lucario"],
+    onTakeItem(item, source) {
+      if (source.baseSpecies.forme !== "")
+        return true;
+      if (item.megaEvolves === source.baseSpecies.baseSpecies)
+        return false;
+      return true;
+    },
+    num: 673,
+    gen: 6,
+    isNonstandard: "Past"
+  },
   lumenplate: {
     name: "Lumen Plate",
     spritenum: 3101,
@@ -966,6 +1459,57 @@ const Items = {
     gen: 7,
     isNonstandard: "Past"
   },
+  manectite: {
+    name: "Manectite",
+    spritenum: 596,
+    megaStone: "Manectric-Mega",
+    megaEvolves: "Manectric",
+    itemUser: ["Manectric"],
+    onTakeItem(item, source) {
+      if (source.baseSpecies.forme !== "")
+        return true;
+      if (item.megaEvolves === source.baseSpecies.baseSpecies)
+        return false;
+      return true;
+    },
+    num: 682,
+    gen: 6,
+    isNonstandard: "Past"
+  },
+  mawilite: {
+    name: "Mawilite",
+    spritenum: 598,
+    megaStone: "Mawile-Mega",
+    megaEvolves: "Mawile",
+    itemUser: ["Mawile"],
+    onTakeItem(item, source) {
+      if (source.baseSpecies.forme !== "")
+        return true;
+      if (item.megaEvolves === source.baseSpecies.baseSpecies)
+        return false;
+      return true;
+    },
+    num: 681,
+    gen: 6,
+    isNonstandard: "Past"
+  },
+  medichamite: {
+    name: "Medichamite",
+    spritenum: 599,
+    megaStone: "Medicham-Mega",
+    megaEvolves: "Medicham",
+    itemUser: ["Medicham"],
+    onTakeItem(item, source) {
+      if (source.baseSpecies.forme !== "")
+        return true;
+      if (item.megaEvolves === source.baseSpecies.baseSpecies)
+        return false;
+      return true;
+    },
+    num: 665,
+    gen: 6,
+    isNonstandard: "Past"
+  },
   melirunberry: {
     name: "Melirun Berry",
     spritenum: 3147,
@@ -991,6 +1535,23 @@ const Items = {
     num: 3147,
     gen: 4
   },
+  metagrossite: {
+    name: "Metagrossite",
+    spritenum: 618,
+    megaStone: "Metagross-Mega",
+    megaEvolves: "Metagross",
+    itemUser: ["Metagross"],
+    onTakeItem(item, source) {
+      if (source.baseSpecies.forme !== "")
+        return true;
+      if (item.megaEvolves === source.baseSpecies.baseSpecies)
+        return false;
+      return true;
+    },
+    num: 758,
+    gen: 6,
+    isNonstandard: "Past"
+  },
   mewtwoarmor: {
     name: "Mewtwo Armor",
     spritenum: 3027,
@@ -1004,6 +1565,40 @@ const Items = {
     itemUser: ["Mewtwo-Armored"],
     num: 3027,
     gen: 8
+  },
+  mewtwonitex: {
+    name: "Mewtwonite X",
+    spritenum: 600,
+    megaStone: "Mewtwo-Mega-X",
+    megaEvolves: "Mewtwo",
+    itemUser: ["Mewtwo"],
+    onTakeItem(item, source) {
+      if (source.baseSpecies.forme !== "")
+        return true;
+      if (item.megaEvolves === source.baseSpecies.baseSpecies)
+        return false;
+      return true;
+    },
+    num: 662,
+    gen: 6,
+    isNonstandard: "Past"
+  },
+  mewtwonitey: {
+    name: "Mewtwonite Y",
+    spritenum: 601,
+    megaStone: "Mewtwo-Mega-Y",
+    megaEvolves: "Mewtwo",
+    itemUser: ["Mewtwo"],
+    onTakeItem(item, source) {
+      if (source.baseSpecies.forme !== "")
+        return true;
+      if (item.megaEvolves === source.baseSpecies.baseSpecies)
+        return false;
+      return true;
+    },
+    num: 663,
+    gen: 6,
+    isNonstandard: "Past"
   },
   moisturecream: {
     name: "Moisture Cream",
@@ -1034,6 +1629,38 @@ const Items = {
     },
     num: 3010,
     gen: 2
+  },
+  mysteriumz: {
+    name: "Mysterium Z",
+    spritenum: 3090,
+    onTakeItem: false,
+    zMove: true,
+    zMoveType: "Questionmark",
+	onPlate: "Questionmark",
+    forcedForme: "Arceus-Questionmark",
+    num: 3090,
+    gen: 7,
+    isNonstandard: "Past"
+  },
+  mysteryplate: {
+    name: "Mystery Plate",
+    spritenum: 3097,
+    onPlate: "Questionmark",
+    onBasePowerPriority: 15,
+    onBasePower(basePower, user, target, move) {
+      if (move.type === "Questionmark") {
+        return this.chainModify([4915, 4096]);
+      }
+    },
+    onTakeItem(item, pokemon, source) {
+      if (source && source.baseSpecies.num === 493 || pokemon.baseSpecies.num === 493) {
+        return false;
+      }
+      return true;
+    },
+    forcedForme: "Arceus-Questionmark",
+    num: 3097,
+    gen: 4
   },
   ninikuberry: {
     name: "Niniku Berry",
@@ -1147,6 +1774,40 @@ const Items = {
     forcedForme: "Arceus-Shadow",
     num: 3096,
     gen: 4
+  },
+  pidgeotite: {
+    name: "Pidgeotite",
+    spritenum: 622,
+    megaStone: "Pidgeot-Mega",
+    megaEvolves: "Pidgeot",
+    itemUser: ["Pidgeot"],
+    onTakeItem(item, source) {
+      if (source.baseSpecies.forme !== "")
+        return true;
+      if (item.megaEvolves === source.baseSpecies.baseSpecies)
+        return false;
+      return true;
+    },
+    num: 762,
+    gen: 6,
+    isNonstandard: "Past"
+  },
+  pinsirite: {
+    name: "Pinsirite",
+    spritenum: 602,
+    megaStone: "Pinsir-Mega",
+    megaEvolves: "Pinsir",
+    itemUser: ["Pinsir"],
+    onTakeItem(item, source) {
+      if (source.baseSpecies.forme !== "")
+        return true;
+      if (item.megaEvolves === source.baseSpecies.baseSpecies)
+        return false;
+      return true;
+    },
+    num: 671,
+    gen: 6,
+    isNonstandard: "Past"
   },
   plasticgem: {
     name: "Plastic Gem",
@@ -1263,18 +1924,6 @@ const Items = {
     gen: 5,
     isNonstandard: "Past"
   },
-  mysteriumz: {
-    name: "Mysterium Z",
-    spritenum: 3090,
-    onTakeItem: false,
-    zMove: true,
-    zMoveType: "Questionmark",
-	onPlate: "Questionmark",
-    forcedForme: "Arceus-Questionmark",
-    num: 3090,
-    gen: 7,
-    isNonstandard: "Past"
-  },
   questionmarkmemory: {
     name: "Questionmark Memory",
     spritenum: 3123,
@@ -1290,26 +1939,6 @@ const Items = {
     num: 3123,
     gen: 7,
     isNonstandard: "Past"
-  },
-  mysteryplate: {
-    name: "Mystery Plate",
-    spritenum: 3097,
-    onPlate: "Questionmark",
-    onBasePowerPriority: 15,
-    onBasePower(basePower, user, target, move) {
-      if (move.type === "Questionmark") {
-        return this.chainModify([4915, 4096]);
-      }
-    },
-    onTakeItem(item, pokemon, source) {
-      if (source && source.baseSpecies.num === 493 || pokemon.baseSpecies.num === 493) {
-        return false;
-      }
-      return true;
-    },
-    forcedForme: "Arceus-Questionmark",
-    num: 3097,
-    gen: 4
   },
   radiumgoggles: {
     name: "Radium Goggles",
@@ -1348,18 +1977,6 @@ const Items = {
     num: 3012,
     gen: 3
   },
-  soundiumz: {
-    name: "Soundium Z",
-    spritenum: 3093,
-    onTakeItem: false,
-    zMove: true,
-    zMoveType: "Sound",
-	onPlate: "Sound",
-    forcedForme: "Arceus-Sound",
-    num: 3093,
-    gen: 7,
-    isNonstandard: "Past"
-  },
   reverbplate: {
     name: "Reverb Plate",
     spritenum: 3105,
@@ -1380,15 +1997,100 @@ const Items = {
     num: 3105,
     gen: 4
   },
-  bloodiumz: {
-    name: "Bloodium Z",
-    spritenum: 3095,
+  sablenite: {
+    name: "Sablenite",
+    spritenum: 614,
+    megaStone: "Sableye-Mega",
+    megaEvolves: "Sableye",
+    itemUser: ["Sableye"],
+    onTakeItem(item, source) {
+      if (source.baseSpecies.forme !== "")
+        return true;
+      if (item.megaEvolves === source.baseSpecies.baseSpecies)
+        return false;
+      return true;
+    },
+    num: 754,
+    gen: 6,
+    isNonstandard: "Past"
+  },
+  salamencite: {
+    name: "Salamencite",
+    spritenum: 627,
+    megaStone: "Salamence-Mega",
+    megaEvolves: "Salamence",
+    itemUser: ["Salamence"],
+    onTakeItem(item, source) {
+      if (source.baseSpecies.forme !== "")
+        return true;
+      if (item.megaEvolves === source.baseSpecies.baseSpecies)
+        return false;
+      return true;
+    },
+    num: 769,
+    gen: 6,
+    isNonstandard: "Past"
+  },
+  sceptilite: {
+    name: "Sceptilite",
+    spritenum: 613,
+    megaStone: "Sceptile-Mega",
+    megaEvolves: "Sceptile",
+    itemUser: ["Sceptile"],
+    onTakeItem(item, source) {
+      if (source.baseSpecies.forme !== "")
+        return true;
+      if (item.megaEvolves === source.baseSpecies.baseSpecies)
+        return false;
+      return true;
+    },
+    num: 753,
+    gen: 6,
+    isNonstandard: "Past"
+  },
+  scizorite: {
+    name: "Scizorite",
+    spritenum: 605,
+    megaStone: "Scizor-Mega",
+    megaEvolves: "Scizor",
+    itemUser: ["Scizor"],
+    onTakeItem(item, source) {
+      if (source.baseSpecies.forme !== "")
+        return true;
+      if (item.megaEvolves === source.baseSpecies.baseSpecies)
+        return false;
+      return true;
+    },
+    num: 670,
+    gen: 6,
+    isNonstandard: "Past"
+  },
+  sharpedonite: {
+    name: "Sharpedonite",
+    spritenum: 619,
+    megaStone: "Sharpedo-Mega",
+    megaEvolves: "Sharpedo",
+    itemUser: ["Sharpedo"],
+    onTakeItem(item, source) {
+      if (source.baseSpecies.forme !== "")
+        return true;
+      if (item.megaEvolves === source.baseSpecies.baseSpecies)
+        return false;
+      return true;
+    },
+    num: 759,
+    gen: 6,
+    isNonstandard: "Past"
+  },
+  shadiumz: {
+    name: "Shadium Z",
+    spritenum: 3091,
     onTakeItem: false,
     zMove: true,
-    zMoveType: "Blood",
-    onPlate: "Blood",
-    forcedForme: "Arceus-Blood",
-    num: 3095,
+    zMoveType: "Shadow",
+	onPlate: "Shadow",
+    forcedForme: "Arceus-Shadow",
+    num: 3091,
     gen: 7,
     isNonstandard: "Past"
   },
@@ -1423,26 +2125,6 @@ const Items = {
     gen: 7,
     isNonstandard: "Past"
   },
-  bassplate: {
-    name: "Bass Plate",
-    spritenum: 3105,
-    onPlate: "Sound",
-    onBasePowerPriority: 15,
-    onBasePower(basePower, user, target, move) {
-      if (move.type === "Sound") {
-        return this.chainModify([4915, 4096]);
-      }
-    },
-    onTakeItem(item, pokemon, source) {
-      if (source && source.baseSpecies.num === 493 || pokemon.baseSpecies.num === 493) {
-        return false;
-      }
-      return true;
-    },
-    forcedForme: "Arceus-Sound",
-    num: 3105,
-    gen: 4
-  },
   slimegem: {
     name: "Slime Gem",
     spritenum: 3117,
@@ -1471,6 +2153,35 @@ const Items = {
     forcedForme: "Silvally-Slime",
     itemUser: ["Silvally-Slime"],
     num: 3130,
+    gen: 7,
+    isNonstandard: "Past"
+  },
+  slowbronite: {
+    name: "Slowbronite",
+    spritenum: 620,
+    megaStone: "Slowbro-Mega",
+    megaEvolves: "Slowbro",
+    itemUser: ["Slowbro"],
+    onTakeItem(item, source) {
+      if (source.baseSpecies.forme !== "")
+        return true;
+      if (item.megaEvolves === source.baseSpecies.baseSpecies)
+        return false;
+      return true;
+    },
+    num: 760,
+    gen: 6,
+    isNonstandard: "Past"
+  },
+  soundiumz: {
+    name: "Soundium Z",
+    spritenum: 3093,
+    onTakeItem: false,
+    zMove: true,
+    zMoveType: "Sound",
+	onPlate: "Sound",
+    forcedForme: "Arceus-Sound",
+    num: 3093,
     gen: 7,
     isNonstandard: "Past"
   },
@@ -1525,6 +2236,60 @@ const Items = {
 	},
     num: 3021,
     gen: 4
+  },
+  steelixite: {
+    name: "Steelixite",
+    spritenum: 621,
+    megaStone: "Steelix-Mega",
+    megaEvolves: "Steelix",
+    itemUser: ["Steelix"],
+    onTakeItem(item, source) {
+      if (source.baseSpecies.forme !== "")
+        return true;
+      if (item.megaEvolves === source.baseSpecies.baseSpecies)
+        return false;
+      return true;
+    },
+    num: 761,
+    gen: 6,
+    isNonstandard: "Past"
+  },
+  stickyplate: {
+    name: "Sticky Plate",
+    spritenum: 3104,
+    onPlate: "Slime",
+    onBasePowerPriority: 15,
+    onBasePower(basePower, user, target, move) {
+      if (move.type === "Slime") {
+        return this.chainModify([4915, 4096]);
+      }
+    },
+    onTakeItem(item, pokemon, source) {
+      if (source && source.baseSpecies.num === 493 || pokemon.baseSpecies.num === 493) {
+        return false;
+      }
+      return true;
+    },
+    forcedForme: "Arceus-Slime",
+    num: 3104,
+    gen: 4
+  },
+  swampertite: {
+    name: "Swampertite",
+    spritenum: 612,
+    megaStone: "Swampert-Mega",
+    megaEvolves: "Swampert",
+    itemUser: ["Swampert"],
+    onTakeItem(item, source) {
+      if (source.baseSpecies.forme !== "")
+        return true;
+      if (item.megaEvolves === source.baseSpecies.baseSpecies)
+        return false;
+      return true;
+    },
+    num: 752,
+    gen: 6,
+    isNonstandard: "Past"
   },
   tabakoberry: {
     name: "Tabako Berry",
@@ -1654,16 +2419,21 @@ const Items = {
     num: 3022,
     gen: 8
   },
-  shadiumz: {
-    name: "Shadium Z",
-    spritenum: 3091,
-    onTakeItem: false,
-    zMove: true,
-    zMoveType: "Shadow",
-	onPlate: "Shadow",
-    forcedForme: "Arceus-Shadow",
-    num: 3091,
-    gen: 7,
+  tyranitarite: {
+    name: "Tyranitarite",
+    spritenum: 607,
+    megaStone: "Tyranitar-Mega",
+    megaEvolves: "Tyranitar",
+    itemUser: ["Tyranitar"],
+    onTakeItem(item, source) {
+      if (source.baseSpecies.forme !== "")
+        return true;
+      if (item.megaEvolves === source.baseSpecies.baseSpecies)
+        return false;
+      return true;
+    },
+    num: 669,
+    gen: 6,
     isNonstandard: "Past"
   },
   unearthlyplate: {
@@ -1711,6 +2481,23 @@ const Items = {
     num: 3151,
     gen: 4
   },
+  venusaurite: {
+    name: "Venusaurite",
+    spritenum: 608,
+    megaStone: "Venusaur-Mega",
+    megaEvolves: "Venusaur",
+    itemUser: ["Venusaur"],
+    onTakeItem(item, source) {
+      if (source.baseSpecies.forme !== "")
+        return true;
+      if (item.megaEvolves === source.baseSpecies.baseSpecies)
+        return false;
+      return true;
+    },
+    num: 659,
+    gen: 6,
+    isNonstandard: "Past"
+  },
   vialofdarkness: {
     name: "Vial of Darkness",
     spritenum: 3135,
@@ -1751,6 +2538,18 @@ const Items = {
     },
     num: 3119,
     gen: 5,
+    isNonstandard: "Past"
+  },
+  windiumz: {
+    name: "Windium Z",
+    spritenum: 3094,
+    onTakeItem: false,
+    zMove: true,
+    zMoveType: "Wind",
+	onPlate: "Wind",
+    forcedForme: "Arceus-Wind",
+    num: 3094,
+    gen: 7,
     isNonstandard: "Past"
   },
   windmemory: {

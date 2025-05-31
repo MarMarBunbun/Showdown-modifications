@@ -633,6 +633,43 @@ const Abilities = {
     rating: 4,
     num: 3029
   },
+  chlorofury: {
+    onStart(pokemon) {
+      this.boost({ spe: 1 }, pokemon); // Always boost Speed on switch-in
+      // Count fainted allied Pokémon, excluding the current one
+      const faintedAllies = pokemon.side.pokemon.filter(p => p.fainted && p !== pokemon).length;
+      // Cap the SpA boosts to 5 maximum
+      const boostAmount = Math.min(faintedAllies, 5);
+      // Track how many SpA boosts we apply
+      pokemon.volatiles["chlorofury"] = {
+        counter: 0,
+        duration: 3, // includes the turn it activated, so will trigger removal on the 2nd residual
+      };
+      for (let i = 0; i < boostAmount; i++) {
+        const result = this.boost({ spa: 1 }, pokemon);
+        if (result) {
+          pokemon.volatiles["chlorofury"].counter++;
+        }
+      }
+    },
+    onResidual(pokemon) {
+      const data = pokemon.volatiles["chlorofury"];
+      if (data) {
+        data.duration--;
+        if (data.duration <= 0) {
+          // Remove the SpA boosts we applied earlier
+          if (data.counter > 0) {
+            this.boost({ spa: -data.counter }, pokemon);
+          }
+          delete pokemon.volatiles["chlorofury"]; // Clean up the volatile
+        }
+      }
+    },
+    flags: {},
+    name: "Chlorofury",
+    rating: 4,
+    num: 3182
+  },
   chlorophyll: {
     onModifySpe(spe, pokemon) {
       if (["sunnyday", "desolateland", "pollenstorm"].includes(pokemon.effectiveWeather())) {
@@ -2013,6 +2050,14 @@ const Abilities = {
     rating: 4,
     num: 3109
   },
+  pendulum: {
+    onStart(pokemon) {
+      this.addVolatile("metronome", pokemon); // Apply Metronome volatile status
+    },
+	name: "Pendulum",
+    rating: 4,
+    num: 3183
+  },
   perforate: {
     onModifyMovePriority: -5,
     onModifyMove(move) {
@@ -2618,6 +2663,14 @@ const Abilities = {
     name: "Sky Scourge",
     rating: 4,
     num: 3140
+  },
+  sleet: {
+    onStart(source) {
+      this.field.setWeather("hail");
+    },
+	name: "Sleet",
+    rating: 4,
+    num: 3184
   },
   specialist: {
     onBasePowerPriority: 19,

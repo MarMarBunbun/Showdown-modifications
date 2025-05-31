@@ -543,7 +543,13 @@ const Conditions = {
         this.eachEvent("Weather");
     },
     onWeather(target) {
-      this.damage(target.baseMaxhp / 16);
+      // Check if any active Pokémon has the "Sleet" ability
+      const sleetActive = this.getAllActive().some(pokemon =>
+        pokemon.ability === 'sleet' && !pokemon.ignoringAbility()
+      );
+
+      const damageFraction = sleetActive ? 1 / 5 : 1 / 16;
+      this.damage(target.baseMaxhp * damageFraction);
     },
     onFieldEnd() {
       this.add("-weather", "none");

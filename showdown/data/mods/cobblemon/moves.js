@@ -68,7 +68,7 @@ const Moves = {
     pp: 15,
     priority: 0,
 	onEffectiveness(typeMod, target, type) {
-      if (type === "Normal" || type === "Fire" || type === "Water" || type === "Electric" || type === "Grass" || type === "Ice" || type === "Fighting" || type === "Poison" || type === "Ground" || type === "Flying" || type === "Psychic" || type === "Bug" || type === "Rock" || type === "Dragon" || type === "Dark" || type === "Steel" || type === "Fairy" || type === "Wind" || type === "Cosmic" || type === "Sound" || type === "Nuclear" || type === "Digital" || type === "Plastic" || type === "Light" || type === "Crystal" || type === "Slime")
+      if (type === "Normal" || type === "Fire" || type === "Water" || type === "Electric" || type === "Grass" || type === "Ice" || type === "Fighting" || type === "Poison" || type === "Ground" || type === "Flying" || type === "Psychic" || type === "Bug" || type === "Rock" || type === "Dragon" || type === "Dark" || type === "Steel" || type === "Fairy" || type === "Wind" || type === "Cosmic" || type === "Sound" || type === "Nuclear" || type === "Digital" || type === "Plastic" || type === "Light" || type === "Crystal" || type === "Slime" || type === "Blood")
         return 1;
     },
     flags: { contact: 1, protect: 1, mirror: 1 },
@@ -110,6 +110,23 @@ const Moves = {
     type: "Poison",
     zMove: { boost: { spe: 1 } },
     contestType: "Beautiful"
+  },
+  acidsplash: {
+    num: 3789,
+    accuracy: 100,
+    basePower: 60,
+    category: "Special",
+    name: "Acid Splash",
+    pp: 15,
+    priority: 0,
+    flags: { protect: 1, mirror: 1, magic: 1 },
+    secondary: {
+      chance: 10,
+      status: "psn"
+    },
+    target: "allAdjacent",
+    type: "Poison",
+    contestType: "Tough"
   },
   actionsword: {
     num: 3566,
@@ -3247,7 +3264,9 @@ const Moves = {
         "gmaxvinelash",
         "gmaxwildfire",
 		"slimetrail",
-		"bloodsigil"
+		"bloodsigil",
+		"livewire",
+		"permafrost"
       ];
       let success = false;
       if (this.gameType === "freeforall") {
@@ -4100,7 +4119,9 @@ const Moves = {
         "stickyweb",
         "gmaxsteelsurge",
 		"slimetrail",
-		"bloodsigil"
+		"bloodsigil",
+		"livewire",
+		"permafrost"
       ];
       const removeAll = [
         "constructionblocks",
@@ -4114,7 +4135,9 @@ const Moves = {
         "stickyweb",
         "gmaxsteelsurge",
 		"slimetrail",
-		"bloodsigil"
+		"bloodsigil",
+		"livewire",
+		"permafrost"
       ];
       for (const targetCondition of removeTarget) {
         if (target.side.removeSideCondition(targetCondition)) {
@@ -4168,7 +4191,9 @@ const Moves = {
         "stickyweb",
         "gmaxsteelsurge",
 		"slimetrail",
-		"bloodsigil"
+		"bloodsigil",
+		"livewire",
+		"permafrost"
       ];
       const removeAll = [
         "constructionblocks",
@@ -4182,7 +4207,9 @@ const Moves = {
         "stickyweb",
         "gmaxsteelsurge",
 		"slimetrail",
-		"bloodsigil"
+		"bloodsigil",
+		"livewire",
+		"permafrost"
       ];
       for (const targetCondition of removeTarget) {
         if (target.side.removeSideCondition(targetCondition)) {
@@ -4611,7 +4638,7 @@ const Moves = {
           return false;
       },
       onInvulnerability(target, source, move) {
-        if (["earthquake", "magnitude", "earthmover", "gaiasfury", "anvilsmash", "terraforce", "webwrecker"].includes(move.id)) {
+        if (["earthquake", "magnitude", "earthmover", "gaiasfury", "anvilsmash", "terraforce", "webwrecker", "earthbreaker"].includes(move.id)) {
           return;
         }
         return false;
@@ -5417,6 +5444,24 @@ const Moves = {
     inherit: true,
 	flags: { protect: 1, failencore: 1, nosleeptalk: 1, failcopycat: 1, failmimic: 1, failinstruct: 1, noparentalbond: 1, legendary: 1 }
   },
+  earthbreaker: {
+    num: 3788,
+    accuracy: 100,
+    basePower: 80,
+    category: "Physical",
+    name: "Earthbreaker",
+    pp: 15,
+    priority: 0,
+    flags: { contact: 1, protect: 1, mirror: 1 },
+    onEffectiveness(typeMod, target, type) {
+      if (type === "Ground")
+        return 1;
+    },
+    secondary: null,
+    target: "normal",
+    type: "Steel",
+    contestType: "Beautiful"
+  },
   earthmover: {
     num: 3131,
     accuracy: 100,
@@ -5687,7 +5732,7 @@ const Moves = {
       if (pokemon.hp && pokemon.removeVolatile("leechseed")) {
         this.add("-end", pokemon, "Leech Seed", "[from] move: Engulf", "[of] " + pokemon);
       }
-      const sideConditions = ["constructionblocks", "fiesta", "spikes", "toxicspikes", "stealthrock", "hawthorns", "scorchedashes", "velvetscales", "salttherapy", "stickyweb", "gmaxsteelsurge", "slimetrail", "bloodsigil"];
+      const sideConditions = ["constructionblocks", "fiesta", "spikes", "toxicspikes", "stealthrock", "hawthorns", "scorchedashes", "velvetscales", "salttherapy", "stickyweb", "gmaxsteelsurge", "slimetrail", "bloodsigil", "livewire", "permafrost"];
       for (const condition of sideConditions) {
         if (pokemon.hp && pokemon.side.removeSideCondition(condition)) {
           this.add("-sideend", pokemon.side, this.dex.conditions.get(condition).name, "[from] move: Engulf", "[of] " + pokemon);
@@ -5701,7 +5746,7 @@ const Moves = {
       if (pokemon.hp && pokemon.removeVolatile("leechseed")) {
         this.add("-end", pokemon, "Leech Seed", "[from] move: Engulf", "[of] " + pokemon);
       }
-      const sideConditions = ["constructionblocks", "fiesta", "spikes", "toxicspikes", "stealthrock", "hawthorns", "scorchedashes", "velvetscales", "salttherapy", "stickyweb", "gmaxsteelsurge", "slimetrail", "bloodsigil"];
+      const sideConditions = ["constructionblocks", "fiesta", "spikes", "toxicspikes", "stealthrock", "hawthorns", "scorchedashes", "velvetscales", "salttherapy", "stickyweb", "gmaxsteelsurge", "slimetrail", "bloodsigil", "livewire", "permafrost"];
       for (const condition of sideConditions) {
         if (pokemon.hp && pokemon.side.removeSideCondition(condition)) {
           this.add("-sideend", pokemon.side, this.dex.conditions.get(condition).name, "[from] move: Engulf", "[of] " + pokemon);
@@ -8086,6 +8131,32 @@ const Moves = {
     type: "Grass",
     contestType: "Tough"
   },
+  hotspot: {
+    num: 3775,
+    accuracy: 100,
+    basePower: 0,
+    category: "Status",
+    isNonstandard: "Past",
+    name: "Hotspot",
+    pp: 10,
+    priority: 0,
+    flags: { protect: 1, mirror: 1, metronome: 1 },
+    onTryHit(target, source, move) {
+      if (!source.status)
+        return false;
+      move.status = source.status;
+    },
+    self: {
+      onHit(pokemon) {
+        pokemon.cureStatus();
+      }
+    },
+    secondary: null,
+    target: "normal",
+    type: "Digital",
+    zMove: { boost: { spa: 2 } },
+    contestType: "Clever"
+  },
   howlsound: {
     num: 3215,
     accuracy: true,
@@ -8652,6 +8723,29 @@ const Moves = {
     inherit: true,
 	flags: { heal: 1, bypasssub: 1, allyanim: 1, legendary: 1 }
   },
+  kablow: {
+    num: 3779,
+    accuracy: 100,
+    basePower: 155,
+    category: "Physical",
+    name: "Kablow!",
+    pp: 5,
+    priority: 0,
+    flags: { protect: 1, mirror: 1, noparentalbond: 1 },
+	onHit(target, source, move) {
+      if (!move.hasSheerForce) {
+        for (const side of source.side.foeSidesWithConditions()) {
+          side.addSideCondition("spikes");
+		  side.addSideCondition("toxicspikes");
+        }
+      }
+    },
+    selfdestruct: "always",
+    secondary: null,
+    target: "allAdjacent",
+    type: "Steel",
+    contestType: "Beautiful"
+  },
   killingfrenzy: {
     num: 3754,
     accuracy: 100,
@@ -8686,6 +8780,23 @@ const Moves = {
     secondary: null,
     target: "normal",
     type: "Digital",
+    contestType: "Tough"
+  },
+  kindle: {
+    num: 3784,
+    accuracy: 100,
+    basePower: 40,
+    category: "Physical",
+    name: "Kindle",
+    pp: 35,
+    priority: 0,
+    flags: { contact: 1, protect: 1, mirror: 1, distance: 1 },
+    secondary: {
+      chance: 10,
+      status: "brn"
+    },
+    target: "any",
+    type: "Fire",
     contestType: "Tough"
   },
   kindleseed: {
@@ -8988,6 +9099,49 @@ const Moves = {
     secondary: null,
     target: "normal",
     type: "Steel"
+  },
+  livewire: {
+    num: 3777,
+    accuracy: true,
+    basePower: 0,
+    category: "Status",
+    name: "Livewire",
+    pp: 20,
+    priority: 0,
+    flags: { reflectable: 1, nonsky: 1, metronome: 1, mustpressure: 1 },
+    sideCondition: "livewire",
+    condition: {
+      onSideStart(side) {
+        this.add("-sidestart", side, "move: Livewire");
+        this.effectState.layers = 1;
+      },
+      onSideRestart(side) {
+        if (this.effectState.layers >= 5) return false;
+        this.effectState.layers++;
+        this.add("-sidestart", side, "move: Livewire", "[up to " + this.effectState.layers + " layers]");
+      },
+      onEntryHazard(pokemon) {
+        if (!pokemon.isGrounded() || pokemon.hasItem("heavydutyboots")) return;
+        if (
+          pokemon.hasType("Electric") ||
+          pokemon.hasType("Ground") ||
+          pokemon.hasType("Plastic")
+        ) {
+          this.add("-sideend", pokemon.side, "move: Livewire", "[of] " + pokemon);
+          pokemon.side.removeSideCondition("livewire");
+          return;
+        }
+        const chance = this.effectState.layers * 20;
+        if (this.randomChance(chance, 100)) {
+          pokemon.trySetStatus("par", pokemon.side.foe.active[0]);
+        }
+      }
+    },
+    secondary: null,
+    target: "foeSide",
+    type: "Electric",
+    zMove: { boost: { def: 1 } },
+    contestType: "Clever"
   },
   lovecraftianmaw: {
     num: 3570,
@@ -10230,7 +10384,7 @@ const Moves = {
       if (pokemon.hp && pokemon.removeVolatile("leechseed")) {
         this.add("-end", pokemon, "Leech Seed", "[from] move: Mortal Spin", "[of] " + pokemon);
       }
-      const sideConditions = ["constructionblocks", "fiesta", "spikes", "toxicspikes", "stealthrock", "hawthorns", "scorchedashes", "velvetscales", "salttherapy", "stickyweb", "gmaxsteelsurge", "slimetrail", "bloodsigil"];
+      const sideConditions = ["constructionblocks", "fiesta", "spikes", "toxicspikes", "stealthrock", "hawthorns", "scorchedashes", "velvetscales", "salttherapy", "stickyweb", "gmaxsteelsurge", "slimetrail", "bloodsigil", "livewire", "permafrost"];
       for (const condition of sideConditions) {
         if (pokemon.hp && pokemon.side.removeSideCondition(condition)) {
           this.add("-sideend", pokemon.side, this.dex.conditions.get(condition).name, "[from] move: Mortal Spin", "[of] " + pokemon);
@@ -10244,7 +10398,7 @@ const Moves = {
       if (pokemon.hp && pokemon.removeVolatile("leechseed")) {
         this.add("-end", pokemon, "Leech Seed", "[from] move: Mortal Spin", "[of] " + pokemon);
       }
-      const sideConditions = ["constructionblocks", "fiesta", "spikes", "toxicspikes", "stealthrock", "hawthorns", "scorchedashes", "velvetscales", "salttherapy", "stickyweb", "gmaxsteelsurge", "slimetrail", "bloodsigil"];
+      const sideConditions = ["constructionblocks", "fiesta", "spikes", "toxicspikes", "stealthrock", "hawthorns", "scorchedashes", "velvetscales", "salttherapy", "stickyweb", "gmaxsteelsurge", "slimetrail", "bloodsigil", "livewire", "permafrost"];
       for (const condition of sideConditions) {
         if (pokemon.hp && pokemon.side.removeSideCondition(condition)) {
           this.add("-sideend", pokemon.side, this.dex.conditions.get(condition).name, "[from] move: Mortal Spin", "[of] " + pokemon);
@@ -10689,6 +10843,50 @@ const Moves = {
     type: "Nuclear",
     contestType: "Beautiful"
   },
+  nuclearpunch: {
+    num: 3780,
+    accuracy: 90,
+    basePower: 105,
+    category: "Physical",
+    isNonstandard: "Past",
+    name: "Nuclear Punch",
+    pp: 10,
+    priority: 0,
+    flags: { contact: 1, protect: 1, mirror: 1, punch: 1 },
+    secondary: {
+      chance: 20,
+      self: {
+        boosts: {
+          atk: 1
+        }
+      }
+    },
+    target: "normal",
+    type: "Steel",
+    contestType: "Tough"
+  },
+  nuclearpunchnuclear: {
+    num: 3781,
+    accuracy: 90,
+    basePower: 105,
+    category: "Physical",
+    isNonstandard: "Past",
+    name: "Nuclear Punch Nuclear",
+    pp: 10,
+    priority: 0,
+    flags: { contact: 1, protect: 1, mirror: 1, punch: 1 },
+    secondary: {
+      chance: 20,
+      self: {
+        boosts: {
+          atk: 1
+        }
+      }
+    },
+    target: "normal",
+    type: "Nuclear",
+    contestType: "Tough"
+  },
   nuclearslash: {
     num: 3277,
     accuracy: 90,
@@ -11078,6 +11276,50 @@ const Moves = {
     type: "Sound",
     zMove: { effect: "clearnegativeboost" },
     contestType: "Beautiful"
+  },
+  permafrost: {
+    num: 3778,
+    accuracy: true,
+    basePower: 0,
+    category: "Status",
+    name: "Permafrost",
+    pp: 20,
+    priority: 0,
+    flags: { reflectable: 1, nonsky: 1, metronome: 1, mustpressure: 1 },
+    sideCondition: "permafrost",
+    condition: {
+      onSideStart(side) {
+        this.add("-sidestart", side, "move: Permafrost");
+        this.effectState.layers = 1;
+      },
+      onSideRestart(side) {
+        if (this.effectState.layers >= 5) return false;
+        this.effectState.layers++;
+        this.add("-sidestart", side, "move: Permafrost", "[up to " + this.effectState.layers + " layers]");
+      },
+      onEntryHazard(pokemon) {
+        if (!pokemon.isGrounded() || pokemon.hasItem("heavydutyboots")) return;
+        if (pokemon.hasType("Fire") || pokemon.hasType("Ice")) {
+          this.add("-sideend", pokemon.side, "move: Permafrost", "[of] " + pokemon);
+          pokemon.side.removeSideCondition("permafrost");
+          return;
+        }
+        let chance = this.effectState.layers * 10;
+        // Double the freeze chance in Hail or Snow
+        const weather = this.field.weather;
+        if (weather === "hail" || weather === "snow") {
+          chance *= 2;
+        }
+        if (this.randomChance(chance, 100)) {
+          pokemon.trySetStatus("frz", pokemon.side.foe.active[0]);
+        }
+      }
+    },
+    secondary: null,
+    target: "foeSide",
+    type: "Ice",
+    zMove: { boost: { def: 1 } },
+    contestType: "Clever"
   },
   perplex: {
     num: 3286,
@@ -12113,7 +12355,7 @@ const Moves = {
       if (pokemon.hp && pokemon.removeVolatile("leechseed")) {
         this.add("-end", pokemon, "Leech Seed", "[from] move: Rapid Spin", "[of] " + pokemon);
       }
-      const sideConditions = ["constructionblocks", "fiesta", "spikes", "toxicspikes", "stealthrock", "hawthorns", "scorchedashes", "velvetscales", "salttherapy", "stickyweb", "gmaxsteelsurge", "slimetrail", "bloodsigil"];
+      const sideConditions = ["constructionblocks", "fiesta", "spikes", "toxicspikes", "stealthrock", "hawthorns", "scorchedashes", "velvetscales", "salttherapy", "stickyweb", "gmaxsteelsurge", "slimetrail", "bloodsigil", "livewire", "permafrost"];
       for (const condition of sideConditions) {
         if (pokemon.hp && pokemon.side.removeSideCondition(condition)) {
           this.add("-sideend", pokemon.side, this.dex.conditions.get(condition).name, "[from] move: Rapid Spin", "[of] " + pokemon);
@@ -12127,7 +12369,7 @@ const Moves = {
       if (pokemon.hp && pokemon.removeVolatile("leechseed")) {
         this.add("-end", pokemon, "Leech Seed", "[from] move: Rapid Spin", "[of] " + pokemon);
       }
-      const sideConditions = ["constructionblocks", "fiesta", "spikes", "toxicspikes", "stealthrock", "hawthorns", "scorchedashes", "velvetscales", "salttherapy", "stickyweb", "gmaxsteelsurge", "slimetrail", "bloodsigil"];
+      const sideConditions = ["constructionblocks", "fiesta", "spikes", "toxicspikes", "stealthrock", "hawthorns", "scorchedashes", "velvetscales", "salttherapy", "stickyweb", "gmaxsteelsurge", "slimetrail", "bloodsigil", "livewire", "permafrost"];
       for (const condition of sideConditions) {
         if (pokemon.hp && pokemon.side.removeSideCondition(condition)) {
           this.add("-sideend", pokemon.side, this.dex.conditions.get(condition).name, "[from] move: Rapid Spin", "[of] " + pokemon);
@@ -13543,6 +13785,24 @@ const Moves = {
     zMove: { effect: "clearnegativeboost" },
     contestType: "Beautiful"
   },
+  shrinkwrap: {
+    num: 3776,
+    accuracy: true,
+    basePower: 0,
+    category: "Status",
+    name: "Shrink Wrap",
+    pp: 5,
+    priority: 0,
+    flags: { reflectable: 1, mirror: 1, metronome: 1 },
+    onHit(target, source, move) {
+      return target.addVolatile("trapped", source, move, "trapper");
+    },
+    secondary: null,
+    target: "normal",
+    type: "Plastic",
+    zMove: { boost: { def: 1 } },
+    contestType: "Beautiful"
+  },
   sigiltransfer: {
     num: 3764,
     accuracy: 95,
@@ -14862,6 +15122,60 @@ const Moves = {
     zMove: { boost: { spd: 1 } },
     contestType: "Cool"
   },
+  starburstdragon: {
+    num: 3790,
+    accuracy: 90,
+    basePower: 130,
+    category: "Special",
+    name: "Star Burst Dragon",
+    pp: 5,
+    priority: 0,
+    flags: { mirror: 1 },
+    onModifyMove(move, pokemon) {
+      if (pokemon.getStat("atk", false, true) > pokemon.getStat("spa", false, true))
+        move.category = "Physical";
+    },
+    secondary: null,
+    target: "normal",
+    type: "Dragon",
+    contestType: "Cool"
+  },
+  starburstfairy: {
+    num: 3791,
+    accuracy: 90,
+    basePower: 130,
+    category: "Special",
+    name: "Star Burst Fairy",
+    pp: 5,
+    priority: 0,
+    flags: { mirror: 1 },
+    onModifyMove(move, pokemon) {
+      if (pokemon.getStat("atk", false, true) > pokemon.getStat("spa", false, true))
+        move.category = "Physical";
+    },
+    secondary: null,
+    target: "normal",
+    type: "Fairy",
+    contestType: "Cool"
+  },
+  starburstsound: {
+    num: 3792,
+    accuracy: 90,
+    basePower: 130,
+    category: "Special",
+    name: "Star Burst Sound",
+    pp: 5,
+    priority: 0,
+    flags: { mirror: 1 },
+    onModifyMove(move, pokemon) {
+      if (pokemon.getStat("atk", false, true) > pokemon.getStat("spa", false, true))
+        move.category = "Physical";
+    },
+    secondary: null,
+    target: "normal",
+    type: "Sound",
+    contestType: "Cool"
+  },
   stardust: {
     num: 3396,
     accuracy: 100,
@@ -15207,6 +15521,22 @@ const Moves = {
   sunsteelstrike: {
     inherit: true,
 	flags: { contact: 1, protect: 1, mirror: 1, legendary: 1 }
+  },
+  supercell: {
+    num: 3783,
+    accuracy: true,
+    basePower: 0,
+    category: "Status",
+    name: "Supercell",
+    pp: 10,
+    priority: 0,
+    flags: {},
+    weather: "Thunderstorm",
+    secondary: null,
+    target: "all",
+    type: "Electric",
+    zMove: { boost: { spe: 1 } },
+    contestType: "Beautiful"
   },
   superembomber: {
     num: 3537,
@@ -16045,6 +16375,67 @@ const Moves = {
     target: "normal",
     type: "Plastic",
     contestType: "Tough"
+  },
+  transcendentsword: {
+    num: 3782,
+    accuracy: 100,
+    basePower: 240,
+    category: "Physical",
+    name: "Transcendent Sword",
+    pp: 1,
+    priority: 0,
+    flags: { contact: 1, protect: 1, mirror: 1 },
+    onAfterHit(target, pokemon) {
+      if (pokemon.hp && pokemon.removeVolatile("leechseed")) {
+        this.add("-end", pokemon, "Leech Seed", "[from] move: Rapid Spin", "[of] " + pokemon);
+      }
+      const sideConditions = [
+        "constructionblocks", "fiesta", "spikes", "toxicspikes", "stealthrock", "hawthorns",
+        "scorchedashes", "velvetscales", "salttherapy", "stickyweb", "gmaxsteelsurge",
+        "slimetrail", "bloodsigil", "livewire", "permafrost", "safeguard", "reflect",
+        "lightscreen", "auroraveil"
+      ];
+      for (const condition of sideConditions) {
+        if (pokemon.hp && pokemon.side.removeSideCondition(condition)) {
+          this.add("-sideend", pokemon.side, this.dex.conditions.get(condition).name, "[from] move: Rapid Spin", "[of] " + pokemon);
+        }
+        if (pokemon.hp && target.side.removeSideCondition(condition)) {
+          this.add("-sideend", target.side, this.dex.conditions.get(condition).name, "[from] move: Transcendent Sword", "[of] " + pokemon);
+        }
+      }
+      if (pokemon.hp && pokemon.volatiles["partiallytrapped"]) {
+        pokemon.removeVolatile("partiallytrapped");
+      }
+    },
+    onAfterSubDamage(damage, target, pokemon) {
+      if (pokemon.hp && pokemon.removeVolatile("leechseed")) {
+        this.add("-end", pokemon, "Leech Seed", "[from] move: Rapid Spin", "[of] " + pokemon);
+      }
+      const sideConditions = [
+        "constructionblocks", "fiesta", "spikes", "toxicspikes", "stealthrock", "hawthorns",
+        "scorchedashes", "velvetscales", "salttherapy", "stickyweb", "gmaxsteelsurge",
+        "slimetrail", "bloodsigil", "livewire", "permafrost", "safeguard", "reflect",
+        "lightscreen", "auroraveil"
+      ];
+      for (const condition of sideConditions) {
+        if (pokemon.hp && pokemon.side.removeSideCondition(condition)) {
+          this.add("-sideend", pokemon.side, this.dex.conditions.get(condition).name, "[from] move: Rapid Spin", "[of] " + pokemon);
+        }
+        if (pokemon.hp && target.side.removeSideCondition(condition)) {
+          this.add("-sideend", target.side, this.dex.conditions.get(condition).name, "[from] move: Transcendent Sword", "[of] " + pokemon);
+        }
+      }
+      if (pokemon.hp && pokemon.volatiles["partiallytrapped"]) {
+        pokemon.removeVolatile("partiallytrapped");
+      }
+    },
+	boosts: {
+      evasion: -1
+    },
+    secondary: null,
+    target: "normal",
+    type: "Steel",
+    contestType: "Cool"
   },
   tripleaxel: {
     inherit: true,
@@ -16920,6 +17311,38 @@ const Moves = {
     zMove: { boost: { spd: 1 } },
     contestType: "Clever"
   },
+  whiteout: {
+    num: 3786,
+    accuracy: 85,
+    basePower: 90,
+    category: "Physical",
+    name: "Whiteout",
+    pp: 10,
+    priority: 0,
+    flags: { protect: 1, mirror: 1, contact: 1 },
+    weather: "Hail",
+    status: "fbt",
+    secondary: null,
+    target: "allAdjacent",
+    type: "Ice",
+    contestType: "Beautiful"
+  },
+  whitewand: {
+    num: 3785,
+    accuracy: 85,
+    basePower: 0,
+    category: "Status",
+    name: "White Wand",
+    pp: 15,
+    priority: 0,
+    flags: { contact: 1, protect: 1, reflectable: 1, mirror: 1, magic: 1 },
+    status: "fbt",
+    secondary: null,
+    target: "normal",
+    type: "ice",
+    zMove: { boost: { atk: 1 } },
+    contestType: "Beautiful"
+  },
   wickedblow: {
     inherit: true,
 	flags: { contact: 1, protect: 1, mirror: 1, punch: 1, legendary: 1 }
@@ -16980,6 +17403,22 @@ const Moves = {
     target: "randomNormal",
     type: "Sound",
     contestType: "Cool"
+  },
+  wildfirefakemon: {
+    num: 3787,
+    accuracy: 85,
+    basePower: 90,
+    category: "Special",
+    name: "Wildfire Fakemon",
+    pp: 10,
+    priority: 0,
+    flags: { protect: 1, mirror: 1 },
+    weather: "Sunnyday",
+    status: "brn",
+    secondary: null,
+    target: "allAdjacent",
+    type: "Fire",
+    contestType: "Beautiful"
   },
   wildroar: {
     num: 3451,
