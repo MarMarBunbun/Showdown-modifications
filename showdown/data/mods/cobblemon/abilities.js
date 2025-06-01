@@ -1310,6 +1310,18 @@ const Abilities = {
     rating: 1,
     num: 122
   },
+  foolsgold: {
+    onModifyCritRatio(critRatio) {
+      return critRatio + 1;
+    },
+	onStart(pokemon) {
+      this.boost({ accuracy: -1 }, pokemon);
+    },
+    flags: {},
+    name: "Fool's Gold",
+    rating: 1.5,
+    num: 3186
+  },
   fossilize: {
     onModifyTypePriority: -1,
     onModifyType(move, pokemon) {
@@ -1499,6 +1511,23 @@ const Abilities = {
     name: "Gravity Sling",
     rating: 3,
     num: 3073
+  },
+  guttermind: {
+    onModifyTypePriority: -1,
+    onModifyType(move, pokemon) {
+      if (move.type === "Psychic" && !(move.isZ && move.category !== "Status")) {
+        move.type = "Poison";
+        move.typeChangerBoosted = this.effect;
+      }
+    },
+    onBasePowerPriority: 23,
+    onBasePower(basePower, pokemon, target, move) {
+      if (move.typeChangerBoosted === this.effect)
+        return this.chainModify([4915, 4096]);
+    },
+    name: "Gutter Mind",
+    rating: 4,
+    num: 3187
   },
   hailwarning: {
     onStart(source) {
@@ -1780,6 +1809,22 @@ const Abilities = {
     name: "Iron Jaw",
     rating: 3.5,
     num: 3090
+  },
+  ironwill: {
+    onTryAddVolatile(status, pokemon) {
+      if (status.id === "flinch")
+        return null;
+    },
+    onTryBoost(boost, target, source, effect) {
+      if (effect.name === "Intimidate" && boost.atk) {
+        delete boost.atk;
+        this.add("-fail", target, "unboost", "Attack", "[from] ability: Iron Will", "[of] " + target);
+      }
+    },
+    flags: { breakable: 1 },
+    name: "Iron Will",
+    rating: 1,
+    num: 3185
   },
   irrelephant: {
     onStart(pokemon) {

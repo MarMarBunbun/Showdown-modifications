@@ -689,6 +689,20 @@ const Moves = {
     type: "Nuclear",
     contestType: "Tough"
   },
+  atomicpulse: {
+    num: 3811,
+    accuracy: 100,
+    basePower: 90,
+    category: "Special",
+    name: "Atomic Pulse",
+    pp: 10,
+    priority: 0,
+    flags: { protect: 1, mirror: 1, distance: 1, pulse: 1 },
+    secondary: null,
+    target: "any",
+    type: "Nuclear",
+    contestType: "Beautiful"
+  },
   atomicpunch: {
     num: 3015,
     accuracy: 95,
@@ -1023,6 +1037,25 @@ const Moves = {
     type: "Sound",
     contestType: "Cool"
   },
+  basskick: {
+    num: 3820,
+    accuracy: 100,
+    basePower: 70,
+    category: "Physical",
+    name: "Bass Kick",
+    pp: 15,
+    priority: 0,
+    flags: { contact: 1, protect: 1, mirror: 1, kick: 1, sound: 1 },
+    secondary: {
+      chance: 50,
+      boosts: {
+        atk: -1
+      }
+    },
+    target: "normal",
+    type: "Sound",
+    contestType: "Cute"
+  },
   batteringram: {
     num: 3027,
     accuracy: 100,
@@ -1165,6 +1198,25 @@ const Moves = {
     target: "allAdjacent",
     type: "Cosmic",
     contestType: "Cool"
+  },
+  bitcrunched: {
+    num: 3801,
+    accuracy: 100,
+    basePower: 80,
+    category: "Physical",
+    name: "BitCrunched",
+    pp: 15,
+    priority: 0,
+    flags: { contact: 1, protect: 1, mirror: 1, bite: 1 },
+    secondary: {
+      chance: 20,
+      boosts: {
+        def: -1
+      }
+    },
+    target: "normal",
+    type: "Questionmark",
+    contestType: "Tough"
   },
   blackhole: {
     num: 3030,
@@ -3016,6 +3068,22 @@ const Moves = {
     type: "Fairy",
     contestType: "Tough"
   },
+  coolantreprocess: {
+    num: 3812,
+    accuracy: true,
+    basePower: 0,
+    category: "Status",
+    name: "Coolant Reprocess",
+    pp: 5,
+    priority: 0,
+    flags: { snatch: 1, heal: 1 },
+    heal: [1, 2],
+    secondary: null,
+    target: "self",
+    type: "Nuclear",
+    zMove: { effect: "clearnegativeboost" },
+    contestType: "Cute"
+  },
   copypaste: {
     num: 3068,
     accuracy: true,
@@ -3096,6 +3164,25 @@ const Moves = {
     target: "normal",
     type: "Nuclear",
     contestType: "Cool"
+  },
+  coredump: {
+    num: 3804,
+    accuracy: 90,
+    basePower: 100,
+    category: "Physical",
+    name: "Core Dump",
+    pp: 10,
+    priority: 0,
+    flags: { contact: 1, protect: 1, mirror: 1 },
+    self: {
+      boosts: {
+        spe: -1
+      }
+    },
+    secondary: null,
+    target: "normal",
+    type: "Questionmark",
+    contestType: "Tough"
   },
   coreenforcer: {
     inherit: true,
@@ -4266,6 +4353,22 @@ const Moves = {
     type: "Psychic",
     contestType: "Cool"
   },
+  demoncore: {
+    num: 3810,
+    accuracy: 90,
+    basePower: 120,
+    category: "Physical",
+    name: "Demon Core",
+    pp: 5,
+    priority: 0,
+    flags: { protect: 1, mirror: 1, bullet: 1 },
+    secondary: {
+      chance: 10,
+      status: "tox"
+    },
+    target: "normal",
+    type: "Nuclear"
+  },
   demoralize: {
     num: 3096,
     accuracy: 100,
@@ -4778,6 +4881,23 @@ const Moves = {
     target: "normal",
     type: "Digital",
     contestType: "Beautiful"
+  },
+  dissonancefang: {
+    num: 3817,
+    accuracy: 100,
+    basePower: 60,
+    category: "Physical",
+    name: "Dissonance Fang",
+    pp: 25,
+    priority: 0,
+    flags: { contact: 1, protect: 1, mirror: 1, bite: 1, sound: 1 },
+    secondary: {
+      chance: 30,
+      volatileStatus: "flinch"
+    },
+    target: "normal",
+    type: "Sound",
+    contestType: "Tough"
   },
   dive: {
     num: 291,
@@ -5760,6 +5880,20 @@ const Moves = {
     target: "normal",
     type: "Ghost",
     contestType: "Cool"
+  },
+  ermacpunch: {
+    num: 3803,
+    accuracy: true,
+    basePower: 60,
+    category: "Physical",
+    name: "ErMac Punch",
+    pp: 20,
+    priority: 0,
+    flags: { contact: 1, protect: 1, mirror: 1, punch: 1 },
+    secondary: null,
+    target: "normal",
+    type: "Questionmark",
+    contestType: "Clever"
   },
   eternabeam: {
     inherit: true,
@@ -6854,6 +6988,40 @@ const Moves = {
     type: "Flying",
     contestType: "Tough"
   },
+  galeslash: {
+    num: 3823,
+    accuracy: 100,
+    basePower: 90,
+    category: "Physical",
+    name: "Gale Slash",
+    pp: 15,
+    priority: 0,
+    flags: { contact: 1, protect: 1, mirror: 1, slicing: 1 },
+    critRatio: 2,
+    secondary: null,
+    target: "normal",
+    type: "Wind",
+    contestType: "Cool"
+  },
+  gammahammer: {
+    num: 3809,
+    accuracy: 90,
+    basePower: 100,
+    category: "Physical",
+    name: "Gamma Hammer",
+    pp: 10,
+    priority: 0,
+    flags: { contact: 1, protect: 1, mirror: 1 },
+	onTryHit(pokemon) {
+      pokemon.side.removeSideCondition("reflect");
+      pokemon.side.removeSideCondition("lightscreen");
+      pokemon.side.removeSideCondition("auroraveil");
+    },
+    secondary: null,
+    target: "normal",
+    type: "Nuclear",
+    contestType: "Tough"
+  },
   gammaray: {
     num: 3180,
     accuracy: 100,
@@ -6867,6 +7035,21 @@ const Moves = {
     target: "normal",
     type: "Nuclear",
     contestType: "Tough"
+  },
+  gammaslash: {
+    num: 3808,
+    accuracy: 100,
+    basePower: 70,
+    category: "Physical",
+    name: "Gamma Slash",
+    pp: 15,
+    priority: 0,
+    flags: { contact: 1, protect: 1, mirror: 1, slicing: 1 },
+    critRatio: 2,
+    secondary: null,
+    target: "normal",
+    type: "Nuclear",
+    contestType: "Cool"
   },
   garnetbeam: {
     num: 3654,
@@ -8583,6 +8766,28 @@ const Moves = {
     type: "Blood",
     contestType: "Clever"
   },
+  irradiation: {
+    num: 3813,
+    accuracy: 100,
+    basePower: 0,
+    category: "Status",
+    name: "Irradiation",
+    pp: 20,
+    priority: 0,
+    flags: { protect: 1, reflectable: 1, mirror: 1, allyanim: 1 },
+    onHit(target) {
+      if (target.getTypes().join() === "Nuclear" || !target.setType("Nuclear")) {
+        this.add("-fail", target);
+        return null;
+      }
+      this.add("-start", target, "typechange", "Nuclear");
+    },
+    secondary: null,
+    target: "normal",
+    type: "Nuclear",
+    zMove: { boost: { spa: 1 } },
+    contestType: "Cute"
+  },
   ironsphere: {
     num: 3225,
     accuracy: 100,
@@ -8620,6 +8825,25 @@ const Moves = {
     target: "normal",
     type: "Slime",
     contestType: "Beautiful"
+  },
+  jethammer: {
+    num: 3825,
+    accuracy: 90,
+    basePower: 100,
+    category: "Physical",
+    name: "Jet Hammer",
+    pp: 10,
+    priority: 0,
+    flags: { contact: 1, protect: 1, mirror: 1 },
+    self: {
+      boosts: {
+        spe: -1
+      }
+    },
+    secondary: null,
+    target: "normal",
+    type: "Wind",
+    contestType: "Tough"
   },
   jetpunch: {
     inherit: true,
@@ -8865,6 +9089,20 @@ const Moves = {
     target: "normal",
     type: "Water",
     contestType: "Tough"
+  },
+  lagspike: {
+    num: 3805,
+    accuracy: 100,
+    basePower: 40,
+    category: "Physical",
+    name: "Lag Spike",
+    pp: 30,
+    priority: 1,
+    flags: { protect: 1, mirror: 1 },
+    secondary: null,
+    target: "normal",
+    type: "Questionmark",
+    contestType: "Beautiful"
   },
   landsliderush: {
     num: 3233,
@@ -10826,6 +11064,23 @@ const Moves = {
     type: "Fire",
     contestType: "Beautiful"
   },
+  nuclearfang: {
+    num: 3807,
+    accuracy: 100,
+    basePower: 60,
+    category: "Physical",
+    name: "Nuclear Fang",
+    pp: 15,
+    priority: 0,
+    flags: { contact: 1, protect: 1, mirror: 1, bite: 1 },
+    secondary: {
+      chance: 30,
+      status: "tox"
+    },
+    target: "normal",
+    type: "Nuclear",
+    contestType: "Clever"
+  },
   nuclearpulse: {
     num: 3542,
     accuracy: 85,
@@ -10918,6 +11173,20 @@ const Moves = {
     zMove: { boost: { def: 1 } },
     contestType: "Clever"
   },
+  nullpulse: {
+    num: 3806,
+    accuracy: 100,
+    basePower: 85,
+    category: "Special",
+    name: "Null Pulse",
+    pp: 10,
+    priority: 0,
+    flags: { protect: 1, mirror: 1, distance: 1, pulse: 1 },
+    secondary: null,
+    target: "any",
+    type: "Questionmark",
+    contestType: "Beautiful"
+  },
   oblivionwing: {
     inherit: true,
 	flags: { protect: 1, mirror: 1, distance: 1, heal: 1, metronome: 1, legendary: 1 }
@@ -10990,6 +11259,21 @@ const Moves = {
     target: "allAdjacent",
     type: "Sound",
     contestType: "Tough"
+  },
+  oozeslash: {
+    num: 3814,
+    accuracy: 100,
+    basePower: 70,
+    category: "Physical",
+    name: "Ooze Slash",
+    pp: 15,
+    priority: 0,
+    flags: { contact: 1, protect: 1, mirror: 1, slicing: 1 },
+    critRatio: 2,
+    secondary: null,
+    target: "normal",
+    type: "Slime",
+    contestType: "Cool"
   },
   originpulse: {
     inherit: true,
@@ -11443,6 +11727,19 @@ const Moves = {
     type: "Light",
     contestType: "Cool"
   },
+  pianoslam: {
+    num: 3821,
+    accuracy: 100,
+    basePower: 160,
+    category: "Physical",
+    name: "Piano Slam",
+    pp: 5,
+    priority: 0,
+    flags: { protect: 1, mirror: 1, metronome: 1, cantusetwice: 1, sound: 1 },
+    secondary: null,
+    target: "normal",
+    type: "Sound"
+  },
   piercepincer: {
     num: 3290,
     accuracy: 100,
@@ -11807,6 +12104,25 @@ const Moves = {
     target: "self",
     type: "Rock",
     zMove: { boost: { atk: 1 } },
+    contestType: "Tough"
+  },
+  pressurizedfang: {
+    num: 3822,
+    accuracy: 100,
+    basePower: 80,
+    category: "Physical",
+    name: "Pressurized Fang",
+    pp: 15,
+    priority: 0,
+    flags: { contact: 1, protect: 1, mirror: 1, bite: 1 },
+    secondary: {
+      chance: 20,
+      boosts: {
+        def: -1
+      }
+    },
+    target: "normal",
+    type: "Wind",
     contestType: "Tough"
   },
   preyingbite: {
@@ -12816,6 +13132,21 @@ const Moves = {
     type: "Bug",
     contestType: "Cool"
   },
+  riffrend: {
+    num: 3818,
+    accuracy: 100,
+    basePower: 90,
+    category: "Physical",
+    name: "Riff Rend",
+    pp: 15,
+    priority: 0,
+    flags: { contact: 1, protect: 1, mirror: 1, slicing: 1, sound: 1 },
+    critRatio: 2,
+    secondary: null,
+    target: "normal",
+    type: "Sound",
+    contestType: "Cool"
+  },
   ripen: {
     num: 3331,
     accuracy: true,
@@ -13244,6 +13575,25 @@ const Moves = {
     type: "Grass",
     contestType: "Cute"
   },
+  segfaultslash: {
+    num: 3802,
+    accuracy: 95,
+    basePower: 75,
+    category: "Physical",
+    name: "Segfault Slash",
+    pp: 10,
+    priority: 0,
+    flags: { contact: 1, protect: 1, mirror: 1, slicing: 1 },
+    secondary: {
+      chance: 50,
+      boosts: {
+        def: -1
+      }
+    },
+    target: "normal",
+    type: "Questionmark",
+    contestType: "Cool"
+  },
   shadetrance: {
     num: 3346,
     accuracy: 75,
@@ -13258,6 +13608,23 @@ const Moves = {
     target: "normal",
     type: "Dark",
     zMove: { boost: { spe: 1 } },
+    contestType: "Beautiful"
+  },
+  shadowbarrage: {
+    num: 3800,
+    accuracy: 100,
+    basePower: 25,
+    category: "Physical",
+    name: "Shadow Barrage",
+    pp: 30,
+    priority: 0,
+    flags: { contact: 1, protect: 1, mirror: 1 },
+    multihit: [2, 5],
+    secondary: null,
+    target: "normal",
+    type: "Shadow",
+    zMove: { basePower: 140 },
+    maxMove: { basePower: 130 },
     contestType: "Beautiful"
   },
   shadowblast: {
@@ -13395,6 +13762,25 @@ const Moves = {
     type: "Shadow",
     contestType: "Tough"
   },
+  shadowfang: {
+    num: 3793,
+    accuracy: 95,
+    basePower: 65,
+    category: "Physical",
+    name: "Shadow Fang",
+    pp: 15,
+    priority: 0,
+    flags: { contact: 1, protect: 1, mirror: 1, bite: 1 },
+    secondaries: [
+      {
+        chance: 20,
+        volatileStatus: "flinch"
+      }
+    ],
+    target: "normal",
+    type: "Shadow",
+    contestType: "Cool"
+  },
   shadowfin: {
     num: 3682,
     accuracy: 100,
@@ -13474,6 +13860,21 @@ const Moves = {
     zMove: { effect: "clearnegativeboost" },
     contestType: "Beautiful"
   },
+  shadowhammer: {
+    num: 3796,
+    accuracy: 100,
+    basePower: 120,
+    category: "Physical",
+    name: "Shadow Hammer",
+    pp: 15,
+    priority: 0,
+    flags: { contact: 1, protect: 1, mirror: 1 },
+    recoil: [33, 100],
+    secondary: null,
+    target: "normal",
+    type: "Shadow",
+    contestType: "Tough"
+  },
   shadowhold: {
     num: 3357,
     accuracy: true,
@@ -13491,6 +13892,34 @@ const Moves = {
     type: "Shadow",
     zMove: { boost: { def: 1 } },
     contestType: "Cute"
+  },
+  shadowjab: {
+    num: 3795,
+    accuracy: true,
+    basePower: 60,
+    category: "Physical",
+    name: "Shadow Jab",
+    pp: 20,
+    priority: 0,
+    flags: { contact: 1, protect: 1, mirror: 1, punch: 1 },
+    secondary: null,
+    target: "normal",
+    type: "Shadow",
+    contestType: "Clever"
+  },
+  shadowjet: {
+    num: 3797,
+    accuracy: 100,
+    basePower: 40,
+    category: "Physical",
+    name: "Shadow Jet",
+    pp: 30,
+    priority: 1,
+    flags: { contact: 1, protect: 1, mirror: 1 },
+    secondary: null,
+    target: "normal",
+    type: "Shadow",
+    contestType: "Beautiful"
   },
   shadowmist: {
     num: 3358,
@@ -13526,6 +13955,20 @@ const Moves = {
     zMove: { boost: { spa: 1 } },
     contestType: "Clever"
   },
+  shadowpulse: {
+    num: 3799,
+    accuracy: true,
+    basePower: 80,
+    category: "Special",
+    name: "Shadow Pulse",
+    pp: 20,
+    priority: 0,
+    flags: { protect: 1, mirror: 1, distance: 1, pulse: 1 },
+    secondary: null,
+    target: "any",
+    type: "Shadow",
+    contestType: "Beautiful"
+  },
   shadowrave: {
     num: 3360,
     accuracy: 100,
@@ -13539,6 +13982,21 @@ const Moves = {
     target: "allAdjacent",
     type: "Shadow",
     contestType: "Beautiful"
+  },
+  shadowrend: {
+    num: 3794,
+    accuracy: 100,
+    basePower: 70,
+    category: "Physical",
+    name: "Shadow Rend",
+    pp: 15,
+    priority: 0,
+    flags: { contact: 1, protect: 1, mirror: 1, slicing: 1 },
+    critRatio: 2,
+    secondary: null,
+    target: "normal",
+    type: "Shadow",
+    contestType: "Cool"
   },
   shadowrush: {
     num: 3361,
@@ -13590,6 +14048,21 @@ const Moves = {
     type: "Shadow",
     zMove: { boost: { spe: 1 } },
     contestType: "Beautiful"
+  },
+  shadowslip: {
+    num: 3798,
+    accuracy: 100,
+    basePower: 70,
+    category: "Physical",
+    name: "Shadow Slip",
+    pp: 20,
+    priority: 0,
+    flags: { contact: 1, protect: 1, mirror: 1 },
+    selfSwitch: true,
+    secondary: null,
+    target: "normal",
+    type: "Shadow",
+    contestType: "Cute"
   },
   shadowsneak: {
     inherit: true,
@@ -14230,6 +14703,19 @@ const Moves = {
     type: "Slime",
     contestType: "Clever"
   },
+  sludgehammer: {
+    num: 3816,
+    accuracy: 100,
+    basePower: 160,
+    category: "Physical",
+    name: "Sludge Hammer",
+    pp: 5,
+    priority: 0,
+    flags: { protect: 1, mirror: 1, cantusetwice: 1 },
+    secondary: null,
+    target: "normal",
+    type: "Slime"
+  },
   sluggishbrew: {
     num: 3471,
     accuracy: 90,
@@ -14323,6 +14809,23 @@ const Moves = {
     type: "Poison",
     zMove: { boost: { spe: 1 } },
     contestType: "Beautiful"
+  },
+  snarehit: {
+    num: 3819,
+    accuracy: 100,
+    basePower: 70,
+    category: "Physical",
+    name: "Snare Hit",
+    pp: 10,
+    priority: 0,
+    flags: { contact: 1, protect: 1, mirror: 1, punch: 1, sound: 1 },
+    secondary: {
+      chance: 20,
+      volatileStatus: "confusion"
+    },
+    target: "normal",
+    type: "Sound",
+    contestType: "Cute"
   },
   snoresound: {
     num: 3381,
@@ -15051,6 +15554,32 @@ const Moves = {
     type: "Fairy",
     contestType: "Tough"
   },
+  squishpunch: {
+    num: 3815,
+    accuracy: 90,
+    basePower: 25,
+    category: "Physical",
+    name: "Squish Punch",
+    pp: 15,
+    priority: 0,
+    flags: { contact: 1, protect: 1, mirror: 1, punch: 1 },
+    onModifyMove(move, source) {
+      const hpRatio = source.hp / source.maxhp;
+      if (hpRatio > 0.75) {
+        move.multihit = 1;
+      } else if (hpRatio > 0.5) {
+        move.multihit = 2;
+      } else if (hpRatio > 0.25) {
+        move.multihit = 3;
+      } else {
+        move.multihit = 4;
+      }
+    },
+    target: "normal",
+    type: "Slime",
+    maxMove: { basePower: 130 },
+    contestType: "Tough"
+  },
   squishstrike: {
     num: 3770,
     accuracy: 90,
@@ -15059,7 +15588,7 @@ const Moves = {
     name: "Squish Strike",
     pp: 15,
     priority: 0,
-    flags: { contact: 1, protect: 1, mirror: 1, metronome: 1 },
+    flags: { contact: 1, protect: 1, mirror: 1 },
     onModifyMove(move, source) {
       const hpRatio = source.hp / source.maxhp;
       if (hpRatio > 0.75) {
@@ -16617,6 +17146,23 @@ const Moves = {
     target: "normal",
     type: "Flying",
     contestType: "Tough"
+  },
+  typhoonhook: {
+    num: 3824,
+    accuracy: 100,
+    basePower: 70,
+    category: "Physical",
+    name: "Typhoon Hook",
+    pp: 10,
+    priority: 0,
+    flags: { contact: 1, protect: 1, mirror: 1, punch: 1 },
+    secondary: {
+      chance: 20,
+      volatileStatus: "confusion"
+    },
+    target: "normal",
+    type: "Wind",
+    contestType: "Cute"
   },
   undegradeable: {
     num: 3495,
