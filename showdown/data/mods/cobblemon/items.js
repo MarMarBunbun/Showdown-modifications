@@ -242,6 +242,22 @@ const Items = {
     gen: 6,
     isNonstandard: "Past"
   },
+  bassbooster: {
+    name: "Bass Booster",
+    spritenum: 3160,
+    fling: {
+      basePower: 30
+    },
+    onBasePowerPriority: 23,
+    onBasePower(basePower, attacker, defender, move) {
+      if (move.flags["sound"]) {
+        this.debug("Bass Booster boost");
+        return this.chainModify([4506, 4096]);
+      }
+    },
+    num: 3160,
+    gen: 9
+  },
   bassplate: {
     name: "Bass Plate",
     spritenum: 3105,
@@ -401,6 +417,27 @@ const Items = {
     gen: 7,
     isNonstandard: "Past"
   },
+  blunderbuss: {
+    name: "Blunderbuss",
+    spritenum: 3163,
+    fling: {
+      basePower: 30
+    },
+    onBasePowerPriority: 23,
+    onBasePower(basePower, attacker, defender, move) {
+      if (move.flags["bullet"]) {
+        this.debug("Blunderbuss boost");
+        return this.chainModify([4506, 4096]);
+      }
+    },
+    onModifyMovePriority: 1,
+    onModifyMove(move) {
+      if (move.flags["bullet"])
+        delete move.flags["contact"];
+    },
+    num: 3163,
+    gen: 9
+  },
   boltorb: {
     name: "Bolt Orb",
     spritenum: 3000,
@@ -430,6 +467,38 @@ const Items = {
     },
     num: 3146,
     gen: 2
+  },
+  boostedcapacitor: {
+    name: "Boosted Capacitor",
+    spritenum: 3165,
+    fling: {
+      basePower: 30
+    },
+    onBasePowerPriority: 23,
+    onBasePower(basePower, attacker, defender, move) {
+      if (move.flags["speed"]) {
+        this.debug("Boosted Capacitor boost");
+        return this.chainModify([4506, 4096]);
+      }
+    },
+    num: 3165,
+    gen: 9
+  },
+  boosterengines: {
+    name: "Booster Engines",
+    spritenum: 3164,
+    fling: {
+      basePower: 30
+    },
+    onBasePowerPriority: 23,
+    onBasePower(basePower, attacker, defender, move) {
+      if (move.flags["speed"]) {
+        this.debug("Booster Engines boost");
+        return this.chainModify([4506, 4096]);
+      }
+    },
+    num: 3164,
+    gen: 9
   },
   cameruptite: {
     name: "Cameruptite",
@@ -1219,6 +1288,48 @@ const Items = {
     num: 3144,
     gen: 2
   },
+  instepguard: {
+    name: "Instep Guard",
+    spritenum: 3166,
+    fling: {
+      basePower: 30
+    },
+    onBasePowerPriority: 23,
+    onBasePower(basePower, attacker, defender, move) {
+      if (move.flags["kick"]) {
+        this.debug("Instep Guard boost");
+        return this.chainModify([4506, 4096]);
+      }
+    },
+    onModifyMovePriority: 1,
+    onModifyMove(move) {
+      if (move.flags["kick"])
+        delete move.flags["contact"];
+    },
+    num: 3166,
+    gen: 9
+  },
+  irondentures: {
+    name: "Iron Dentures",
+    spritenum: 3162,
+    fling: {
+      basePower: 30
+    },
+    onBasePowerPriority: 23,
+    onBasePower(basePower, attacker, defender, move) {
+      if (move.flags["bite"]) {
+        this.debug("Iron Dentures boost");
+        return this.chainModify([4506, 4096]);
+      }
+    },
+    onModifyMovePriority: 1,
+    onModifyMove(move) {
+      if (move.flags["bite"])
+        delete move.flags["contact"];
+    },
+    num: 3162,
+    gen: 9
+  },
   iveolite: {
     name: "Iveolite",
     spritenum: 3008,
@@ -1894,6 +2005,22 @@ const Items = {
     num: 3103,
     gen: 4
   },
+  powercell: {
+    name: "Power Cell",
+    spritenum: 3161,
+    fling: {
+      basePower: 30
+    },
+    onBasePowerPriority: 23,
+    onBasePower(basePower, attacker, defender, move) {
+      if (move.flags["pulse"]) {
+        this.debug("Bass Booster boost");
+        return this.chainModify([4506, 4096]);
+      }
+    },
+    num: 3161,
+    gen: 9
+  },
   prettyribbon: {
     name: "Pretty Ribbon",
     spritenum: 3011,
@@ -2215,6 +2342,22 @@ const Items = {
     num: 3131,
     gen: 7,
     isNonstandard: "Past"
+  },
+  spellbook: {
+    name: "Spell Book",
+    spritenum: 3167,
+    fling: {
+      basePower: 30
+    },
+    onBasePowerPriority: 23,
+    onBasePower(basePower, attacker, defender, move) {
+      if (move.flags["magic"]) {
+        this.debug("Spell Book boost");
+        return this.chainModify([4506, 4096]);
+      }
+    },
+    num: 3167,
+    gen: 9
   },
   spicycurry: {
     name: "Spicy Curry",
@@ -2567,6 +2710,22 @@ const Items = {
     num: 3132,
     gen: 7,
     isNonstandard: "Past"
+  },
+  whetstone: {
+    name: "Whetstone",
+    spritenum: 3168,
+    fling: {
+      basePower: 30
+    },
+    onBasePowerPriority: 23,
+    onBasePower(basePower, attacker, defender, move) {
+      if (move.flags["slicing"]) {
+        this.debug("Whetstone boost");
+        return this.chainModify([4506, 4096]);
+      }
+    },
+    num: 3168,
+    gen: 9
   },
   xrayspecs: {
     name: "X-Ray Specs",

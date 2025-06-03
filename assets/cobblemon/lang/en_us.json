@@ -2430,6 +2430,10 @@
   "cobblemon.ability.foolsgold.desc": "The Pokémon appears so lucky that the critical-hit ratios of its moves are boosted.",
   "cobblemon.ability.guttermind": "Gutter Mind",
   "cobblemon.ability.guttermind.desc": "Psychic-type moves become Pokemon-type moves. The power of those moves is boosted a little.",
+  "cobblemon.ability.omnitype": "Omnitype",
+  "cobblemon.ability.omnitype.desc": "Defending, the user is considered every type.",
+  "cobblemon.ability.lernean": "Learnean",
+  "cobblemon.ability.lernean.desc": "Grows more heads when it loses HP.",
   
   "cobblemon.ability.heeho": "Hee-Ho!",
   "cobblemon.ability.heeho.desc": "Hee-Ho! Hee-Ho!",

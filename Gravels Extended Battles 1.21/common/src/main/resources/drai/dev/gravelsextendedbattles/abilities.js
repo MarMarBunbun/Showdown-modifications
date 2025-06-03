@@ -1899,6 +1899,43 @@ const Abilities = {
     rating: 0.5,
     num: 102
   },
+  lernean: {
+	onUpdate(pokemon) {
+      if (!pokemon.species.id.startsWith("Hydreigon-Mega") || !pokemon.hp || pokemon.transformed) return;
+      const formeOrder = ["Hydreigon-Mega-Nine", "Hydreigon-Mega-Eight", "Hydreigon-Mega-Seven", "Hydreigon-Mega-Six", "Hydreigon-Mega"];
+      const targetForme = Math.ceil((pokemon.hp / pokemon.maxhp) * 5) - 1;
+      if (formeOrder.indexOf(pokemon.species.id) > targetForme) {
+        pokemon.formeChange(formeOrder[targetForme], this.effect, true);
+      }
+	},
+	onModifyMove(move, pokemon, target) {
+      if (!pokemon.species.id.startsWith("Hydreigon-Mega")) return;
+      if (move.category === "Status" || !move.basePower) return;
+      const formes = ["Hydreigon-Mega", "Hydreigon-Mega-Six", "Hydreigon-Mega-Seven", "Hydreigon-Mega-Eight", "Hydreigon-Mega-Nine"];
+      move.multihit = 5 + formes.indexOf(pokemon.species.id);
+      if (move.secondaries) {
+        // delete move.secondaries; // Secondaries should still trigger, but only once after all hits take place.
+        // Technically not a secondary effect, but it is negated
+        delete move.self;
+        if (move.id === 'clangoroussoulblaze') delete move.selfBoost;
+      }
+	},
+	onBasePower(basePower, pokemon, target, move) {
+      if (!pokemon.species.id.startsWith("Hydreigon-Mega")) return;
+      const formes = ["Hydreigon-Mega", "Hydreigon-Mega-Six", "Hydreigon-Mega-Seven", "Hydreigon-Mega-Eight", "Hydreigon-Mega-Nine"];
+      const nhits = 5 + formes.indexOf(pokemon.species.id);
+      return this.chainModify((1.15 + (0.075 * (nhits - 5))) / nhits);
+	},
+	onSourceDamagingHit(damage, target, pokemon, move) { // onSourceDamagingHit activates after a hit, not before. Need to get secondaries from onModifyMove
+      if (pokemon.species.id.startsWith("Hydreigon-Mega") && move.secondaries) {
+        delete move.secondaries;
+      }
+	},
+	flags: {failroleplay: 1, noreceiver: 1, noentrain: 1, notrace: 1, failskillswap: 1},
+	name: "Lernean",
+	rating: 4.5,
+	num: 3189,
+  },
   levinskin: {
     onTryHit(target, source, move) {
       if (target !== source && move.type === "Electric") {
@@ -2076,6 +2113,26 @@ const Abilities = {
     name: "Ojos Petreos",
     rating: 3.5,
     num: 3107
+  },
+  omnitype: {
+    onStart(target) {
+      this.add("-activate", target, "ability: Omnitype");
+    },
+    onTryHit(source, target, move) {
+      source.setType([
+        "Bug", "Dark", "Dragon", "Electric",
+        "Fairy", "Fighting", "Fire", "Flying",
+        "Ghost", "Grass", "Ground", "Ice", "Normal",
+        "Poison", "Psychic", "Rock", "Steel", "Water"
+      ]);
+    },
+    onFoeAfterMove(source, target, move) {
+        target.setType(target.baseTypes);
+    },
+    flags: {breakable: 1, failroleplay: 1, noreceiver: 1, noentrain: 1, notrace: 1, failskillswap: 1},
+    name: "Omnitype",
+    rating: 4,
+    num: 3188,
   },
   oraoraoraora: {
     onPrepareHit(target, source, move) {
