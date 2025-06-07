@@ -67,6 +67,46 @@ const Conditions = {
       }
     }
   },
+  raindance: {
+    name: "RainDance",
+    effectType: "Weather",
+    duration: 5,
+    durationCallback(source, effect) {
+      if (source?.hasItem("damprock")) {
+        return 8;
+      }
+      return 5;
+    },
+    onWeatherModifyDamage(damage, attacker, defender, move) {
+      if (defender.hasItem("utilityumbrella") || defender.hasAbility("hydrophobic"))
+        return;
+      if (move.type === "Water") {
+        this.debug("rain water boost");
+        return this.chainModify(1.5);
+      }
+      if (move.type === "Fire") {
+        this.debug("rain fire suppress");
+        return this.chainModify(0.5);
+      }
+    },
+    onFieldStart(field, source, effect) {
+      if (effect?.effectType === "Ability") {
+        if (this.gen <= 5)
+          this.effectState.duration = 0;
+        this.add("-weather", "RainDance", "[from] ability: " + effect.name, "[of] " + source);
+      } else {
+        this.add("-weather", "RainDance");
+      }
+    },
+    onFieldResidualOrder: 1,
+    onFieldResidual() {
+      this.add("-weather", "RainDance", "[upkeep]");
+      this.eachEvent("Weather");
+    },
+    onFieldEnd() {
+      this.add("-weather", "none");
+    }
+  },
   acidrain: {
     name: "AcidRain",
     effectType: "Weather",
@@ -179,7 +219,7 @@ const Conditions = {
     },
     onFieldStart(field, source, effect) {
       if (effect?.effectType === "Ability") {
-        if (this.gen <= 5)
+        if (this.gen <= 5 || source?.ability === "arenacurse")
           this.effectState.duration = 0;
         this.add("-weather", "CursedWinds", "[from] ability: " + effect.name, "[of] " + source);
       } else {
@@ -387,14 +427,14 @@ const Conditions = {
       }
 	  // Apply boost to Bug and Poison type Pokémon when the weather starts
       for (const pokemon of this.getAllActive()) {
-        if (!pokemon.hasType("Fairy")) {
+        if (!pokemon.hasType("Fairy") && pokemon.ability !== "bubblehelm") {
           this.add("-activate", pokemon, "FairyDust");
           this.boost({evasion: -1}, pokemon);
         }
       }
     },
 	onSwitchIn(pokemon) {
-      if (!pokemon.hasType("Fairy")) {
+      if (!pokemon.hasType("Fairy") && pokemon.ability !== "bubblehelm") {
         this.add("-activate", pokemon, "FairyDust");
         this.boost({evasion: -1}, pokemon);
       }
@@ -494,7 +534,8 @@ const Conditions = {
         move.type !== "Normal" &&
         move.type !== "Psychic" &&
         move.type !== "Ghost" &&
-        !(attacker.hasAbility('keeneye'))
+        !attacker.hasAbility("keeneye") &&
+		!attacker.hasAbility("droughtproof")
       ) {
         move.accuracy *= 0.9;
       }
@@ -545,7 +586,7 @@ const Conditions = {
     onWeather(target) {
       // Check if any active Pokémon has the "Sleet" ability
       const sleetActive = this.getAllActive().some(pokemon =>
-        pokemon.ability === 'sleet' && !pokemon.ignoringAbility()
+        pokemon.ability === "sleet" && !pokemon.ignoringAbility()
       );
 
       const damageFraction = sleetActive ? 1 / 5 : 1 / 16;
@@ -661,7 +702,7 @@ const Conditions = {
     },
     onFieldStart(field, source, effect) {
       if (effect?.effectType === "Ability") {
-        if (this.gen <= 5)
+        if (this.gen <= 5 || source?.ability === "arenabloom")
           this.effectState.duration = 0;
         this.add("-weather", "PollenStorm", "[from] ability: " + effect.name, "[of] " + source);
       } else {
@@ -670,8 +711,12 @@ const Conditions = {
     },
 	onModifySpAPriority: 10,
     onModifySpA(spa, attacker, move) {
-      // Decrease Special Attack by 50% for moves that aren't Grass or Bug type
-      if (move.type !== "Grass" && move.type !== "Bug") {
+      // Don't reduce SpA for Bug- or Grass-type Pokémon or those with the Bubblehelm ability
+      if (
+        !attacker.hasType("Bug") &&
+        !attacker.hasType("Grass") &&
+        attacker.ability !== "bubblehelm"
+      ) {
         this.debug("Pollen Storm suppress");
         return this.chainModify(0.5);
       }
@@ -786,7 +831,12 @@ const Conditions = {
       this.add("-weather", "Smog", "[upkeep]");
       this.eachEvent("Weather");
       for (const pokemon of this.getAllActive()) {
-        if (!pokemon.hasType("Poison") && !pokemon.hasType("Steel") && !pokemon.status) {
+        if (
+          !pokemon.hasType("Poison") &&
+          !pokemon.hasType("Steel") &&
+          !pokemon.status &&
+          pokemon.ability !== "bubblehelm"
+        ) {
           pokemon.trySetStatus("psn", pokemon.side.foe.active[0]);
         }
       }
@@ -800,7 +850,7 @@ const Conditions = {
     effectType: "Weather",
     duration: 5,
     durationCallback(source, effect) {
-      if (source?.hasItem("damprock")) {
+      if (source?.hasItem("damprock") || source?.hasItem("energychannelizer")) {
         return 8;
       }
       return 5;

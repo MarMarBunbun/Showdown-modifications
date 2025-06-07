@@ -940,6 +940,15 @@ const Items = {
     gen: 7,
     isNonstandard: "Past"
   },
+  energychannelizer: {
+    name: "Energy Channelizer",
+    spritenum: 3169,
+    fling: {
+      basePower: 60
+    },
+    num: 3169,
+    gen: 4
+  },
   ereader: {
     name: "E-Reader",
     spritenum: 3138,
@@ -2300,6 +2309,28 @@ const Items = {
     gen: 6,
     isNonstandard: "Past"
   },
+  snowyseed: {
+    name: "Snowy Seed",
+    spritenum: 3172,
+    fling: {
+      basePower: 10
+    },
+    onStart(pokemon) {
+      if (!pokemon.ignoringItem() && this.field.isTerrain("snowyterrain")) {
+        pokemon.useItem();
+      }
+    },
+    onTerrainChange(pokemon) {
+      if (this.field.isTerrain("snowyterrain")) {
+        pokemon.useItem();
+      }
+    },
+    boosts: {
+      spd: 1
+    },
+    num: 3172,
+    gen: 7
+  },
   soundiumz: {
     name: "Soundium Z",
     spritenum: 3093,
@@ -2656,6 +2687,15 @@ const Items = {
     num: 3135,
     gen: 2
   },
+  volatilespray: {
+    name: "Volatile Spray",
+    spritenum: 3170,
+    fling: {
+      basePower: 30
+    },
+    num: 3170,
+    gen: 4
+  },
   slimiumz: {
     name: "Slimium Z",
     spritenum: 3092,
@@ -2667,6 +2707,15 @@ const Items = {
     num: 3092,
     gen: 7,
     isNonstandard: "Past"
+  },
+  weatherballoon: {
+    name: "Weather Balloon",
+    spritenum: 3171,
+    fling: {
+      basePower: 30
+    },
+    num: 3171,
+    gen: 4
   },
   windgem: {
     name: "Wind Gem",

@@ -22,6 +22,41 @@ __export(abilities_exports, {
 });
 module.exports = __toCommonJS(abilities_exports);
 const Abilities = {
+  absolutezero: {
+    onImmunity(type, pokemon) {
+      if (type === "hail")
+        return false;
+    },
+    onModifyMovePriority: -2,
+    onModifyMove(move, attacker, defender) {
+      if (this.field.isWeather("snow") || this.field.isWeather("hail")) {
+        if (move.secondaries) {
+          for (const secondary of move.secondaries) {
+            if (secondary.status === "frz" || secondary.status === "fbt") {
+              if (secondary.chance) {
+                this.debug("Doubling status chance for freeze/frostbite during Hail/Snow");
+                secondary.chance *= 2;
+              }
+            }
+          }
+        }
+        if (move.self?.chance && (move.self.status === "frz" || move.self.status === "fbt")) {
+          this.debug("Doubling self status chance for freeze/frostbite during Hail/Snow");
+          move.self.chance *= 2;
+        }
+      }
+    },
+    onBasePower(basePower, attacker, defender, move) {
+      if (move.type === "Ice" && (this.field.isWeather("snow") || this.field.isWeather("hail"))) {
+        this.debug('Absolute Zero ice power boost in Snow');
+        return this.chainModify([5325, 4096]); // ≈ 1.3× boost
+      }
+    },
+    flags: {},
+    name: "Absolute Zero",
+    rating: 3.5,
+    num: 3190
+  },
   absolution: {
     onModifySpAPriority: 5,
     onModifySpA(spa, pokemon) {
@@ -257,6 +292,31 @@ const Abilities = {
     rating: 4,
     num: 3010
   },
+  arenabloom: {
+    onStart(source) {
+      this.field.setWeather("pollenstorm");
+    },
+	onWeather(target, source, effect) {
+      if (target.hasItem("utilityumbrella"))
+        return;
+      if (effect.id === "pollenstorm") {
+        this.heal(target.baseMaxhp / 16);
+      }
+    },
+    flags: {},
+    name: "Arena Bloom",
+    rating: 4,
+    num: 3191
+  },
+  arenacurse: {
+    onStart(source) {
+      this.field.setWeather("cursedwinds");
+    },
+    flags: {},
+    name: "Arena Curse",
+    rating: 4,
+    num: 3192
+  },
   athenian: {
     onModifySpAPriority: 5,
     onModifySpA(spa) {
@@ -369,6 +429,21 @@ const Abilities = {
     name: "Blazing Soul",
     rating: 4,
     num: 3016
+  },
+  bloodbath: {
+    onResidualOrder: 5,
+    onResidualSubOrder: 3,
+    onResidual(pokemon) {
+      if (pokemon.status && ["darkness"].includes(pokemon.effectiveWeather())) {
+        this.debug("bloodbath");
+        this.add("-activate", pokemon, "ability: Bloodbath");
+        pokemon.cureStatus();
+      }
+    },
+    flags: {},
+    name: "Bloodbath",
+    rating: 1.5,
+    num: 3084
   },
   bloodlust: {
     onModifyAtk(atk, pokemon) {
@@ -509,6 +584,16 @@ const Abilities = {
     rating: 4,
     num: 3023
   },
+  bubblehelm: {
+    onImmunity(type, pokemon) {
+      if (type === "sandstorm")
+        return false;
+    },
+    flags: {},
+    name: "Bubble Helm",
+    rating: 3.5,
+    num: 3193
+  },
   busybee: {
     onModifyPriority(priority, pokemon, target, move) {
       if (move?.type === "Bug") {
@@ -598,6 +683,19 @@ const Abilities = {
     name: "Castle Moat",
     rating: 3,
     num: 3027
+  },
+  chakra: {
+    onBasePowerPriority: 23,
+    onBasePower(basePower, attacker, defender, move) {
+      if (move.type === "Fairy") {
+        this.debug("Chakra boost");
+        return this.chainModify([5325, 4096]);
+      }
+    },
+    flags: {},
+    name: "Chakra",
+    rating: 3,
+    num: 3194
   },
   chargedwool: {
     onModifyTypePriority: -1,
@@ -1063,6 +1161,16 @@ const Abilities = {
     rating: 2.5,
     num: 3172
   },
+  droughtproof: {
+    onImmunity(type, pokemon) {
+      if (type === "hail")
+        return false;
+    },
+    flags: {},
+    name: "Droughtproof",
+    rating: 3.5,
+    num: 3195
+  },
   druidry: {
     onWeather(target, source, effect) {
       if (target.hasItem("utilityumbrella"))
@@ -1092,13 +1200,31 @@ const Abilities = {
     onModifyMovePriority: 1,
     onModifyMove(move) {
       // Only apply the accuracy reduction to special moves
-      if (move.category === 'Special') {
+      if (move.category === "Special") {
         move.accuracy = this.chainModify(0.8);
       }
     },
     name: "Eccentric",
     rating: 5,
     num: 3051
+  },
+  echolocation: {
+    onPrepareHit(source, target, move) {
+      if (move.category === "Status" || move.multihit || move.flags["noparentalbond"] || move.flags["charge"] || move.flags["futuremove"] || move.spreadHit || move.isZ || move.isMax || !move.flags["sound"])
+        return;
+      move.multihit = 2;
+      move.multihitType = "parentalbond";
+    },
+    // Damage modifier implemented in BattleActions#modifyDamage()
+    onSourceModifySecondaries(secondaries, target, source, move) {
+      if (move.multihitType === "parentalbond" && move.id === "secretpower" && move.hit < 2) {
+        return secondaries.filter((effect) => effect.volatileStatus === "flinch");
+      }
+    },
+    flags: {},
+    name: "Echolocation",
+    rating: 4.5,
+    num: 3197
   },
   elusive: {
     onModifyMove(move) {
@@ -1256,6 +1382,19 @@ const Abilities = {
     rating: 4,
     num: 3063
   },
+  fieldworker: {
+    onBasePowerPriority: 19,
+    onBasePower(basePower, attacker, defender, move) {
+      if (move.type === "Grass") {
+        this.debug("Fieldworker boost");
+        return this.chainModify(1.5);
+      }
+    },
+    flags: {},
+    name: "Fieldworker",
+    rating: 3.5,
+    num: 3198
+  },
   flameeater: {
     onTryHit(target, source, move) {
       if (target !== source && move.type === "Fire") {
@@ -1309,6 +1448,26 @@ const Abilities = {
     name: "Flower Gift",
     rating: 1,
     num: 122
+  },
+  foil: {
+    onSourceModifyAtkPriority: 6,
+    onSourceModifyAtk(atk, attacker, defender, move) {
+      if (move.type === "Psychic") {
+        this.debug("Foil weaken");
+        return this.chainModify(0.5);
+      }
+    },
+    onSourceModifySpAPriority: 5,
+    onSourceModifySpA(atk, attacker, defender, move) {
+      if (move.type === "Psychic") {
+        this.debug("Foil weaken");
+        return this.chainModify(0.5);
+      }
+    },
+    flags: { breakable: 1 },
+    name: "Foil",
+    rating: 3.5,
+    num: 3199
   },
   foolsgold: {
     onModifyCritRatio(critRatio) {
@@ -1388,7 +1547,14 @@ const Abilities = {
     num: 3067
   },
   foundry: {
-    onModifyTypePriority: -1,
+    onTryMovePriority: -2,
+    onTryMove(pokemon, target, move) {
+      if (move.id === "stealthrock") {
+        this.actions.useMove("hotcoals", pokemon, {target: target});
+        return null;
+      }
+    },
+	onModifyTypePriority: -1,
     onModifyType(move, pokemon) {
       if (move.type === "Rock" && !(move.isZ && move.category !== "Status")) {
         move.type = "Fire";
@@ -1696,20 +1862,43 @@ const Abilities = {
     rating: 3,
     num: 3083
   },
-  bloodbath: {
-    onResidualOrder: 5,
-    onResidualSubOrder: 3,
-    onResidual(pokemon) {
-      if (pokemon.status && ["darkness"].includes(pokemon.effectiveWeather())) {
-        this.debug("bloodbath");
-        this.add("-activate", pokemon, "ability: Bloodbath");
-        pokemon.cureStatus();
+  hydrophobic: {
+    onImmunity(type, pokemon) {
+      if (type === "hail")
+        return false;
+    },
+	onSourceModifyAtkPriority: 6,
+    onSourceModifyAtk(atk, attacker, defender, move) {
+      if (move.type === "Water") {
+        this.debug("Hydrophobic weaken");
+        return this.chainModify(0.5);
+      }
+    },
+    onSourceModifySpAPriority: 5,
+    onSourceModifySpA(atk, attacker, defender, move) {
+      if (move.type === "Water") {
+        this.debug("Hydrophobic weaken");
+        return this.chainModify(0.5);
       }
     },
     flags: {},
-    name: "Bloodbath",
-    rating: 1.5,
-    num: 3084
+    name: "Hydrophobic",
+    rating: 3.5,
+    num: 3196
+  },
+  icecleats: {
+    onImmunity(type, pokemon) {
+      if (type === "hail")
+        return false;
+    },
+	onModifySpe(spe, pokemon) {
+      if (this.field.isWeather(["hail", "snow"])) {
+        return this.chainModify(2);
+      }
+    },
+    name: "Ice Cleats",
+    rating: 2,
+    num: 3102
   },
   iceslick: {
     onImmunity(type, pokemon) {
@@ -2008,19 +2197,61 @@ const Abilities = {
     rating: 1.5,
     num: 3101
   },
-  icecleats: {
-    onImmunity(type, pokemon) {
-      if (type === "hail")
-        return false;
+  mimicry: {
+    onStart(pokemon) {
+      this.singleEvent("TerrainChange", this.effect, this.effectState, pokemon);
     },
-	onModifySpe(spe, pokemon) {
-      if (this.field.isWeather(["hail", "snow"])) {
-        return this.chainModify(2);
+    onTerrainChange(pokemon) {
+      let types;
+      switch (this.field.terrain) {
+        case "electricterrain":
+          types = ["Electric"];
+          break;
+        case "grassyterrain":
+          types = ["Grass"];
+          break;
+        case "mistyterrain":
+          types = ["Fairy"];
+          break;
+        case "psychicterrain":
+          types = ["Psychic"];
+          break;
+        case "snowyterrain":
+          types = ["Ice"];
+          break;
+		default:
+          types = pokemon.baseSpecies.types;
+      }
+      const oldTypes = pokemon.getTypes();
+      if (oldTypes.join() === types.join() || !pokemon.setType(types))
+        return;
+      if (this.field.terrain || pokemon.transformed) {
+        this.add("-start", pokemon, "typechange", types.join("/"), "[from] ability: Mimicry");
+        if (!this.field.terrain)
+          this.hint("Transform Mimicry changes you to your original un-transformed types.");
+      } else {
+        this.add("-activate", pokemon, "ability: Mimicry");
+        this.add("-end", pokemon, "typechange", "[silent]");
       }
     },
-    name: "Ice Cleats",
-    rating: 2,
-    num: 3102
+    flags: {},
+    name: "Mimicry",
+    rating: 0,
+    num: 250
+  },
+  nastywebbing: {
+    onDamagingHit(damage, target, source, move) {
+      const side = source.isAlly(target) ? source.side.foe : source.side;
+      const stickyWeb = side.sideConditions["stickyweb"];
+      if (move.category === "Physical" && (!stickyWeb)) {
+        this.add("-activate", target, "ability: Nasty Webbing");
+        side.addSideCondition("stickyweb", target);
+      }
+    },
+    flags: {},
+    name: "Nasty Webbing",
+    rating: 3.5,
+    num: 3200
   },
   naturaltoxin: {
     onSourceModifyAtkPriority: 6,
@@ -2483,6 +2714,16 @@ const Abilities = {
     rating: 1.5,
     num: 3179
   },
+  rootcontrol: {
+    onResidualOrder: 5,
+    onResidualSubOrder: 4,
+    onResidual(pokemon) {
+      this.heal(pokemon.baseMaxhp / 16);
+    },
+    name: "Root Control",
+    rating: 3,
+    num: 3201
+  },
   rosesthorns: {
     onDamagingHit(damage, target, source, move) {
       const side = source.isAlly(target) ? source.side.foe : source.side;
@@ -2774,6 +3015,15 @@ const Abilities = {
     rating: 4,
     num: 3184
   },
+  snowysurge: {
+    onStart(source) {
+      this.field.setTerrain("snowyterrain");
+    },
+    flags: {},
+    name: "Snowy Surge",
+    rating: 4,
+    num: 3207
+  },
   specialist: {
     onBasePowerPriority: 19,
     onBasePower(basePower, attacker, defender, move) {
@@ -2880,6 +3130,14 @@ const Abilities = {
     rating: 4,
     num: 3149
   },
+  stormfront: {
+    onStart(source) {
+      this.field.setWeather("thunderstorm");
+    },
+    name: "Stormfront",
+    rating: 4,
+    num: 3202
+  },
   striker: {
     onBasePowerPriority: 19,
     onBasePower(basePower, attacker, defender, move) {
@@ -2942,6 +3200,15 @@ const Abilities = {
     name: "Sunbathe",
     rating: 1,
     num: 3152
+  },
+  surveillance: {
+    onStart(pokemon) {
+      this.boost({ accuracy: 2 }, pokemon);
+    },
+    flags: {},
+    name: "Surveillance",
+    rating: 1.5,
+    num: 3203
   },
   synthesizer: {
     onTryHit(target, source, move) {
@@ -3022,6 +3289,27 @@ const Abilities = {
     rating: 4,
     num: 3156
   },
+  tobe: {
+    onTryHit(pokemon, target, move) {
+      if (move.ohko) {
+        this.add("-immune", pokemon, "[from] ability: To Be");
+		this.boost({spe: 1}, pokemon);
+        return null;
+      }
+    },
+    onDamagePriority: -30,
+    onDamage(damage, target, source, effect) {
+      if (target.hp === target.maxhp && damage >= target.hp && effect && effect.effectType === "Move") {
+        this.add("-ability", target, "To Be");
+		this.boost({spe: 1}, target);
+        return target.hp - 1;
+      }
+    },
+    flags: { breakable: 1 },
+    name: "To be",
+    rating: 3,
+    num: 3204
+  },
   trace: {
     onStart(pokemon) {
       if (pokemon.adjacentFoes().some((foeActive) => foeActive.ability === "noability")) {
@@ -3070,6 +3358,23 @@ const Abilities = {
     name: "Transcendence",
     rating: 4,
     num: 3157
+  },
+  trumpetweevil: {
+    onModifyTypePriority: -1,
+    onModifyType(move, pokemon) {
+      if ((move.type === "Sound" || move.flags["sound"]) && !(move.isZ && move.category !== "Status")) {
+        move.type = "Bug";
+        move.typeChangerBoosted = this.effect;
+      }
+    },
+    onBasePowerPriority: 23,
+    onBasePower(basePower, pokemon, target, move) {
+      if (move.typeChangerBoosted === this.effect)
+        return this.chainModify([6144, 4096]);
+    },
+    name: "Trumpet Weevil",
+    rating: 4,
+    num: 3205
   },
   unstable: {
     onPrepareHit(source, target, move) {
@@ -3128,6 +3433,33 @@ const Abilities = {
 	name: "vampiric",
 	rating: 2,
 	num: 3160
+  },
+  vegetate: {
+    onModifyTypePriority: -1,
+    onModifyType(move, pokemon) {
+      const noModifyType = [
+        "judgment",
+        "multiattack",
+        "naturalgift",
+        "revelationdance",
+        "technoblast",
+        "terrainpulse",
+        "weatherball"
+      ];
+      if (move.type === "Normal" && !noModifyType.includes(move.id) && !(move.isZ && move.category !== "Status") && !(move.name === "Tera Blast" && pokemon.terastallized)) {
+        move.type = "Grass";
+        move.typeChangerBoosted = this.effect;
+      }
+    },
+    onBasePowerPriority: 23,
+    onBasePower(basePower, pokemon, target, move) {
+      if (move.typeChangerBoosted === this.effect)
+        return this.chainModify([4915, 4096]);
+    },
+    flags: {},
+    name: "Vegetate",
+    rating: 4,
+    num: 3206
   },
   vibranthue: {
     onStart(pokemon) {
