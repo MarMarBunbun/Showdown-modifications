@@ -1250,6 +1250,33 @@ const Abilities = {
     rating: 2,
     num: 3053
   },
+  energizate: {
+    onModifyTypePriority: -1,
+    onModifyType(move, pokemon) {
+      const noModifyType = [
+        "judgment",
+        "multiattack",
+        "naturalgift",
+        "revelationdance",
+        "technoblast",
+        "terrainpulse",
+        "weatherball"
+      ];
+      if (move.type === "Normal" && !noModifyType.includes(move.id) && !(move.isZ && move.category !== "Status") && !(move.name === "Tera Blast" && pokemon.terastallized)) {
+        move.type = "Electric";
+        move.typeChangerBoosted = this.effect;
+      }
+    },
+    onBasePowerPriority: 23,
+    onBasePower(basePower, pokemon, target, move) {
+      if (move.typeChangerBoosted === this.effect)
+        return this.chainModify([4915, 4096]);
+    },
+    flags: {},
+    name: "Energizate",
+    rating: 4,
+    num: 3211
+  },
   energizer: {
     onModifySpe(spe, pokemon) {
       if (this.field.isWeather(["thunderstorm"])) {
@@ -1507,6 +1534,12 @@ const Abilities = {
     rating: 4,
     num: 3065
   },
+  forage: {
+    flags: {},
+    name: "Forage",
+    rating: 0,
+    num: 3209
+  },
   forked: {
     onSetStatus(status, target, source, effect) {
       if (["thunderstorm"].includes(target.effectiveWeather())) {
@@ -1569,6 +1602,19 @@ const Abilities = {
     name: "Foundry",
     rating: 4,
     num: 3068
+  },
+  freezebody: {
+    onDamagingHit(damage, target, source, move) {
+      if (this.checkMoveMakesContact(move, source, target)) {
+        if (this.randomChance(3, 10)) {
+          source.trySetStatus("fbt", target);
+        }
+      }
+    },
+    flags: {},
+    name: "Freeze Body",
+    rating: 2,
+    num: 3208
   },
   frighten: {
     onStart(pokemon) {
@@ -1922,6 +1968,17 @@ const Abilities = {
     rating: 4,
     num: 3086
   },
+  infuriate: {
+    onDamagingHit(damage, target, source, move) {
+      if (move.category === "Physical") {
+        this.boost({ atk: 1 });
+      }
+    },
+    flags: {},
+    name: "Infuriate",
+    rating: 2.5,
+    num: 3212
+  },
   insatiable: {
     onBasePowerPriority: 8,
     onBasePower(basePower, attacker, defender, move) {
@@ -2159,6 +2216,15 @@ const Abilities = {
     rating: 5,
     num: 3098
   },
+  lunardiffuse: {
+    onStart(source) {
+      this.field.setTerrain("midnightterrain");
+    },
+    flags: {},
+    name: "Lunar Diffuse",
+    rating: 4,
+    num: 3214
+  },
   magicianshat: {
     onStart(source) {
       this.field.setTerrain("magicroom");
@@ -2218,6 +2284,9 @@ const Abilities = {
           break;
         case "snowyterrain":
           types = ["Ice"];
+          break;
+		case "midnightterrain":
+          types = ["Dark"];
           break;
 		default:
           types = pokemon.baseSpecies.types;
@@ -2576,6 +2645,17 @@ const Abilities = {
     rating: 3.5,
     num: 3120
   },
+  quickcharge: {
+    onModifyPriority(priority, pokemon, target, move) {
+      if (pokemon.activeMoveActions === 0) {
+        return priority + 4;
+      }
+    },
+    flags: {},
+    name: "Quick Charge",
+    rating: 1.5,
+    num: 3213
+  },
   radsipper: {
     onTryHitPriority: 1,
     onTryHit(target, source, move) {
@@ -2619,6 +2699,21 @@ const Abilities = {
     name: "Raptor",
     rating: 1.5,
     num: 3175
+  },
+  reactiveshielding: {
+    onDamagingHit(damage, target, source, move) {
+      if (move.category === "Physical") {
+        this.add("-ability", target, "Reactive Shielding");
+        this.boost({ def: 1, spd: -1 }, target);
+      } else if (move.category === "Special") {
+        this.add("-ability", target, "Reactive Shielding");
+        this.boost({ spd: 1, def: -1 }, target);
+      }
+    },
+    flags: {},
+    name: "Reactive Shielding",
+    rating: 2.5,
+    num: 3210
   },
   receiver: {
     onAllyFaint(target) {

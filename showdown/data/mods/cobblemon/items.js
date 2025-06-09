@@ -1720,6 +1720,28 @@ const Items = {
     gen: 6,
     isNonstandard: "Past"
   },
+  midnightseed: {
+    name: "Midnight Seed",
+    spritenum: 3173,
+    fling: {
+      basePower: 10
+    },
+    onStart(pokemon) {
+      if (!pokemon.ignoringItem() && this.field.isTerrain("midnightterrain")) {
+        pokemon.useItem();
+      }
+    },
+    onTerrainChange(pokemon) {
+      if (this.field.isTerrain("midnightterrain")) {
+        pokemon.useItem();
+      }
+    },
+    boosts: {
+      def: 1
+    },
+    num: 3172,
+    gen: 7
+  },
   moisturecream: {
     name: "Moisture Cream",
     spritenum: 3142,

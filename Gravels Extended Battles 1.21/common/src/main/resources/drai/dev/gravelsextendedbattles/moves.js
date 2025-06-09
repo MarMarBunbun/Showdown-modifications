@@ -1075,6 +1075,24 @@ const Moves = {
     type: "Rock",
     contestType: "Cool"
   },
+  battlecry: {
+    num: 3834,
+    accuracy: true,
+    basePower: 0,
+    category: "Status",
+    name: "Battle Cry",
+    pp: 20,
+    priority: 0,
+    flags: { snatch: 1, sound: 1, metronome: 1 },
+    boosts: {
+      atk: 1
+    },
+    secondary: null,
+    target: "allies",
+    type: "Fighting",
+    zMove: { boost: { atk: 1 } },
+    contestType: "Cool"
+  },
   beampulser: {
     num: 3543,
     accuracy: 100,
@@ -2375,6 +2393,8 @@ const Moves = {
         newType = "Psychic";
       } else if (this.field.isTerrain("snowyterrain")) {
         newType = "Ice";
+      } else if (this.field.isTerrain("midnightterrain")) {
+        newType = "Dark";
       }
       if (target.getTypes().join() === newType || !target.setType(newType))
         return false;
@@ -6503,6 +6523,36 @@ const Moves = {
     type: "Fire",
     contestType: "Tough"
   },
+  flareup: {
+    num: 3835,
+    accuracy: true,
+    basePower: 0,
+    category: "Status",
+    isNonstandard: "Past",
+    name: "Flare Up",
+    pp: 10,
+    priority: 0,
+    flags: { protect: 1, mirror: 1, allyanim: 1, metronome: 1 },
+    volatileStatus: "flareup",
+    onTryHit(target) {
+      if (!this.queue.willMove(target) && target.activeTurns)
+        return false;
+    },
+    condition: {
+      onModifyTypePriority: -2,
+      onModifyType(move) {
+        if (move.id !== "struggle" && move.type === "Normal") {
+          this.debug("Flare Up making move type fire");
+          move.type = "Fire";
+        }
+      }
+    },
+    secondary: null,
+    target: "self",
+    type: "Fire",
+    zMove: { boost: { spa: 1 } },
+    contestType: "Clever"
+  },
   flash: {
     inherit: true,
 	flags: { protect: 1, reflectable: 1, mirror: 1, hm: 1 },
@@ -9317,6 +9367,44 @@ const Moves = {
     type: "Cosmic",
     contestType: "Cool"
   },
+  lightburst: {
+    num: 3836,
+    accuracy: 100,
+    basePower: 60,
+    category: "Special",
+    name: "Light Burst",
+    pp: 15,
+    priority: 0,
+    flags: { protect: 1, mirror: 1, beam: 1 },
+    secondary: {
+      chance: 30,
+      boosts: {
+        spd: -1
+      }
+    },
+    target: "normal",
+    type: "Fairy",
+    contestType: "Cool"
+  },
+  lightburstlight: {
+    num: 3837,
+    accuracy: 100,
+    basePower: 60,
+    category: "Special",
+    name: "Light Burst Light",
+    pp: 15,
+    priority: 0,
+    flags: { protect: 1, mirror: 1, beam: 1 },
+    secondary: {
+      chance: 30,
+      boosts: {
+        spd: -1
+      }
+    },
+    target: "normal",
+    type: "Fairy",
+    contestType: "Cool"
+  },
   lightcharge: {
     num: 3237,
     accuracy: 100,
@@ -10298,6 +10386,56 @@ const Moves = {
     maxMove: { basePower: 130 },
     contestType: "Beautiful"
   },
+  midnightterrain: {
+    num: 3838,
+    accuracy: true,
+    basePower: 0,
+    category: "Status",
+    name: "Midnight Terrain",
+    pp: 10,
+    priority: 0,
+    flags: { nonsky: 1 },
+    terrain: "midnightterrain",
+    condition: {
+      duration: 5,
+      durationCallback(source, effect) {
+        if (source?.hasItem("terrainextender")) {
+          return 8;
+        }
+        return 5;
+      },
+      onBasePowerPriority: 6,
+      onBasePower(basePower, attacker, defender, move) {
+        if (move.type === "Dark" && attacker.isGrounded()) {
+          this.debug("midnight terrain boost");
+          return this.chainModify([5325, 4096]);
+        }
+      },
+	  onModifyAccuracy(accuracy, target, source, move) {
+        if (!source || !source.isGrounded() || !source.isActive) return;
+        if (["Dark", "Ghost", "Eldritch", "Blood"].some(t => source.hasType(t))) return;
+        this.debug("Midnight Terrain - Accuracy reduced");
+        return this.chainModify(0.9);
+      },
+      onFieldStart(field, source, effect) {
+        if (effect?.effectType === "Ability") {
+          this.add("-fieldstart", "move: Midnight Terrain", "[from] ability: " + effect.name, "[of] " + source);
+        } else {
+          this.add("-fieldstart", "move: Midnight Terrain");
+        }
+      },
+      onFieldResidualOrder: 27,
+      onFieldResidualSubOrder: 7,
+      onFieldEnd() {
+        this.add("-fieldend", "move: Midnight Terrain");
+      }
+    },
+    secondary: null,
+    target: "all",
+    type: "Dark",
+    zMove: { boost: { def: 1 } },
+    contestType: "Beautiful"
+  },
   mightycleave: {
     inherit: true,
 	flags: { contact: 1, mirror: 1, metronome: 1, slicing: 1, legendary: 1 }
@@ -10815,6 +10953,28 @@ const Moves = {
     type: "Steel",
     contestType: "Beautiful"
   },
+  multipower: {
+    num: 3830,
+    accuracy: 100,
+    basePower: 60,
+    category: "Special",
+    name: "Multi-Power",
+    pp: 15,
+    priority: 0,
+    flags: { protect: 1, mirror: 1 },
+    onModifyType(move, pokemon) {
+      if (pokemon.ignoringItem())
+        return;
+      const item = pokemon.getItem();
+      if (item.id && item.onPlate && !item.zMove) {
+        move.type = item.onPlate;
+      }
+    },
+    secondary: null,
+    target: "normal",
+    type: "Normal",
+    contestType: "Beautiful"
+  },
   mysticalfire: {
     inherit: true,
 	flags: { protect: 1, mirror: 1, metronome: 1, magic: 1 }
@@ -10932,6 +11092,8 @@ const Moves = {
         move = "psychic";
       } else if (this.field.isTerrain("snowyterrain")) {
         move = "icebeam";
+      } else if (this.field.isTerrain("midnightterrain")) {
+        move = "darkpulse";
       }
       this.actions.useMove(move, pokemon, target);
       return null;
@@ -13717,6 +13879,11 @@ const Moves = {
             spe: -1
           }
         });
+      } else if (this.field.isTerrain("midnightterrain")) {
+        move.secondaries.push({
+          chance: 30,
+          volatileStatus: "flinch"
+        });
       }
     },
     secondary: {
@@ -14984,6 +15151,22 @@ const Moves = {
     zMove: { boost: { spe: 1 } },
     contestType: "Beautiful"
   },
+  snakeeyes: {
+    num: 3831,
+    accuracy: 100,
+    basePower: 0,
+    category: "Status",
+    name: "Snake Eyes",
+    pp: 30,
+    priority: 0,
+    flags: { protect: 1, reflectable: 1, mirror: 1 },
+    status: "par",
+    secondary: null,
+    target: "normal",
+    type: "Normal",
+    zMove: { boost: { spd: 1 } },
+    contestType: "Tough"
+  },
   snarehit: {
     num: 3819,
     accuracy: 100,
@@ -16163,6 +16346,28 @@ const Moves = {
     zMove: { effect: "clearnegativeboost" },
     contestType: "Clever"
   },
+  subduction: {
+    num: 3829,
+    accuracy: 90,
+    basePower: 140,
+    category: "Physical",
+    name: "Subduction",
+    pp: 5,
+    priority: 0,
+    flags: { protect: 1, mirror: 1, nonsky: 1 },
+	self: {
+      volatileStatus: "confusion"
+    },
+    secondary: {
+      chance: 100,
+      boosts: {
+        spe: -1
+      }
+    },
+    target: "normal",
+    type: "Ground",
+    contestType: "Tough"
+  },
   subwoofer: {
     num: 3404,
     accuracy: 100,
@@ -16538,6 +16743,44 @@ const Moves = {
     type: "Dark",
     contestType: "Clever"
   },
+  symphony: {
+    num: 3832,
+    accuracy: true,
+    basePower: 0,
+    category: "Status",
+    name: "Symphony",
+    pp: 10,
+    priority: 0,
+    flags: { snatch: 1, sound: 1, metronome: 1 },
+    boosts: {
+      atk: 1,
+      spe: 1
+    },
+    secondary: null,
+    target: "allies",
+    type: "Normal",
+    zMove: { boost: { atk: 1 } },
+    contestType: "Cool"
+  },
+  symphonysound: {
+    num: 3833,
+    accuracy: true,
+    basePower: 0,
+    category: "Status",
+    name: "Symphony Sound",
+    pp: 10,
+    priority: 0,
+    flags: { snatch: 1, sound: 1, metronome: 1 },
+    boosts: {
+      atk: 1,
+      spe: 1
+    },
+    secondary: null,
+    target: "allies",
+    type: "Sound",
+    zMove: { boost: { atk: 1 } },
+    contestType: "Cool"
+  },
   synapticbleed: {
     num: 3741,
     accuracy: 100,
@@ -16857,6 +17100,9 @@ const Moves = {
       switch (this.field.terrain) {
         case "snowyterrain":
           move.type = "Ice";
+          break;
+		case "midnightterrain":
+          move.type = "Dark";
           break;
 		case "electricterrain":
           move.type = "Electric";
