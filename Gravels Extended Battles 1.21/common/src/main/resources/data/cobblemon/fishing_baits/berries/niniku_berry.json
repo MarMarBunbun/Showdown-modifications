@@ -1,0 +1,11 @@
+{
+  "item": "gravels_extended_battles:niniku_berry",
+  "effects": [
+    {
+      "type": "cobblemon:typing",
+      "subcategory": "shadow",
+      "chance": 1.0,
+      "value": 10.0
+    }
+  ]
+}

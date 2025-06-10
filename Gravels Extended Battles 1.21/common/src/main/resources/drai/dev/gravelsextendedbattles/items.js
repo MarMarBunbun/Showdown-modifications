@@ -1038,6 +1038,21 @@ const Items = {
     num: 3005,
     gen: 4
   },
+  frostorb: {
+    name: "Frost Orb",
+    spritenum: 3176,
+    fling: {
+      basePower: 30,
+      status: "fbt"
+    },
+    onResidualOrder: 28,
+    onResidualSubOrder: 3,
+    onResidual(pokemon) {
+      pokemon.trySetStatus("fbt", pokemon);
+    },
+    num: 3176,
+    gen: 4
+  },
   galaxyplate: {
     name: "Galaxy Plate",
     spritenum: 3098,
@@ -2582,6 +2597,27 @@ const Items = {
     },
     num: 3020,
     gen: 4
+  },
+  tougaberry: {
+    name: "Touga Berry",
+    spritenum: 3175,
+    isBerry: true,
+    naturalGift: {
+      basePower: 80,
+      type: "Ice"
+    },
+    onUpdate(pokemon) {
+      if (pokemon.status === "fbt") {
+        pokemon.eatItem();
+      }
+    },
+    onEat(pokemon) {
+      if (pokemon.status === "fbt") {
+        pokemon.cureStatus();
+      }
+    },
+    num: 3175,
+    gen: 3
   },
   toypickaxe: {
     name: "Toy Pickaxe",
