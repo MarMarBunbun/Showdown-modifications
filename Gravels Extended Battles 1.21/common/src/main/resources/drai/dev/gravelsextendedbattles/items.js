@@ -1739,7 +1739,7 @@ const Items = {
     boosts: {
       def: 1
     },
-    num: 3172,
+    num: 3173,
     gen: 7
   },
   moisturecream: {
@@ -2282,6 +2282,28 @@ const Items = {
     num: 3122,
     gen: 7,
     isNonstandard: "Past"
+  },
+  shiningseed: {
+    name: "Shining Seed",
+    spritenum: 3174,
+    fling: {
+      basePower: 10
+    },
+    onStart(pokemon) {
+      if (!pokemon.ignoringItem() && this.field.isTerrain("shiningterrain")) {
+        pokemon.useItem();
+      }
+    },
+    onTerrainChange(pokemon) {
+      if (this.field.isTerrain("shiningterrain")) {
+        pokemon.useItem();
+      }
+    },
+    boosts: {
+      spd: 1
+    },
+    num: 3174,
+    gen: 7
   },
   slimegem: {
     name: "Slime Gem",

@@ -1597,6 +1597,8 @@
   "cobblemon.move.nuclearpunch.desc": "The target is hit with a Chrome Digizoid hardened fist. Hitting a target may raise the Attack stat.",
   "cobblemon.move.nuclearpunchnuclear": "Nuclear Punch",
   "cobblemon.move.nuclearpunchnuclear.desc": "The target is hit with a Chrome Digizoid hardened fist. Hitting a target may raise the Attack stat.",
+  "cobblemon.move.hotcoals": "Hot Coals",
+  "cobblemon.move.hotcoals.desc": "The user lays a trap of levitating coals around the opposing team. The trap hurts opposing Pokémon that switch into battle.",
   "cobblemon.move.prismbeam": "Prism Beam",
   "cobblemon.move.prismbeam.desc": "The user blasts the target with a bundled beam made of all the colors of the rainbow. The user's type determines the type of this move.",
   "cobblemon.move.snowyterrain": "Snowy Terrain",
@@ -1621,6 +1623,10 @@
   "cobblemon.move.lightburstlight.desc": "The user creates a light ball above it, which explodes and releases beams at the target. It also lowers the target's Sp. Def Stat.",
   "cobblemon.move.midnightterrain": "Midnight Terrain",
   "cobblemon.move.midnightterrain.desc": "The user covers the ground under everyone's feet with darkness for five turns. This lowers the Accuracy of non-Dark or Ghost-type pokemon.",
+  "cobblemon.move.shiningterrain": "Shining Terrain",
+  "cobblemon.move.shiningterrain.desc": "The user covers the ground under everyone's feet with solar flares for five turns. This hurts grounded non-Fire-type Pokemon.",
+  "cobblemon.move.shiningterrainlight": "Shining Terrain",
+  "cobblemon.move.shiningterrainlight.desc": "The user covers the ground under everyone's feet with solar flares for five turns. This hurts grounded non-Fire-type Pokemon.",
   
   "cobblemon.move.zacidarmorslime": "Z Acid Armor",
   "cobblemon.move.zacidarmorslime.desc": "Resets user's lowered stats.",
@@ -1874,6 +1880,10 @@
   "cobblemon.move.zshadowshed.desc": "Raises Speed by 1 stage.",
   "cobblemon.move.zshadowsky": "Z Shadow Sky",
   "cobblemon.move.zshadowsky.desc": "Raises Speed by 1 stage.",
+  "cobblemon.move.zshiningterrain": "Z Shining Terrain",
+  "cobblemon.move.zshiningterrain.desc": "Raises Defense by 1 stage.",
+  "cobblemon.move.zshiningterrainlight": "Z Shining Terrain",
+  "cobblemon.move.zshiningterrainlight.desc": "Raises Defense by 1 stage.",
   "cobblemon.move.zsingsound": "Z Sing",
   "cobblemon.move.zsingsound.desc": "Raises Speed by 1 stage.",
   "cobblemon.move.zsleeptalksound": "Z Sleep Talk",
@@ -2007,8 +2017,6 @@
   "cobblemon.move.heavensgale.desc": "The user drafts its Z-Power and shoots a gust of wind onto the target with full force. The power varies, depending on the original move.",
   "cobblemon.move.crimsonpact": "Crimson Pact",
   "cobblemon.move.crimsonpact.desc": "The user channels its Z-Power and slams onto the target with full force. The power varies, depending on the original move.",
-  "cobblemon.move.hotcoals": "Hot Coals",
-  "cobblemon.move.hotcoals.desc": "The user lays a trap of levitating coals around the opposing team. The trap hurts opposing Pokémon that switch into battle.",
   
   "cobblemon.move.bufu": "Bufu",
   "cobblemon.move.bufu.desc": "Light Ice damage with Low chance to freeze",
@@ -2102,9 +2110,11 @@
   
   "cobblemon.battle.fieldstart.snowyterrain": "Snow blankets the battlefield!",
   "cobblemon.battle.fieldstart.midnightterrain": "Darkness covers the battlefield!",
+  "cobblemon.battle.fieldstart.shiningterrain": "A solar flare covers the battlefield!",
   
   "cobblemon.battle.fieldend.snowyterrain": "The snow disappeared from the battlefield.",
   "cobblemon.battle.fieldend.midnightterrain": "The darkness disappeared from the battlefield.",
+  "cobblemon.battle.fieldend.midnightterrain": "The solar flare disappeared from the battlefield.",
   
   "cobblemon.battle.start.salttherapy": "%1$s laid out its therapeutic salt!",
   
@@ -2116,6 +2126,7 @@
   "cobblemon.battle.damage.fallout": "%1$s was irradiated by the toxic fallout.",
   "cobblemon.battle.damage.parasiticfungi": "%1$s was damanged by the parasitic fungi!",
   "cobblemon.battle.damage.bloodlust": "%1$s was hurt by its Bloodlust!",
+  "cobblemon.battle.damage.shiningterrain": "%1$s was damanged by the solar flare!",
   
   "cobblemon.ability.orbitaltide": "Orbital Tide",
   "cobblemon.ability.orbitaltide.desc": "Gravity is intensified while on the field.",
@@ -2527,6 +2538,8 @@
   "cobblemon.ability.reactiveshielding.desc": "Being hit by a Physical or Special move boosts the Defense or Sp.Defense stat of the Pokémon respectively.",
   "cobblemon.ability.lunardiffuse": "Lunar Diffuse",
   "cobblemon.ability.lunardiffuse.desc": "The user sets up Midnight Terrain for 5 turns upon entering the field.",
+  "cobblemon.ability.solardiffuse": "Solar Diffuse",
+  "cobblemon.ability.solardiffuse.desc": "Turns the ground into Shining Terrain when the Pokemon enters a battle.",
   
   "cobblemon.ability.heeho": "Hee-Ho!",
   "cobblemon.ability.heeho.desc": "Hee-Ho! Hee-Ho!",

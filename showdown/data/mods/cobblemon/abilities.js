@@ -1870,10 +1870,16 @@ const Abilities = {
   },
   highnoon: {
     onModifyPriority(priority, pokemon, target, move) {
-        if (move && !['Detect', 'Endure', 'Protect', 'Quick Guard', 'Wide Guard'].includes(move.name)) {
-            return 0;
-        }
-        return priority;
+      if (move && !['Detect', 'Endure', 'Protect', 'Quick Guard', 'Wide Guard'].includes(move.name)) {
+        return 0;
+      }
+      return priority;
+    },
+	onFoeModifyPriority(priority, pokemon, target, move) {
+      if (move && !['Detect', 'Endure', 'Protect', 'Quick Guard', 'Wide Guard'].includes(move.name)) {
+        return 0;
+      }
+      return priority;
     },
     name: "High Noon",
     rating: 4,
@@ -2287,6 +2293,9 @@ const Abilities = {
           break;
 		case "midnightterrain":
           types = ["Dark"];
+          break;
+		case "shiningterrain":
+          types = ["Fire"];
           break;
 		default:
           types = pokemon.baseSpecies.types;
@@ -3179,6 +3188,15 @@ const Abilities = {
     name: "Sprint",
     rating: 3.5,
     num: 3145
+  },
+  solardiffuse: {
+    onStart(source) {
+      this.field.setTerrain("shiningterrain");
+    },
+    flags: {},
+    name: "Solar Diffuse",
+    rating: 4,
+    num: 3215
   },
   solarprominence: {
     onSourceModifyDamage(damage, source, target, move) {

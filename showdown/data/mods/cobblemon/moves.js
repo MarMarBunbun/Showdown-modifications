@@ -2395,6 +2395,8 @@ const Moves = {
         newType = "Ice";
       } else if (this.field.isTerrain("midnightterrain")) {
         newType = "Dark";
+      } else if (this.field.isTerrain("shiningterrain")) {
+        newType = "Fire";
       }
       if (target.getTypes().join() === newType || !target.setType(newType))
         return false;
@@ -11094,6 +11096,8 @@ const Moves = {
         move = "icebeam";
       } else if (this.field.isTerrain("midnightterrain")) {
         move = "darkpulse";
+      } else if (this.field.isTerrain("shiningterrain")) {
+        move = "flamethrower";
       }
       this.actions.useMove(move, pokemon, target);
       return null;
@@ -13884,6 +13888,11 @@ const Moves = {
           chance: 30,
           volatileStatus: "flinch"
         });
+      } else if (this.field.isTerrain("shiningterrain")) {
+        move.secondaries.push({
+          chance: 30,
+          status: "brn"
+        });
       }
     },
     secondary: {
@@ -14557,6 +14566,80 @@ const Moves = {
     target: "normal",
     type: "Light",
     contestType: "Clever"
+  },
+  shiningterrain: {
+    num: 3839,
+    accuracy: true,
+    basePower: 0,
+    category: "Status",
+    name: "Shining Terrain",
+    pp: 10,
+    priority: 0,
+    flags: { nonsky: 1 },
+    terrain: "shiningterrain",
+    condition: {
+      duration: 5,
+      durationCallback(source, effect) {
+        if (source?.hasItem("terrainextender")) {
+          return 8;
+        }
+        return 5;
+      },
+      onBasePowerPriority: 6,
+      onBasePower(basePower, attacker, defender, move) {
+        if ((move.type === "Fire" || move.type === "Light") && attacker.isGrounded()) {
+          this.debug("shining terrain boost");
+          return this.chainModify([5325, 4096]);
+        }
+      },
+      onFieldStart(field, source, effect) {
+        if (effect?.effectType === "Ability") {
+          this.add("-fieldstart", "move: Shining Terrain", "[from] ability: " + effect.name, "[of] " + source);
+        } else {
+          this.add("-fieldstart", "move: Shining Terrain");
+        }
+      },
+	  onResidualOrder: 5,
+      onResidualSubOrder: 2,
+      onResidual(pokemon) {
+        if (
+          pokemon.isGrounded() &&
+          !pokemon.isSemiInvulnerable() &&
+          !pokemon.hasType("Fire") &&
+		  !pokemon.hasType("Light")
+        ) {
+          this.damage(pokemon.baseMaxhp / 16, pokemon);
+        } else {
+          this.debug(`Pokemon semi-invuln, Fire type, or not grounded; Shining Terrain damage skipped`);
+        }
+      },
+      onFieldResidualOrder: 27,
+      onFieldResidualSubOrder: 7,
+      onFieldEnd() {
+        this.add("-fieldend", "move: Shining Terrain");
+      }
+    },
+    secondary: null,
+    target: "all",
+    type: "Fire",
+    zMove: { boost: { def: 1 } },
+    contestType: "Beautiful"
+  },
+  shiningterrainlight: {
+    num: 3840,
+    accuracy: true,
+    basePower: 0,
+    category: "Status",
+    name: "Shining Terrain Light",
+    pp: 10,
+    priority: 0,
+    flags: { nonsky: 1 },
+    terrain: "shiningterrain",
+    secondary: null,
+    target: "all",
+    type: "Light",
+    zMove: { boost: { def: 1 } },
+    contestType: "Beautiful"
   },
   shootingstar: {
     num: 3470,
@@ -17103,6 +17186,9 @@ const Moves = {
           break;
 		case "midnightterrain":
           move.type = "Dark";
+          break;
+		case "shiningterrain":
+          move.type = "Fire";
           break;
 		case "electricterrain":
           move.type = "Electric";
