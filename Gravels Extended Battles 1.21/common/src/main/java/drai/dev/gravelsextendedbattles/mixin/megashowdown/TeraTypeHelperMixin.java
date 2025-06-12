@@ -3,7 +3,6 @@ package drai.dev.gravelsextendedbattles.mixin.megashowdown;
 import com.cobblemon.mod.common.api.types.*;
 import com.cobblemon.mod.common.api.types.tera.*;
 import com.cobblemon.yajatkaul.mega_showdown.utility.*;
-import drai.dev.gravelsextendedbattles.registries.*;
 import drai.dev.gravelsextendedbattles.types.*;
 import net.minecraft.*;
 import net.minecraft.world.item.*;

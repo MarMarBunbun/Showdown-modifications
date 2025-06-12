@@ -5,10 +5,8 @@ import com.cobblemon.mod.common.api.pokemon.feature.*;
 import com.cobblemon.mod.common.entity.pokemon.*;
 import com.cobblemon.mod.common.net.messages.client.animation.*;
 import com.cobblemon.mod.common.pokemon.*;
-import com.cobblemon.yajatkaul.mega_showdown.item.custom.*;
 import dev.architectury.platform.*;
 import drai.dev.gravelsextendedbattles.items.*;
-import drai.dev.gravelsextendedbattles.registries.*;
 import kotlin.*;
 import net.minecraft.core.particles.*;
 import net.minecraft.server.level.*;
@@ -23,23 +21,10 @@ public class GravelmonEventHandlers {
             return Unit.INSTANCE;
         }
 
-//        HeldItemChangeFormes.genesectChange(post);
         if(Platform.isModLoaded("mega_showdown")) {
             silvallyChange(post);
             arcuesChange(post);
         }
-//        HeldItemChangeFormes.ultraEvent(post);
-//        HeldItemChangeFormes.crownedEvent(post);
-//        HeldItemChangeFormes.ogerponChange(post);
-//        HeldItemChangeFormes.eternamaxChange(post);
-//        HeldItemChangeFormes.originChange(post);
-//        HeldItemChangeFormes.customEvents(post);
-//
-//        if (ShowdownConfig.battleModeOnly.get()) {
-//            return Unit.INSTANCE;
-//        }
-//
-//        HeldItemChangeFormes.megaEvent(post);
 
         return Unit.INSTANCE;
     }

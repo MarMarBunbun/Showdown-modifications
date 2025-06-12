@@ -136,6 +136,10 @@ public class GravelsExtendedBattlesItems {
                 GravelmonFossilManager.addFossil(ResourceLocation.fromNamespaceAndPath("cobblemon", "ruins/common/"+lootPoolResourceLocation[i]), register);
             }
         }
+        CobblemonHeldItemManager.INSTANCE.registerStackRemap(stack -> {
+            if (stack.is(register.get())) return name.replaceAll("\\W", "");
+            return null;
+        });
         return register;
     }
 

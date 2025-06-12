@@ -29,5 +29,9 @@
     "fabric-api": "*",
     "cobblemon": ">=1.6.0",
     "midnightlib": ">=1.6"
+  },
+  "recommends": {
+    "mega_showdown": ">=9.7.3",
+    "packet_fixer": "*"
   }
 }
