@@ -5,7 +5,10 @@ import com.cobblemon.mod.common.api.pokemon.feature.*;
 import com.cobblemon.mod.common.entity.pokemon.*;
 import com.cobblemon.mod.common.net.messages.client.animation.*;
 import com.cobblemon.mod.common.pokemon.*;
+import com.cobblemon.yajatkaul.mega_showdown.sound.*;
+import com.cobblemon.yajatkaul.mega_showdown.utility.*;
 import dev.architectury.platform.*;
+import drai.dev.gravelmon.pokemon.attributes.*;
 import drai.dev.gravelsextendedbattles.items.*;
 import kotlin.*;
 import net.minecraft.core.particles.*;
@@ -38,7 +41,7 @@ public class GravelmonEventHandlers {
             }
             if (!(post.getReceived().getItem() instanceof MemoryItem)) {
                 playHeldItemFormeChange(pokemon.getEntity());
-                new StringSpeciesFeature("multitype","normal").apply(pokemon);
+                new StringSpeciesFeature("rks_memory","normal").apply(pokemon);
             }
         }
     }
@@ -47,12 +50,10 @@ public class GravelmonEventHandlers {
         Pokemon pokemon = post.getPokemon();
         if (pokemon.getSpecies().getName().equals("Arceus")) {
             if (post.getReceived().getItem() instanceof PlateItem typedItem) {
-                playHeldItemFormeChange(pokemon.getEntity());
-                new StringSpeciesFeature("multitype", typedItem.getType()).apply(pokemon);
+                changeArceusForm(typedItem, pokemon);
             }
             if (post.getReceived().getItem() instanceof ZCrystalItem typedItem) {
-                playHeldItemFormeChange(pokemon.getEntity());
-                new StringSpeciesFeature("multitype", typedItem.getType()).apply(pokemon);
+                changeArceusForm(typedItem, pokemon);
             }
             if (!(post.getReceived().getItem() instanceof ZCrystalItem)
                     && !(post.getReceived().getItem() instanceof PlateItem)) {
@@ -60,6 +61,24 @@ public class GravelmonEventHandlers {
                 new StringSpeciesFeature("multitype","normal").apply(pokemon);
             }
         }
+    }
+
+    private static void changeArceusForm(TypedItem typedItem, Pokemon pokemon) {
+        var pokemonEntity = pokemon.getEntity();
+        var entityPos = pokemonEntity.position();
+        pokemon.getEntity().level().playSound(
+                null, entityPos.x, entityPos.y, entityPos.z,
+                ModSounds.ARCEUS_MULTITYPE,
+                SoundSource.PLAYERS, 0.2f, 1.3f
+        );
+        pokemon.getEntity().getEntityData().set(PokemonEntity.getEVOLUTION_STARTED(), true);
+
+        pokemon.getEntity().after(3F, () -> {
+            new StringSpeciesFeature("multitype", typedItem.getType()).apply(pokemon);
+            LazyLib.Companion.cryAnimation(pokemon.getEntity());
+            pokemon.getEntity().getEntityData().set(PokemonEntity.getEVOLUTION_STARTED(), false);
+            return Unit.INSTANCE;
+        });
     }
 
     private static void playHeldItemFormeChange(PokemonEntity entity) {

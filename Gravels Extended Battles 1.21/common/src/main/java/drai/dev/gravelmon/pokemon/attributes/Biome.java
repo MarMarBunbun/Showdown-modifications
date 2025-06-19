@@ -24,6 +24,7 @@ public enum Biome {
     IS_FREEZING("#cobblemon","is_freezing"),
     IS_FRESHWATER("#cobblemon","is_freshwater"),
     IS_FRIGID("#cobblemon","is_frigid"),
+    IS_FROZEN_RIVER("minecraft","frozen_river"),
     IS_FROZEN_OCEAN("#cobblemon","is_frozen"),
     IS_GLACIAL("#cobblemon","is_glacial"),
     IS_GRASSLAND("#cobblemon","is_grassland"),

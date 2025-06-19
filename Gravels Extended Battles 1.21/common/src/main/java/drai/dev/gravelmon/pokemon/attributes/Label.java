@@ -119,7 +119,7 @@ public enum Label {
     public static Map<Label, String> passwordProtectedLabels;
     static{
         passwordProtectedLabels = new HashMap<>();
-            /*passwordProtectedLabels.put(OTTORA, "15thaddictionIsAddicted");
+            passwordProtectedLabels.put(OTTORA, "15thaddictionIsAddicted");
             passwordProtectedLabels.put(IONOS, "airikr4283");
             passwordProtectedLabels.put(MASTENIA, "airikr4283");
             passwordProtectedLabels.put(NORHEIM, "airikr4283");
@@ -163,7 +163,7 @@ public enum Label {
             passwordProtectedLabels.put(ISIAH, "hiddenNinjaVillage");
             passwordProtectedLabels.put(CROZOIC, "prehistoric");
             passwordProtectedLabels.put(INSTAGRAM, "thezuccc");
-            passwordProtectedLabels.put(ISHIRIA, "ishirian");*/
+            passwordProtectedLabels.put(ISHIRIA, "ishirian");
     }
 
     public static Map<Label, String> getPasswordProtectedLabels(){

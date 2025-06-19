@@ -1,4 +1,4 @@
-// 1.21.1	2025-05-25T22:19:43.7749931	Gravel's Extended Battles/Model Definitions
+// 1.21.1	2025-06-19T18:20:46.1203353	Gravel's Extended Battles/Model Definitions
 116b00a70c93d19b8d346c914cbbe3d8a753f6df assets\gravels_extended_battles\models\item\crystal_tera_shard.json
 c56f775a2636e78aca053794bec7cc6ee2ba9ed2 assets\gravels_extended_battles\models\item\cosmium_z.json
 e305bf4152d4aa26e844d18e20325732e31b6756 assets\gravels_extended_battles\models\item\windium_z.json
@@ -48,8 +48,8 @@ dae0f9fefa50760fbf164ee86a7e14636ae3a4cc assets\gravels_extended_battles\models\
 3a66a462ee067acfe89dba4bdb4b95b4cdbe0bd9 assets\gravels_extended_battles\models\item\questionmark_tera_shard.json
 faf1cc7dc33c8532d6e6b020592a396b7118e12f assets\gravels_extended_battles\models\item\nuclear_gem.json
 82a92d90ccee8c9a0d234702a54a853f7e568b77 assets\gravels_extended_battles\models\item\polymer_plate.json
-6fca742f18f8ad05f80ba9dac33133e231232ff9 assets\gravels_extended_battles\models\item\digital_memory.json
 5dda098f37db810803769cc7f251d336e15056f6 assets\gravels_extended_battles\models\item\shadow_memory.json
+6fca742f18f8ad05f80ba9dac33133e231232ff9 assets\gravels_extended_battles\models\item\digital_memory.json
 dd19f278565627078fd1aad7ae6dc7d35244acad assets\gravels_extended_battles\models\item\shadow_gem.json
 9855e4767926dcc62509c6e20e6b46cebeda46a1 assets\gravels_extended_battles\models\item\light_memory.json
 c42ae91b44daa60bfb5aa51d0957c0f8f028d401 assets\gravels_extended_battles\models\item\wind_gem.json
