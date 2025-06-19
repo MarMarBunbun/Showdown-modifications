@@ -149,7 +149,7 @@ const Items = {
     },
     onBasePowerPriority: 15,
     onBasePower(basePower, user, target, move) {
-      if (move && move.type === "sound") {
+      if (move && move.type === "Sound") {
         return this.chainModify([4915, 4096]);
       }
     },
@@ -250,7 +250,7 @@ const Items = {
     },
     onBasePowerPriority: 23,
     onBasePower(basePower, attacker, defender, move) {
-      if (move.flags["sound"]) {
+      if (move.flags["Sound"]) {
         this.debug("Bass Booster boost");
         return this.chainModify([4506, 4096]);
       }
@@ -461,7 +461,7 @@ const Items = {
     },
     onBasePowerPriority: 15,
     onBasePower(basePower, user, target, move) {
-      if (move && move.type === "blood") {
+      if (move && move.type === "Blood") {
         return this.chainModify([4915, 4096]);
       }
     },
@@ -476,7 +476,7 @@ const Items = {
     },
     onBasePowerPriority: 23,
     onBasePower(basePower, attacker, defender, move) {
-      if (move.flags["speed"]) {
+      if (move.flags["beam"]) {
         this.debug("Boosted Capacitor boost");
         return this.chainModify([4506, 4096]);
       }
@@ -686,7 +686,7 @@ const Items = {
     gen: 2
   },
   crystalgem: {
-    name: "Cosmic Gem",
+    name: "Crystal Gem",
     spritenum: 3112,
     isGem: true,
     onSourceTryPrimaryHit(target, source, move) {
@@ -866,7 +866,7 @@ const Items = {
     onTakeItem: false,
     zMove: true,
     zMoveType: "Digital",
-	onPlate: "Ditial",
+	onPlate: "Digital",
     forcedForme: "Arceus-Digital",
     num: 3085,
     gen: 7,
@@ -957,7 +957,7 @@ const Items = {
     },
     onBasePowerPriority: 15,
     onBasePower(basePower, user, target, move) {
-      if (move && move.type === "digital") {
+      if (move && move.type === "Digital") {
         return this.chainModify([4915, 4096]);
       }
     },
@@ -1098,7 +1098,7 @@ const Items = {
     },
     onBasePowerPriority: 15,
     onBasePower(basePower, user, target, move) {
-      if (move && move.type === "questionmark") {
+      if (move && move.type === "Questionmark") {
         return this.chainModify([4915, 4096]);
       }
     },
@@ -1305,7 +1305,7 @@ const Items = {
     },
     onBasePowerPriority: 15,
     onBasePower(basePower, user, target, move) {
-      if (move && move.type === "wind") {
+      if (move && move.type === "Wind") {
         return this.chainModify([4915, 4096]);
       }
     },
@@ -1459,7 +1459,7 @@ const Items = {
     },
     onBasePowerPriority: 15,
     onBasePower(basePower, user, target, move) {
-      if (move && move.type === "light") {
+      if (move && move.type === "Light") {
         return this.chainModify([4915, 4096]);
       }
     },
@@ -1575,7 +1575,7 @@ const Items = {
     },
     onBasePowerPriority: 15,
     onBasePower(basePower, user, target, move) {
-      if (move && move.type === "crystal") {
+      if (move && move.type === "Crystal") {
         return this.chainModify([4915, 4096]);
       }
     },
@@ -1765,7 +1765,7 @@ const Items = {
     },
     onBasePowerPriority: 15,
     onBasePower(basePower, user, target, move) {
-      if (move && move.type === "slime") {
+      if (move && move.type === "Slime") {
         return this.chainModify([4915, 4096]);
       }
     },
@@ -2121,7 +2121,7 @@ const Items = {
     },
     onBasePowerPriority: 15,
     onBasePower(basePower, user, target, move) {
-      if (move && move.type === "nuclear") {
+      if (move && move.type === "Nuclear") {
         return this.chainModify([4915, 4096]);
       }
     },
@@ -2574,7 +2574,7 @@ const Items = {
     },
     onBasePowerPriority: 15,
     onBasePower(basePower, user, target, move) {
-      if (move && move.type === "eldritch") {
+      if (move && move.type === "Eldritch") {
         return this.chainModify([4915, 4096]);
       }
     },
@@ -2627,7 +2627,7 @@ const Items = {
     },
     onBasePowerPriority: 15,
     onBasePower(basePower, user, target, move) {
-      if (move && move.type === "plastic") {
+      if (move && move.type === "Plastic") {
         return this.chainModify([4915, 4096]);
       }
     },

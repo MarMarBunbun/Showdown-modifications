@@ -2656,6 +2656,13 @@ const Abilities = {
   },
   quickcharge: {
     onModifyPriority(priority, pokemon, target, move) {
+      // Check if any Pokémon has High Noon active
+      const highNoonActive = pokemon.battle.getAllActive().some(p =>
+        p.getAbility().id === "highnoon"
+      );
+      if (highNoonActive) {
+        return;
+      }
       if (pokemon.activeMoveActions === 0) {
         return priority + 4;
       }
