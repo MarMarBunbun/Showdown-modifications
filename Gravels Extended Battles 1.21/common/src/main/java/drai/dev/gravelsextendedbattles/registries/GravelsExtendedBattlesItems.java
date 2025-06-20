@@ -47,7 +47,7 @@ public class GravelsExtendedBattlesItems {
     public static final RegistrySupplier<TypedItem> DIGITAL_PLATE = registerPlateItem("binary_plate", "digital");
     public static final RegistrySupplier<TypedItem> ELDRITCH_PLATE = registerPlateItem("unearthly_plate", "eldritch");
     public static final RegistrySupplier<TypedItem> LIGHT_PLATE = registerPlateItem("lumen_plate", "light");
-    public static final RegistrySupplier<TypedItem> QUESTIONMARK_PLATE = registerPlateItem("mystery_plate", "questionmark");
+    public static final RegistrySupplier<TypedItem> QUESTIONMARK_PLATE = registerPlateItem("mystery_plate", "???");
     public static final RegistrySupplier<TypedItem> NUCLEAR_PLATE = registerPlateItem("fission_plate", "nuclear");
     public static final RegistrySupplier<TypedItem> PLASTIC_PLATE = registerPlateItem("polymer_plate", "plastic");
     public static final RegistrySupplier<TypedItem> SHADOW_PLATE = registerPlateItem("penumbra_plate", "shadow");
@@ -61,7 +61,7 @@ public class GravelsExtendedBattlesItems {
     public static final RegistrySupplier<TypedItem> DIGIUM_Z = registerZCrystalItem("digium_z", DIGITAL_GEM, "digital");
     public static final RegistrySupplier<TypedItem> ELDRIUM_Z = registerZCrystalItem("eldrium_z", ELDRITCH_GEM, "eldritch");
     public static final RegistrySupplier<TypedItem> LIGHTINIUM = registerZCrystalItem("lightinium_z", LIGHT_GEM, "light");
-    public static final RegistrySupplier<TypedItem> MYSTERIUM_Z = registerZCrystalItem("mysterium_z", QUESTIONMARK_GEM, "mystery");
+    public static final RegistrySupplier<TypedItem> MYSTERIUM_Z = registerZCrystalItem("mysterium_z", QUESTIONMARK_GEM, "???");
     public static final RegistrySupplier<TypedItem> NUCLIUM_Z = registerZCrystalItem("nuclium_z", NUCLEAR_GEM, "nuclear");
     public static final RegistrySupplier<TypedItem> PLASTINIUM_Z = registerZCrystalItem("plastinium_z", PLASTIC_GEM, "plastic");
     public static final RegistrySupplier<TypedItem> SHADIUM_Z = registerZCrystalItem("shadium_z", SHADOW_GEM, "shadow");
@@ -136,6 +136,10 @@ public class GravelsExtendedBattlesItems {
                 GravelmonFossilManager.addFossil(ResourceLocation.fromNamespaceAndPath("cobblemon", "ruins/common/"+lootPoolResourceLocation[i]), register);
             }
         }
+        CobblemonHeldItemManager.INSTANCE.registerStackRemap(stack -> {
+            if (stack.is(register.get())) return name.replaceAll("\\W", "");
+            return null;
+        });
         return register;
     }
 

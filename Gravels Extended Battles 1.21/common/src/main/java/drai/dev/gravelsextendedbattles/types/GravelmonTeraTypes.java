@@ -2,7 +2,6 @@ package drai.dev.gravelsextendedbattles.types;
 
 import com.cobblemon.mod.common.api.types.*;
 import com.cobblemon.mod.common.api.types.tera.*;
-import com.ibm.icu.impl.*;
 import drai.dev.gravelsextendedbattles.registries.*;
 import net.minecraft.*;
 import net.minecraft.world.item.*;

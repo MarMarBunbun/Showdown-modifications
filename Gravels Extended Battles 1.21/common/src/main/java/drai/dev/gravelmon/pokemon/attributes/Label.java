@@ -13,7 +13,7 @@ public enum Label {
     GEN7("gen7"),
     GEN8("gen8"),
     GEN9("gen9"),
-    LEGENDARY("legendary"),
+    LEGENDARY("legendary"), FOSSIL(), STARTER(), PSEUDO_LEGENDARY(), SUB_LEGENDARY("legendary"), PARADOX(), ULTRA_BEAST(),
     SAGE("sage"),
     INFINITY("infinity"),
     ALOLA_REGIONAL("alola_regional"),
@@ -119,7 +119,6 @@ public enum Label {
     public static Map<Label, String> passwordProtectedLabels;
     static{
         passwordProtectedLabels = new HashMap<>();
-        if(true){
             passwordProtectedLabels.put(OTTORA, "15thaddictionIsAddicted");
             passwordProtectedLabels.put(IONOS, "airikr4283");
             passwordProtectedLabels.put(MASTENIA, "airikr4283");
@@ -165,7 +164,6 @@ public enum Label {
             passwordProtectedLabels.put(CROZOIC, "prehistoric");
             passwordProtectedLabels.put(INSTAGRAM, "thezuccc");
             passwordProtectedLabels.put(ISHIRIA, "ishirian");
-        }
     }
 
     public static Map<Label, String> getPasswordProtectedLabels(){

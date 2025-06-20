@@ -1,16 +1,11 @@
 package drai.dev.gravelsextendedbattles.fabric.datagen;
 
-import com.cobblemon.mod.common.*;
-import com.cobblemon.mod.common.api.tags.*;
 import com.cobblemon.yajatkaul.mega_showdown.item.*;
 import drai.dev.gravelsextendedbattles.registries.*;
 import net.fabricmc.fabric.api.datagen.v1.*;
 import net.fabricmc.fabric.api.datagen.v1.provider.*;
 import net.minecraft.core.*;
 import net.minecraft.data.recipes.*;
-import net.minecraft.tags.*;
-import net.minecraft.world.item.*;
-import net.minecraft.world.item.crafting.*;
 
 import java.util.concurrent.*;
 import java.util.function.*;

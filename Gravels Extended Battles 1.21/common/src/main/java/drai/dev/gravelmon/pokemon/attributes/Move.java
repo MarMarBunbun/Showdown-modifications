@@ -1151,7 +1151,7 @@ public enum Move {
     KNUCKLEFINS("knucklefins", true),
     SWINDLE("swindle", true),
     STARSTORM("starstorm", true),
-    STONE_SURGE("stonesurge", true),
+    STONE_SURGE("fakemonstonesurge", true),
     CRYSTALLIZE("crystallize", false),
     BRAMBLE_BASH("bramblebash", true),
     HEAVY_PUNCH("heavypunch", true),

@@ -1,12 +1,14 @@
 package drai.dev.gravelmon.pokemon.attributes;
 
 import com.google.common.collect.Comparators;
+import org.jetbrains.annotations.*;
 
 import java.util.*;
 import java.util.concurrent.atomic.*;
 
 public class EvolutionEntry {
     String result;
+    String source;
     String shedder;
     EvolutionType kind;
     boolean consumesHeldItem = false;
@@ -229,5 +231,9 @@ public class EvolutionEntry {
     public EvolutionEntry notOptional() {
         this.optional = false;
         return this;
+    }
+
+    public @Nullable String getSource() {
+        return source;
     }
 }
