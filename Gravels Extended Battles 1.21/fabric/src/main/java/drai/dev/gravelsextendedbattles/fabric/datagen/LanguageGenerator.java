@@ -10,6 +10,8 @@ import net.minecraft.world.item.*;
 import java.util.concurrent.*;
 import java.util.function.*;
 
+import static drai.dev.gravelsextendedbattles.registries.GravelsExtendedBattlesItems.FROST_HEAL;
+
 public class LanguageGenerator extends FabricLanguageProvider {
 
     protected LanguageGenerator(FabricDataOutput dataOutput, CompletableFuture<HolderLookup.Provider> registryLookup) {
@@ -73,10 +75,10 @@ public class LanguageGenerator extends FabricLanguageProvider {
                     "Z-Crystal associated with the "+typeName+" type and allows Pokémon to upgrade their "+typeName+"-type moves to Z-Moves.");
         }
 
-        for (Supplier<TypedItem> value : GravelsExtendedBattlesItems.PLATES) {
+        for (Supplier<? extends Item> value : GravelsExtendedBattlesItems.PLATES) {
             String itemName = value.get().getDescriptionId().replace("item.gravels_extended_battles.", "");
             translationBuilder.add(value.get(), capitalizeWords(itemName.replace("_", " ")));
-            var typeName = capitalizeWords(value.get().getType());
+            var typeName = capitalizeWords(((HasType)value.get()).getType());
             translationBuilder.add("tooltip.gravels_extended_battles." + itemName + ".tooltip",
                     "A tablet that raises the power of "+typeName+"-type moves. When held by Arceus, it changes to the "+typeName+" type.");
         }
@@ -88,6 +90,11 @@ public class LanguageGenerator extends FabricLanguageProvider {
             }
             translationBuilder.add(value.get(), capitalizeWords(value.get().getDescriptionId().replace("item.gravels_extended_battles.", "").replace("_", " ")));
         }
+
+        for (var value : GravelsExtendedBattlesItems.HELD_ITEMS) {
+            translationBuilder.add(value.get(), capitalizeWords(value.get().getDescriptionId().replace("item.gravels_extended_battles.", "").replace("_", " ")));
+        }
+        translationBuilder.add(FROST_HEAL.get(), capitalizeWords(FROST_HEAL.get().getDescriptionId().replace("item.gravels_extended_battles.", "").replace("_", " ")));
 
 //        try {
 //            Path existingFilePath = dataOutput.getModContainer().findPath("assets/gravels_extended_battles/lang/en_us.json").get();

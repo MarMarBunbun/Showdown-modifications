@@ -10,6 +10,8 @@ import net.minecraft.world.item.*;
 
 import java.util.function.*;
 
+import static drai.dev.gravelsextendedbattles.registries.GravelsExtendedBattlesItems.FROST_HEAL;
+
 public class ModModelGenerator extends FabricModelProvider {
     public ModModelGenerator(FabricDataOutput output) {
         super(output);
@@ -40,6 +42,11 @@ public class ModModelGenerator extends FabricModelProvider {
         for (var value : GravelsExtendedBattlesItems.TERA_SHARDS_BY_TYPE_NAME.values()) {
             itemModelGenerator.generateFlatItem(value.get(), ModelTemplates.FLAT_ITEM);
         }
+
+        for (var value : GravelsExtendedBattlesItems.HELD_ITEMS) {
+            itemModelGenerator.generateFlatItem(value.get(), ModelTemplates.FLAT_ITEM);
+        }
+        itemModelGenerator.generateFlatItem(FROST_HEAL.get(), ModelTemplates.FLAT_ITEM);
     }
 
 

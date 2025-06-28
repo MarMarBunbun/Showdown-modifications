@@ -1,9 +1,14 @@
 package drai.dev.gravelsextendedbattles;
 
+import drai.dev.gravelmon.pokemon.attributes.*;
 import drai.dev.gravelsextendedbattles.interfaces.*;
 import eu.midnightdust.lib.config.*;
 
 import java.util.*;
+import java.util.logging.*;
+
+import static drai.dev.gravelsextendedbattles.GravelsExtendedBattles.LOGGER;
+import static drai.dev.gravelsextendedbattles.GravelsExtendedBattles.PASSWORDS;
 
 public class GravelmonConfig extends MidnightConfig implements IGravelmonConfig {
     @Entry(name = "Banned Labels: ")
@@ -24,8 +29,6 @@ public class GravelmonConfig extends MidnightConfig implements IGravelmonConfig 
     public static boolean addStartersToTheStarterScreen = true;
     @Entry(name = "Enable automatic move insertion: ")
     public static boolean enableAutomaticMoveInsertion = true;
-    @Entry(name = "Unmute the battle logs for debugging: ")
-    public static boolean unmuteBattleLogs = false;
 
     @Override
     public boolean getEnableOriginalFanGameTypings() {
@@ -44,7 +47,14 @@ public class GravelmonConfig extends MidnightConfig implements IGravelmonConfig 
 
     @Override
     public List<String> getBannedLabels() {
-        return bannedLabels;
+        var allBannedLabels = new ArrayList<>(bannedLabels);
+        for (Label label : Label.passwordProtectedLabels.keySet()) {
+            if (!PASSWORDS.contains(Label.passwordProtectedLabels.get(label))) allBannedLabels.add(label.getName());
+        }
+
+        LOGGER.log(Level.INFO, "Banned Labels: {0}", String.join(",\n", allBannedLabels));
+
+        return allBannedLabels;
     }
 
     @Override
@@ -80,7 +90,7 @@ public class GravelmonConfig extends MidnightConfig implements IGravelmonConfig 
 
     @Override
     public boolean unmuteBattleLogs() {
-        return unmuteBattleLogs;
+        return false;
     }
     /*
     The .json language file for your config class could look similar to this:

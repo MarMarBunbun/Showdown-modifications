@@ -44,3 +44,5 @@ ordering="NONE"
 side="BOTH"
 [[mixins]]
 config = "gravels_extended_battles_common.mixins.json"
+[[mixins]]
+config = "gravels_extended_battles_forge.mixins.json"

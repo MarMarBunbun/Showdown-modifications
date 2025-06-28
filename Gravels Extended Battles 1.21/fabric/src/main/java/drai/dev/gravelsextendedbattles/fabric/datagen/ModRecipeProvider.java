@@ -10,6 +10,8 @@ import net.minecraft.data.recipes.*;
 import java.util.concurrent.*;
 import java.util.function.*;
 
+import static drai.dev.gravelsextendedbattles.registries.GravelsExtendedBattlesItems.FROST_HEAL;
+
 public class ModRecipeProvider extends FabricRecipeProvider {
 
 

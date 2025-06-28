@@ -1,6 +1,7 @@
 package drai.dev.gravelsextendedbattles.registries;
 
 import com.cobblemon.mod.common.api.types.tera.*;
+import com.cobblemon.mod.common.item.interactive.*;
 import com.cobblemon.mod.common.pokemon.helditem.*;
 import dev.architectury.platform.*;
 import dev.architectury.registry.registries.*;
@@ -14,15 +15,18 @@ import net.minecraft.resources.*;
 import net.minecraft.world.item.*;
 
 import java.util.*;
+import java.util.function.*;
 
+import static drai.dev.gravelsextendedbattles.GravelsExtendedBattles.FROSTBITE;
 import static drai.dev.gravelsextendedbattles.GravelsExtendedBattles.MOD_ID;
 
 public class GravelsExtendedBattlesItems {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(MOD_ID, Registries.ITEM);
     public static final Map<RegistrySupplier<TypedItem>, RegistrySupplier<TypedItem>> Z_CRYSTALS = new HashMap<>();
-    public static final List<RegistrySupplier<TypedItem>> PLATES = new ArrayList<>();
+    public static final List<RegistrySupplier<? extends Item>> PLATES = new ArrayList<>();
     public static final List<RegistrySupplier<TypedItem>> GEMS = new ArrayList<>();
     public static final List<RegistrySupplier<TypedItem>> MEMORIES = new ArrayList<>();
+    public static final List<RegistrySupplier<? extends Item>> HELD_ITEMS = new ArrayList<>();
 
     public static final Map<RegistrySupplier<Item>, TeraType> TERA_SHARD_SUPPLIERS = new HashMap<>();
     public static final Map<String, RegistrySupplier<Item>> TERA_SHARDS_BY_TYPE_NAME = new HashMap<>();
@@ -41,27 +45,27 @@ public class GravelsExtendedBattlesItems {
     public static final RegistrySupplier<TypedItem> SOUND_GEM = registerGemItem("sound_gem", "toppled_pillars_ruins", "fallen_statue_ruins", "decaying_crypt_ruins");
     public static final RegistrySupplier<TypedItem> WIND_GEM = registerGemItem("wind_gem", "toppled_pillars_ruins", "fallen_statue_ruins");
 
-    public static final RegistrySupplier<TypedItem> BLOOD_PLATE = registerPlateItem("ichor_plate", "blood");
-    public static final RegistrySupplier<TypedItem> COSMIC_PLATE = registerPlateItem("galaxy_plate", "cosmic");
-    public static final RegistrySupplier<TypedItem> CRYSTAL_PLATE = registerPlateItem("larimar_plate", "crystal");
-    public static final RegistrySupplier<TypedItem> DIGITAL_PLATE = registerPlateItem("binary_plate", "digital");
-    public static final RegistrySupplier<TypedItem> ELDRITCH_PLATE = registerPlateItem("unearthly_plate", "eldritch");
-    public static final RegistrySupplier<TypedItem> LIGHT_PLATE = registerPlateItem("lumen_plate", "light");
-    public static final RegistrySupplier<TypedItem> QUESTIONMARK_PLATE = registerPlateItem("mystery_plate", "???");
-    public static final RegistrySupplier<TypedItem> NUCLEAR_PLATE = registerPlateItem("fission_plate", "nuclear");
-    public static final RegistrySupplier<TypedItem> PLASTIC_PLATE = registerPlateItem("polymer_plate", "plastic");
-    public static final RegistrySupplier<TypedItem> SHADOW_PLATE = registerPlateItem("penumbra_plate", "shadow");
-    public static final RegistrySupplier<TypedItem> SLIM_PLATE = registerPlateItem("sticky_plate", "slime");
-    public static final RegistrySupplier<TypedItem> SOUND_PLATE = registerPlateItem("bass_plate", "sound");
-    public static final RegistrySupplier<TypedItem> WIND_PLATE = registerPlateItem("cyclone_plate", "wind");
+    public static final RegistrySupplier<Item> BLOOD_PLATE = registerPlateItem("ichor_plate", "blood");
+    public static final RegistrySupplier<Item> COSMIC_PLATE = registerPlateItem("galaxy_plate", "cosmic");
+    public static final RegistrySupplier<Item> CRYSTAL_PLATE = registerPlateItem("larimar_plate", "crystal");
+    public static final RegistrySupplier<Item> DIGITAL_PLATE = registerPlateItem("binary_plate", "digital");
+    public static final RegistrySupplier<Item> ELDRITCH_PLATE = registerPlateItem("unearthly_plate", "eldritch");
+    public static final RegistrySupplier<Item> LIGHT_PLATE = registerPlateItem("lumen_plate", "light");
+    public static final RegistrySupplier<Item> QUESTIONMARK_PLATE = registerPlateItem("mystery_plate", "questionmark");
+    public static final RegistrySupplier<Item> NUCLEAR_PLATE = registerPlateItem("fission_plate", "nuclear");
+    public static final RegistrySupplier<Item> PLASTIC_PLATE = registerPlateItem("polymer_plate", "plastic");
+    public static final RegistrySupplier<Item> SHADOW_PLATE = registerPlateItem("penumbra_plate", "shadow");
+    public static final RegistrySupplier<Item> SLIM_PLATE = registerPlateItem("sticky_plate", "slime");
+    public static final RegistrySupplier<Item> SOUND_PLATE = registerPlateItem("bass_plate", "sound");
+    public static final RegistrySupplier<Item> WIND_PLATE = registerPlateItem("cyclone_plate", "wind");
 
     public static final RegistrySupplier<TypedItem> BLOODIUM_Z = registerZCrystalItem("bloodium_z", BLOOD_GEM, "blood");
     public static final RegistrySupplier<TypedItem> COSMIUM_Z = registerZCrystalItem("cosmium_z", COSMIC_GEM, "cosmic");
     public static final RegistrySupplier<TypedItem> CRYSTALIUM_Z = registerZCrystalItem("crystalium_z", CRYSTAL_GEM, "crystal");
     public static final RegistrySupplier<TypedItem> DIGIUM_Z = registerZCrystalItem("digium_z", DIGITAL_GEM, "digital");
     public static final RegistrySupplier<TypedItem> ELDRIUM_Z = registerZCrystalItem("eldrium_z", ELDRITCH_GEM, "eldritch");
-    public static final RegistrySupplier<TypedItem> LIGHTINIUM = registerZCrystalItem("lightinium_z", LIGHT_GEM, "light");
-    public static final RegistrySupplier<TypedItem> MYSTERIUM_Z = registerZCrystalItem("mysterium_z", QUESTIONMARK_GEM, "???");
+    public static final RegistrySupplier<TypedItem> LIGHTINIUM_Z = registerZCrystalItem("lightinium_z", LIGHT_GEM, "light");
+    public static final RegistrySupplier<TypedItem> MYSTERIUM_Z = registerZCrystalItem("mysterium_z", QUESTIONMARK_GEM, "questionmark");
     public static final RegistrySupplier<TypedItem> NUCLIUM_Z = registerZCrystalItem("nuclium_z", NUCLEAR_GEM, "nuclear");
     public static final RegistrySupplier<TypedItem> PLASTINIUM_Z = registerZCrystalItem("plastinium_z", PLASTIC_GEM, "plastic");
     public static final RegistrySupplier<TypedItem> SHADIUM_Z = registerZCrystalItem("shadium_z", SHADOW_GEM, "shadow");
@@ -97,6 +101,12 @@ public class GravelsExtendedBattlesItems {
     public static final RegistrySupplier<Item> SOUND_TERA_SHARD = registerTeraShardItem("sound_tera_shard");
     public static final RegistrySupplier<Item> WIND_TERA_SHARD = registerTeraShardItem("wind_tera_shard");
 
+
+    public static final RegistrySupplier<Item> FROST_HEAL = ITEMS.register("frost_heal", () -> new StatusCureItem("item."+MOD_ID+".frost_heal", FROSTBITE));
+    public static final RegistrySupplier<Item> MIDNIGHT_SEED = registerHeldItem("midnight_seed", ()->new Item(new Item.Properties()));
+    public static final RegistrySupplier<Item> SNOWY_SEED = registerHeldItem("snowy_seed", ()->new Item(new Item.Properties()));
+    public static final RegistrySupplier<Item> SHINING_SEED = registerHeldItem("shining_seed", ()->new Item(new Item.Properties()));
+
     public static void touch() {
 
     }
@@ -114,10 +124,7 @@ public class GravelsExtendedBattlesItems {
             }
         });
         Z_CRYSTALS.put(register, gem);
-        CobblemonHeldItemManager.INSTANCE.registerStackRemap(stack -> {
-            if (stack.is(register.get())) return name.replaceAll("\\W", "");
-            return null;
-        });
+        registerHeldItemLookup(name, register);
         return register;
     }
 
@@ -136,10 +143,7 @@ public class GravelsExtendedBattlesItems {
                 GravelmonFossilManager.addFossil(ResourceLocation.fromNamespaceAndPath("cobblemon", "ruins/common/"+lootPoolResourceLocation[i]), register);
             }
         }
-        CobblemonHeldItemManager.INSTANCE.registerStackRemap(stack -> {
-            if (stack.is(register.get())) return name.replaceAll("\\W", "");
-            return null;
-        });
+        registerHeldItemLookup(name, register);
         return register;
     }
 
@@ -153,10 +157,7 @@ public class GravelsExtendedBattlesItems {
             }
         });
         MEMORIES.add(register);
-        CobblemonHeldItemManager.INSTANCE.registerStackRemap(stack -> {
-            if (stack.is(register.get())) return name.replaceAll("\\W", "");
-            return null;
-        });
+        registerHeldItemLookup(name, register);
         return register;
     }
 
@@ -164,44 +165,45 @@ public class GravelsExtendedBattlesItems {
         if(Platform.isModLoaded("mega_showdown")){
             return MegaShowdownCompatItems.registerTeraShardItem(name);
         }
-        RegistrySupplier<Item> register = registerItem(name, new Item(new Item.Properties().stacksTo(50)));
+        RegistrySupplier<Item> register = registerItem(name, ()-> new Item(new Item.Properties().stacksTo(50)));
         TERA_SHARDS_BY_TYPE_NAME.put(name.replaceAll("_tera_shard", ""), register);
         return register;
     }
 
-    public static RegistrySupplier<TypedItem> registerPlateItem(String name, String type){
-        RegistrySupplier<TypedItem> register = ITEMS.register(name.trim().replaceAll("\\W", ""), () -> new PlateItem(type, new Item.Properties().stacksTo(1)) {
-            @Override
-            public void appendHoverText(ItemStack itemStack, TooltipContext tooltipContext, List<Component> list, TooltipFlag tooltipFlag) {
-                list.add(Component.translatable("tooltip.gravels_extended_battles." + name + ".tooltip").withStyle(ChatFormatting.GRAY));
-                super.appendHoverText(itemStack, tooltipContext, list, tooltipFlag);
-            }
-        });
+    public static RegistrySupplier<Item> registerPlateItem(String name, String type){
+        RegistrySupplier<Item> register;
+        if(Platform.isModLoaded("mega_showdown")){
+            register = MegaShowdownCompatItems.registerArceusPlateItem(name, type);
+        } else {
+            register = ITEMS.register(name.trim().replaceAll("\\W", ""), () -> new PlateItem(type, new Item.Properties().stacksTo(1)) {
+                @Override
+                public void appendHoverText(ItemStack itemStack, TooltipContext tooltipContext, List<Component> list, TooltipFlag tooltipFlag) {
+                    list.add(Component.translatable("tooltip.gravels_extended_battles." + name + ".tooltip").withStyle(ChatFormatting.GRAY));
+                    super.appendHoverText(itemStack, tooltipContext, list, tooltipFlag);
+                }
+            });
+        }
         PLATES.add(register);
-        CobblemonHeldItemManager.INSTANCE.registerStackRemap(stack -> {
-            if (stack.is(register.get())) return name.replaceAll("\\W", "");
-            return null;
-        });
+        registerHeldItemLookup(name, register);
         return register;
     }
 
-    private static RegistrySupplier<Item> registerHeldItem(String name) {
-        RegistrySupplier<Item> register = ITEMS.register(name.trim().replaceAll("\\W", ""), () -> new Item(new Item.Properties()) {
-            @Override
-            public void appendHoverText(ItemStack itemStack, TooltipContext tooltipContext, List<Component> list, TooltipFlag tooltipFlag) {
-                list.add(Component.translatable("tooltip.gravels_extended_battles." + name + ".tooltip").withStyle(ChatFormatting.GRAY));
-                super.appendHoverText(itemStack, tooltipContext, list, tooltipFlag);
-            }
-        });
+    private static void registerHeldItemLookup(String name, RegistrySupplier<? extends Item> register) {
+        var heldItemName = name.toLowerCase().replaceAll("_", "");
         CobblemonHeldItemManager.INSTANCE.registerStackRemap(stack -> {
-            if (stack.is(register.get())) return name.replaceAll("\\W", "");
+            if (stack.is(register.get())) return heldItemName;
             return null;
         });
-        return register;
     }
 
-    static RegistrySupplier<Item> registerItem(String name, Item item) {
-        RegistrySupplier<Item> register = ITEMS.register(name.trim().replaceAll("\\W", ""), () -> item);
+    static RegistrySupplier<Item> registerItem(String name, Supplier<Item> item) {
+        return ITEMS.register(name.trim().replaceAll("\\W", ""), item);
+    }
+
+    static RegistrySupplier<Item> registerHeldItem(String name, Supplier<Item> item) {
+        RegistrySupplier<Item> register = ITEMS.register(name.trim().replaceAll("\\W", ""), item);
+        registerHeldItemLookup(name, register);
+        HELD_ITEMS.add(register);
         return register;
     }
 }

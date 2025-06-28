@@ -26,17 +26,6 @@ public class GravelmonTeraTypes {
     public static TeraType SOUND;
     public static TeraType WIND;
 
-    public static void getTeraShardForType(Iterable<ElementalType> types, CallbackInfoReturnable<Item> cir) {
-        for (var type : types) {
-            var teraShard = GravelsExtendedBattlesItems.TERA_SHARDS_BY_TYPE_NAME.get(type.getName().toLowerCase());
-            if (teraShard != null) {
-                cir.setReturnValue(teraShard.get());
-                cir.cancel();
-                return;
-            }
-        }
-    }
-
     public static TeraType addTeraType(Function<ElementalType, TeraType> func, ElementalType elementalType, ChatFormatting chatFormatting) {
         var teraType = func.apply(elementalType);
         GravelsExtendedBattlesItems.touch();
