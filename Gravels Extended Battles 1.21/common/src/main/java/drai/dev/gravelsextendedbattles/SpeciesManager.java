@@ -135,14 +135,7 @@ public class SpeciesManager {
         if (labels == null) return false;
         if (labels.isEmpty()) return false;
         for (String label : labels) {
-            try {
-                var labelEnum = Label.valueOf(label.toUpperCase());
-                if (Label.passwordProtectedLabels.containsKey(labelEnum)) {
-                    if (!PASSWORDS.contains(Label.passwordProtectedLabels.get(labelEnum))) return true;
-                }
-            } catch (IllegalArgumentException e) {
-                //do nothing, this is fine
-            }
+
 
 
             if (ALLOWED_LABELS.contains(label)) return false;

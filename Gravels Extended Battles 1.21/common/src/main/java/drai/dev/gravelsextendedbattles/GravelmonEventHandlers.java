@@ -10,10 +10,12 @@ import com.cobblemon.yajatkaul.mega_showdown.utility.*;
 import dev.architectury.platform.*;
 import drai.dev.gravelmon.pokemon.attributes.*;
 import drai.dev.gravelsextendedbattles.items.*;
+import drai.dev.gravelsextendedbattles.registries.*;
 import kotlin.*;
 import net.minecraft.core.particles.*;
 import net.minecraft.server.level.*;
 import net.minecraft.sounds.*;
+import net.minecraft.world.item.*;
 import net.minecraft.world.phys.*;
 
 import java.util.*;
@@ -49,21 +51,22 @@ public class GravelmonEventHandlers {
     private static void arcuesChange(HeldItemEvent.Post post) {
         Pokemon pokemon = post.getPokemon();
         if (pokemon.getSpecies().getName().equals("Arceus")) {
-            if (post.getReceived().getItem() instanceof PlateItem typedItem) {
+            var isMegaShowdownPlateItem = false;
+            Item item = post.getReceived().getItem();
+            if (Platform.isModLoaded("mega_showdown")) {
+                isMegaShowdownPlateItem = MegaShowdownCompatItems.isArceusPlateItem(item);
+            }
+            if (item instanceof PlateItem || isMegaShowdownPlateItem) {
+                changeArceusForm((HasType) item, pokemon);
+            }
+            if (item instanceof ZCrystalItem typedItem) {
                 changeArceusForm(typedItem, pokemon);
             }
-            if (post.getReceived().getItem() instanceof ZCrystalItem typedItem) {
-                changeArceusForm(typedItem, pokemon);
-            }
-            if (!(post.getReceived().getItem() instanceof ZCrystalItem)
-                    && !(post.getReceived().getItem() instanceof PlateItem)) {
-                playHeldItemFormeChange(pokemon.getEntity());
-                new StringSpeciesFeature("multitype","normal").apply(pokemon);
-            }
+
         }
     }
 
-    private static void changeArceusForm(TypedItem typedItem, Pokemon pokemon) {
+    private static void changeArceusForm(HasType typedItem, Pokemon pokemon) {
         var pokemonEntity = pokemon.getEntity();
         var entityPos = pokemonEntity.position();
         pokemon.getEntity().level().playSound(

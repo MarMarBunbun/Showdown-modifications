@@ -1,6 +1,7 @@
 package drai.dev.gravelsextendedbattles.neoforge;
 
 import com.cobblemon.mod.common.*;
+import com.cobblemon.mod.common.item.*;
 import com.cobblemon.mod.common.item.group.*;
 import drai.dev.gravelsextendedbattles.*;
 import drai.dev.gravelsextendedbattles.registries.*;
@@ -24,6 +25,16 @@ public class CreativeTabsInit {
             GravelsExtendedBattlesItems.PLATES.stream().map(Supplier::get).forEach(event::accept);
             GravelsExtendedBattlesItems.MEMORIES.stream().map(Supplier::get).forEach(event::accept);
             GravelsExtendedBattlesItems.TERA_SHARDS_BY_TYPE_NAME.values().stream().map(Supplier::get).forEach(event::accept);
+            GravelsExtendedBattlesItems.HELD_ITEMS.stream().map(Supplier::get)
+                    .forEach(item ->
+                            event.insertAfter(
+                                    new ItemStack(CobblemonItems.PSYCHIC_SEED),
+                                    new ItemStack(item),
+                                    CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS));
+        }
+
+        if(event.getTab() == CobblemonItemGroups.getCONSUMABLES()) {
+            event.insertAfter(new ItemStack(CobblemonItems.BURN_HEAL), new ItemStack(GravelsExtendedBattlesItems.FROST_HEAL.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS );
         }
     }
 }

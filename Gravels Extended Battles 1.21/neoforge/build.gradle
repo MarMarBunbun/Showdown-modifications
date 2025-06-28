@@ -49,6 +49,13 @@ dependencies {
     forgeRuntimeLibrary("thedarkcolour:kotlinforforge-neoforge:5.5.0") {
         exclude group: "net.neoforged.fancymodloader", module: "loader"
     }
+    modImplementation("maven.modrinth:cobblemon-mega-showdown:${megashowdown}-neoforge")
+
+    // Compile against only the API artifact
+    compileOnly("top.theillusivec4.curios:curios-neoforge:9.2.2+1.21.1:api")
+
+    // Use the full Curios API jar at runtime
+    runtimeOnly("top.theillusivec4.curios:curios-neoforge:9.2.2+1.21.1")
 }
 def replaceProperties = [mod_id          : mod_id,
                          mod_name        : mod_name,

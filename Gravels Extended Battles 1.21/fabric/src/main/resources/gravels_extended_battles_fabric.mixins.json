@@ -3,7 +3,9 @@
   "minVersion": "0.8",
   "package": "drai.dev.gravelsextendedbattles.fabric.mixin",
   "compatibilityLevel": "JAVA_17",
+  "plugin": "drai.dev.gravelsextendedbattles.fabric.mixin.MegaShowdownMixinPlugin",
   "mixins": [
+    "megashowdown.TeraTypeHelperMixin"
   ],
   "client": [
   ],
