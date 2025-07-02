@@ -14483,7 +14483,7 @@ const Moves = {
     accuracy: 100,
     basePower: 95,
     category: "Special",
-    name: "Shadow Rave",
+    name: "Shadow Storm",
     pp: 10,
     priority: 0,
     flags: { protect: 1, mirror: 1 },
