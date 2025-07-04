@@ -1351,8 +1351,13 @@ const Abilities = {
   },
   explode: {
     name: "Explode",
-    onFaint(target, source, effect) {
-		this.useMove("explosion", source);
+    onDamagingHitOrder: 1,
+    onDamagingHit(damage, target, source, move) {
+      // Only trigger if the move would cause fainting
+      if (damage >= target.hp) {
+        this.add("-ability", target, "Explode");
+        this.actions.useMove("Explosion", target);
+      }
     },
 	rating: 4,
     num: 3058
