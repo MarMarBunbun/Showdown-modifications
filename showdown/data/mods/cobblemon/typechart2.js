@@ -1186,7 +1186,7 @@ const TypeChart = {
     },
     wind: {
         damageTaken: {
-            Blood: 0
+            Blood: 0,
 			Bug: 0,
             Cosmic: 0,
             Crystal: 0,
