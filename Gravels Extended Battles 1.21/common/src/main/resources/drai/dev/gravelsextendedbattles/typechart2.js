@@ -811,6 +811,7 @@ const TypeChart = {
         damageTaken: {
             psn: 3,
             tox: 3,
+			bgt: 3,
             acidrain: 3,
             Blood: 2,
 			Bug: 2,
@@ -1071,6 +1072,7 @@ const TypeChart = {
         damageTaken: {
             psn: 3,
             tox: 3,
+			bgt: 3,
             acidrain: 3,
             fallout: 3,
             hail: 3,

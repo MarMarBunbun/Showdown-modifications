@@ -228,6 +228,14 @@ const DefaultText = {
     alreadyStarted: "#psn",
     damage: "#psn"
   },
+  bgt: {
+    start: "  [POKEMON] was blighted!",
+    startFromItem: "  [POKEMON] was blighted by the [ITEM]!",
+    alreadyStarted: "  [POKEMON] is already blighted!",
+    end: "  [POKEMON]'s blight was healed!",
+    endFromItem: "  [POKEMON]'s [ITEM] healed its blight!",
+    damage: "  [POKEMON] was hurt by its blight!"
+  },
   slp: {
     start: "  [POKEMON] fell asleep!",
     startFromRest: "  [POKEMON] slept and became healthy!",

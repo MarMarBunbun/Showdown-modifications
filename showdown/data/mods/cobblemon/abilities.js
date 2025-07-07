@@ -183,6 +183,28 @@ const Abilities = {
 	rating: 2,
 	num: 3004
   },
+  allseeing: {
+    onResidualOrder: 28,
+    onResidualSubOrder: 2,
+    onResidual(pokemon) {
+      let activated = false;
+      for (const target of pokemon.adjacentFoes()) {
+        if (!activated) {
+          this.add("-ability", pokemon, "All-Seeing", "boost");
+          activated = true;
+        }
+        if (target.volatiles["substitute"]) {
+          this.add("-immune", target);
+        } else {
+          this.boost({ evasion: -1 }, target, pokemon, null, true);
+        }
+      }
+    },
+    flags: {},
+    name: "All-Seeing",
+    rating: 4.5,
+    num: 3218
+  },
   allure: {
     onStart(pokemon) {
       let activated = false;
@@ -3084,6 +3106,19 @@ const Abilities = {
     rating: 3.5,
     num: 3138
   },
+  signalboost: {
+    onResidualOrder: 28,
+    onResidualSubOrder: 2,
+    onResidual(pokemon) {
+      if (pokemon.activeTurns) {
+        this.boost({ accuracy: 1 });
+      }
+    },
+    flags: {},
+    name: "Signal Boost",
+    rating: 4.5,
+    num: 3217
+  },
   silverlining: {
     onModifyMovePriority: -5,
 	onModifyMove(move, attacker, defender) {
@@ -3316,6 +3351,26 @@ const Abilities = {
     rating: 4,
     num: 3151
   },
+  suddenseed: {
+    onStart(pokemon) {
+      let activated = false;
+      for (const target of pokemon.adjacentFoes()) {
+        if (!activated) {
+          this.add("-ability", pokemon, "Sudden Seed");
+          activated = true;
+        }
+        if (target.volatiles["substitute"]) {
+          this.add("-immune", target);
+        } else if (!target.hasType("Grass")) {
+          target.addVolatile("leechseed", pokemon);
+        }
+      }
+    },
+    flags: {},
+    name: "Sudden Seed",
+    rating: 3.5,
+    num: 3216
+  },
   sunbathe: {
     onWeather(target, source, effect) {
       if (effect.id === "sunnyday" || effect.id === "desolateland") {
@@ -3325,6 +3380,18 @@ const Abilities = {
     name: "Sunbathe",
     rating: 1,
     num: 3152
+  },
+  supernova: {
+    name: "Supernova",
+    onAfterMove(source, target, move) {
+    // Only trigger on moves used by the user, not moves used by others
+    if (move.type === 'Cosmic' && !source.moveThisTurnResult?.zMove && !source.moveThisTurnResult?.multiHit) {
+      this.add('-ability', source, 'Supernova');
+      this.actions.useMove("heatburst", source);
+    }
+  },
+	rating: 4,
+    num: 3219
   },
   surveillance: {
     onStart(pokemon) {

@@ -1323,6 +1323,23 @@ const Moves = {
     inherit: true,
 	flags: { protect: 1, mirror: 1, metronome: 1, wind: 1, legendary: 1 }
   },
+  blightspore: {
+    num: 3842,
+    accuracy: 90,
+    basePower: 0,
+    category: "Status",
+    name: "Blight Spore",
+    pp: 10,
+    priority: 0,
+    flags: { protect: 1, reflectable: 1, mirror: 1, powder: 1 },
+    // No Guard-like effect for Poison-type users implemented in Scripts#tryMoveHit
+    status: "bgt",
+    secondary: null,
+    target: "normal",
+    type: "Poison",
+    zMove: { boost: { def: 1 } },
+    contestType: "Clever"
+  },
   blindingflash: {
     num: 3580,
     accuracy: 90,
@@ -8150,6 +8167,23 @@ const Moves = {
   heartswap: {
     inherit: true,
 	flags: { protect: 1, mirror: 1, bypasssub: 1, allyanim: 1, legendary: 1 }
+  },
+  heatburst: {
+    num: 3841,
+    accuracy: true,
+    basePower: 20,
+    category: "Special",
+    name: "Heat Burst",
+    pp: 20,
+    priority: 0,
+    flags: { protect: 1, mirror: 1, metronome: 1, wind: 1 },
+    secondary: {
+      chance: 10,
+      status: "brn"
+    },
+    target: "allAdjacentFoes",
+    type: "Fire",
+    contestType: "Beautiful"
   },
   heavensgale: {
     num: 3726,

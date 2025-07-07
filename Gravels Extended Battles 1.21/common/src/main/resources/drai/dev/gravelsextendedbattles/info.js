@@ -1001,6 +1001,7 @@ const commands = {
       prankster: "Prankster",
       sandstorm: "Sandstorm damage",
       tox: "Toxic",
+	  bgt: "Blight",
       trapped: "Trapping"
     };
     for (const status in statuses) {

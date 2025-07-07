@@ -59,6 +59,8 @@ public class GravelsExtendedBattles {
     public static Status FROSTBITE = new PersistentStatus(cobblemonResource("frostbite"), "fbt",
             "cobblemon.status.frostbite.apply", "cobblemon.status.frostbite.cure", new IntRange(180, 300));
 
+    public static Status BLIGHT = new PersistentStatus(cobblemonResource("blight"), "bgt",
+            "cobblemon.status.blight.apply", "cobblemon.status.blight.cure", new IntRange(180, 300));
     static{
         gravelmonConfig = new GravelmonConfig();
         MidnightConfig.init("gravelmon", GravelmonConfig.class);
@@ -104,6 +106,8 @@ public class GravelsExtendedBattles {
         CobblemonEvents.HELD_ITEM_POST.subscribe(Priority.LOWEST, GravelmonEventHandlers::onHeldItemChange);
 
         Statuses.INSTANCE.registerStatus(FROSTBITE);
+
+        Statuses.INSTANCE.registerStatus(BLIGHT);
 
 //        BrewingRecipesAccessor accessor = (BrewingRecipesAccessor)(Object) BrewingRecipes.INSTANCE;
 //        Lazy<List<Triple<CobblemonIngredient, Item, Item>>> delegate = accessor.getRecipesDelegate();

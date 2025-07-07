@@ -67,6 +67,34 @@ const Conditions = {
       }
     }
   },
+  bgt: {
+    name: "bgt",
+    effectType: "Status",
+    onStart(target, source, sourceEffect) {
+      this.effectState.stage = 0;
+      if (sourceEffect && sourceEffect.id === "blightorb") {
+        this.add("-status", target, "bgt", "[from] item: Blight Orb");
+      } else if (sourceEffect && sourceEffect.effectType === "Ability") {
+        this.add("-status", target, "bgt", "[from] ability: " + sourceEffect.name, "[of] " + source);
+      } else {
+        this.add("-status", target, "bgt");
+      }
+    },
+    onSwitchIn() {
+      this.effectState.stage = 0;
+    },
+    onResidualOrder: 9,
+    onResidual(pokemon) {
+      if (this.effectState.stage < 7) {
+        this.effectState.stage++;
+      }
+      // Calculate damage but ensure it doesn't drop HP below 1
+      const damage = this.clampIntRange(pokemon.baseMaxhp / 8, 1) * this.effectState.stage;
+      const maxSafeDamage = pokemon.hp - 1;
+      if (maxSafeDamage <= 0) return; // Don't deal damage if at 1 HP
+      this.damage(Math.min(damage, maxSafeDamage), pokemon);
+    }
+  },
   raindance: {
     name: "RainDance",
     effectType: "Weather",

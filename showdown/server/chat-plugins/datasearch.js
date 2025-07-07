@@ -1503,7 +1503,7 @@ function runMovesearch(target, cmd2, canAll, message, isTest) {
     "maxmove",
     "gmaxmove"
   ];
-  const allStatus = ["psn", "tox", "brn", "par", "frz", "fbt", "slp"];
+  const allStatus = ["psn", "tox", "bgt", "brn", "par", "frz", "fbt", "slp"];
   const allVolatileStatus = ["flinch", "confusion", "partiallytrapped"];
   const allBoosts = ["hp", "atk", "def", "spa", "spd", "spe", "accuracy", "evasion"];
   const allTargets = {
@@ -1924,7 +1924,10 @@ function runMovesearch(target, cmd2, canAll, message, isTest) {
         case "poison":
           target = "psn";
           break;
-        case "burn":
+        case "blight":
+          target = "bgt";
+          break;
+		case "burn":
           target = "brn";
           break;
         case "paralyze":
@@ -2426,6 +2429,11 @@ function runItemsearch(target, cmd2, canAll, message) {
         case "frostbites":
         case "fbt":
           wordEff = "fbt";
+          break;
+		case "blight":
+        case "blights":
+        case "bgt":
+          wordEff = "bgt";
           break;
 		case "paralyze":
         case "paralyzes":
