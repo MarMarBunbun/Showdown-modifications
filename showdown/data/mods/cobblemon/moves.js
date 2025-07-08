@@ -1445,6 +1445,33 @@ const Moves = {
     type: "Steel",
     contestType: "Beautiful"
   },
+  blizzardfrostbite: {
+    num: 3843,
+    accuracy: 70,
+    basePower: 110,
+    category: "Special",
+    name: "Blizzard Frostbite",
+    pp: 5,
+    priority: 0,
+    flags: { protect: 1, mirror: 1, wind: 1 },
+    onModifyMove(move) {
+      if (this.field.isWeather(["hail", "snow"]))
+        move.accuracy = true;
+    },
+    secondaries: [
+      {
+        chance: 10,
+        status: "fbt" // Frostbite status
+      },
+      {
+        chance: 5,
+        status: "frz" // Freeze status
+      }
+    ],
+    target: "allAdjacentFoes",
+    type: "Ice",
+    contestType: "Beautiful"
+  },
   bloodblade: {
     num: 3735,
     accuracy: 100,
@@ -5157,6 +5184,34 @@ const Moves = {
     type: "Dragon",
     contestType: "Beautiful"
   },
+  draconicorb: {
+    num: 3846,
+    accuracy: 90,
+    basePower: 60,
+    category: "Special",
+    name: "Draconic Orb",
+    pp: 10,
+    priority: 0,
+    flags: { protect: 1, mirror: 1, magic: 1 },
+    secondary: {
+    chance: 20,
+      onHit(target, source) {
+        const result = this.random(4); // Now 0–3
+        if (result === 0) {
+          target.trySetStatus("brn", source);
+        } else if (result === 1) {
+          target.trySetStatus("par", source);
+        } else if (result === 2) {
+          target.trySetStatus("fbt", source);
+        } else {
+          target.trySetStatus("psn", source);
+        }
+      }
+    },
+    target: "normal",
+    type: "Dragon",
+    contestType: "Beautiful"
+  },
   dragonascent: {
     inherit: true,
 	flags: { contact: 1, protect: 1, mirror: 1, distance: 1, legendary: 1 }
@@ -8710,6 +8765,46 @@ const Moves = {
     target: "normal",
     type: "Ice",
     zMove: { boost: { atk: 1 } },
+    contestType: "Beautiful"
+  },
+  icefangfrostbite: {
+    num: 3844,
+    accuracy: 95,
+    basePower: 65,
+    category: "Physical",
+    name: "Ice Fang Frostbite",
+    pp: 15,
+    priority: 0,
+    flags: { contact: 1, protect: 1, mirror: 1, bite: 1 },
+    secondaries: [
+      {
+        chance: 10,
+        status: "fbt"
+      },
+      {
+        chance: 10,
+        volatileStatus: "flinch"
+      }
+    ],
+    target: "normal",
+    type: "Ice",
+    contestType: "Cool"
+  },
+  icepunchfrostbite: {
+    num: 3845,
+    accuracy: 100,
+    basePower: 75,
+    category: "Physical",
+    name: "Ice Punch Frostbite",
+    pp: 15,
+    priority: 0,
+    flags: { contact: 1, protect: 1, mirror: 1, punch: 1 },
+    secondary: {
+      chance: 10,
+      status: "fbt"
+    },
+    target: "normal",
+    type: "Ice",
     contestType: "Beautiful"
   },
   iceshard: {

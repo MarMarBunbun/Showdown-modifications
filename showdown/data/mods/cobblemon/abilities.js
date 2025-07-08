@@ -527,6 +527,46 @@ const Abilities = {
     rating: 3.5,
     num: 3020
   },
+  boldasbrass: {
+    onModifyAtkPriority: 5,
+    onModifyAtk(atk, attacker, defender, move) {
+      if (move.type === "Sound" || move.flags["sound"]) {
+        this.debug("Steelworker boost");
+        return this.chainModify(1.5);
+      }
+    },
+    onModifySpAPriority: 5,
+    onModifySpA(atk, attacker, defender, move) {
+      if (move.type === "Sound" || move.flags["sound"]) {
+        this.debug("Steelworker boost");
+        return this.chainModify(1.5);
+      }
+    },
+	onSourceBasePowerPriority: 17,
+    onSourceBasePower(basePower, attacker, defender, move) {
+      if (move.type === "Sound" || move.flags["sound"]) {
+        return this.chainModify(1.5);
+      }
+    },
+	onSourceModifyAtkPriority: 6,
+    onSourceModifyAtk(atk, attacker, defender, move) {
+      if (move.type === "Fire") {
+        this.debug("Thick Fat weaken");
+        return this.chainModify(0.5);
+      }
+    },
+    onSourceModifySpAPriority: 5,
+    onSourceModifySpA(atk, attacker, defender, move) {
+      if (move.type === "Fire") {
+        this.debug("Thick Fat weaken");
+        return this.chainModify(0.5);
+      }
+    },
+    flags: {},
+    name: "Bold as Brass",
+    rating: 3.5,
+    num: 3224
+  },
   borealinstinct: {
     onBasePowerPriority: 19,
     onBasePower(basePower, attacker, defender, move) {
@@ -1091,6 +1131,26 @@ const Abilities = {
     rating: 4,
     num: 3045
   },
+  desertbody: {
+    onSourceModifyAtkPriority: 6,
+    onSourceModifyAtk(atk, attacker, defender, move) {
+      if (move.type === "Ice" || move.type === "Fire" || move.type === "Water") {
+        this.debug("Desert Body weaken");
+        return this.chainModify(0.5);
+      }
+    },
+    onSourceModifySpAPriority: 5,
+    onSourceModifySpA(atk, attacker, defender, move) {
+      if (move.type === "Ice" || move.type === "Fire" || move.type === "Water") {
+        this.debug("Desert Body weaken");
+        return this.chainModify(0.5);
+      }
+    },
+    flags: { breakable: 1 },
+    name: "Desert Body",
+    rating: 3.5,
+    num: 3223
+  },
   digitize: {
     onModifyTypePriority: -1,
     onModifyType(move, pokemon) {
@@ -1630,6 +1690,17 @@ const Abilities = {
     rating: 4,
     num: 3068
   },
+  freestyle: {
+    onModifyPriority(priority, pokemon, target, move) {
+      if (move.flags["sound"] || move.type === "Sound") {
+        return priority + 1;
+      }
+    },
+    flags: {},
+    name: "Freestyle",
+    rating: 4,
+    num: 3222
+  },
   freezebody: {
     onDamagingHit(damage, target, source, move) {
       if (this.checkMoveMakesContact(move, source, target)) {
@@ -1661,6 +1732,26 @@ const Abilities = {
     name: "Frighten",
     rating: 3.5,
     num: 3069
+  },
+  frombeginningtoend: {
+    onModifyCritRatio(critRatio, user, target, move) {
+      if (!move) return critRatio;
+      if (move.type === "Fire" || move.flags["slicing"]) {
+        return critRatio + 2;
+      }
+      return critRatio;
+    },
+    // Prevent the user from using any Status-category moves
+    onTryMove(pokemon, target, move) {
+      if (move.category === "Status") {
+        this.add('-fail', pokemon, 'move: From Beginning to End');
+        return false;
+      }
+    },
+    flags: {},
+    name: "From Beginning to End",
+    rating: 1.5,
+    num: 3225
   },
   frostheal: {
     onDamagePriority: 1,
@@ -1965,6 +2056,17 @@ const Abilities = {
     rating: 3.5,
     num: 3196
   },
+  iaislash: {
+    onModifyPriority(priority, pokemon, target, move) {
+      if (move.flags["slicing"]) {
+        return priority + 1;
+      }
+    },
+    flags: {},
+    name: "Iai Slash",
+    rating: 4,
+    num: 3220
+  },
   icecleats: {
     onImmunity(type, pokemon) {
       if (type === "hail")
@@ -1992,6 +2094,26 @@ const Abilities = {
     name: "Ice Slick",
     rating: 3,
     num: 3085
+  },
+  immunity: {
+    onUpdate(pokemon) {
+      if (pokemon.status === "psn" || pokemon.status === "tox" || pokemon.status === "bgt") {
+        this.add("-activate", pokemon, "ability: Immunity");
+        pokemon.cureStatus();
+      }
+    },
+    onSetStatus(status, target, source, effect) {
+      if (status.id !== "psn" && status.id !== "tox" && status.id !== "bgt")
+        return;
+      if (effect?.status) {
+        this.add("-immune", target, "[from] ability: Immunity");
+      }
+      return false;
+    },
+    flags: { breakable: 1 },
+    name: "Immunity",
+    rating: 2,
+    num: 17
   },
   incantation: {
     onStart(source) {
@@ -2296,6 +2418,16 @@ const Abilities = {
     rating: 1.5,
     num: 3101
   },
+  merciless: {
+    onModifyCritRatio(critRatio, source, target) {
+      if (target && ["psn", "tox", "bgt"].includes(target.status))
+        return 5;
+    },
+    flags: {},
+    name: "Merciless",
+    rating: 1.5,
+    num: 196
+  },
   mimicry: {
     onStart(pokemon) {
       this.singleEvent("TerrainChange", this.effect, this.effectState, pokemon);
@@ -2488,6 +2620,49 @@ const Abilities = {
     rating: 4,
     num: 3109
   },
+  pastelveil: {
+    onStart(pokemon) {
+      for (const ally of pokemon.alliesAndSelf()) {
+        if (["psn", "tox", "bgt"].includes(ally.status)) {
+          this.add("-activate", pokemon, "ability: Pastel Veil");
+          ally.cureStatus();
+        }
+      }
+    },
+    onUpdate(pokemon) {
+      if (["psn", "tox", "bgt"].includes(pokemon.status)) {
+        this.add("-activate", pokemon, "ability: Pastel Veil");
+        pokemon.cureStatus();
+      }
+    },
+    onAllySwitchIn(pokemon) {
+      if (["psn", "tox", "bgt"].includes(pokemon.status)) {
+        this.add("-activate", this.effectState.target, "ability: Pastel Veil");
+        pokemon.cureStatus();
+      }
+    },
+    onSetStatus(status, target, source, effect) {
+      if (!["psn", "tox", "bgt"].includes(status.id))
+        return;
+      if (effect?.status) {
+        this.add("-immune", target, "[from] ability: Pastel Veil");
+      }
+      return false;
+    },
+    onAllySetStatus(status, target, source, effect) {
+      if (!["psn", "tox", "bgt"].includes(status.id))
+        return;
+      if (effect?.status) {
+        const effectHolder = this.effectState.target;
+        this.add("-block", target, "ability: Pastel Veil", "[of] " + effectHolder);
+      }
+      return false;
+    },
+    flags: { breakable: 1 },
+    name: "Pastel Veil",
+    rating: 2,
+    num: 257
+  },
   pendulum: {
     onStart(pokemon) {
       this.addVolatile("metronome", pokemon); // Apply Metronome volatile status
@@ -2569,6 +2744,34 @@ const Abilities = {
     name: "Piel Punica",
     rating: 3.5,
     num: 3114
+  },
+  poisonheal: {
+    onDamagePriority: 1,
+    onDamage(damage, target, source, effect) {
+      if (effect.id === "psn" || effect.id === "tox" || effect.id === "bgt") {
+        this.heal(target.baseMaxhp / 8);
+        return false;
+      }
+    },
+    flags: {},
+    name: "Poison Heal",
+    rating: 4,
+    num: 90
+  },
+  poisonpuppeteer: {
+    onAnyAfterSetStatus(status, target, source, effect) {
+      if (source.baseSpecies.name !== "Pecharunt")
+        return;
+      if (source !== this.effectState.target || target === source || effect.effectType !== "Move")
+        return;
+      if (status.id === "psn" || status.id === "tox" || status.id === "bgt") {
+        target.addVolatile("confusion");
+      }
+    },
+    flags: { failroleplay: 1, noreceiver: 1, noentrain: 1, notrace: 1, failskillswap: 1 },
+    name: "Poison Puppeteer",
+    rating: 3,
+    num: 310
   },
   pollution: {
     onStart(source) {
@@ -3282,6 +3485,21 @@ const Abilities = {
     rating: 4,
     num: 3148
   },
+  statictouch: {
+    onSourceDamagingHit(damage, target, source, move) {
+      if (target.hasAbility("shielddust") || target.hasItem("covertcloak"))
+        return;
+      if (this.checkMoveMakesContact(move, target, source)) {
+        if (this.randomChance(3, 10)) {
+          target.trySetStatus("par", source);
+        }
+      }
+    },
+    flags: {},
+    name: "Static Touch",
+    rating: 2,
+    num: 3221
+  },
   stormbringer: {
     onStart(source) {
       this.field.setWeather("thunderstorm");
@@ -3501,6 +3719,18 @@ const Abilities = {
     name: "To be",
     rating: 3,
     num: 3204
+  },
+  toxicboost: {
+    onBasePowerPriority: 19,
+    onBasePower(basePower, attacker, defender, move) {
+      if ((attacker.status === "psn" || attacker.status === "tox" || attacker.status === "bgt") && move.category === "Physical") {
+        return this.chainModify(1.5);
+      }
+    },
+    flags: {},
+    name: "Toxic Boost",
+    rating: 3,
+    num: 137
   },
   trace: {
     onStart(pokemon) {
