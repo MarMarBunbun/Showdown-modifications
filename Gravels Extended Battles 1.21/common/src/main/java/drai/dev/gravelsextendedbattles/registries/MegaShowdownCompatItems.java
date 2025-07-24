@@ -1,7 +1,9 @@
 package drai.dev.gravelsextendedbattles.registries;
 
+import com.cobblemon.mod.common.api.types.tera.*;
 import com.cobblemon.yajatkaul.mega_showdown.*;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.*;
+import com.cobblemon.yajatkaul.mega_showdown.item.custom.tera.*;
 import dev.architectury.registry.registries.*;
 import drai.dev.gravelsextendedbattles.items.*;
 import drai.dev.gravelsextendedbattles.items.megashowdown.*;
@@ -15,8 +17,8 @@ import static drai.dev.gravelsextendedbattles.registries.GravelsExtendedBattlesI
 
 public class MegaShowdownCompatItems {
 
-    public static RegistrySupplier<Item> registerTeraShardItem(String name){
-        RegistrySupplier<Item> register = registerItem(name, ()->new TeraShard(new Item.Properties().stacksTo(50)));
+    public static RegistrySupplier<Item> registerTeraShardItem(String name, TeraType teraType) {
+        RegistrySupplier<Item> register = registerItem(name, ()->new TeraShard(new Item.Properties().stacksTo(50),teraType));
         TERA_SHARDS_BY_TYPE_NAME.put(name.replaceAll("_tera_shard", ""), register);
         return register;
     }

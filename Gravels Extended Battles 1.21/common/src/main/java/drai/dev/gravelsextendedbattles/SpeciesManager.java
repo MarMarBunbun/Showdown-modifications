@@ -135,9 +135,6 @@ public class SpeciesManager {
         if (labels == null) return false;
         if (labels.isEmpty()) return false;
         for (String label : labels) {
-
-
-
             if (ALLOWED_LABELS.contains(label)) return false;
             if (BANNED_LABELS.contains(label)) {
                 return true;

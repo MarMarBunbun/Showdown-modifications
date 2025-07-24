@@ -13,6 +13,7 @@ import drai.dev.gravelsextendedbattles.items.*;
 import drai.dev.gravelsextendedbattles.registries.*;
 import kotlin.*;
 import net.minecraft.core.particles.*;
+import net.minecraft.resources.*;
 import net.minecraft.server.level.*;
 import net.minecraft.sounds.*;
 import net.minecraft.world.item.*;
@@ -57,12 +58,20 @@ public class GravelmonEventHandlers {
                 isMegaShowdownPlateItem = MegaShowdownCompatItems.isArceusPlateItem(item);
             }
             if (item instanceof PlateItem || isMegaShowdownPlateItem) {
+                playHeldItemFormeChange(pokemon.getEntity());
                 changeArceusForm((HasType) item, pokemon);
+                return;
             }
             if (item instanceof ZCrystalItem typedItem) {
+                playHeldItemFormeChange(pokemon.getEntity());
                 changeArceusForm(typedItem, pokemon);
+                return;
             }
-
+            if(post.getReturned().getItem() instanceof PlateItem || post.getReturned().getItem() instanceof ZCrystalItem) {
+                playHeldItemFormeChange(pokemon.getEntity());
+                new StringSpeciesFeature("multitype", "normal").apply(pokemon);
+                SnowStormHandler.Companion.playAnimation(pokemon.getEntity(), Set.of("cry"), List.of());
+            }
         }
     }
 
@@ -74,11 +83,13 @@ public class GravelmonEventHandlers {
                 ModSounds.ARCEUS_MULTITYPE,
                 SoundSource.PLAYERS, 0.2f, 1.3f
         );
+        SnowStormHandler.Companion.snowStormPartileSpawner(pokemon.getEntity(),
+                ResourceLocation.tryParse("cobblemon:arceus_" + typedItem.getType()), List.of("target"));
         pokemon.getEntity().getEntityData().set(PokemonEntity.getEVOLUTION_STARTED(), true);
 
         pokemon.getEntity().after(3F, () -> {
             new StringSpeciesFeature("multitype", typedItem.getType()).apply(pokemon);
-            LazyLib.Companion.cryAnimation(pokemon.getEntity());
+            SnowStormHandler.Companion.playAnimation(pokemon.getEntity(), Set.of("cry"), List.of());
             pokemon.getEntity().getEntityData().set(PokemonEntity.getEVOLUTION_STARTED(), false);
             return Unit.INSTANCE;
         });
