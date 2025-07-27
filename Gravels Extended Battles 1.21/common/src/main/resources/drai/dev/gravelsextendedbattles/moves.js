@@ -2157,6 +2157,40 @@ const Moves = {
     type: "Light",
     contestType: "Tough"
   },
+  brilliantcut: {
+    num: 3852,
+    accuracy: 100,
+    basePower: 55,
+    category: "Physical",
+    name: "Brilliant Cut",
+    pp: 10,
+    priority: 0,
+    flags: { protect: 1, mirror: 1, contact: 1, slicing: 1 },
+    secondary: {
+      chance: 10,
+      status: "par"
+    },
+    target: "normal",
+    type: "Fairy",
+    contestType: "Cute"
+  },
+  brilliantcutlight: {
+    num: 3853,
+    accuracy: 100,
+    basePower: 55,
+    category: "Physical",
+    name: "Brilliant Cut Light",
+    pp: 10,
+    priority: 0,
+    flags: { protect: 1, mirror: 1, contact: 1, slicing: 1 },
+    secondary: {
+      chance: 10,
+      status: "par"
+    },
+    target: "normal",
+    type: "Light",
+    contestType: "Cute"
+  },
   bubblebeam: {
     inherit: true,
 	flags: { protect: 1, mirror: 1, beam: 1 }
@@ -2691,6 +2725,84 @@ const Moves = {
     secondary: null,
     target: "normal",
     type: "Dark"
+  },
+  chillecho: {
+    num: 3856,
+    accuracy: true,
+    basePower: 0,
+    category: "Status",
+    name: "Chill Echo",
+    pp: 10,
+    priority: 0,
+    flags: { failencore: 1, nosleeptalk: 1, noassist: 1, failcopycat: 1, failmimic: 1, failinstruct: 1 },
+    sleepUsable: true,
+    onTry(source) {
+      return source.status === "frz";
+    },
+    onHit(pokemon) {
+      const moves = [];
+      for (const moveSlot of pokemon.moveSlots) {
+        const moveid = moveSlot.id;
+        if (!moveid)
+          continue;
+        const move = this.dex.moves.get(moveid);
+        if (move.flags["nosleeptalk"] || move.flags["charge"] || move.isZ && move.basePower !== 1 || move.isMax) {
+          continue;
+        }
+        moves.push(moveid);
+      }
+      let randomMove = "";
+      if (moves.length)
+        randomMove = this.sample(moves);
+      if (!randomMove) {
+        return false;
+      }
+      this.actions.useMove(randomMove, pokemon);
+    },
+    secondary: null,
+    target: "self",
+    type: "Sound",
+    zMove: { effect: "crit2" },
+    contestType: "Cute"
+  },
+  chillechonormal: {
+    num: 3857,
+    accuracy: true,
+    basePower: 0,
+    category: "Status",
+    name: "Chill Echo Normal",
+    pp: 10,
+    priority: 0,
+    flags: { failencore: 1, nosleeptalk: 1, noassist: 1, failcopycat: 1, failmimic: 1, failinstruct: 1 },
+    sleepUsable: true,
+    onTry(source) {
+      return source.status === "frz";
+    },
+    onHit(pokemon) {
+      const moves = [];
+      for (const moveSlot of pokemon.moveSlots) {
+        const moveid = moveSlot.id;
+        if (!moveid)
+          continue;
+        const move = this.dex.moves.get(moveid);
+        if (move.flags["nosleeptalk"] || move.flags["charge"] || move.isZ && move.basePower !== 1 || move.isMax) {
+          continue;
+        }
+        moves.push(moveid);
+      }
+      let randomMove = "";
+      if (moves.length)
+        randomMove = this.sample(moves);
+      if (!randomMove) {
+        return false;
+      }
+      this.actions.useMove(randomMove, pokemon);
+    },
+    secondary: null,
+    target: "self",
+    type: "Normal",
+    zMove: { effect: "crit2" },
+    contestType: "Cute"
   },
   chimericsynthesis: {
     num: 3740,
@@ -3687,6 +3799,37 @@ const Moves = {
     target: "normal",
     type: "Ice"
   },
+  cryostasis: {
+    num: 3847,
+    accuracy: true,
+    basePower: 0,
+    category: "Status",
+    name: "Cryostasis",
+    pp: 5,
+    priority: 0,
+    flags: { snatch: 1, heal: 1 },
+    onTry(source) {
+      if (source.status === "frz")
+        return false;
+      if (source.hp === source.maxhp) {
+        this.add("-fail", source, "heal");
+        return null;
+      }
+    },
+    onHit(target, source, move) {
+      const result = target.setStatus("frz", source, move);
+      if (!result)
+        return result;
+      target.statusState.time = 3;
+      target.statusState.startTime = 3;
+      this.heal(target.maxhp);
+    },
+    secondary: null,
+    target: "self",
+    type: "Ice",
+    zMove: { effect: "clearnegativeboost" },
+    contestType: "Cute"
+  },
   crystaldance: {
     num: 3501,
     accuracy: true,
@@ -4442,6 +4585,38 @@ const Moves = {
     type: "Digital",
     zMove: { effect: "clearnegativeboost" },
     contestType: "Cool"
+  },
+  degradation: {
+    num: 3850,
+    accuracy: 100,
+    basePower: 65,
+    category: "Special",
+    name: "Degradation",
+    pp: 10,
+    priority: 0,
+	onEffectiveness(typeMod, target, type) {
+      if (type === "Steel")
+        return 1;
+    },
+	onHit(target, source, move) {
+      if (!target.hasType("Steel")) return;
+      if (this.randomChance(3, 10)) {
+        if (target.status) return;
+        const ignoreImmunity = move.id === "degradation";
+        const canBePoisoned = ignoreImmunity || target.runStatusImmunity("psn");
+        if (canBePoisoned) {
+          target.setStatus("psn", source, move, ignoreImmunity);
+        }
+      }
+    },
+    flags: { protect: 1, mirror: 1 },
+    ignoreImmunity: { "Poison": true, "Steel": true },
+    secondary: null,
+    target: "normal",
+    type: "Poison",
+    zMove: { basePower: 130},
+    maxMove: { basePower: 130 },
+    contestType: "Tough"
   },
   dejavu: {
     num: 3095,
@@ -5235,6 +5410,23 @@ const Moves = {
     type: "Dragon",
     contestType: "Beautiful"
   },
+  dragonblaze: {
+    num: 3855,
+    accuracy: 100,
+    basePower: 55,
+    category: "Special",
+    name: "Dragon Blaze",
+    pp: 20,
+    priority: 0,
+    flags: { protect: 1, mirror: 1 },
+    secondary: {
+      chance: 10,
+      status: "brn"
+    },
+    target: "normal",
+    type: "Dragon",
+    contestType: "Clever"
+  },
   dragonendurance: {
     num: 3111,
     accuracy: true,
@@ -5904,6 +6096,29 @@ const Moves = {
     inherit: true,
 	flags: { contact: 1, protect: 1, mirror: 1, legendary: 1 }
   },
+  electroears: {
+    num: 3854,
+    accuracy: 100,
+    basePower: 80,
+    category: "Physical",
+    name: "Electro Ears",
+    pp: 10,
+    priority: 0,
+    flags: { contact: 1, protect: 1, mirror: 1 },
+    onBasePower(basePower, pokemon) {
+      if (pokemon.status === "par") {
+        const newPower = basePower * 2;
+        return newPower;
+      }
+    },
+    onEffectiveness(typeMod, target, type, move) {
+      return typeMod + this.dex.getEffectiveness("Fighting", type);
+    },
+    secondary: null,
+    target: "normal",
+    type: "Electric",
+    contestType: "Cute"
+  },
   electroswing: {
     num: 3138,
     accuracy: 100,
@@ -6286,6 +6501,32 @@ const Moves = {
     type: "Nuclear",
     zMove: { boost: { spe: 1 } },
     contestType: "Beautiful"
+  },
+  falseimpact: {
+    num: 3848,
+    accuracy: 100,
+    basePower: 50,
+    category: "Physical",
+    name: "False Impact",
+    pp: 10,
+    priority: 3,
+    flags: { contact: 1, protect: 1, mirror: 1 },
+    onTry(source) {
+      if (source.activeMoveActions > 1) {
+        this.hint("False Impact only works on your first turn out.");
+        return false;
+      }
+    },
+    onEffectiveness(typeMod, target, type, move) {
+      return typeMod + this.dex.getEffectiveness("Fairy", type);
+    },
+    secondary: {
+      chance: 100,
+      volatileStatus: "flinch"
+    },
+    target: "normal",
+    type: "Dark",
+    contestType: "Cute"
   },
   fangbarrage: {
     num: 3149,
@@ -9679,6 +9920,53 @@ const Moves = {
     target: "normal",
     type: "Eldritch",
     contestType: "Tough"
+  },
+  lovinggale: {
+    num: 3849,
+    accuracy: 50,
+    basePower: 120,
+    category: "Special",
+    name: "Loving Gale",
+    pp: 5,
+    priority: 0,
+    flags: { protect: 1, mirror: 1 },
+	onTryMove(source, target, move) {
+      // If Pheromones weather is active, boost accuracy
+      if (source.battle.field.isWeather("pheromones")) {
+        move.accuracy = 70;
+      }
+    },
+	onAfterHit(target, source, move) {
+      if (!target.gender || !source.gender) return;
+      if ((target.gender === "M" && source.gender === "F") || (target.gender === "F" && source.gender === "M")) {
+        this.add("-activate", source, "lovinggalesuccess", "[from] Love Charm");
+        if (source.status) {
+          source.cureStatus();
+          this.add("-activate", source, "[from] move: lovinggale");
+        }
+        this.boost({def: 1, spd: 1}, source);
+        if (!target.volatiles["attract"]) {
+          target.addVolatile("attract", source);
+        }
+      } 
+      else if (target.gender === source.gender) {
+        this.add("-activate", source, "lovinggalesame", "[from] Love Charm");
+      }
+    },
+    onMoveFail(target, source, move) {
+      if (!target.gender || !source.gender) return;
+      if ((target.gender === 'M' && source.gender === 'F') || (target.gender === 'F' && source.gender === 'M')) {
+        this.add('-activate', source, 'lovinggalefail', '[from] Love Charm');
+        this.boost({def: -1, spd: -1}, source);
+      } 
+    },
+    onEffectiveness(typeMod, target, type, move) {
+      return typeMod + this.dex.getEffectiveness("Fairy", type);
+    },
+    secondary: null,
+    target: "normal",
+    type: "Psychic",
+    contestType: "Clever"
   },
   lowkick: {
     inherit: true,
@@ -17521,6 +17809,23 @@ const Moves = {
     type: "Electric",
     zMove: { boost: { spe: 1 } },
     contestType: "Beautiful"
+  },
+  thunderstrike: {
+    num: 3851,
+    accuracy: 90,
+    basePower: 60,
+    category: "Physical",
+    name: "Thunder Strike",
+    pp: 10,
+    priority: 0,
+    flags: { contact: 1, protect: 1, mirror: 1 },
+    secondary: {
+      chance: 50,
+      volatileStatus: "confusion"
+    },
+    target: "normal",
+    type: "Fighting",
+    contestType: "Cool"
   },
   thunderstruck: {
     num: 3428,

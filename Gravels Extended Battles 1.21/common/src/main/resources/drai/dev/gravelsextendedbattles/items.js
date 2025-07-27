@@ -374,6 +374,53 @@ const Items = {
     gen: 6,
     isNonstandard: "Past"
   },
+  blooderaser: {
+    name: "Blood Eraser",
+    spritenum: 3208,
+    fling: {
+      basePower: 40
+    },
+	onStart(pokemon) {
+      const types = pokemon.getTypes();
+      if (types.length === 2 && types.includes("Blood")) {
+        pokemon.itemData = pokemon.itemData || {};
+        pokemon.itemData.bloodEraserOriginalTypes = types;
+        pokemon.itemData.bloodEraserActivated = false;
+        const newTypes = types.filter(t => t !== "Blood");
+        if (newTypes.length > 0) {
+          if (!pokemon.illusion) {
+            this.add("-item", pokemon, "Blood Eraser");
+            pokemon.itemData.bloodEraserActivated = true;
+          }
+          pokemon.setType(newTypes);
+        }
+      }
+    },
+    onUpdate(pokemon) {
+      if (
+        pokemon.itemData?.bloodEraserOriginalTypes &&
+        !pokemon.itemData.bloodEraserActivated
+      ) {
+        if (!pokemon.illusion) {
+          this.add("-item", pokemon, "Blood Eraser");
+          pokemon.itemData.bloodEraserActivated = true;
+        }
+      }
+    },
+    onEnd(pokemon) {
+      if (pokemon.itemData?.bloodEraserOriginalTypes) {
+        if (!pokemon.illusion) {
+          this.add("-enditem", pokemon, "Blood Eraser");
+        }
+        const originalTypes = pokemon.itemData.bloodEraserOriginalTypes;
+        pokemon.setType(originalTypes);
+        delete pokemon.itemData.bloodEraserOriginalTypes;
+        delete pokemon.itemData.bloodEraserActivated;
+      }
+    },
+    num: 3208,
+    gen: 9
+  },
   bloodgem: {
     name: "Blood Gem",
     spritenum: 3121,
@@ -498,6 +545,53 @@ const Items = {
       }
     },
     num: 3164,
+    gen: 9
+  },
+  bugeraser: {
+    name: "Bug Eraser",
+    spritenum: 3179,
+    fling: {
+      basePower: 40
+    },
+	onStart(pokemon) {
+      const types = pokemon.getTypes();
+      if (types.length === 2 && types.includes("Bug")) {
+        pokemon.itemData = pokemon.itemData || {};
+        pokemon.itemData.bugEraserOriginalTypes = types;
+        pokemon.itemData.bugEraserActivated = false;
+        const newTypes = types.filter(t => t !== "Bug");
+        if (newTypes.length > 0) {
+          if (!pokemon.illusion) {
+            this.add("-item", pokemon, "Bug Eraser");
+            pokemon.itemData.bugEraserActivated = true;
+          }
+          pokemon.setType(newTypes);
+        }
+      }
+    },
+    onUpdate(pokemon) {
+      if (
+        pokemon.itemData?.bugEraserOriginalTypes &&
+        !pokemon.itemData.bugEraserActivated
+      ) {
+        if (!pokemon.illusion) {
+          this.add("-item", pokemon, "Bug Eraser");
+          pokemon.itemData.bugEraserActivated = true;
+        }
+      }
+    },
+    onEnd(pokemon) {
+      if (pokemon.itemData?.bugEraserOriginalTypes) {
+        if (!pokemon.illusion) {
+          this.add("-enditem", pokemon, "Bug Eraser");
+        }
+        const originalTypes = pokemon.itemData.bugEraserOriginalTypes;
+        pokemon.setType(originalTypes);
+        delete pokemon.itemData.bugEraserOriginalTypes;
+        delete pokemon.itemData.bugEraserActivated;
+      }
+    },
+    num: 3179,
     gen: 9
   },
   cameruptite: {
@@ -625,6 +719,53 @@ const Items = {
     gen: 9,
     isNonstandard: "Past"
   },
+  cosmiceraser: {
+    name: "Cosmic Eraser",
+    spritenum: 3198,
+    fling: {
+      basePower: 40
+    },
+	onStart(pokemon) {
+      const types = pokemon.getTypes();
+      if (types.length === 2 && types.includes("Cosmic")) {
+        pokemon.itemData = pokemon.itemData || {};
+        pokemon.itemData.cosmicEraserOriginalTypes = types;
+        pokemon.itemData.cosmicEraserActivated = false;
+        const newTypes = types.filter(t => t !== "Cosmic");
+        if (newTypes.length > 0) {
+          if (!pokemon.illusion) {
+            this.add("-item", pokemon, "Cosmic Eraser");
+            pokemon.itemData.cosmicEraserActivated = true;
+          }
+          pokemon.setType(newTypes);
+        }
+      }
+    },
+    onUpdate(pokemon) {
+      if (
+        pokemon.itemData?.cosmicEraserOriginalTypes &&
+        !pokemon.itemData.cosmicEraserActivated
+      ) {
+        if (!pokemon.illusion) {
+          this.add("-item", pokemon, "Cosmic Eraser");
+          pokemon.itemData.cosmicEraserActivated = true;
+        }
+      }
+    },
+    onEnd(pokemon) {
+      if (pokemon.itemData?.cosmicEraserOriginalTypes) {
+        if (!pokemon.illusion) {
+          this.add("-enditem", pokemon, "Cosmic Eraser");
+        }
+        const originalTypes = pokemon.itemData.cosmicEraserOriginalTypes;
+        pokemon.setType(originalTypes);
+        delete pokemon.itemData.cosmicEraserOriginalTypes;
+        delete pokemon.itemData.cosmicEraserActivated;
+      }
+    },
+    num: 3198,
+    gen: 9
+  },
   cosmicgem: {
     name: "Cosmic Gem",
     spritenum: 3111,
@@ -684,6 +825,53 @@ const Items = {
     },
     num: 3002,
     gen: 2
+  },
+  crystaleraser: {
+    name: "Crystal Eraser",
+    spritenum: 3199,
+    fling: {
+      basePower: 40
+    },
+	onStart(pokemon) {
+      const types = pokemon.getTypes();
+      if (types.length === 2 && types.includes("Crystal")) {
+        pokemon.itemData = pokemon.itemData || {};
+        pokemon.itemData.crystalEraserOriginalTypes = types;
+        pokemon.itemData.crystalEraserActivated = false;
+        const newTypes = types.filter(t => t !== "Crystal");
+        if (newTypes.length > 0) {
+          if (!pokemon.illusion) {
+            this.add("-item", pokemon, "Crystal Eraser");
+            pokemon.itemData.crystalEraserActivated = true;
+          }
+          pokemon.setType(newTypes);
+        }
+      }
+    },
+    onUpdate(pokemon) {
+      if (
+        pokemon.itemData?.crystalEraserOriginalTypes &&
+        !pokemon.itemData.crystalEraserActivated
+      ) {
+        if (!pokemon.illusion) {
+          this.add("-item", pokemon, "Crystal Eraser");
+          pokemon.itemData.crystalEraserActivated = true;
+        }
+      }
+    },
+    onEnd(pokemon) {
+      if (pokemon.itemData?.crystalEraserOriginalTypes) {
+        if (!pokemon.illusion) {
+          this.add("-enditem", pokemon, "Crystal Eraser");
+        }
+        const originalTypes = pokemon.itemData.crystalEraserOriginalTypes;
+        pokemon.setType(originalTypes);
+        delete pokemon.itemData.crystalEraserOriginalTypes;
+        delete pokemon.itemData.crystalEraserActivated;
+      }
+    },
+    num: 3199,
+    gen: 9
   },
   crystalgem: {
     name: "Crystal Gem",
@@ -786,6 +974,53 @@ const Items = {
     num: 3106,
     gen: 4
   },
+  darkeraser: {
+    name: "Dark Eraser",
+    spritenum: 3181,
+    fling: {
+      basePower: 40
+    },
+	onStart(pokemon) {
+      const types = pokemon.getTypes();
+      if (types.length === 2 && types.includes('Dark')) {
+        pokemon.itemData = pokemon.itemData || {};
+        pokemon.itemData.darkEraserOriginalTypes = types;
+        pokemon.itemData.darkEraserActivated = false;
+        const newTypes = types.filter(t => t !== 'Dark');
+        if (newTypes.length > 0) {
+          if (!pokemon.illusion) {
+            this.add('-item', pokemon, 'Dark Eraser');
+            pokemon.itemData.darkEraserActivated = true;
+          }
+          pokemon.setType(newTypes);
+        }
+      }
+    },
+    onUpdate(pokemon) {
+      if (
+        pokemon.itemData?.darkEraserOriginalTypes &&
+        !pokemon.itemData.darkEraserActivated
+      ) {
+        if (!pokemon.illusion) {
+          this.add('-item', pokemon, 'Dark Eraser');
+          pokemon.itemData.darkEraserActivated = true;
+        }
+      }
+    },
+    onEnd(pokemon) {
+      if (pokemon.itemData?.darkEraserOriginalTypes) {
+        if (!pokemon.illusion) {
+          this.add('-enditem', pokemon, 'Dark Eraser');
+        }
+        const originalTypes = pokemon.itemData.darkEraserOriginalTypes;
+        pokemon.setType(originalTypes);
+        delete pokemon.itemData.darkEraserOriginalTypes;
+        delete pokemon.itemData.darkEraserActivated;
+      }
+    },
+    num: 3181,
+    gen: 9
+  },
   darkrock: {
     name: "Dark Rock",
     spritenum: 3003,
@@ -828,6 +1063,53 @@ const Items = {
     num: 764,
     gen: 6,
     isNonstandard: "Past"
+  },
+  digitaleraser: {
+    name: "Digital Eraser",
+    spritenum: 3200,
+    fling: {
+      basePower: 40
+    },
+	onStart(pokemon) {
+      const types = pokemon.getTypes();
+      if (types.length === 2 && types.includes("Digital")) {
+        pokemon.itemData = pokemon.itemData || {};
+        pokemon.itemData.digitalEraserOriginalTypes = types;
+        pokemon.itemData.digitalEraserActivated = false;
+        const newTypes = types.filter(t => t !== "Digital");
+        if (newTypes.length > 0) {
+          if (!pokemon.illusion) {
+            this.add("-item", pokemon, "Digital Eraser");
+            pokemon.itemData.digitalEraserActivated = true;
+          }
+          pokemon.setType(newTypes);
+        }
+      }
+    },
+    onUpdate(pokemon) {
+      if (
+        pokemon.itemData?.digitalEraserOriginalTypes &&
+        !pokemon.itemData.digitalEraserActivated
+      ) {
+        if (!pokemon.illusion) {
+          this.add("-item", pokemon, "Digital Eraser");
+          pokemon.itemData.digitalEraserActivated = true;
+        }
+      }
+    },
+    onEnd(pokemon) {
+      if (pokemon.itemData?.digitalEraserOriginalTypes) {
+        if (!pokemon.illusion) {
+          this.add("-enditem", pokemon, "Digital Eraser");
+        }
+        const originalTypes = pokemon.itemData.digitalEraserOriginalTypes;
+        pokemon.setType(originalTypes);
+        delete pokemon.itemData.digitalEraserOriginalTypes;
+        delete pokemon.itemData.digitalEraserActivated;
+      }
+    },
+    num: 3200,
+    gen: 9
   },
   digitalgem: {
     name: "Digital Gem",
@@ -872,6 +1154,53 @@ const Items = {
     gen: 7,
     isNonstandard: "Past"
   },
+  dragoneraser: {
+    name: "Dragon Eraser",
+    spritenum: 3182,
+    fling: {
+      basePower: 40
+    },
+	onStart(pokemon) {
+      const types = pokemon.getTypes();
+      if (types.length === 2 && types.includes('Dragon')) {
+        pokemon.itemData = pokemon.itemData || {};
+        pokemon.itemData.dragonEraserOriginalTypes = types;
+        pokemon.itemData.dragonEraserActivated = false;
+        const newTypes = types.filter(t => t !== 'Dragon');
+        if (newTypes.length > 0) {
+          if (!pokemon.illusion) {
+            this.add('-item', pokemon, 'Dragon Eraser');
+            pokemon.itemData.dragonEraserActivated = true;
+          }
+          pokemon.setType(newTypes);
+        }
+      }
+    },
+    onUpdate(pokemon) {
+      if (
+        pokemon.itemData?.dragonEraserOriginalTypes &&
+        !pokemon.itemData.dragonEraserActivated
+      ) {
+        if (!pokemon.illusion) {
+          this.add('-item', pokemon, 'Dragon Eraser');
+          pokemon.itemData.dragonEraserActivated = true;
+        }
+      }
+    },
+    onEnd(pokemon) {
+      if (pokemon.itemData?.dragonEraserOriginalTypes) {
+        if (!pokemon.illusion) {
+          this.add('-enditem', pokemon, 'Dragon Eraser');
+        }
+        const originalTypes = pokemon.itemData.dragonEraserOriginalTypes;
+        pokemon.setType(originalTypes);
+        delete pokemon.itemData.dragonEraserOriginalTypes;
+        delete pokemon.itemData.dragonEraserActivated;
+      }
+    },
+    num: 3182,
+    gen: 9
+  },
   drashberry: {
     name: "Drash Berry",
     spritenum: 3149,
@@ -897,6 +1226,20 @@ const Items = {
     num: 3149,
     gen: 4
   },
+  earmuffs: {
+    name: "Earmuffs",
+    spritenum: 3176,
+    fling: {
+      basePower: 10
+    },
+	onSourceBasePower(basePower, attacker, defender, move) {
+      if (move.flags["sound"] || move.type === "Sound") {
+        return this.chainModify(0.5);
+      }
+    },
+    num: 3176,
+    gen: 9
+  },
   eldriumz: {
     name: "Eldrium Z",
     spritenum: 3086,
@@ -908,6 +1251,53 @@ const Items = {
     num: 3086,
     gen: 7,
     isNonstandard: "Past"
+  },
+  eldritcheraser: {
+    name: "Eldritch Eraser",
+    spritenum: 3207,
+    fling: {
+      basePower: 40
+    },
+	onStart(pokemon) {
+      const types = pokemon.getTypes();
+      if (types.length === 2 && types.includes("Eldritch")) {
+        pokemon.itemData = pokemon.itemData || {};
+        pokemon.itemData.eldritchEraserOriginalTypes = types;
+        pokemon.itemData.eldritchEraserActivated = false;
+        const newTypes = types.filter(t => t !== "Eldritch");
+        if (newTypes.length > 0) {
+          if (!pokemon.illusion) {
+            this.add("-item", pokemon, "Eldritch Eraser");
+            pokemon.itemData.eldritchEraserActivated = true;
+          }
+          pokemon.setType(newTypes);
+        }
+      }
+    },
+    onUpdate(pokemon) {
+      if (
+        pokemon.itemData?.eldritchEraserOriginalTypes &&
+        !pokemon.itemData.eldritchEraserActivated
+      ) {
+        if (!pokemon.illusion) {
+          this.add("-item", pokemon, "Eldritch Eraser");
+          pokemon.itemData.eldritchEraserActivated = true;
+        }
+      }
+    },
+    onEnd(pokemon) {
+      if (pokemon.itemData?.eldritchEraserOriginalTypes) {
+        if (!pokemon.illusion) {
+          this.add("-enditem", pokemon, "Eldritch Eraser");
+        }
+        const originalTypes = pokemon.itemData.eldritchEraserOriginalTypes;
+        pokemon.setType(originalTypes);
+        delete pokemon.itemData.eldritchEraserOriginalTypes;
+        delete pokemon.itemData.eldritchEraserActivated;
+      }
+    },
+    num: 3207,
+    gen: 9
   },
   eldritchgem: {
     name: "Eldritch Gem",
@@ -939,6 +1329,53 @@ const Items = {
     num: 3133,
     gen: 7,
     isNonstandard: "Past"
+  },
+  electriceraser: {
+    name: "Electric Eraser",
+    spritenum: 3183,
+    fling: {
+      basePower: 40
+    },
+	onStart(pokemon) {
+      const types = pokemon.getTypes();
+      if (types.length === 2 && types.includes('Electric')) {
+        pokemon.itemData = pokemon.itemData || {};
+        pokemon.itemData.electricEraserOriginalTypes = types;
+        pokemon.itemData.electricEraserActivated = false;
+        const newTypes = types.filter(t => t !== 'Electric');
+        if (newTypes.length > 0) {
+          if (!pokemon.illusion) {
+            this.add('-item', pokemon, 'Electric Eraser');
+            pokemon.itemData.electricEraserActivated = true;
+          }
+          pokemon.setType(newTypes);
+        }
+      }
+    },
+    onUpdate(pokemon) {
+      if (
+        pokemon.itemData?.electricEraserOriginalTypes &&
+        !pokemon.itemData.electricEraserActivated
+      ) {
+        if (!pokemon.illusion) {
+          this.add('-item', pokemon, 'Electric Eraser');
+          pokemon.itemData.electricEraserActivated = true;
+        }
+      }
+    },
+    onEnd(pokemon) {
+      if (pokemon.itemData?.electricEraserOriginalTypes) {
+        if (!pokemon.illusion) {
+          this.add('-enditem', pokemon, 'Electric Eraser');
+        }
+        const originalTypes = pokemon.itemData.electricEraserOriginalTypes;
+        pokemon.setType(originalTypes);
+        delete pokemon.itemData.electricEraserOriginalTypes;
+        delete pokemon.itemData.electricEraserActivated;
+      }
+    },
+    num: 3183,
+    gen: 9
   },
   energychannelizer: {
     name: "Energy Channelizer",
@@ -979,6 +1416,147 @@ const Items = {
     num: 3004,
     gen: 5
   },
+  fairyeraser: {
+    name: "Fairy Eraser",
+    spritenum: 3184,
+    fling: {
+      basePower: 40
+    },
+	onStart(pokemon) {
+      const types = pokemon.getTypes();
+      if (types.length === 2 && types.includes('Fairy')) {
+        pokemon.itemData = pokemon.itemData || {};
+        pokemon.itemData.fairyEraserOriginalTypes = types;
+        pokemon.itemData.fairyEraserActivated = false;
+        const newTypes = types.filter(t => t !== 'Fairy');
+        if (newTypes.length > 0) {
+          if (!pokemon.illusion) {
+            this.add('-item', pokemon, 'Fairy Eraser');
+            pokemon.itemData.fairyEraserActivated = true;
+          }
+          pokemon.setType(newTypes);
+        }
+      }
+    },
+    onUpdate(pokemon) {
+      if (
+        pokemon.itemData?.fairyEraserOriginalTypes &&
+        !pokemon.itemData.fairyEraserActivated
+      ) {
+        if (!pokemon.illusion) {
+          this.add('-item', pokemon, 'Fairy Eraser');
+          pokemon.itemData.fairyEraserActivated = true;
+        }
+      }
+    },
+    onEnd(pokemon) {
+      if (pokemon.itemData?.fairyEraserOriginalTypes) {
+        if (!pokemon.illusion) {
+          this.add('-enditem', pokemon, 'Fairy Eraser');
+        }
+        const originalTypes = pokemon.itemData.fairyEraserOriginalTypes;
+        pokemon.setType(originalTypes);
+        delete pokemon.itemData.fairyEraserOriginalTypes;
+        delete pokemon.itemData.fairyEraserActivated;
+      }
+    },
+    num: 3184,
+    gen: 9
+  },
+  fightingeraser: {
+    name: "Fighting Eraser",
+    spritenum: 3185,
+    fling: {
+      basePower: 40
+    },
+	onStart(pokemon) {
+      const types = pokemon.getTypes();
+      if (types.length === 2 && types.includes('Fighting')) {
+        pokemon.itemData = pokemon.itemData || {};
+        pokemon.itemData.fightingEraserOriginalTypes = types;
+        pokemon.itemData.fightingEraserActivated = false;
+        const newTypes = types.filter(t => t !== 'Fighting');
+        if (newTypes.length > 0) {
+          if (!pokemon.illusion) {
+            this.add('-item', pokemon, 'Fighting Eraser');
+            pokemon.itemData.fightingEraserActivated = true;
+          }
+          pokemon.setType(newTypes);
+        }
+      }
+    },
+    onUpdate(pokemon) {
+      if (
+        pokemon.itemData?.fightingEraserOriginalTypes &&
+        !pokemon.itemData.fightingEraserActivated
+      ) {
+        if (!pokemon.illusion) {
+          this.add('-item', pokemon, 'Fighting Eraser');
+          pokemon.itemData.fightingEraserActivated = true;
+        }
+      }
+    },
+    onEnd(pokemon) {
+      if (pokemon.itemData?.fightingEraserOriginalTypes) {
+        if (!pokemon.illusion) {
+          this.add('-enditem', pokemon, 'Fighting Eraser');
+        }
+        const originalTypes = pokemon.itemData.fightingEraserOriginalTypes;
+        pokemon.setType(originalTypes);
+        delete pokemon.itemData.fightingEraserOriginalTypes;
+        delete pokemon.itemData.fightingEraserActivated;
+      }
+    },
+    num: 3185,
+    gen: 9
+  },
+  fireeraser: {
+    name: "Fire Eraser",
+    spritenum: 3186,
+    fling: {
+      basePower: 40
+    },
+	onStart(pokemon) {
+      const types = pokemon.getTypes();
+      if (types.length === 2 && types.includes('Fire')) {
+        pokemon.itemData = pokemon.itemData || {};
+        pokemon.itemData.fireEraserOriginalTypes = types;
+        pokemon.itemData.fireEraserActivated = false;
+        const newTypes = types.filter(t => t !== 'Fire');
+        if (newTypes.length > 0) {
+          if (!pokemon.illusion) {
+            this.add('-item', pokemon, 'Fire Eraser');
+            pokemon.itemData.fireEraserActivated = true;
+          }
+          pokemon.setType(newTypes);
+        }
+      }
+    },
+    onUpdate(pokemon) {
+      if (
+        pokemon.itemData?.fireEraserOriginalTypes &&
+        !pokemon.itemData.fireEraserActivated
+      ) {
+        if (!pokemon.illusion) {
+          this.add('-item', pokemon, 'Fire Eraser');
+          pokemon.itemData.fireEraserActivated = true;
+        }
+      }
+    },
+    onEnd(pokemon) {
+      if (pokemon.itemData?.fireEraserOriginalTypes) {
+        if (!pokemon.illusion) {
+          this.add('-enditem', pokemon, 'Fire Eraser');
+        }
+        const originalTypes = pokemon.itemData.fireEraserOriginalTypes;
+        pokemon.setType(originalTypes);
+        delete pokemon.itemData.fireEraserOriginalTypes;
+        delete pokemon.itemData.fireEraserActivated;
+      }
+    },
+    num: 3186,
+    gen: 9
+  },
   fissionplate: {
     name: "Fission Plate",
     spritenum: 3102,
@@ -1012,6 +1590,53 @@ const Items = {
     itemUser: ["Flygon-Armored"],
     num: 3023,
     gen: 8
+  },
+  flyingeraser: {
+    name: "Flying Eraser",
+    spritenum: 3187,
+    fling: {
+      basePower: 40
+    },
+	onStart(pokemon) {
+      const types = pokemon.getTypes();
+      if (types.length === 2 && types.includes('Flying')) {
+        pokemon.itemData = pokemon.itemData || {};
+        pokemon.itemData.flyingEraserOriginalTypes = types;
+        pokemon.itemData.flyingEraserActivated = false;
+        const newTypes = types.filter(t => t !== 'Flying');
+        if (newTypes.length > 0) {
+          if (!pokemon.illusion) {
+            this.add('-item', pokemon, 'Flying Eraser');
+            pokemon.itemData.flyingEraserActivated = true;
+          }
+          pokemon.setType(newTypes);
+        }
+      }
+    },
+    onUpdate(pokemon) {
+      if (
+        pokemon.itemData?.flyingEraserOriginalTypes &&
+        !pokemon.itemData.flyingEraserActivated
+      ) {
+        if (!pokemon.illusion) {
+          this.add('-item', pokemon, 'Flying Eraser');
+          pokemon.itemData.flyingEraserActivated = true;
+        }
+      }
+    },
+    onEnd(pokemon) {
+      if (pokemon.itemData?.flyingEraserOriginalTypes) {
+        if (!pokemon.illusion) {
+          this.add('-enditem', pokemon, 'Flying Eraser');
+        }
+        const originalTypes = pokemon.itemData.flyingEraserOriginalTypes;
+        pokemon.setType(originalTypes);
+        delete pokemon.itemData.flyingEraserOriginalTypes;
+        delete pokemon.itemData.flyingEraserActivated;
+      }
+    },
+    num: 3187,
+    gen: 9
   },
   forecastmap: {
     name: "Forecast Map",
@@ -1156,6 +1781,53 @@ const Items = {
     gen: 6,
     isNonstandard: "Past"
   },
+  ghosteraser: {
+    name: "Ghost Eraser",
+    spritenum: 3188,
+    fling: {
+      basePower: 40
+    },
+	onStart(pokemon) {
+      const types = pokemon.getTypes();
+      if (types.length === 2 && types.includes('Ghost')) {
+        pokemon.itemData = pokemon.itemData || {};
+        pokemon.itemData.ghostEraserOriginalTypes = types;
+        pokemon.itemData.ghostEraserActivated = false;
+        const newTypes = types.filter(t => t !== 'Ghost');
+        if (newTypes.length > 0) {
+          if (!pokemon.illusion) {
+            this.add('-item', pokemon, 'Ghost Eraser');
+            pokemon.itemData.ghostEraserActivated = true;
+          }
+          pokemon.setType(newTypes);
+        }
+      }
+    },
+    onUpdate(pokemon) {
+      if (
+        pokemon.itemData?.ghostEraserOriginalTypes &&
+        !pokemon.itemData.ghostEraserActivated
+      ) {
+        if (!pokemon.illusion) {
+          this.add('-item', pokemon, 'Ghost Eraser');
+          pokemon.itemData.ghostEraserActivated = true;
+        }
+      }
+    },
+    onEnd(pokemon) {
+      if (pokemon.itemData?.ghostEraserOriginalTypes) {
+        if (!pokemon.illusion) {
+          this.add('-enditem', pokemon, 'Ghost Eraser');
+        }
+        const originalTypes = pokemon.itemData.ghostEraserOriginalTypes;
+        pokemon.setType(originalTypes);
+        delete pokemon.itemData.ghostEraserOriginalTypes;
+        delete pokemon.itemData.ghostEraserActivated;
+      }
+    },
+    num: 3188,
+    gen: 9
+  },
   glalitite: {
     name: "Glalitite",
     spritenum: 623,
@@ -1172,6 +1844,100 @@ const Items = {
     num: 763,
     gen: 6,
     isNonstandard: "Past"
+  },
+  grasseraser: {
+    name: "Grass Eraser",
+    spritenum: 3189,
+    fling: {
+      basePower: 40
+    },
+	onStart(pokemon) {
+      const types = pokemon.getTypes();
+      if (types.length === 2 && types.includes('Grass')) {
+        pokemon.itemData = pokemon.itemData || {};
+        pokemon.itemData.grassEraserOriginalTypes = types;
+        pokemon.itemData.grassEraserActivated = false;
+        const newTypes = types.filter(t => t !== 'Grass');
+        if (newTypes.length > 0) {
+          if (!pokemon.illusion) {
+            this.add('-item', pokemon, 'Grass Eraser');
+            pokemon.itemData.grassEraserActivated = true;
+          }
+          pokemon.setType(newTypes);
+        }
+      }
+    },
+    onUpdate(pokemon) {
+      if (
+        pokemon.itemData?.grassEraserOriginalTypes &&
+        !pokemon.itemData.grassEraserActivated
+      ) {
+        if (!pokemon.illusion) {
+          this.add('-item', pokemon, 'Grass Eraser');
+          pokemon.itemData.grassEraserActivated = true;
+        }
+      }
+    },
+    onEnd(pokemon) {
+      if (pokemon.itemData?.grassEraserOriginalTypes) {
+        if (!pokemon.illusion) {
+          this.add('-enditem', pokemon, 'Grass Eraser');
+        }
+        const originalTypes = pokemon.itemData.grassEraserOriginalTypes;
+        pokemon.setType(originalTypes);
+        delete pokemon.itemData.grassEraserOriginalTypes;
+        delete pokemon.itemData.grassEraserActivated;
+      }
+    },
+    num: 3189,
+    gen: 9
+  },
+  grounderaser: {
+    name: "Ground Eraser",
+    spritenum: 3190,
+    fling: {
+      basePower: 40
+    },
+	onStart(pokemon) {
+      const types = pokemon.getTypes();
+      if (types.length === 2 && types.includes('Ground')) {
+        pokemon.itemData = pokemon.itemData || {};
+        pokemon.itemData.groundEraserOriginalTypes = types;
+        pokemon.itemData.groundEraserActivated = false;
+        const newTypes = types.filter(t => t !== 'Ground');
+        if (newTypes.length > 0) {
+          if (!pokemon.illusion) {
+            this.add('-item', pokemon, 'Ground Eraser');
+            pokemon.itemData.groundEraserActivated = true;
+          }
+          pokemon.setType(newTypes);
+        }
+      }
+    },
+    onUpdate(pokemon) {
+      if (
+        pokemon.itemData?.groundEraserOriginalTypes &&
+        !pokemon.itemData.groundEraserActivated
+      ) {
+        if (!pokemon.illusion) {
+          this.add('-item', pokemon, 'Ground Eraser');
+          pokemon.itemData.groundEraserActivated = true;
+        }
+      }
+    },
+    onEnd(pokemon) {
+      if (pokemon.itemData?.groundEraserOriginalTypes) {
+        if (!pokemon.illusion) {
+          this.add('-enditem', pokemon, 'Ground Eraser');
+        }
+        const originalTypes = pokemon.itemData.groundEraserOriginalTypes;
+        pokemon.setType(originalTypes);
+        delete pokemon.itemData.groundEraserOriginalTypes;
+        delete pokemon.itemData.groundEraserActivated;
+      }
+    },
+    num: 3190,
+    gen: 9
   },
   gyaradosite: {
     name: "Gyaradosite",
@@ -1261,6 +2027,53 @@ const Items = {
     num: 666,
     gen: 6,
     isNonstandard: "Past"
+  },
+  iceeraser: {
+    name: "Ice Eraser",
+    spritenum: 3191,
+    fling: {
+      basePower: 40
+    },
+	onStart(pokemon) {
+      const types = pokemon.getTypes();
+      if (types.length === 2 && types.includes('Ice')) {
+        pokemon.itemData = pokemon.itemData || {};
+        pokemon.itemData.iceEraserOriginalTypes = types;
+        pokemon.itemData.iceEraserActivated = false;
+        const newTypes = types.filter(t => t !== 'Ice');
+        if (newTypes.length > 0) {
+          if (!pokemon.illusion) {
+            this.add('-item', pokemon, 'Ice Eraser');
+            pokemon.itemData.iceEraserActivated = true;
+          }
+          pokemon.setType(newTypes);
+        }
+      }
+    },
+    onUpdate(pokemon) {
+      if (
+        pokemon.itemData?.iceEraserOriginalTypes &&
+        !pokemon.itemData.iceEraserActivated
+      ) {
+        if (!pokemon.illusion) {
+          this.add('-item', pokemon, 'Ice Eraser');
+          pokemon.itemData.iceEraserActivated = true;
+        }
+      }
+    },
+    onEnd(pokemon) {
+      if (pokemon.itemData?.iceEraserOriginalTypes) {
+        if (!pokemon.illusion) {
+          this.add('-enditem', pokemon, 'Ice Eraser');
+        }
+        const originalTypes = pokemon.itemData.iceEraserOriginalTypes;
+        pokemon.setType(originalTypes);
+        delete pokemon.itemData.iceEraserOriginalTypes;
+        delete pokemon.itemData.iceEraserActivated;
+      }
+    },
+    num: 3191,
+    gen: 9
   },
   iceshard: {
     name: "Ice Shard",
@@ -1465,6 +2278,53 @@ const Items = {
     },
     num: 3139,
     gen: 2
+  },
+  lighteraser: {
+    name: "Light Eraser",
+    spritenum: 3201,
+    fling: {
+      basePower: 40
+    },
+	onStart(pokemon) {
+      const types = pokemon.getTypes();
+      if (types.length === 2 && types.includes("Light")) {
+        pokemon.itemData = pokemon.itemData || {};
+        pokemon.itemData.lightEraserOriginalTypes = types;
+        pokemon.itemData.lightEraserActivated = false;
+        const newTypes = types.filter(t => t !== "Light");
+        if (newTypes.length > 0) {
+          if (!pokemon.illusion) {
+            this.add("-item", pokemon, "Light Eraser");
+            pokemon.itemData.lightEraserActivated = true;
+          }
+          pokemon.setType(newTypes);
+        }
+      }
+    },
+    onUpdate(pokemon) {
+      if (
+        pokemon.itemData?.lightEraserOriginalTypes &&
+        !pokemon.itemData.lightEraserActivated
+      ) {
+        if (!pokemon.illusion) {
+          this.add("-item", pokemon, "Light Eraser");
+          pokemon.itemData.lightEraserActivated = true;
+        }
+      }
+    },
+    onEnd(pokemon) {
+      if (pokemon.itemData?.lightEraserOriginalTypes) {
+        if (!pokemon.illusion) {
+          this.add("-enditem", pokemon, "Light Eraser");
+        }
+        const originalTypes = pokemon.itemData.lightEraserOriginalTypes;
+        pokemon.setType(originalTypes);
+        delete pokemon.itemData.lightEraserOriginalTypes;
+        delete pokemon.itemData.lightEraserActivated;
+      }
+    },
+    num: 3201,
+    gen: 9
   },
   lightgem: {
     name: "Light Gem",
@@ -1844,6 +2704,100 @@ const Items = {
     num: 3148,
     gen: 4
   },
+  normaleraser: {
+    name: "Normal Eraser",
+    spritenum: 3192,
+    fling: {
+      basePower: 40
+    },
+	onStart(pokemon) {
+      const types = pokemon.getTypes();
+      if (types.length === 2 && types.includes('Ice')) {
+        pokemon.itemData = pokemon.itemData || {};
+        pokemon.itemData.iceEraserOriginalTypes = types;
+        pokemon.itemData.iceEraserActivated = false;
+        const newTypes = types.filter(t => t !== 'Ice');
+        if (newTypes.length > 0) {
+          if (!pokemon.illusion) {
+            this.add('-item', pokemon, 'Ice Eraser');
+            pokemon.itemData.iceEraserActivated = true;
+          }
+          pokemon.setType(newTypes);
+        }
+      }
+    },
+    onUpdate(pokemon) {
+      if (
+        pokemon.itemData?.iceEraserOriginalTypes &&
+        !pokemon.itemData.iceEraserActivated
+      ) {
+        if (!pokemon.illusion) {
+          this.add('-item', pokemon, 'Ice Eraser');
+          pokemon.itemData.iceEraserActivated = true;
+        }
+      }
+    },
+    onEnd(pokemon) {
+      if (pokemon.itemData?.iceEraserOriginalTypes) {
+        if (!pokemon.illusion) {
+          this.add('-enditem', pokemon, 'Ice Eraser');
+        }
+        const originalTypes = pokemon.itemData.iceEraserOriginalTypes;
+        pokemon.setType(originalTypes);
+        delete pokemon.itemData.iceEraserOriginalTypes;
+        delete pokemon.itemData.iceEraserActivated;
+      }
+    },
+    num: 3192,
+    gen: 9
+  },
+  nucleareraser: {
+    name: "Nuclear Eraser",
+    spritenum: 3202,
+    fling: {
+      basePower: 40
+    },
+	onStart(pokemon) {
+      const types = pokemon.getTypes();
+      if (types.length === 2 && types.includes("Nuclear")) {
+        pokemon.itemData = pokemon.itemData || {};
+        pokemon.itemData.nuclearEraserOriginalTypes = types;
+        pokemon.itemData.nuclearEraserActivated = false;
+        const newTypes = types.filter(t => t !== "Nuclear");
+        if (newTypes.length > 0) {
+          if (!pokemon.illusion) {
+            this.add("-item", pokemon, "Nuclear Eraser");
+            pokemon.itemData.nuclearEraserActivated = true;
+          }
+          pokemon.setType(newTypes);
+        }
+      }
+    },
+    onUpdate(pokemon) {
+      if (
+        pokemon.itemData?.nuclearEraserOriginalTypes &&
+        !pokemon.itemData.nuclearEraserActivated
+      ) {
+        if (!pokemon.illusion) {
+          this.add("-item", pokemon, "Nuclear Eraser");
+          pokemon.itemData.nuclearEraserActivated = true;
+        }
+      }
+    },
+    onEnd(pokemon) {
+      if (pokemon.itemData?.nuclearEraserOriginalTypes) {
+        if (!pokemon.illusion) {
+          this.add("-enditem", pokemon, "Nuclear Eraser");
+        }
+        const originalTypes = pokemon.itemData.nuclearEraserOriginalTypes;
+        pokemon.setType(originalTypes);
+        delete pokemon.itemData.nuclearEraserOriginalTypes;
+        delete pokemon.itemData.nuclearEraserActivated;
+      }
+    },
+    num: 3202,
+    gen: 9
+  },
   nucleargem: {
     name: "Nuclear Gem",
     spritenum: 3115,
@@ -1912,6 +2866,49 @@ const Items = {
     num: 3154,
     gen: 4
   },
+  oldshield: {
+    name: "Old Shield",
+    spritenum: 3175,
+    fling: {
+      basePower: 80
+    },
+	onModifyDefPriority: 1,
+    onModifyDef(def) {
+      return this.chainModify(1.5);
+    },
+    onDisableMove(pokemon) {
+      for (const moveSlot of pokemon.moveSlots) {
+        const move = this.dex.moves.get(moveSlot.id);
+        if (move.category === 'Status' && move.id !== 'mefirst') {
+		  pokemon.disableMove(moveSlot.id);
+        }
+      }
+    },
+    num: 3175,
+    gen: 6,
+    isNonstandard: "Past"
+  },
+  pechaberry: {
+    name: "Pecha Berry",
+    spritenum: 333,
+    isBerry: true,
+    naturalGift: {
+      basePower: 80,
+      type: "Electric"
+    },
+    onUpdate(pokemon) {
+      if (pokemon.status === "psn" || pokemon.status === "tox" || pokemon.status === "bgt") {
+        pokemon.eatItem();
+      }
+    },
+    onEat(pokemon) {
+      if (pokemon.status === "psn" || pokemon.status === "tox" || pokemon.status === "bgt") {
+        pokemon.cureStatus();
+      }
+    },
+    num: 151,
+    gen: 3
+  },
   penumbraplate: {
     name: "Penumbra Plate",
     spritenum: 3096,
@@ -1966,6 +2963,53 @@ const Items = {
     gen: 6,
     isNonstandard: "Past"
   },
+  plasticeraser: {
+    name: "Plastic Eraser",
+    spritenum: 3203,
+    fling: {
+      basePower: 40
+    },
+	onStart(pokemon) {
+      const types = pokemon.getTypes();
+      if (types.length === 2 && types.includes("Plastic")) {
+        pokemon.itemData = pokemon.itemData || {};
+        pokemon.itemData.plasticEraserOriginalTypes = types;
+        pokemon.itemData.plasticEraserActivated = false;
+        const newTypes = types.filter(t => t !== "Plastic");
+        if (newTypes.length > 0) {
+          if (!pokemon.illusion) {
+            this.add("-item", pokemon, "Plastic Eraser");
+            pokemon.itemData.plasticEraserActivated = true;
+          }
+          pokemon.setType(newTypes);
+        }
+      }
+    },
+    onUpdate(pokemon) {
+      if (
+        pokemon.itemData?.plasticEraserOriginalTypes &&
+        !pokemon.itemData.plasticEraserActivated
+      ) {
+        if (!pokemon.illusion) {
+          this.add("-item", pokemon, "Plastic Eraser");
+          pokemon.itemData.plasticEraserActivated = true;
+        }
+      }
+    },
+    onEnd(pokemon) {
+      if (pokemon.itemData?.plasticEraserOriginalTypes) {
+        if (!pokemon.illusion) {
+          this.add("-enditem", pokemon, "Plastic Eraser");
+        }
+        const originalTypes = pokemon.itemData.nuclearEraserOriginalTypes;
+        pokemon.setType(originalTypes);
+        delete pokemon.itemData.plasticEraserOriginalTypes;
+        delete pokemon.itemData.plasticEraserActivated;
+      }
+    },
+    num: 3203,
+    gen: 9
+  },
   plasticgem: {
     name: "Plastic Gem",
     spritenum: 3116,
@@ -2008,6 +3052,90 @@ const Items = {
     num: 3129,
     gen: 7,
     isNonstandard: "Past"
+  },
+  poisoneraser: {
+    name: "Poison Eraser",
+    spritenum: 3193,
+    fling: {
+      basePower: 40
+    },
+	onStart(pokemon) {
+      const types = pokemon.getTypes();
+      if (types.length === 2 && types.includes('Poison')) {
+        pokemon.itemData = pokemon.itemData || {};
+        pokemon.itemData.poisonEraserOriginalTypes = types;
+        pokemon.itemData.poisonEraserActivated = false;
+        const newTypes = types.filter(t => t !== 'Poison');
+        if (newTypes.length > 0) {
+          if (!pokemon.illusion) {
+            this.add('-item', pokemon, 'Poison Eraser');
+            pokemon.itemData.poisonEraserActivated = true;
+          }
+          pokemon.setType(newTypes);
+        }
+      }
+    },
+    onUpdate(pokemon) {
+      if (
+        pokemon.itemData?.poisonEraserOriginalTypes &&
+        !pokemon.itemData.poisonEraserActivated
+      ) {
+        if (!pokemon.illusion) {
+          this.add('-item', pokemon, 'Poison Eraser');
+          pokemon.itemData.poisonEraserActivated = true;
+        }
+      }
+    },
+    onEnd(pokemon) {
+      if (pokemon.itemData?.poisonEraserOriginalTypes) {
+        if (!pokemon.illusion) {
+          this.add('-enditem', pokemon, 'Poison Eraser');
+        }
+        const originalTypes = pokemon.itemData.poisonEraserOriginalTypes;
+        pokemon.setType(originalTypes);
+        delete pokemon.itemData.poisonEraserOriginalTypes;
+        delete pokemon.itemData.poisonEraserActivated;
+      }
+    },
+    num: 3193,
+    gen: 9
+  },
+  polarizedglass: {
+    name: "Polarized Glass",
+    spritenum: 3180,
+    fling: {
+      basePower: 10
+    },
+	onStart(pokemon) {
+      if (!pokemon.ignoringItem()) {
+        this.add("-item", pokemon, "Polarized Glass");
+      }
+    },
+    onModifyMove(move, pokemon, target) {
+      if (pokemon.hasItem("polarizedglass")) {
+        move.ignoreAbility = true;
+      }
+    },
+    onDamagingHit(damage, target, source, move) {
+      if (target.hasItem("polarizedglass")) {
+        this.add("-enditem", target, "Polarized Glass");
+        target.item = "";
+        target.itemState = {id: "", target};
+        this.runEvent("AfterUseItem", target, null, null, this.dex.items.get("polarizedglass"));
+      }
+    },
+    onAfterSubDamage(damage, target, source, effect) {
+      if (effect.effectType === "Move") {
+        if (target.hasItem("polarizedglass")) {
+          this.add("-enditem", target, "Polarized Glass");
+          target.item = "";
+          target.itemState = {id: "", target};
+          this.runEvent("AfterUseItem", target, null, null, this.dex.items.get("polarizedglass"));
+        }
+      }
+    },
+    num: 3180,
+    gen: 9
   },
   polishedsphere: {
     name: "Polished Sphere",
@@ -2081,6 +3209,122 @@ const Items = {
     },
     num: 3011,
     gen: 2
+  },
+  psncureberry: {
+    name: "PSN Cure Berry",
+    spritenum: 333,
+    isBerry: true,
+    naturalGift: {
+      basePower: 80,
+      type: "Electric"
+    },
+    onUpdate(pokemon) {
+      if (pokemon.status === "psn" || pokemon.status === "tox" || pokemon.status === "bgt") {
+        pokemon.eatItem();
+      }
+    },
+    onEat(pokemon) {
+      if (pokemon.status === "psn" || pokemon.status === "tox" || pokemon.status === "bgt") {
+        pokemon.cureStatus();
+      }
+    },
+    num: 151,
+    gen: 2,
+    isNonstandard: "Past"
+  },
+  psychiceraser: {
+    name: "Psychic Eraser",
+    spritenum: 3194,
+    fling: {
+      basePower: 40
+    },
+	onStart(pokemon) {
+      const types = pokemon.getTypes();
+      if (types.length === 2 && types.includes('Psychic')) {
+        pokemon.itemData = pokemon.itemData || {};
+        pokemon.itemData.psychicEraserOriginalTypes = types;
+        pokemon.itemData.psychicEraserActivated = false;
+        const newTypes = types.filter(t => t !== 'Psychic');
+        if (newTypes.length > 0) {
+          if (!pokemon.illusion) {
+            this.add('-item', pokemon, 'Psychic Eraser');
+            pokemon.itemData.psychicEraserActivated = true;
+          }
+          pokemon.setType(newTypes);
+        }
+      }
+    },
+    onUpdate(pokemon) {
+      if (
+        pokemon.itemData?.psychicEraserOriginalTypes &&
+        !pokemon.itemData.psychicEraserActivated
+      ) {
+        if (!pokemon.illusion) {
+          this.add('-item', pokemon, 'Psychic Eraser');
+          pokemon.itemData.psychicEraserActivated = true;
+        }
+      }
+    },
+    onEnd(pokemon) {
+      if (pokemon.itemData?.psychicEraserOriginalTypes) {
+        if (!pokemon.illusion) {
+          this.add('-enditem', pokemon, 'Psychic Eraser');
+        }
+        const originalTypes = pokemon.itemData.psychicEraserOriginalTypes;
+        pokemon.setType(originalTypes);
+        delete pokemon.itemData.psychicEraserOriginalTypes;
+        delete pokemon.itemData.psychicEraserActivated;
+      }
+    },
+    num: 3194,
+    gen: 9
+  },
+  questionmarkeraser: {
+    name: "Questionmark Eraser",
+    spritenum: 3204,
+    fling: {
+      basePower: 40
+    },
+	onStart(pokemon) {
+      const types = pokemon.getTypes();
+      if (types.length === 2 && types.includes("Questionmark")) {
+        pokemon.itemData = pokemon.itemData || {};
+        pokemon.itemData.questionmarkEraserOriginalTypes = types;
+        pokemon.itemData.questionmarkEraserActivated = false;
+        const newTypes = types.filter(t => t !== "Questionmark");
+        if (newTypes.length > 0) {
+          if (!pokemon.illusion) {
+            this.add("-item", pokemon, "Questionmark Eraser");
+            pokemon.itemData.questionmarkEraserActivated = true;
+          }
+          pokemon.setType(newTypes);
+        }
+      }
+    },
+    onUpdate(pokemon) {
+      if (
+        pokemon.itemData?.questionmarkEraserOriginalTypes &&
+        !pokemon.itemData.questionmarkEraserActivated
+      ) {
+        if (!pokemon.illusion) {
+          this.add("-item", pokemon, "Questionmark Eraser");
+          pokemon.itemData.questionmarkEraserActivated = true;
+        }
+      }
+    },
+    onEnd(pokemon) {
+      if (pokemon.itemData?.questionmarkEraserOriginalTypes) {
+        if (!pokemon.illusion) {
+          this.add("-enditem", pokemon, "Questionmark Eraser");
+        }
+        const originalTypes = pokemon.itemData.questionmarkEraserOriginalTypes;
+        pokemon.setType(originalTypes);
+        delete pokemon.itemData.questionmarkEraserOriginalTypes;
+        delete pokemon.itemData.questionmarkEraserActivated;
+      }
+    },
+    num: 3204,
+    gen: 9
   },
   questionmarkgem: {
     name: "Questionmark Gem",
@@ -2169,6 +3413,53 @@ const Items = {
     forcedForme: "Arceus-Sound",
     num: 3105,
     gen: 4
+  },
+  rockeraser: {
+    name: "Rock Eraser",
+    spritenum: 3195,
+    fling: {
+      basePower: 40
+    },
+	onStart(pokemon) {
+      const types = pokemon.getTypes();
+      if (types.length === 2 && types.includes('Rock')) {
+        pokemon.itemData = pokemon.itemData || {};
+        pokemon.itemData.rockEraserOriginalTypes = types;
+        pokemon.itemData.rockEraserActivated = false;
+        const newTypes = types.filter(t => t !== 'Rock');
+        if (newTypes.length > 0) {
+          if (!pokemon.illusion) {
+            this.add('-item', pokemon, 'Rock Eraser');
+            pokemon.itemData.rockEraserActivated = true;
+          }
+          pokemon.setType(newTypes);
+        }
+      }
+    },
+    onUpdate(pokemon) {
+      if (
+        pokemon.itemData?.rockEraserOriginalTypes &&
+        !pokemon.itemData.rockEraserActivated
+      ) {
+        if (!pokemon.illusion) {
+          this.add('-item', pokemon, 'Rock Eraser');
+          pokemon.itemData.rockEraserActivated = true;
+        }
+      }
+    },
+    onEnd(pokemon) {
+      if (pokemon.itemData?.rockEraserOriginalTypes) {
+        if (!pokemon.illusion) {
+          this.add('-enditem', pokemon, 'Rock Eraser');
+        }
+        const originalTypes = pokemon.itemData.rockEraserOriginalTypes;
+        pokemon.setType(originalTypes);
+        delete pokemon.itemData.rockEraserOriginalTypes;
+        delete pokemon.itemData.rockEraserActivated;
+      }
+    },
+    num: 3195,
+    gen: 9
   },
   sablenite: {
     name: "Sablenite",
@@ -2267,6 +3558,53 @@ const Items = {
     gen: 7,
     isNonstandard: "Past"
   },
+  shadoweraser: {
+    name: "Shadow Eraser",
+    spritenum: 3205,
+    fling: {
+      basePower: 40
+    },
+	onStart(pokemon) {
+      const types = pokemon.getTypes();
+      if (types.length === 2 && types.includes("Shadow")) {
+        pokemon.itemData = pokemon.itemData || {};
+        pokemon.itemData.shadowEraserOriginalTypes = types;
+        pokemon.itemData.shadowEraserActivated = false;
+        const newTypes = types.filter(t => t !== "Shadow");
+        if (newTypes.length > 0) {
+          if (!pokemon.illusion) {
+            this.add("-item", pokemon, "Shadow Eraser");
+            pokemon.itemData.shadowEraserActivated = true;
+          }
+          pokemon.setType(newTypes);
+        }
+      }
+    },
+    onUpdate(pokemon) {
+      if (
+        pokemon.itemData?.shadowEraserOriginalTypes &&
+        !pokemon.itemData.shadowEraserActivated
+      ) {
+        if (!pokemon.illusion) {
+          this.add("-item", pokemon, "Shadow Eraser");
+          pokemon.itemData.shadowEraserActivated = true;
+        }
+      }
+    },
+    onEnd(pokemon) {
+      if (pokemon.itemData?.shadowEraserOriginalTypes) {
+        if (!pokemon.illusion) {
+          this.add("-enditem", pokemon, "Shadow Eraser");
+        }
+        const originalTypes = pokemon.itemData.shadowEraserOriginalTypes;
+        pokemon.setType(originalTypes);
+        delete pokemon.itemData.shadowEraserOriginalTypes;
+        delete pokemon.itemData.shadowEraserActivated;
+      }
+    },
+    num: 3205,
+    gen: 9
+  },
   shadowgem: {
     name: "Shadow Gem",
     spritenum: 3109,
@@ -2319,6 +3657,21 @@ const Items = {
     },
     num: 3174,
     gen: 7
+  },
+  shockingorb: {
+    name: "Shocking Orb",
+    spritenum: 3178,
+    fling: {
+      basePower: 30,
+      status: "par"
+    },
+    onResidualOrder: 28,
+    onResidualSubOrder: 3,
+    onResidual(pokemon) {
+      pokemon.trySetStatus("par", pokemon);
+    },
+    num: 3178,
+    gen: 4
   },
   slimegem: {
     name: "Slime Gem",
@@ -2469,6 +3822,53 @@ const Items = {
 	},
     num: 3021,
     gen: 4
+  },
+  steeleraser: {
+    name: "Steel Eraser",
+    spritenum: 3196,
+    fling: {
+      basePower: 40
+    },
+	onStart(pokemon) {
+      const types = pokemon.getTypes();
+      if (types.length === 2 && types.includes('Steel')) {
+        pokemon.itemData = pokemon.itemData || {};
+        pokemon.itemData.steelEraserOriginalTypes = types;
+        pokemon.itemData.steelEraserActivated = false;
+        const newTypes = types.filter(t => t !== 'Steel');
+        if (newTypes.length > 0) {
+          if (!pokemon.illusion) {
+            this.add('-item', pokemon, 'Steel Eraser');
+            pokemon.itemData.steelEraserActivated = true;
+          }
+          pokemon.setType(newTypes);
+        }
+      }
+    },
+    onUpdate(pokemon) {
+      if (
+        pokemon.itemData?.steelEraserOriginalTypes &&
+        !pokemon.itemData.steelEraserActivated
+      ) {
+        if (!pokemon.illusion) {
+          this.add('-item', pokemon, 'Steel Eraser');
+          pokemon.itemData.steelEraserActivated = true;
+        }
+      }
+    },
+    onEnd(pokemon) {
+      if (pokemon.itemData?.steelEraserOriginalTypes) {
+        if (!pokemon.illusion) {
+          this.add('-enditem', pokemon, 'Steel Eraser');
+        }
+        const originalTypes = pokemon.itemData.steelEraserOriginalTypes;
+        pokemon.setType(originalTypes);
+        delete pokemon.itemData.steelEraserOriginalTypes;
+        delete pokemon.itemData.steelEraserActivated;
+      }
+    },
+    num: 3196,
+    gen: 9
   },
   steelixite: {
     name: "Steelixite",
@@ -2634,6 +4034,27 @@ const Items = {
     num: 3141,
     gen: 2
   },
+  trainingwheels: {
+    name: "Training Wheels",
+    spritenum: 3177,
+    fling: {
+      basePower: 40
+    },
+	onModifySpAPriority: 2,
+    onModifySpA(def, pokemon) {
+      if (pokemon.baseSpecies.nfe) {
+        return this.chainModify(1.5);
+      }
+    },
+    onModifyAtkPriority: 2,
+    onModifyAtk(atk, pokemon) {
+      if (pokemon.baseSpecies.nfe) {
+        return this.chainModify(1.5);
+      }
+    },
+    num: 3177,
+    gen: 5
+  },
   tunabberry: {
     name: "Tunab Berry",
     spritenum: 3158,
@@ -2788,6 +4209,53 @@ const Items = {
     gen: 7,
     isNonstandard: "Past"
   },
+  watereraser: {
+    name: "Water Eraser",
+    spritenum: 3197,
+    fling: {
+      basePower: 40
+    },
+	onStart(pokemon) {
+      const types = pokemon.getTypes();
+      if (types.length === 2 && types.includes('Water')) {
+        pokemon.itemData = pokemon.itemData || {};
+        pokemon.itemData.waterEraserOriginalTypes = types;
+        pokemon.itemData.waterEraserActivated = false;
+        const newTypes = types.filter(t => t !== 'Water');
+        if (newTypes.length > 0) {
+          if (!pokemon.illusion) {
+            this.add('-item', pokemon, 'Water Eraser');
+            pokemon.itemData.waterEraserActivated = true;
+          }
+          pokemon.setType(newTypes);
+        }
+      }
+    },
+    onUpdate(pokemon) {
+      if (
+        pokemon.itemData?.waterEraserOriginalTypes &&
+        !pokemon.itemData.waterEraserActivated
+      ) {
+        if (!pokemon.illusion) {
+          this.add('-item', pokemon, 'Water Eraser');
+          pokemon.itemData.waterEraserActivated = true;
+        }
+      }
+    },
+    onEnd(pokemon) {
+      if (pokemon.itemData?.waterEraserOriginalTypes) {
+        if (!pokemon.illusion) {
+          this.add('-enditem', pokemon, 'Water Eraser');
+        }
+        const originalTypes = pokemon.itemData.waterEraserOriginalTypes;
+        pokemon.setType(originalTypes);
+        delete pokemon.itemData.waterEraserOriginalTypes;
+        delete pokemon.itemData.waterEraserActivated;
+      }
+    },
+    num: 3197,
+    gen: 9
+  },
   weatherballoon: {
     name: "Weather Balloon",
     spritenum: 3171,
@@ -2796,6 +4264,53 @@ const Items = {
     },
     num: 3171,
     gen: 4
+  },
+  winderaser: {
+    name: "Wind Eraser",
+    spritenum: 3206,
+    fling: {
+      basePower: 40
+    },
+	onStart(pokemon) {
+      const types = pokemon.getTypes();
+      if (types.length === 2 && types.includes("Wind")) {
+        pokemon.itemData = pokemon.itemData || {};
+        pokemon.itemData.windEraserOriginalTypes = types;
+        pokemon.itemData.windEraserActivated = false;
+        const newTypes = types.filter(t => t !== "Wind");
+        if (newTypes.length > 0) {
+          if (!pokemon.illusion) {
+            this.add("-item", pokemon, "Wind Eraser");
+            pokemon.itemData.windEraserActivated = true;
+          }
+          pokemon.setType(newTypes);
+        }
+      }
+    },
+    onUpdate(pokemon) {
+      if (
+        pokemon.itemData?.windEraserOriginalTypes &&
+        !pokemon.itemData.windEraserActivated
+      ) {
+        if (!pokemon.illusion) {
+          this.add("-item", pokemon, "Wind Eraser");
+          pokemon.itemData.windEraserActivated = true;
+        }
+      }
+    },
+    onEnd(pokemon) {
+      if (pokemon.itemData?.windEraserOriginalTypes) {
+        if (!pokemon.illusion) {
+          this.add("-enditem", pokemon, "Wind Eraser");
+        }
+        const originalTypes = pokemon.itemData.windEraserOriginalTypes;
+        pokemon.setType(originalTypes);
+        delete pokemon.itemData.windEraserOriginalTypes;
+        delete pokemon.itemData.windEraserActivated;
+      }
+    },
+    num: 3206,
+    gen: 9
   },
   windgem: {
     name: "Wind Gem",

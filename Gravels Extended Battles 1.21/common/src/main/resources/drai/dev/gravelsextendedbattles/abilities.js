@@ -841,6 +841,41 @@ const Abilities = {
     rating: 3,
     num: 34
   },
+  choicebreaker: {
+    onStart(pokemon) {
+      const bannedItems = ["choicescarf", "choiceband", "choicespecs"];
+      const item = pokemon.getItem();
+      if (bannedItems.includes(item.id)) {
+        this.add("-activate", pokemon, "ability: Choice Breaker", item.name);
+      }
+    },
+    onResidual(pokemon) {
+      const bannedItems = ["choicescarf", "choiceband", "choicespecs"];
+      const item = pokemon.getItem();
+      if (bannedItems.includes(item.id) && pokemon.volatiles["choicelock"]) {
+        delete pokemon.volatiles["choicelock"];
+      }
+    },
+    onModifyMove(move, pokemon) {
+      const bannedItems = ["choicescarf", "choiceband", "choicespecs"];
+      const item = pokemon.getItem();
+      if (bannedItems.includes(item.id)) {
+        move.isChoice = false;
+      }
+    },
+    onDamage(damage, target, source, effect) {
+      if (
+        effect && effect.id === "lifeorb" &&
+        target.getItem().id === "lifeorb"
+      ) {
+        return false;
+      }
+    },
+	flags: {},
+    name: "Choice Breaker",
+    rating: 1,
+    num: 3227
+  },
   circusprops: {
     onStart(source) {
       this.field.setTerrain("trickroom");
@@ -2418,6 +2453,14 @@ const Abilities = {
     rating: 1.5,
     num: 3101
   },
+  mentalist: {
+    onStart(source) {
+      this.field.addPseudoWeather("trickroom");
+    },
+    name: "Mentalist",
+    rating: 4,
+    num: 3229
+  },
   merciless: {
     onModifyCritRatio(critRatio, source, target) {
       if (target && ["psn", "tox", "bgt"].includes(target.status))
@@ -2475,6 +2518,28 @@ const Abilities = {
     name: "Mimicry",
     rating: 0,
     num: 250
+  },
+  mytheater: {
+    onTryHitPriority: 1,
+    onTryHit(target, source, move) {
+      if (target !== source && move.type === "Fairy") {
+        if (!this.boost({ spd: 1 })) {
+          this.add("-immune", target, "[from] ability: Myth Eater");
+        }
+        return null;
+      }
+    },
+	onAllyTryHitSide(target, source, move) {
+      if (source === this.effectState.target || !target.isAlly(source))
+        return;
+      if (move.type === "Fairy") {
+        this.boost({ spd: 1 }, this.effectState.target);
+      }
+    },
+    flags: { breakable: 1 },
+    name: "Myth Eater",
+    rating: 3,
+    num: 3226
   },
   nastywebbing: {
     onDamagingHit(damage, target, source, move) {
@@ -2665,7 +2730,7 @@ const Abilities = {
   },
   pendulum: {
     onStart(pokemon) {
-      this.addVolatile("metronome", pokemon); // Apply Metronome volatile status
+      pokemon.addVolatile("metronome"); // Apply Metronome volatile status
     },
 	name: "Pendulum",
     rating: 4,
@@ -2780,6 +2845,22 @@ const Abilities = {
     name: "Pollution",
     rating: 4,
     num: 3115
+  },
+  polymorphism: {
+    onStart(pokemon) {
+      const target = pokemon.side.foe.active[0];
+      if (!target || !target.isActive) return;
+      if (!target.hasType("Fairy")) {
+        target.addType("Fairy");
+        this.add(
+          "-start", target, "typeadd", "Fairy", "[from] ability: Polymorphism"
+        );
+      }
+    },
+	flags: {},
+    name: "Polymorphism",
+    rating: 3.5,
+    num: 3230
   },
   powerfist: {
     onBasePowerPriority: 23,
@@ -3035,6 +3116,15 @@ const Abilities = {
     rating: 3,
     num: 3124
   },
+  rhythmgame: {
+    onStart(pokemon) {
+      pokemon.addVolatile("metronome"); // Apply Metronome volatile status
+    },
+	flags: {},
+    name: "Rhythm Game",
+    rating: 3,
+    num: 3231
+  },
   ridersyndrome: {
     onModifyAtkPriority: 5,
     onModifyAtk(atk, attacker, defender, move) {
@@ -3275,6 +3365,24 @@ const Abilities = {
     name: "Shadow Synergy",
     rating: 3.5,
     num: 3136
+  },
+  sharedmonarchy: {
+    onBasePowerPriority: 30,
+    onBasePower(basePower, attacker, defender, move) {
+      if (move.type === "Dragon" || move.type === "Fairy") {
+        const basePowerAfterMultiplier = this.modify(
+          basePower,
+          this.event.modifier
+        );
+        if (basePowerAfterMultiplier <= 60) {
+          return this.chainModify(1.7);
+        }
+      }
+    },
+	flags: {},
+    name: "Shared Monarchy",
+    rating: 4,
+    num: 3228
   },
   sharpcoral: {
     onModifyAtkPriority: 5,
