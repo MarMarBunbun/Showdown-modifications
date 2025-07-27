@@ -21,9 +21,7 @@ public class GravelmonPokedexManager {
     public static void processPokedexBans(Dexes dexes){
         var pokemonSpecies = PokemonSpecies.INSTANCE;
         var pokemonSpeciesAccesssor = ((GravelmonPokemonSpeciesAccessor) (Object) pokemonSpecies);
-        var currentSpecies = pokemonSpeciesAccesssor.getSpeciesByIdentifier();
-        var speciesToBeRemoved = getSpeciesToBeRemoved(currentSpecies).stream().map(Map.Entry::getValue).toList();
-        if(speciesToBeRemoved.isEmpty()) return;
+        var currentSpecies = pokemonSpeciesAccesssor.getSpeciesByIdentifier().values();
         var allDexes = new ArrayList<>(dexes.getDexEntryMap().entrySet());
         for (var dex : allDexes){
             var dexDef = dex.getValue();
@@ -34,21 +32,32 @@ public class GravelmonPokedexManager {
                 resourceLocationEntries.add(entries.get(i).getId());
             }
             for (var entry : entries){
-                var species = pokemonSpecies.getByIdentifier(entry.getSpeciesId());
-                if(speciesToBeRemoved.contains(species)){
-                    resourceLocationEntries.remove(entry.getId());
+                var species = pokemonSpecies.getByName(entry.getSpeciesId().getPath().split("-")[0].split(" ")[0]);
+                if(species == null || !currentSpecies.contains(species)) {
+                    resourceLocationEntries.removeIf(
+                            currentEntry->currentEntry.getPath().equalsIgnoreCase(entry.getId().getPath())
+                            && currentEntry.getNamespace().equalsIgnoreCase(entry.getId().getNamespace()));
+                    continue;
                 }
-                if(species == null) continue;
+                var forms = new ArrayList<>(entry.getForms());
+                var shouldRemoveIfNoForms = !entry.getForms().isEmpty();
                 var formsToRemove = entry.getForms().stream().filter(pokedexForm -> {
                     var form = species.getForm(Set.of(pokedexForm.getDisplayForm()));
-                    if(form.getName().equalsIgnoreCase("normal")) return false;
-                    if (containsBannedLabels(form.getLabels().stream().toList())) {
+                    var formNames = species.getForms().stream().map(FormData::getName).toList();
+                    if(!pokedexForm.getDisplayForm().equalsIgnoreCase("normal") && !formNames.contains(pokedexForm.getDisplayForm())) return true;
+                    List<String> labels = form.getLabels().stream().toList();
+                    if (containsBannedLabels(labels)) {
                         return true;
                     }
                     return false;
                 }).toList();
                 for(var form : formsToRemove){
                     entry.getForms().remove(form);
+                }
+                if(shouldRemoveIfNoForms && entry.getForms().isEmpty()) {
+                    resourceLocationEntries.removeIf(
+                            currentEntry -> currentEntry.getPath().equalsIgnoreCase(entry.getId().getPath())
+                                    && currentEntry.getNamespace().equalsIgnoreCase(entry.getId().getNamespace()));
                 }
             }
             ((SimplePokedexDefAccessor)(Object)dexDef).setEntries(resourceLocationEntries);

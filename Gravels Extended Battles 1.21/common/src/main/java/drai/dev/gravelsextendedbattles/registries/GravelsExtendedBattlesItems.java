@@ -8,6 +8,7 @@ import dev.architectury.registry.registries.*;
 import drai.dev.gravelsextendedbattles.*;
 import drai.dev.gravelsextendedbattles.items.*;
 import drai.dev.gravelsextendedbattles.loot.*;
+import drai.dev.gravelsextendedbattles.types.*;
 import net.minecraft.*;
 import net.minecraft.core.registries.*;
 import net.minecraft.network.chat.*;
@@ -87,19 +88,19 @@ public class GravelsExtendedBattlesItems {
     public static final RegistrySupplier<TypedItem> SOUND_MEMORY = registerMemoryItem("sound_memory");
     public static final RegistrySupplier<TypedItem> WIND_MEMORY = registerMemoryItem("wind_memory");
 
-    public static final RegistrySupplier<Item> BLOOD_TERA_SHARD = registerTeraShardItem("blood_tera_shard");
-    public static final RegistrySupplier<Item> COSMIC_TERA_SHARD = registerTeraShardItem("cosmic_tera_shard");
-    public static final RegistrySupplier<Item> CRYSTAL_TERA_SHARD = registerTeraShardItem("crystal_tera_shard");
-    public static final RegistrySupplier<Item> DIGITAL_TERA_SHARD = registerTeraShardItem("digital_tera_shard");
-    public static final RegistrySupplier<Item> ELDRITCH_TERA_SHARD = registerTeraShardItem("eldritch_tera_shard");
-    public static final RegistrySupplier<Item> LIGHT_TERA_SHARD = registerTeraShardItem("light_tera_shard");
-    public static final RegistrySupplier<Item> QUESTIONMARK_TERA_SHARD = registerTeraShardItem("questionmark_tera_shard");
-    public static final RegistrySupplier<Item> NUCLEAR_TERA_SHARD = registerTeraShardItem("nuclear_tera_shard");
-    public static final RegistrySupplier<Item> PLASTIC_TERA_SHARD = registerTeraShardItem("plastic_tera_shard");
-    public static final RegistrySupplier<Item> SHADOW_TERA_SHARD = registerTeraShardItem("shadow_tera_shard");
-    public static final RegistrySupplier<Item> SLIM_TERA_SHARD = registerTeraShardItem("slime_tera_shard");
-    public static final RegistrySupplier<Item> SOUND_TERA_SHARD = registerTeraShardItem("sound_tera_shard");
-    public static final RegistrySupplier<Item> WIND_TERA_SHARD = registerTeraShardItem("wind_tera_shard");
+    public static final RegistrySupplier<Item> BLOOD_TERA_SHARD = registerTeraShardItem("blood_tera_shard", GravelmonTeraTypes.BLOOD);
+    public static final RegistrySupplier<Item> COSMIC_TERA_SHARD = registerTeraShardItem("cosmic_tera_shard", GravelmonTeraTypes.COSMIC);
+    public static final RegistrySupplier<Item> CRYSTAL_TERA_SHARD = registerTeraShardItem("crystal_tera_shard", GravelmonTeraTypes.CRYSTAL);
+    public static final RegistrySupplier<Item> DIGITAL_TERA_SHARD = registerTeraShardItem("digital_tera_shard", GravelmonTeraTypes.DIGITAL);
+    public static final RegistrySupplier<Item> ELDRITCH_TERA_SHARD = registerTeraShardItem("eldritch_tera_shard", GravelmonTeraTypes.ELDRITCH);
+    public static final RegistrySupplier<Item> LIGHT_TERA_SHARD = registerTeraShardItem("light_tera_shard", GravelmonTeraTypes.LIGHT);
+    public static final RegistrySupplier<Item> QUESTIONMARK_TERA_SHARD = registerTeraShardItem("questionmark_tera_shard", GravelmonTeraTypes.QUESTIONMARK);
+    public static final RegistrySupplier<Item> NUCLEAR_TERA_SHARD = registerTeraShardItem("nuclear_tera_shard", GravelmonTeraTypes.NUCLEAR);
+    public static final RegistrySupplier<Item> PLASTIC_TERA_SHARD = registerTeraShardItem("plastic_tera_shard", GravelmonTeraTypes.PLASTIC);
+    public static final RegistrySupplier<Item> SHADOW_TERA_SHARD = registerTeraShardItem("shadow_tera_shard", GravelmonTeraTypes.SHADOW);
+    public static final RegistrySupplier<Item> SLIME_TERA_SHARD = registerTeraShardItem("slime_tera_shard", GravelmonTeraTypes.SLIME);
+    public static final RegistrySupplier<Item> SOUND_TERA_SHARD = registerTeraShardItem("sound_tera_shard", GravelmonTeraTypes.SOUND);
+    public static final RegistrySupplier<Item> WIND_TERA_SHARD = registerTeraShardItem("wind_tera_shard", GravelmonTeraTypes.WIND);
 
 
     public static final RegistrySupplier<Item> FROST_HEAL = ITEMS.register("frost_heal", () -> new StatusCureItem("item."+MOD_ID+".frost_heal", FROSTBITE));
@@ -197,9 +198,9 @@ public class GravelsExtendedBattlesItems {
         return register;
     }
 
-    public static RegistrySupplier<Item> registerTeraShardItem(String name){
+    public static RegistrySupplier<Item> registerTeraShardItem(String name, TeraType type){
         if(Platform.isModLoaded("mega_showdown")){
-            return MegaShowdownCompatItems.registerTeraShardItem(name);
+            return MegaShowdownCompatItems.registerTeraShardItem(name, type);
         }
         RegistrySupplier<Item> register = registerItem(name, ()-> new Item(new Item.Properties().stacksTo(50)));
         TERA_SHARDS_BY_TYPE_NAME.put(name.replaceAll("_tera_shard", ""), register);

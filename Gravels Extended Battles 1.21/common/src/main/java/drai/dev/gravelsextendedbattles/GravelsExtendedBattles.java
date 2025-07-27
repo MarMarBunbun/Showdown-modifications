@@ -48,10 +48,10 @@ public class GravelsExtendedBattles {
     public static boolean ICON_WIDGET_INIT = false;
     public static final String MOD_ID = "gravels_extended_battles";
     public static Logger LOGGER = Logger.getLogger(MOD_ID);
-    public static List<String> BANNED_LABELS;
-    public static List<String> ALLOWED_LABELS;
-    public static List<String> PASSWORDS;
-    public static List<String> IMPLEMENTED_TYPES;
+    public static List<String> BANNED_LABELS = new ArrayList<>();
+    public static List<String> ALLOWED_LABELS = new ArrayList<>();
+    public static List<String> PASSWORDS = new ArrayList<>();
+    public static List<String> IMPLEMENTED_TYPES = new ArrayList<>();
     public static int TYPE_COUNT = 18;
     public static boolean ADD_STARTERS = false;
     public static List<IEvolutionNode> SORTED_SPECIES = new ArrayList<>();
@@ -64,11 +64,11 @@ public class GravelsExtendedBattles {
     static{
         gravelmonConfig = new GravelmonConfig();
         MidnightConfig.init("gravelmon", GravelmonConfig.class);
+        PASSWORDS = gravelmonConfig.getPasswords();
         BANNED_LABELS = gravelmonConfig.getBannedLabels();
         ALLOWED_LABELS = gravelmonConfig.getAllowedLabels();
         IMPLEMENTED_TYPES = gravelmonConfig.getImplementedTypes();
         ADD_STARTERS = gravelmonConfig.getShouldAddStarters();
-        PASSWORDS = gravelmonConfig.getPasswords();
     }
 
     public static void init() {
@@ -147,8 +147,8 @@ public class GravelsExtendedBattles {
             GravelmonPokedexResorter.resort(pokemonSpecies);
         }
 
-        GravelmonPokedexManager.processPokedexBans(dexes);
         SpeciesManager.banPokemon(pokemonSpecies, ((GravelmonPokemonSpeciesAccessor) (Object) pokemonSpecies));
+        GravelmonPokedexManager.processPokedexBans(dexes);
 
         GravelmonStarterManager.processStarters();
         if(gravelmonConfig.getAutomaticMoveInsertion()) GravelmonMoveSubstitution.substituteMoves();

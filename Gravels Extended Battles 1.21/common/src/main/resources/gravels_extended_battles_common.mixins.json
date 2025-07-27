@@ -30,6 +30,7 @@
     "TeraTypesMixin",
     "loot.LootItemAccessor",
     "loot.LootPoolAccessor",
-    "loot.LootTableAccessor"
+    "loot.LootTableAccessor",
+    "megashowdown.TeraTypeHelperMixin"
   ]
 }
