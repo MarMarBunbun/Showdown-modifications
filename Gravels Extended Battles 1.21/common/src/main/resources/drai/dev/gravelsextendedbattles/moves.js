@@ -839,17 +839,17 @@ const Moves = {
     name: "Audacity",
     pp: 5,
     priority: 0,
-    flags: { sound: 1, distance: 1, bypasssub: 1 },
+    flags: { sound: 1, snatch: 1 },
+	secondary: null,
 	boosts: {
       atk: 2,
       spe: 2,
 	  evasion: 2
     },
-    secondary: {
-      chance: 100,
+    self: {
       volatileStatus: "perishsong"
     },
-    target: "Self",
+    target: "self",
     type: "Fighting",
     zMove: { effect: "clearnegativeboost" },
     contestType: "Beautiful"
@@ -8396,8 +8396,15 @@ const Moves = {
       },
       onResidualOrder: 5,
       onResidual(side) {
-        this.heal(pokemon.baseMaxhp / 16);
-      }
+        for (const pokemon of side.active) {
+          if (pokemon && !pokemon.fainted) {
+            this.heal(pokemon.baseMaxhp / 16, pokemon);
+          }
+        }
+      },
+      onSideEnd(side) {
+        this.add('-sideend', side, 'move: Hawthorns');
+      },
     },
     secondary: null,
     target: "allySide",

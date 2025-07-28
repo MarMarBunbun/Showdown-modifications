@@ -104,6 +104,37 @@ public class GravelsExtendedBattlesItems {
 
 
     public static final RegistrySupplier<Item> FROST_HEAL = ITEMS.register("frost_heal", () -> new StatusCureItem("item."+MOD_ID+".frost_heal", FROSTBITE));
+    public static final RegistrySupplier<Item> BLOOD_CRAYON = registerHeldItem("blood_crayon", ()->new Item(new Item.Properties()));
+    public static final RegistrySupplier<Item> ELDRITCH_CRAYON = registerHeldItem("eldritch_crayon", ()->new Item(new Item.Properties()));
+    public static final RegistrySupplier<Item> WIND_CRAYON = registerHeldItem("wind_crayon", ()->new Item(new Item.Properties()));
+    public static final RegistrySupplier<Item> SOUND_CRAYON = registerHeldItem("sound_crayon", ()->new Item(new Item.Properties()));
+    public static final RegistrySupplier<Item> SLIME_CRAYON = registerHeldItem("slime_crayon", ()->new Item(new Item.Properties()));
+    public static final RegistrySupplier<Item> SHADOW_CRAYON = registerHeldItem("shadow_crayon", ()->new Item(new Item.Properties()));
+    public static final RegistrySupplier<Item> QUESTIONMARK_CRAYON = registerHeldItem("questionmark_crayon", ()->new Item(new Item.Properties()));
+    public static final RegistrySupplier<Item> PLASTIC_CRAYON = registerHeldItem("plastic_crayon", ()->new Item(new Item.Properties()));
+    public static final RegistrySupplier<Item> NUCLEAR_CRAYON = registerHeldItem("nuclear_crayon", ()->new Item(new Item.Properties()));
+    public static final RegistrySupplier<Item> LIGHT_CRAYON = registerHeldItem("light_crayon", ()->new Item(new Item.Properties()));
+    public static final RegistrySupplier<Item> DIGITAL_CRAYON = registerHeldItem("digital_crayon", ()->new Item(new Item.Properties()));
+    public static final RegistrySupplier<Item> CRYSTAL_CRAYON = registerHeldItem("crystal_crayon", ()->new Item(new Item.Properties()));
+    public static final RegistrySupplier<Item> COSMIC_CRAYON = registerHeldItem("cosmic_crayon", ()->new Item(new Item.Properties()));
+    public static final RegistrySupplier<Item> WATER_CRAYON = registerHeldItem("water_crayon", ()->new Item(new Item.Properties()));
+    public static final RegistrySupplier<Item> STEEL_CRAYON = registerHeldItem("steel_crayon", ()->new Item(new Item.Properties()));
+    public static final RegistrySupplier<Item> ROCK_CRAYON = registerHeldItem("rock_crayon", ()->new Item(new Item.Properties()));
+    public static final RegistrySupplier<Item> PSYCHIC_CRAYON = registerHeldItem("psychic_crayon", ()->new Item(new Item.Properties()));
+    public static final RegistrySupplier<Item> POISON_CRAYON = registerHeldItem("poison_crayon", ()->new Item(new Item.Properties()));
+    public static final RegistrySupplier<Item> NORMAL_CRAYON = registerHeldItem("normal_crayon", ()->new Item(new Item.Properties()));
+    public static final RegistrySupplier<Item> ICE_CRAYON = registerHeldItem("ice_crayon", ()->new Item(new Item.Properties()));
+    public static final RegistrySupplier<Item> GROUND_CRAYON = registerHeldItem("ground_crayon", ()->new Item(new Item.Properties()));
+    public static final RegistrySupplier<Item> GRASS_CRAYON = registerHeldItem("grass_crayon", ()->new Item(new Item.Properties()));
+    public static final RegistrySupplier<Item> GHOST_CRAYON = registerHeldItem("ghost_crayon", ()->new Item(new Item.Properties()));
+    public static final RegistrySupplier<Item> FLYING_CRAYON = registerHeldItem("flying_crayon", ()->new Item(new Item.Properties()));
+    public static final RegistrySupplier<Item> FIRE_CRAYON = registerHeldItem("fire_crayon", ()->new Item(new Item.Properties()));
+    public static final RegistrySupplier<Item> FIGHTING_CRAYON = registerHeldItem("fighting_crayon", ()->new Item(new Item.Properties()));
+    public static final RegistrySupplier<Item> FAIRY_CRAYON = registerHeldItem("fairy_crayon", ()->new Item(new Item.Properties()));
+    public static final RegistrySupplier<Item> ELECTRIC_CRAYON = registerHeldItem("electric_crayon", ()->new Item(new Item.Properties()));
+    public static final RegistrySupplier<Item> DRAGON_CRAYON = registerHeldItem("dragon_crayon", ()->new Item(new Item.Properties()));
+    public static final RegistrySupplier<Item> DARK_CRAYON = registerHeldItem("dark_crayon", ()->new Item(new Item.Properties()));
+    public static final RegistrySupplier<Item> BUG_CRAYON = registerHeldItem("bug_crayon", ()->new Item(new Item.Properties()));
     public static final RegistrySupplier<Item> BLOOD_ERASER = registerHeldItem("blood_eraser", ()->new Item(new Item.Properties()));
     public static final RegistrySupplier<Item> ELDRITCH_ERASER = registerHeldItem("eldritch_eraser", ()->new Item(new Item.Properties()));
     public static final RegistrySupplier<Item> WIND_ERASER = registerHeldItem("wind_eraser", ()->new Item(new Item.Properties()));
@@ -113,7 +144,7 @@ public class GravelsExtendedBattlesItems {
     public static final RegistrySupplier<Item> QUESTIONMARK_ERASER = registerHeldItem("questionmark_eraser", ()->new Item(new Item.Properties()));
     public static final RegistrySupplier<Item> PLASTIC_ERASER = registerHeldItem("plastic_eraser", ()->new Item(new Item.Properties()));
     public static final RegistrySupplier<Item> NUCLEAR_ERASER = registerHeldItem("nuclear_eraser", ()->new Item(new Item.Properties()));
-    public static final RegistrySupplier<Item> LIGHT_ERASER = registerHeldItem("water_eraser", ()->new Item(new Item.Properties()));
+    public static final RegistrySupplier<Item> LIGHT_ERASER = registerHeldItem("light_eraser", ()->new Item(new Item.Properties()));
     public static final RegistrySupplier<Item> DIGITAL_ERASER = registerHeldItem("digital_eraser", ()->new Item(new Item.Properties()));
     public static final RegistrySupplier<Item> CRYSTAL_ERASER = registerHeldItem("crystal_eraser", ()->new Item(new Item.Properties()));
     public static final RegistrySupplier<Item> COSMIC_ERASER = registerHeldItem("cosmic_eraser", ()->new Item(new Item.Properties()));
@@ -140,6 +171,7 @@ public class GravelsExtendedBattlesItems {
     public static final RegistrySupplier<Item> OLD_SHIELD = registerHeldItem("old_shield", ()->new Item(new Item.Properties()));
     public static final RegistrySupplier<Item> SHOCKING_ORB = registerHeldItem("shocking_orb", ()->new Item(new Item.Properties()));
     public static final RegistrySupplier<Item> EARMUFFS = registerHeldItem("earmuffs", ()->new Item(new Item.Properties()));
+    public static final RegistrySupplier<Item> BOOK_OF_SIN = registerHeldItem("book_of_sin", ()->new Item(new Item.Properties()));
     public static final RegistrySupplier<Item> MIDNIGHT_SEED = registerHeldItem("midnight_seed", ()->new Item(new Item.Properties()));
     public static final RegistrySupplier<Item> SNOWY_SEED = registerHeldItem("snowy_seed", ()->new Item(new Item.Properties()));
     public static final RegistrySupplier<Item> SHINING_SEED = registerHeldItem("shining_seed", ()->new Item(new Item.Properties()));

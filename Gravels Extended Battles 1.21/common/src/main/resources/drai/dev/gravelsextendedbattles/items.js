@@ -374,6 +374,52 @@ const Items = {
     gen: 6,
     isNonstandard: "Past"
   },
+  eldritchcrayon: {
+    name: "Blood Crayon",
+    spritenum: 3240,
+    fling: {
+      basePower: 20
+    },
+	onStart(pokemon) {
+      const types = pokemon.getTypes();
+      if (types.length === 1 && !types.includes("Blood")) {
+        pokemon.itemData = pokemon.itemData || {};
+        pokemon.itemData.bloodCrayonOriginalType = types[0];
+        pokemon.itemData.bloodCrayonActivated = false;
+        const isIllusionActive = !!pokemon.illusion;
+        if (!isIllusionActive) {
+          this.add("-item", pokemon, "Blood Crayon");
+          pokemon.itemData.bloodCrayonActivated = true;
+        }
+        pokemon.setType([types[0], "Blood"]);
+      }
+    },
+    onUpdate(pokemon) {
+      if (
+        pokemon.itemData?.bloodCrayonOriginalType &&
+        !pokemon.itemData.bloodCrayonActivated
+      ) {
+        const isIllusionActive = !!pokemon.illusion;
+        if (!isIllusionActive) {
+          this.add("-item", pokemon, "Blood Crayon");
+          pokemon.itemData.bloodCrayonActivated = true;
+        }
+      }
+    },
+    onEnd(pokemon) {
+      if (pokemon.itemData?.bloodCrayonOriginalType) {
+        const isIllusionActive = !!pokemon.illusion;
+        if (!isIllusionActive) {
+          this.add("-enditem", pokemon, "Blood Crayon");
+        }
+        pokemon.setType([pokemon.itemData.bloodCrayonOriginalType]);
+        delete pokemon.itemData.bloodCrayonOriginalType;
+        delete pokemon.itemData.bloodCrayonActivated;
+      }
+    },
+    num: 3240,
+    gen: 9
+  },
   blooderaser: {
     name: "Blood Eraser",
     spritenum: 3208,
@@ -545,6 +591,52 @@ const Items = {
       }
     },
     num: 3164,
+    gen: 9
+  },
+  bugcrayon: {
+    name: "Bug Crayon",
+    spritenum: 3209,
+    fling: {
+      basePower: 20
+    },
+	onStart(pokemon) {
+      const types = pokemon.getTypes();
+      if (types.length === 1 && !types.includes("Bug")) {
+        pokemon.itemData = pokemon.itemData || {};
+        pokemon.itemData.bugCrayonOriginalType = types[0];
+        pokemon.itemData.bugCrayonActivated = false;
+        const isIllusionActive = !!pokemon.illusion;
+        if (!isIllusionActive) {
+          this.add("-item", pokemon, "Bug Crayon");
+          pokemon.itemData.bugCrayonActivated = true;
+        }
+        pokemon.setType([types[0], "Bug"]);
+      }
+    },
+    onUpdate(pokemon) {
+      if (
+        pokemon.itemData?.bugCrayonOriginalType &&
+        !pokemon.itemData.bugCrayonActivated
+      ) {
+        const isIllusionActive = !!pokemon.illusion;
+        if (!isIllusionActive) {
+          this.add("-item", pokemon, "Bug Crayon");
+          pokemon.itemData.bugCrayonActivated = true;
+        }
+      }
+    },
+    onEnd(pokemon) {
+      if (pokemon.itemData?.bugCrayonOriginalType) {
+        const isIllusionActive = !!pokemon.illusion;
+        if (!isIllusionActive) {
+          this.add("-enditem", pokemon, "Bug Crayon");
+        }
+        pokemon.setType([pokemon.itemData.bugCrayonOriginalType]);
+        delete pokemon.itemData.bugCrayonOriginalType;
+        delete pokemon.itemData.bugCrayonActivated;
+      }
+    },
+    num: 3209,
     gen: 9
   },
   bugeraser: {
@@ -719,6 +811,52 @@ const Items = {
     gen: 9,
     isNonstandard: "Past"
   },
+  cosmiccrayon: {
+    name: "Cosmic Crayon",
+    spritenum: 3227,
+    fling: {
+      basePower: 20
+    },
+	onStart(pokemon) {
+      const types = pokemon.getTypes();
+      if (types.length === 1 && !types.includes("Cosmic")) {
+        pokemon.itemData = pokemon.itemData || {};
+        pokemon.itemData.cosmicCrayonOriginalType = types[0];
+        pokemon.itemData.cosmicCrayonActivated = false;
+        const isIllusionActive = !!pokemon.illusion;
+        if (!isIllusionActive) {
+          this.add("-item", pokemon, "Cosmic Crayon");
+          pokemon.itemData.cosmicCrayonActivated = true;
+        }
+        pokemon.setType([types[0], "Cosmic"]);
+      }
+    },
+    onUpdate(pokemon) {
+      if (
+        pokemon.itemData?.cosmicCrayonOriginalType &&
+        !pokemon.itemData.cosmicCrayonActivated
+      ) {
+        const isIllusionActive = !!pokemon.illusion;
+        if (!isIllusionActive) {
+          this.add("-item", pokemon, "Cosmic Crayon");
+          pokemon.itemData.cosmicCrayonActivated = true;
+        }
+      }
+    },
+    onEnd(pokemon) {
+      if (pokemon.itemData?.cosmicCrayonOriginalType) {
+        const isIllusionActive = !!pokemon.illusion;
+        if (!isIllusionActive) {
+          this.add("-enditem", pokemon, "Cosmic Crayon");
+        }
+        pokemon.setType([pokemon.itemData.cosmicCrayonOriginalType]);
+        delete pokemon.itemData.cosmicCrayonOriginalType;
+        delete pokemon.itemData.cosmicCrayonActivated;
+      }
+    },
+    num: 3227,
+    gen: 9
+  },
   cosmiceraser: {
     name: "Cosmic Eraser",
     spritenum: 3198,
@@ -825,6 +963,52 @@ const Items = {
     },
     num: 3002,
     gen: 2
+  },
+  crystalcrayon: {
+    name: "Crystal Crayon",
+    spritenum: 3228,
+    fling: {
+      basePower: 20
+    },
+	onStart(pokemon) {
+      const types = pokemon.getTypes();
+      if (types.length === 1 && !types.includes("Crystal")) {
+        pokemon.itemData = pokemon.itemData || {};
+        pokemon.itemData.crystalCrayonOriginalType = types[0];
+        pokemon.itemData.crystalCrayonActivated = false;
+        const isIllusionActive = !!pokemon.illusion;
+        if (!isIllusionActive) {
+          this.add("-item", pokemon, "Crystal Crayon");
+          pokemon.itemData.crystalCrayonActivated = true;
+        }
+        pokemon.setType([types[0], "Crystal"]);
+      }
+    },
+    onUpdate(pokemon) {
+      if (
+        pokemon.itemData?.crystalCrayonOriginalType &&
+        !pokemon.itemData.crystalCrayonActivated
+      ) {
+        const isIllusionActive = !!pokemon.illusion;
+        if (!isIllusionActive) {
+          this.add("-item", pokemon, "Crystal Crayon");
+          pokemon.itemData.crystalCrayonActivated = true;
+        }
+      }
+    },
+    onEnd(pokemon) {
+      if (pokemon.itemData?.crystalCrayonOriginalType) {
+        const isIllusionActive = !!pokemon.illusion;
+        if (!isIllusionActive) {
+          this.add("-enditem", pokemon, "Crystal Crayon");
+        }
+        pokemon.setType([pokemon.itemData.crystalCrayonOriginalType]);
+        delete pokemon.itemData.crystalCrayonOriginalType;
+        delete pokemon.itemData.crystalCrayonActivated;
+      }
+    },
+    num: 3228,
+    gen: 9
   },
   crystaleraser: {
     name: "Crystal Eraser",
@@ -974,6 +1158,52 @@ const Items = {
     num: 3106,
     gen: 4
   },
+  darkcrayon: {
+    name: "Dark Crayon",
+    spritenum: 3210,
+    fling: {
+      basePower: 20
+    },
+	onStart(pokemon) {
+      const types = pokemon.getTypes();
+      if (types.length === 1 && !types.includes('Dark')) {
+        pokemon.itemData = pokemon.itemData || {};
+        pokemon.itemData.darkCrayonOriginalType = types[0];
+        pokemon.itemData.darkCrayonActivated = false;
+        const isIllusionActive = !!pokemon.illusion;
+        if (!isIllusionActive) {
+          this.add('-item', pokemon, 'Dark Crayon');
+          pokemon.itemData.darkCrayonActivated = true;
+        }
+        pokemon.setType([types[0], 'Dark']);
+      }
+    },
+    onUpdate(pokemon) {
+      if (
+        pokemon.itemData?.darkCrayonOriginalType &&
+        !pokemon.itemData.darkCrayonActivated
+      ) {
+        const isIllusionActive = !!pokemon.illusion;
+        if (!isIllusionActive) {
+          this.add('-item', pokemon, 'Dark Crayon');
+          pokemon.itemData.darkCrayonActivated = true;
+        }
+      }
+    },
+    onEnd(pokemon) {
+      if (pokemon.itemData?.darkCrayonOriginalType) {
+        const isIllusionActive = !!pokemon.illusion;
+        if (!isIllusionActive) {
+          this.add('-enditem', pokemon, 'Dark Crayon');
+        }
+        pokemon.setType([pokemon.itemData.darkCrayonOriginalType]);
+        delete pokemon.itemData.darkCrayonOriginalType;
+        delete pokemon.itemData.darkCrayonActivated;
+      }
+    },
+    num: 3210,
+    gen: 9
+  },
   darkeraser: {
     name: "Dark Eraser",
     spritenum: 3181,
@@ -1064,6 +1294,52 @@ const Items = {
     gen: 6,
     isNonstandard: "Past"
   },
+  digitalcrayon: {
+    name: "Digital Crayon",
+    spritenum: 3229,
+    fling: {
+      basePower: 20
+    },
+	onStart(pokemon) {
+      const types = pokemon.getTypes();
+      if (types.length === 1 && !types.includes("Digital")) {
+        pokemon.itemData = pokemon.itemData || {};
+        pokemon.itemData.digitalCrayonOriginalType = types[0];
+        pokemon.itemData.digitalCrayonActivated = false;
+        const isIllusionActive = !!pokemon.illusion;
+        if (!isIllusionActive) {
+          this.add("-item", pokemon, "Digital Crayon");
+          pokemon.itemData.digitalCrayonActivated = true;
+        }
+        pokemon.setType([types[0], "Digital"]);
+      }
+    },
+    onUpdate(pokemon) {
+      if (
+        pokemon.itemData?.digitalCrayonOriginalType &&
+        !pokemon.itemData.digitalCrayonActivated
+      ) {
+        const isIllusionActive = !!pokemon.illusion;
+        if (!isIllusionActive) {
+          this.add("-item", pokemon, "Digital Crayon");
+          pokemon.itemData.digitalCrayonActivated = true;
+        }
+      }
+    },
+    onEnd(pokemon) {
+      if (pokemon.itemData?.digitalCrayonOriginalType) {
+        const isIllusionActive = !!pokemon.illusion;
+        if (!isIllusionActive) {
+          this.add("-enditem", pokemon, "Digital Crayon");
+        }
+        pokemon.setType([pokemon.itemData.digitalCrayonOriginalType]);
+        delete pokemon.itemData.digitalCrayonOriginalType;
+        delete pokemon.itemData.digitalCrayonActivated;
+      }
+    },
+    num: 3229,
+    gen: 9
+  },
   digitaleraser: {
     name: "Digital Eraser",
     spritenum: 3200,
@@ -1153,6 +1429,52 @@ const Items = {
     num: 3085,
     gen: 7,
     isNonstandard: "Past"
+  },
+  dragoncrayon: {
+    name: "Dragon Crayon",
+    spritenum: 3211,
+    fling: {
+      basePower: 20
+    },
+	onStart(pokemon) {
+      const types = pokemon.getTypes();
+      if (types.length === 1 && !types.includes('Dragon')) {
+        pokemon.itemData = pokemon.itemData || {};
+        pokemon.itemData.dragonCrayonOriginalType = types[0];
+        pokemon.itemData.dragonCrayonActivated = false;
+        const isIllusionActive = !!pokemon.illusion;
+        if (!isIllusionActive) {
+          this.add('-item', pokemon, 'Dragon Crayon');
+          pokemon.itemData.dragonCrayonActivated = true;
+        }
+        pokemon.setType([types[0], 'Dragon']);
+      }
+    },
+    onUpdate(pokemon) {
+      if (
+        pokemon.itemData?.dragonCrayonOriginalType &&
+        !pokemon.itemData.dragonCrayonActivated
+      ) {
+        const isIllusionActive = !!pokemon.illusion;
+        if (!isIllusionActive) {
+          this.add('-item', pokemon, 'Dragon Crayon');
+          pokemon.itemData.dragonCrayonActivated = true;
+        }
+      }
+    },
+    onEnd(pokemon) {
+      if (pokemon.itemData?.dragonCrayonOriginalType) {
+        const isIllusionActive = !!pokemon.illusion;
+        if (!isIllusionActive) {
+          this.add('-enditem', pokemon, 'Dragon Crayon');
+        }
+        pokemon.setType([pokemon.itemData.dragonCrayonOriginalType]);
+        delete pokemon.itemData.dragonCrayonOriginalType;
+        delete pokemon.itemData.dragonCrayonActivated;
+      }
+    },
+    num: 3211,
+    gen: 9
   },
   dragoneraser: {
     name: "Dragon Eraser",
@@ -1252,6 +1574,52 @@ const Items = {
     gen: 7,
     isNonstandard: "Past"
   },
+  eldritchcrayon: {
+    name: "Eldritch Crayon",
+    spritenum: 3239,
+    fling: {
+      basePower: 20
+    },
+	onStart(pokemon) {
+      const types = pokemon.getTypes();
+      if (types.length === 1 && !types.includes("Eldritch")) {
+        pokemon.itemData = pokemon.itemData || {};
+        pokemon.itemData.eldritchCrayonOriginalType = types[0];
+        pokemon.itemData.eldritchCrayonActivated = false;
+        const isIllusionActive = !!pokemon.illusion;
+        if (!isIllusionActive) {
+          this.add("-item", pokemon, "Eldritch Crayon");
+          pokemon.itemData.eldritchCrayonActivated = true;
+        }
+        pokemon.setType([types[0], "Eldritch"]);
+      }
+    },
+    onUpdate(pokemon) {
+      if (
+        pokemon.itemData?.eldritchCrayonOriginalType &&
+        !pokemon.itemData.eldritchCrayonActivated
+      ) {
+        const isIllusionActive = !!pokemon.illusion;
+        if (!isIllusionActive) {
+          this.add("-item", pokemon, "Eldritch Crayon");
+          pokemon.itemData.eldritchCrayonActivated = true;
+        }
+      }
+    },
+    onEnd(pokemon) {
+      if (pokemon.itemData?.eldritchCrayonOriginalType) {
+        const isIllusionActive = !!pokemon.illusion;
+        if (!isIllusionActive) {
+          this.add("-enditem", pokemon, "Eldritch Crayon");
+        }
+        pokemon.setType([pokemon.itemData.eldritchCrayonOriginalType]);
+        delete pokemon.itemData.eldritchCrayonOriginalType;
+        delete pokemon.itemData.eldritchCrayonActivated;
+      }
+    },
+    num: 3239,
+    gen: 9
+  },
   eldritcheraser: {
     name: "Eldritch Eraser",
     spritenum: 3207,
@@ -1329,6 +1697,52 @@ const Items = {
     num: 3133,
     gen: 7,
     isNonstandard: "Past"
+  },
+  electriccrayon: {
+    name: "Electric Crayon",
+    spritenum: 3212,
+    fling: {
+      basePower: 20
+    },
+	onStart(pokemon) {
+      const types = pokemon.getTypes();
+      if (types.length === 1 && !types.includes('Electric')) {
+        pokemon.itemData = pokemon.itemData || {};
+        pokemon.itemData.electricCrayonOriginalType = types[0];
+        pokemon.itemData.electricCrayonActivated = false;
+        const isIllusionActive = !!pokemon.illusion;
+        if (!isIllusionActive) {
+          this.add('-item', pokemon, 'Electric Crayon');
+          pokemon.itemData.electricCrayonActivated = true;
+        }
+        pokemon.setType([types[0], 'Electric']);
+      }
+    },
+    onUpdate(pokemon) {
+      if (
+        pokemon.itemData?.electricCrayonOriginalType &&
+        !pokemon.itemData.electricCrayonActivated
+      ) {
+        const isIllusionActive = !!pokemon.illusion;
+        if (!isIllusionActive) {
+          this.add('-item', pokemon, 'Electric Crayon');
+          pokemon.itemData.electricCrayonActivated = true;
+        }
+      }
+    },
+    onEnd(pokemon) {
+      if (pokemon.itemData?.electricCrayonOriginalType) {
+        const isIllusionActive = !!pokemon.illusion;
+        if (!isIllusionActive) {
+          this.add('-enditem', pokemon, 'Electric Crayon');
+        }
+        pokemon.setType([pokemon.itemData.electricCrayonOriginalType]);
+        delete pokemon.itemData.electricCrayonOriginalType;
+        delete pokemon.itemData.electricCrayonActivated;
+      }
+    },
+    num: 3212,
+    gen: 9
   },
   electriceraser: {
     name: "Electric Eraser",
@@ -1416,6 +1830,52 @@ const Items = {
     num: 3004,
     gen: 5
   },
+  fairycrayon: {
+    name: "Fairy Crayon",
+    spritenum: 3213,
+    fling: {
+      basePower: 20
+    },
+	onStart(pokemon) {
+      const types = pokemon.getTypes();
+      if (types.length === 1 && !types.includes('Fairy')) {
+        pokemon.itemData = pokemon.itemData || {};
+        pokemon.itemData.fairyCrayonOriginalType = types[0];
+        pokemon.itemData.fairyCrayonActivated = false;
+        const isIllusionActive = !!pokemon.illusion;
+        if (!isIllusionActive) {
+          this.add('-item', pokemon, 'Fairy Crayon');
+          pokemon.itemData.fairyCrayonActivated = true;
+        }
+        pokemon.setType([types[0], 'Fairy']);
+      }
+    },
+    onUpdate(pokemon) {
+      if (
+        pokemon.itemData?.fairyCrayonOriginalType &&
+        !pokemon.itemData.fairyCrayonActivated
+      ) {
+        const isIllusionActive = !!pokemon.illusion;
+        if (!isIllusionActive) {
+          this.add('-item', pokemon, 'Fairy Crayon');
+          pokemon.itemData.fairyCrayonActivated = true;
+        }
+      }
+    },
+    onEnd(pokemon) {
+      if (pokemon.itemData?.fairyCrayonOriginalType) {
+        const isIllusionActive = !!pokemon.illusion;
+        if (!isIllusionActive) {
+          this.add('-enditem', pokemon, 'Fairy Crayon');
+        }
+        pokemon.setType([pokemon.itemData.fairyCrayonOriginalType]);
+        delete pokemon.itemData.fairyCrayonOriginalType;
+        delete pokemon.itemData.fairyCrayonActivated;
+      }
+    },
+    num: 3213,
+    gen: 9
+  },
   fairyeraser: {
     name: "Fairy Eraser",
     spritenum: 3184,
@@ -1463,6 +1923,52 @@ const Items = {
     num: 3184,
     gen: 9
   },
+  fightingcrayon: {
+    name: "Fighting Crayon",
+    spritenum: 3214,
+    fling: {
+      basePower: 20
+    },
+	onStart(pokemon) {
+      const types = pokemon.getTypes();
+      if (types.length === 1 && !types.includes('Fighting')) {
+        pokemon.itemData = pokemon.itemData || {};
+        pokemon.itemData.fightingCrayonOriginalType = types[0];
+        pokemon.itemData.fightingCrayonActivated = false;
+        const isIllusionActive = !!pokemon.illusion;
+        if (!isIllusionActive) {
+          this.add('-item', pokemon, 'Fighting Crayon');
+          pokemon.itemData.fightingCrayonActivated = true;
+        }
+        pokemon.setType([types[0], 'Fighting']);
+      }
+    },
+    onUpdate(pokemon) {
+      if (
+        pokemon.itemData?.fightingCrayonOriginalType &&
+        !pokemon.itemData.fightingCrayonActivated
+      ) {
+        const isIllusionActive = !!pokemon.illusion;
+        if (!isIllusionActive) {
+          this.add('-item', pokemon, 'Fighting Crayon');
+          pokemon.itemData.fightingCrayonActivated = true;
+        }
+      }
+    },
+    onEnd(pokemon) {
+      if (pokemon.itemData?.fightingCrayonOriginalType) {
+        const isIllusionActive = !!pokemon.illusion;
+        if (!isIllusionActive) {
+          this.add('-enditem', pokemon, 'Fighting Crayon');
+        }
+        pokemon.setType([pokemon.itemData.fightingCrayonOriginalType]);
+        delete pokemon.itemData.fightingCrayonOriginalType;
+        delete pokemon.itemData.fightingCrayonActivated;
+      }
+    },
+    num: 3214,
+    gen: 9
+  },
   fightingeraser: {
     name: "Fighting Eraser",
     spritenum: 3185,
@@ -1508,6 +2014,52 @@ const Items = {
       }
     },
     num: 3185,
+    gen: 9
+  },
+  firecrayon: {
+    name: "Fire Crayon",
+    spritenum: 3215,
+    fling: {
+      basePower: 20
+    },
+	onStart(pokemon) {
+      const types = pokemon.getTypes();
+      if (types.length === 1 && !types.includes('Fire')) {
+        pokemon.itemData = pokemon.itemData || {};
+        pokemon.itemData.fireCrayonOriginalType = types[0];
+        pokemon.itemData.fireCrayonActivated = false;
+        const isIllusionActive = !!pokemon.illusion;
+        if (!isIllusionActive) {
+          this.add('-item', pokemon, 'Fire Crayon');
+          pokemon.itemData.fireCrayonActivated = true;
+        }
+        pokemon.setType([types[0], 'Fire']);
+      }
+    },
+    onUpdate(pokemon) {
+      if (
+        pokemon.itemData?.fireCrayonOriginalType &&
+        !pokemon.itemData.fireCrayonActivated
+      ) {
+        const isIllusionActive = !!pokemon.illusion;
+        if (!isIllusionActive) {
+          this.add('-item', pokemon, 'Fire Crayon');
+          pokemon.itemData.fireCrayonActivated = true;
+        }
+      }
+    },
+    onEnd(pokemon) {
+      if (pokemon.itemData?.fireCrayonOriginalType) {
+        const isIllusionActive = !!pokemon.illusion;
+        if (!isIllusionActive) {
+          this.add('-enditem', pokemon, 'Fire Crayon');
+        }
+        pokemon.setType([pokemon.itemData.fireCrayonOriginalType]);
+        delete pokemon.itemData.fireCrayonOriginalType;
+        delete pokemon.itemData.fireCrayonActivated;
+      }
+    },
+    num: 3215,
     gen: 9
   },
   fireeraser: {
@@ -1590,6 +2142,52 @@ const Items = {
     itemUser: ["Flygon-Armored"],
     num: 3023,
     gen: 8
+  },
+  flyingcrayon: {
+    name: "Flying Crayon",
+    spritenum: 3216,
+    fling: {
+      basePower: 20
+    },
+	onStart(pokemon) {
+      const types = pokemon.getTypes();
+      if (types.length === 1 && !types.includes('Flying')) {
+        pokemon.itemData = pokemon.itemData || {};
+        pokemon.itemData.flyingCrayonOriginalType = types[0];
+        pokemon.itemData.flyingCrayonActivated = false;
+        const isIllusionActive = !!pokemon.illusion;
+        if (!isIllusionActive) {
+          this.add('-item', pokemon, 'Flying Crayon');
+          pokemon.itemData.flyingCrayonActivated = true;
+        }
+        pokemon.setType([types[0], 'Flying']);
+      }
+    },
+    onUpdate(pokemon) {
+      if (
+        pokemon.itemData?.flyingCrayonOriginalType &&
+        !pokemon.itemData.flyingCrayonActivated
+      ) {
+        const isIllusionActive = !!pokemon.illusion;
+        if (!isIllusionActive) {
+          this.add('-item', pokemon, 'Flying Crayon');
+          pokemon.itemData.flyingCrayonActivated = true;
+        }
+      }
+    },
+    onEnd(pokemon) {
+      if (pokemon.itemData?.flyingCrayonOriginalType) {
+      const isIllusionActive = !!pokemon.illusion;
+        if (!isIllusionActive) {
+          this.add('-enditem', pokemon, 'Flying Crayon');
+        }
+        pokemon.setType([pokemon.itemData.flyingCrayonOriginalType]);
+        delete pokemon.itemData.flyingCrayonOriginalType;
+        delete pokemon.itemData.flyingCrayonActivated;
+      }
+    },
+    num: 3216,
+    gen: 9
   },
   flyingeraser: {
     name: "Flying Eraser",
@@ -1781,6 +2379,52 @@ const Items = {
     gen: 6,
     isNonstandard: "Past"
   },
+  ghostcrayon: {
+    name: "Ghost Crayon",
+    spritenum: 3217,
+    fling: {
+      basePower: 20
+    },
+	onStart(pokemon) {
+      const types = pokemon.getTypes();
+      if (types.length === 1 && !types.includes('Ghost')) {
+        pokemon.itemData = pokemon.itemData || {};
+        pokemon.itemData.ghostCrayonOriginalType = types[0];
+        pokemon.itemData.ghostCrayonActivated = false;
+        const isIllusionActive = !!pokemon.illusion;
+        if (!isIllusionActive) {
+          this.add('-item', pokemon, 'Ghost Crayon');
+          pokemon.itemData.ghostCrayonActivated = true;
+        }
+        pokemon.setType([types[0], 'Ghost']);
+      }
+    },
+    onUpdate(pokemon) {
+      if (
+        pokemon.itemData?.ghostCrayonOriginalType &&
+        !pokemon.itemData.ghostCrayonActivated
+      ) {
+        const isIllusionActive = !!pokemon.illusion;
+        if (!isIllusionActive) {
+          this.add('-item', pokemon, 'Ghost Crayon');
+          pokemon.itemData.ghostCrayonActivated = true;
+        }
+      }
+    },
+    onEnd(pokemon) {
+      if (pokemon.itemData?.ghostCrayonOriginalType) {
+        const isIllusionActive = !!pokemon.illusion;
+        if (!isIllusionActive) {
+          this.add('-enditem', pokemon, 'Ghost Crayon');
+        }
+        pokemon.setType([pokemon.itemData.ghostCrayonOriginalType]);
+        delete pokemon.itemData.ghostCrayonOriginalType;
+        delete pokemon.itemData.ghostCrayonActivated;
+      }
+    },
+    num: 3217,
+    gen: 9
+  },
   ghosteraser: {
     name: "Ghost Eraser",
     spritenum: 3188,
@@ -1845,6 +2489,52 @@ const Items = {
     gen: 6,
     isNonstandard: "Past"
   },
+  grasscrayon: {
+    name: "Grass Crayon",
+    spritenum: 3218,
+    fling: {
+      basePower: 20
+    },
+	onStart(pokemon) {
+      const types = pokemon.getTypes();
+      if (types.length === 1 && !types.includes('Grass')) {
+        pokemon.itemData = pokemon.itemData || {};
+        pokemon.itemData.grassCrayonOriginalType = types[0];
+        pokemon.itemData.grassCrayonActivated = false;
+        const isIllusionActive = !!pokemon.illusion;
+        if (!isIllusionActive) {
+          this.add('-item', pokemon, 'Grass Crayon');
+          pokemon.itemData.grassCrayonActivated = true;
+        }
+        pokemon.setType([types[0], 'Grass']);
+      }
+    },
+    onUpdate(pokemon) {
+      if (
+        pokemon.itemData?.grassCrayonOriginalType &&
+        !pokemon.itemData.grassCrayonActivated
+      ) {
+        const isIllusionActive = !!pokemon.illusion;
+        if (!isIllusionActive) {
+          this.add('-item', pokemon, 'Grass Crayon');
+          pokemon.itemData.grassCrayonActivated = true;
+        }
+      }
+    },
+    onEnd(pokemon) {
+      if (pokemon.itemData?.grassCrayonOriginalType) {
+        const isIllusionActive = !!pokemon.illusion;
+        if (!isIllusionActive) {
+          this.add('-enditem', pokemon, 'Grass Crayon');
+        }
+        pokemon.setType([pokemon.itemData.grassCrayonOriginalType]);
+        delete pokemon.itemData.grassCrayonOriginalType;
+        delete pokemon.itemData.grassCrayonActivated;
+      }
+    },
+    num: 3218,
+    gen: 9
+  },
   grasseraser: {
     name: "Grass Eraser",
     spritenum: 3189,
@@ -1890,6 +2580,52 @@ const Items = {
       }
     },
     num: 3189,
+    gen: 9
+  },
+  groundcrayon: {
+    name: "Ground Crayon",
+    spritenum: 3219,
+    fling: {
+      basePower: 20
+    },
+	onStart(pokemon) {
+      const types = pokemon.getTypes();
+      if (types.length === 1 && !types.includes('Ground')) {
+        pokemon.itemData = pokemon.itemData || {};
+        pokemon.itemData.groundCrayonOriginalType = types[0];
+        pokemon.itemData.groundCrayonActivated = false;
+        const isIllusionActive = !!pokemon.illusion;
+        if (!isIllusionActive) {
+          this.add('-item', pokemon, 'Ground Crayon');
+          pokemon.itemData.groundCrayonActivated = true;
+        }
+        pokemon.setType([types[0], 'Ground']);
+      }
+    },
+    onUpdate(pokemon) {
+      if (
+        pokemon.itemData?.groundCrayonOriginalType &&
+        !pokemon.itemData.groundCrayonActivated
+      ) {
+        const isIllusionActive = !!pokemon.illusion;
+        if (!isIllusionActive) {
+          this.add('-item', pokemon, 'Ground Crayon');
+          pokemon.itemData.groundCrayonActivated = true;
+        }
+      }
+    },
+    onEnd(pokemon) {
+      if (pokemon.itemData?.groundCrayonOriginalType) {
+        const isIllusionActive = !!pokemon.illusion;
+        if (!isIllusionActive) {
+          this.add('-enditem', pokemon, 'Ground Crayon');
+        }
+        pokemon.setType([pokemon.itemData.groundCrayonOriginalType]);
+        delete pokemon.itemData.groundCrayonOriginalType;
+        delete pokemon.itemData.groundCrayonActivated;
+      }
+    },
+    num: 3219,
     gen: 9
   },
   grounderaser: {
@@ -2027,6 +2763,52 @@ const Items = {
     num: 666,
     gen: 6,
     isNonstandard: "Past"
+  },
+  icecrayon: {
+    name: "Ice Crayon",
+    spritenum: 3220,
+    fling: {
+      basePower: 20
+    },
+	onStart(pokemon) {
+      const types = pokemon.getTypes();
+      if (types.length === 1 && !types.includes('Ice')) {
+        pokemon.itemData = pokemon.itemData || {};
+        pokemon.itemData.iceCrayonOriginalType = types[0];
+        pokemon.itemData.iceCrayonActivated = false;
+        const isIllusionActive = !!pokemon.illusion;
+        if (!isIllusionActive) {
+          this.add('-item', pokemon, 'Ice Crayon');
+          pokemon.itemData.iceCrayonActivated = true;
+        }
+        pokemon.setType([types[0], 'Ice']);
+      }
+    },
+    onUpdate(pokemon) {
+      if (
+        pokemon.itemData?.iceCrayonOriginalType &&
+        !pokemon.itemData.iceCrayonActivated
+      ) {
+        const isIllusionActive = !!pokemon.illusion;
+        if (!isIllusionActive) {
+          this.add('-item', pokemon, 'Ice Crayon');
+          pokemon.itemData.iceCrayonActivated = true;
+        }
+      }
+    },
+    onEnd(pokemon) {
+      if (pokemon.itemData?.iceCrayonOriginalType) {
+        const isIllusionActive = !!pokemon.illusion;
+        if (!isIllusionActive) {
+          this.add('-enditem', pokemon, 'Ice Crayon');
+        }
+        pokemon.setType([pokemon.itemData.iceCrayonOriginalType]);
+        delete pokemon.itemData.iceCrayonOriginalType;
+        delete pokemon.itemData.iceCrayonActivated;
+      }
+    },
+    num: 3220,
+    gen: 9
   },
   iceeraser: {
     name: "Ice Eraser",
@@ -2278,6 +3060,52 @@ const Items = {
     },
     num: 3139,
     gen: 2
+  },
+  lightcrayon: {
+    name: "Light Crayon",
+    spritenum: 3230,
+    fling: {
+      basePower: 20
+    },
+	onStart(pokemon) {
+      const types = pokemon.getTypes();
+      if (types.length === 1 && !types.includes("Light")) {
+        pokemon.itemData = pokemon.itemData || {};
+        pokemon.itemData.lightCrayonOriginalType = types[0];
+        pokemon.itemData.lightCrayonActivated = false;
+        const isIllusionActive = !!pokemon.illusion;
+        if (!isIllusionActive) {
+          this.add("-item", pokemon, "Light Crayon");
+          pokemon.itemData.lightCrayonActivated = true;
+        }
+        pokemon.setType([types[0], "Light"]);
+      }
+    },
+    onUpdate(pokemon) {
+      if (
+        pokemon.itemData?.lightCrayonOriginalType &&
+        !pokemon.itemData.lightCrayonActivated
+      ) {
+        const isIllusionActive = !!pokemon.illusion;
+        if (!isIllusionActive) {
+          this.add("-item", pokemon, "Light Crayon");
+          pokemon.itemData.lightCrayonActivated = true;
+        }
+      }
+    },
+    onEnd(pokemon) {
+      if (pokemon.itemData?.lightCrayonOriginalType) {
+        const isIllusionActive = !!pokemon.illusion;
+        if (!isIllusionActive) {
+          this.add("-enditem", pokemon, "Light Crayon");
+        }
+        pokemon.setType([pokemon.itemData.lightCrayonOriginalType]);
+        delete pokemon.itemData.lightCrayonOriginalType;
+        delete pokemon.itemData.lightCrayonActivated;
+      }
+    },
+    num: 3230,
+    gen: 9
   },
   lighteraser: {
     name: "Light Eraser",
@@ -2704,6 +3532,52 @@ const Items = {
     num: 3148,
     gen: 4
   },
+  normalcrayon: {
+    name: "Normal Crayon",
+    spritenum: 3221,
+    fling: {
+      basePower: 20
+    },
+	onStart(pokemon) {
+      const types = pokemon.getTypes();
+      if (types.length === 1 && !types.includes('Normal')) {
+        pokemon.itemData = pokemon.itemData || {};
+        pokemon.itemData.normalCrayonOriginalType = types[0];
+        pokemon.itemData.normalCrayonActivated = false;
+        const isIllusionActive = !!pokemon.illusion;
+        if (!isIllusionActive) {
+          this.add('-item', pokemon, 'Normal Crayon');
+          pokemon.itemData.normalCrayonActivated = true;
+        }
+        pokemon.setType([types[0], 'Normal']);
+      }
+    },
+    onUpdate(pokemon) {
+      if (
+        pokemon.itemData?.normalCrayonOriginalType &&
+        !pokemon.itemData.normalCrayonActivated
+      ) {
+        const isIllusionActive = !!pokemon.illusion;
+        if (!isIllusionActive) {
+          this.add('-item', pokemon, 'Normal Crayon');
+          pokemon.itemData.normalCrayonActivated = true;
+        }
+      }
+    },
+    onEnd(pokemon) {
+      if (pokemon.itemData?.normalCrayonOriginalType) {
+        const isIllusionActive = !!pokemon.illusion;
+        if (!isIllusionActive) {
+          this.add('-enditem', pokemon, 'Normal Crayon');
+        }
+        pokemon.setType([pokemon.itemData.normalCrayonOriginalType]);
+        delete pokemon.itemData.normalCrayonOriginalType;
+        delete pokemon.itemData.normalCrayonActivated;
+      }
+    },
+    num: 3221,
+    gen: 9
+  },
   normaleraser: {
     name: "Normal Eraser",
     spritenum: 3192,
@@ -2749,6 +3623,52 @@ const Items = {
       }
     },
     num: 3192,
+    gen: 9
+  },
+  nuclearcrayon: {
+    name: "Nuclear Crayon",
+    spritenum: 3231,
+    fling: {
+      basePower: 20
+    },
+	onStart(pokemon) {
+      const types = pokemon.getTypes();
+      if (types.length === 1 && !types.includes("Nuclear")) {
+        pokemon.itemData = pokemon.itemData || {};
+        pokemon.itemData.nuclearCrayonOriginalType = types[0];
+        pokemon.itemData.nuclearCrayonActivated = false;
+        const isIllusionActive = !!pokemon.illusion;
+        if (!isIllusionActive) {
+          this.add("-item", pokemon, "Nuclear Crayon");
+          pokemon.itemData.nuclearCrayonActivated = true;
+        }
+        pokemon.setType([types[0], "Nuclear"]);
+      }
+    },
+    onUpdate(pokemon) {
+      if (
+        pokemon.itemData?.nuclearCrayonOriginalType &&
+        !pokemon.itemData.nuclearCrayonActivated
+      ) {
+        const isIllusionActive = !!pokemon.illusion;
+        if (!isIllusionActive) {
+          this.add("-item", pokemon, "Nuclear Crayon");
+          pokemon.itemData.nuclearCrayonActivated = true;
+        }
+      }
+    },
+    onEnd(pokemon) {
+      if (pokemon.itemData?.nuclearCrayonOriginalType) {
+        const isIllusionActive = !!pokemon.illusion;
+        if (!isIllusionActive) {
+          this.add("-enditem", pokemon, "Nuclear Crayon");
+        }
+        pokemon.setType([pokemon.itemData.nuclearCrayonOriginalType]);
+        delete pokemon.itemData.nuclearCrayonOriginalType;
+        delete pokemon.itemData.nuclearCrayonActivated;
+      }
+    },
+    num: 3231,
     gen: 9
   },
   nucleareraser: {
@@ -2963,6 +3883,52 @@ const Items = {
     gen: 6,
     isNonstandard: "Past"
   },
+  plasticcrayon: {
+    name: "Plastic Crayon",
+    spritenum: 3232,
+    fling: {
+      basePower: 20
+    },
+	onStart(pokemon) {
+      const types = pokemon.getTypes();
+      if (types.length === 1 && !types.includes("Plastic")) {
+        pokemon.itemData = pokemon.itemData || {};
+        pokemon.itemData.plasticCrayonOriginalType = types[0];
+        pokemon.itemData.plasticCrayonActivated = false;
+        const isIllusionActive = !!pokemon.illusion;
+        if (!isIllusionActive) {
+          this.add("-item", pokemon, "Plastic Crayon");
+          pokemon.itemData.plasticCrayonActivated = true;
+        }
+        pokemon.setType([types[0], "Plastic"]);
+      }
+    },
+    onUpdate(pokemon) {
+      if (
+        pokemon.itemData?.plasticCrayonOriginalType &&
+        !pokemon.itemData.plasticCrayonActivated
+      ) {
+        const isIllusionActive = !!pokemon.illusion;
+        if (!isIllusionActive) {
+          this.add("-item", pokemon, "Plastic Crayon");
+          pokemon.itemData.plasticCrayonActivated = true;
+        }
+      }
+    },
+    onEnd(pokemon) {
+      if (pokemon.itemData?.plasticCrayonOriginalType) {
+        const isIllusionActive = !!pokemon.illusion;
+        if (!isIllusionActive) {
+          this.add("-enditem", pokemon, "Plastic Crayon");
+        }
+        pokemon.setType([pokemon.itemData.plasticCrayonOriginalType]);
+        delete pokemon.itemData.plasticCrayonOriginalType;
+        delete pokemon.itemData.plasticCrayonActivated;
+      }
+    },
+    num: 3232,
+    gen: 9
+  },
   plasticeraser: {
     name: "Plastic Eraser",
     spritenum: 3203,
@@ -3052,6 +4018,52 @@ const Items = {
     num: 3129,
     gen: 7,
     isNonstandard: "Past"
+  },
+  poisoncrayon: {
+    name: "Poison Crayon",
+    spritenum: 3222,
+    fling: {
+      basePower: 20
+    },
+	onStart(pokemon) {
+      const types = pokemon.getTypes();
+      if (types.length === 1 && !types.includes('Poison')) {
+        pokemon.itemData = pokemon.itemData || {};
+        pokemon.itemData.poisonCrayonOriginalType = types[0];
+        pokemon.itemData.poisonCrayonActivated = false;
+        const isIllusionActive = !!pokemon.illusion;
+        if (!isIllusionActive) {
+          this.add('-item', pokemon, 'Poison Crayon');
+          pokemon.itemData.poisonCrayonActivated = true;
+        }
+        pokemon.setType([types[0], 'Poison']);
+      }
+    },
+    onUpdate(pokemon) {
+      if (
+        pokemon.itemData?.poisonCrayonOriginalType &&
+        !pokemon.itemData.poisonCrayonActivated
+      ) {
+        const isIllusionActive = !!pokemon.illusion;
+        if (!isIllusionActive) {
+          this.add('-item', pokemon, 'Poison Crayon');
+          pokemon.itemData.poisonCrayonActivated = true;
+        }
+      }
+    },
+    onEnd(pokemon) {
+      if (pokemon.itemData?.poisonCrayonOriginalType) {
+        const isIllusionActive = !!pokemon.illusion;
+        if (!isIllusionActive) {
+          this.add('-enditem', pokemon, 'Poison Crayon');
+        }
+        pokemon.setType([pokemon.itemData.poisonCrayonOriginalType]);
+        delete pokemon.itemData.poisonCrayonOriginalType;
+        delete pokemon.itemData.poisonCrayonActivated;
+      }
+    },
+    num: 3222,
+    gen: 9
   },
   poisoneraser: {
     name: "Poison Eraser",
@@ -3232,6 +4244,52 @@ const Items = {
     gen: 2,
     isNonstandard: "Past"
   },
+  psychiccrayon: {
+    name: "Psychic Crayon",
+    spritenum: 3223,
+    fling: {
+      basePower: 20
+    },
+	onStart(pokemon) {
+      const types = pokemon.getTypes();
+      if (types.length === 1 && !types.includes('Psychic')) {
+        pokemon.itemData = pokemon.itemData || {};
+        pokemon.itemData.psychicCrayonOriginalType = types[0];
+        pokemon.itemData.psychicCrayonActivated = false;
+        const isIllusionActive = !!pokemon.illusion;
+        if (!isIllusionActive) {
+          this.add('-item', pokemon, 'Psychic Crayon');
+          pokemon.itemData.psychicCrayonActivated = true;
+        }
+        pokemon.setType([types[0], 'Psychic']);
+      }
+    },
+    onUpdate(pokemon) {
+      if (
+        pokemon.itemData?.psychicCrayonOriginalType &&
+        !pokemon.itemData.psychicCrayonActivated
+      ) {
+        const isIllusionActive = !!pokemon.illusion;
+        if (!isIllusionActive) {
+          this.add('-item', pokemon, 'Psychic Crayon');
+          pokemon.itemData.psychicCrayonActivated = true;
+        }
+      }
+    },
+    onEnd(pokemon) {
+      if (pokemon.itemData?.psychicCrayonOriginalType) {
+        const isIllusionActive = !!pokemon.illusion;
+        if (!isIllusionActive) {
+          this.add('-enditem', pokemon, 'Psychic Crayon');
+        }
+        pokemon.setType([pokemon.itemData.psychicCrayonOriginalType]);
+        delete pokemon.itemData.psychicCrayonOriginalType;
+        delete pokemon.itemData.psychicCrayonActivated;
+      }
+    },
+    num: 3223,
+    gen: 9
+  },
   psychiceraser: {
     name: "Psychic Eraser",
     spritenum: 3194,
@@ -3277,6 +4335,52 @@ const Items = {
       }
     },
     num: 3194,
+    gen: 9
+  },
+  questionmarkcrayon: {
+    name: "Questionmark Crayon",
+    spritenum: 3233,
+    fling: {
+      basePower: 20
+    },
+	onStart(pokemon) {
+      const types = pokemon.getTypes();
+      if (types.length === 1 && !types.includes("Questionmark")) {
+        pokemon.itemData = pokemon.itemData || {};
+        pokemon.itemData.questionmarkCrayonOriginalType = types[0];
+        pokemon.itemData.questionmarkCrayonActivated = false;
+        const isIllusionActive = !!pokemon.illusion;
+        if (!isIllusionActive) {
+          this.add("-item", pokemon, "Questionmark Crayon");
+          pokemon.itemData.questionmarkCrayonActivated = true;
+        }
+        pokemon.setType([types[0], "Questionmark"]);
+      }
+    },
+    onUpdate(pokemon) {
+      if (
+        pokemon.itemData?.questionmarkCrayonOriginalType &&
+        !pokemon.itemData.questionmarkCrayonActivated
+      ) {
+        const isIllusionActive = !!pokemon.illusion;
+        if (!isIllusionActive) {
+          this.add("-item", pokemon, "Questionmark Crayon");
+          pokemon.itemData.questionmarkCrayonActivated = true;
+        }
+      }
+    },
+    onEnd(pokemon) {
+      if (pokemon.itemData?.questionmarkCrayonOriginalType) {
+        const isIllusionActive = !!pokemon.illusion;
+        if (!isIllusionActive) {
+          this.add("-enditem", pokemon, "Questionmark Crayon");
+        }
+        pokemon.setType([pokemon.itemData.questionmarkCrayonOriginalType]);
+        delete pokemon.itemData.questionmarkCrayonOriginalType;
+        delete pokemon.itemData.questionmarkCrayonActivated;
+      }
+    },
+    num: 3233,
     gen: 9
   },
   questionmarkeraser: {
@@ -3413,6 +4517,52 @@ const Items = {
     forcedForme: "Arceus-Sound",
     num: 3105,
     gen: 4
+  },
+  rockcrayon: {
+    name: "Rock Crayon",
+    spritenum: 3224,
+    fling: {
+      basePower: 20
+    },
+	onStart(pokemon) {
+      const types = pokemon.getTypes();
+      if (types.length === 1 && !types.includes('Rock')) {
+        pokemon.itemData = pokemon.itemData || {};
+        pokemon.itemData.rockCrayonOriginalType = types[0];
+        pokemon.itemData.rockCrayonActivated = false;
+        const isIllusionActive = !!pokemon.illusion;
+        if (!isIllusionActive) {
+          this.add('-item', pokemon, 'Rock Crayon');
+          pokemon.itemData.rockCrayonActivated = true;
+        }
+        pokemon.setType([types[0], 'Rock']);
+      }
+    },
+    onUpdate(pokemon) {
+      if (
+        pokemon.itemData?.rockCrayonOriginalType &&
+        !pokemon.itemData.rockCrayonActivated
+      ) {
+        const isIllusionActive = !!pokemon.illusion;
+        if (!isIllusionActive) {
+          this.add('-item', pokemon, 'Rock Crayon');
+          pokemon.itemData.rockCrayonActivated = true;
+        }
+      }
+    },
+    onEnd(pokemon) {
+      if (pokemon.itemData?.rockCrayonOriginalType) {
+        const isIllusionActive = !!pokemon.illusion;
+        if (!isIllusionActive) {
+          this.add('-enditem', pokemon, 'Rock Crayon');
+        }
+        pokemon.setType([pokemon.itemData.rockCrayonOriginalType]);
+        delete pokemon.itemData.rockCrayonOriginalType;
+        delete pokemon.itemData.rockCrayonActivated;
+      }
+    },
+    num: 3224,
+    gen: 9
   },
   rockeraser: {
     name: "Rock Eraser",
@@ -3558,6 +4708,52 @@ const Items = {
     gen: 7,
     isNonstandard: "Past"
   },
+  shadowcrayon: {
+    name: "Shadow Crayon",
+    spritenum: 3234,
+    fling: {
+      basePower: 20
+    },
+	onStart(pokemon) {
+      const types = pokemon.getTypes();
+      if (types.length === 1 && !types.includes("Shadow")) {
+        pokemon.itemData = pokemon.itemData || {};
+        pokemon.itemData.shadowCrayonOriginalType = types[0];
+        pokemon.itemData.shadowCrayonActivated = false;
+        const isIllusionActive = !!pokemon.illusion;
+        if (!isIllusionActive) {
+          this.add("-item", pokemon, "Shadow Crayon");
+          pokemon.itemData.shadowCrayonActivated = true;
+        }
+        pokemon.setType([types[0], "Shadow"]);
+      }
+    },
+    onUpdate(pokemon) {
+      if (
+        pokemon.itemData?.shadowCrayonOriginalType &&
+        !pokemon.itemData.shadowCrayonActivated
+      ) {
+        const isIllusionActive = !!pokemon.illusion;
+        if (!isIllusionActive) {
+          this.add("-item", pokemon, "Shadow Crayon");
+          pokemon.itemData.shadowCrayonActivated = true;
+        }
+      }
+    },
+    onEnd(pokemon) {
+      if (pokemon.itemData?.shadowCrayonOriginalType) {
+        const isIllusionActive = !!pokemon.illusion;
+        if (!isIllusionActive) {
+          this.add("-enditem", pokemon, "Shadow Crayon");
+        }
+        pokemon.setType([pokemon.itemData.shadowCrayonOriginalType]);
+        delete pokemon.itemData.shadowCrayonOriginalType;
+        delete pokemon.itemData.shadowCrayonActivated;
+      }
+    },
+    num: 3234,
+    gen: 9
+  },
   shadoweraser: {
     name: "Shadow Eraser",
     spritenum: 3205,
@@ -3673,6 +4869,99 @@ const Items = {
     num: 3178,
     gen: 4
   },
+  slimecrayon: {
+    name: "Slime Crayon",
+    spritenum: 3234,
+    fling: {
+      basePower: 20
+    },
+	onStart(pokemon) {
+      const types = pokemon.getTypes();
+      if (types.length === 1 && !types.includes("Slime")) {
+        pokemon.itemData = pokemon.itemData || {};
+        pokemon.itemData.slimeCrayonOriginalType = types[0];
+        pokemon.itemData.slimeCrayonActivated = false;
+        const isIllusionActive = !!pokemon.illusion;
+        if (!isIllusionActive) {
+          this.add("-item", pokemon, "Slime Crayon");
+          pokemon.itemData.slimeCrayonActivated = true;
+        }
+        pokemon.setType([types[0], "Slime"]);
+      }
+    },
+    onUpdate(pokemon) {
+      if (
+        pokemon.itemData?.slimeCrayonOriginalType &&
+        !pokemon.itemData.slimeCrayonActivated
+      ) {
+        const isIllusionActive = !!pokemon.illusion;
+        if (!isIllusionActive) {
+          this.add("-item", pokemon, "Slime Crayon");
+          pokemon.itemData.slimeCrayonActivated = true;
+        }
+      }
+    },
+    onEnd(pokemon) {
+      if (pokemon.itemData?.slimeCrayonOriginalType) {
+        const isIllusionActive = !!pokemon.illusion;
+        if (!isIllusionActive) {
+          this.add("-enditem", pokemon, "Slime Crayon");
+        }
+        pokemon.setType([pokemon.itemData.slimeCrayonOriginalType]);
+        delete pokemon.itemData.slimeCrayonOriginalType;
+        delete pokemon.itemData.slimeCrayonActivated;
+      }
+    },
+    num: 3234,
+    gen: 9
+  },
+  slimeeraser: {
+    name: "Slime Eraser",
+    spritenum: 3235,
+    fling: {
+      basePower: 40
+    },
+	onStart(pokemon) {
+      const types = pokemon.getTypes();
+      if (types.length === 2 && types.includes("Slime")) {
+        pokemon.itemData = pokemon.itemData || {};
+        pokemon.itemData.slimeEraserOriginalTypes = types;
+        pokemon.itemData.slimeEraserActivated = false;
+        const newTypes = types.filter(t => t !== "Slime");
+        if (newTypes.length > 0) {
+          if (!pokemon.illusion) {
+            this.add("-item", pokemon, "Slime Eraser");
+            pokemon.itemData.slimeEraserActivated = true;
+          }
+          pokemon.setType(newTypes);
+        }
+      }
+    },
+    onUpdate(pokemon) {
+      if (
+        pokemon.itemData?.slimeEraserOriginalTypes &&
+        !pokemon.itemData.slimeEraserActivated
+      ) {
+        if (!pokemon.illusion) {
+          this.add("-item", pokemon, "Slime Eraser");
+          pokemon.itemData.slimeEraserActivated = true;
+        }
+      }
+    },
+    onEnd(pokemon) {
+      if (pokemon.itemData?.slimeEraserOriginalTypes) {
+        if (!pokemon.illusion) {
+          this.add("-enditem", pokemon, "Slime Eraser");
+        }
+        const originalTypes = pokemon.itemData.slimeEraserOriginalTypes;
+        pokemon.setType(originalTypes);
+        delete pokemon.itemData.slimeEraserOriginalTypes;
+        delete pokemon.itemData.slimeEraserActivated;
+      }
+    },
+    num: 3235,
+    gen: 9
+  },
   slimegem: {
     name: "Slime Gem",
     spritenum: 3117,
@@ -3755,6 +5044,99 @@ const Items = {
     gen: 7,
     isNonstandard: "Past"
   },
+  soundcrayon: {
+    name: "Sound Crayon",
+    spritenum: 3236,
+    fling: {
+      basePower: 20
+    },
+	onStart(pokemon) {
+      const types = pokemon.getTypes();
+      if (types.length === 1 && !types.includes("Sound")) {
+        pokemon.itemData = pokemon.itemData || {};
+        pokemon.itemData.soundCrayonOriginalType = types[0];
+        pokemon.itemData.soundCrayonActivated = false;
+        const isIllusionActive = !!pokemon.illusion;
+        if (!isIllusionActive) {
+          this.add("-item", pokemon, "Sound Crayon");
+          pokemon.itemData.soundCrayonActivated = true;
+        }
+        pokemon.setType([types[0], "Sound"]);
+      }
+    },
+    onUpdate(pokemon) {
+      if (
+        pokemon.itemData?.soundCrayonOriginalType &&
+        !pokemon.itemData.soundCrayonActivated
+      ) {
+        const isIllusionActive = !!pokemon.illusion;
+        if (!isIllusionActive) {
+          this.add("-item", pokemon, "Sound Crayon");
+          pokemon.itemData.soundCrayonActivated = true;
+        }
+      }
+    },
+    onEnd(pokemon) {
+      if (pokemon.itemData?.soundCrayonOriginalType) {
+        const isIllusionActive = !!pokemon.illusion;
+        if (!isIllusionActive) {
+          this.add("-enditem", pokemon, "Sound Crayon");
+        }
+        pokemon.setType([pokemon.itemData.soundCrayonOriginalType]);
+        delete pokemon.itemData.soundCrayonOriginalType;
+        delete pokemon.itemData.soundCrayonActivated;
+      }
+    },
+    num: 3236,
+    gen: 9
+  },
+  sounderaser: {
+    name: "Sound Eraser",
+    spritenum: 3237,
+    fling: {
+      basePower: 40
+    },
+	onStart(pokemon) {
+      const types = pokemon.getTypes();
+      if (types.length === 2 && types.includes("Sound")) {
+        pokemon.itemData = pokemon.itemData || {};
+        pokemon.itemData.soundEraserOriginalTypes = types;
+        pokemon.itemData.soundEraserActivated = false;
+        const newTypes = types.filter(t => t !== "Sound");
+        if (newTypes.length > 0) {
+          if (!pokemon.illusion) {
+            this.add("-item", pokemon, "Sound Eraser");
+            pokemon.itemData.soundEraserActivated = true;
+          }
+          pokemon.setType(newTypes);
+        }
+      }
+    },
+    onUpdate(pokemon) {
+      if (
+        pokemon.itemData?.soundEraserOriginalTypes &&
+        !pokemon.itemData.soundEraserActivated
+      ) {
+        if (!pokemon.illusion) {
+          this.add("-item", pokemon, "Sound Eraser");
+          pokemon.itemData.soundEraserActivated = true;
+        }
+      }
+    },
+    onEnd(pokemon) {
+      if (pokemon.itemData?.soundEraserOriginalTypes) {
+        if (!pokemon.illusion) {
+          this.add("-enditem", pokemon, "Sound Eraser");
+        }
+        const originalTypes = pokemon.itemData.soundEraserOriginalTypes;
+        pokemon.setType(originalTypes);
+        delete pokemon.itemData.soundEraserOriginalTypes;
+        delete pokemon.itemData.soundEraserActivated;
+      }
+    },
+    num: 3237,
+    gen: 9
+  },
   soundgem: {
     name: "Sound Gem",
     spritenum: 3118,
@@ -3822,6 +5204,52 @@ const Items = {
 	},
     num: 3021,
     gen: 4
+  },
+  steelcrayon: {
+    name: "Steel Crayon",
+    spritenum: 3225,
+    fling: {
+      basePower: 20
+    },
+	onStart(pokemon) {
+      const types = pokemon.getTypes();
+      if (types.length === 1 && !types.includes('Steel')) {
+        pokemon.itemData = pokemon.itemData || {};
+        pokemon.itemData.steelCrayonOriginalType = types[0];
+        pokemon.itemData.steelCrayonActivated = false;
+        const isIllusionActive = !!pokemon.illusion;
+        if (!isIllusionActive) {
+          this.add('-item', pokemon, 'Steel Crayon');
+          pokemon.itemData.steelCrayonActivated = true;
+        }
+        pokemon.setType([types[0], 'Steel']);
+      }
+    },
+    onUpdate(pokemon) {
+      if (
+        pokemon.itemData?.steelCrayonOriginalType &&
+        !pokemon.itemData.steelCrayonActivated
+      ) {
+        const isIllusionActive = !!pokemon.illusion;
+        if (!isIllusionActive) {
+          this.add('-item', pokemon, 'Steel Crayon');
+          pokemon.itemData.steelCrayonActivated = true;
+        }
+      }
+    },
+    onEnd(pokemon) {
+      if (pokemon.itemData?.steelCrayonOriginalType) {
+        const isIllusionActive = !!pokemon.illusion;
+        if (!isIllusionActive) {
+          this.add('-enditem', pokemon, 'Steel Crayon');
+        }
+        pokemon.setType([pokemon.itemData.steelCrayonOriginalType]);
+        delete pokemon.itemData.steelCrayonOriginalType;
+        delete pokemon.itemData.steelCrayonActivated;
+      }
+    },
+    num: 3225,
+    gen: 9
   },
   steeleraser: {
     name: "Steel Eraser",
@@ -4209,6 +5637,52 @@ const Items = {
     gen: 7,
     isNonstandard: "Past"
   },
+  watercrayon: {
+    name: "Water Crayon",
+    spritenum: 3226,
+    fling: {
+      basePower: 20
+    },
+	onStart(pokemon) {
+      const types = pokemon.getTypes();
+      if (types.length === 1 && !types.includes('Water')) {
+        pokemon.itemData = pokemon.itemData || {};
+        pokemon.itemData.waterCrayonOriginalType = types[0];
+        pokemon.itemData.waterCrayonActivated = false;
+        const isIllusionActive = !!pokemon.illusion;
+        if (!isIllusionActive) {
+          this.add('-item', pokemon, 'Water Crayon');
+          pokemon.itemData.waterCrayonActivated = true;
+        }
+        pokemon.setType([types[0], 'Water']);
+      }
+    },
+    onUpdate(pokemon) {
+      if (
+        pokemon.itemData?.waterCrayonOriginalType &&
+        !pokemon.itemData.waterCrayonActivated
+      ) {
+        const isIllusionActive = !!pokemon.illusion;
+        if (!isIllusionActive) {
+          this.add('-item', pokemon, 'Water Crayon');
+          pokemon.itemData.waterCrayonActivated = true;
+        }
+      }
+    },
+    onEnd(pokemon) {
+      if (pokemon.itemData?.waterCrayonOriginalType) {
+        const isIllusionActive = !!pokemon.illusion;
+        if (!isIllusionActive) {
+          this.add('-enditem', pokemon, 'Water Crayon');
+        }
+        pokemon.setType([pokemon.itemData.waterCrayonOriginalType]);
+        delete pokemon.itemData.waterCrayonOriginalType;
+        delete pokemon.itemData.waterCrayonActivated;
+      }
+    },
+    num: 3226,
+    gen: 9
+  },
   watereraser: {
     name: "Water Eraser",
     spritenum: 3197,
@@ -4264,6 +5738,52 @@ const Items = {
     },
     num: 3171,
     gen: 4
+  },
+  windcrayon: {
+    name: "Wind Crayon",
+    spritenum: 3238,
+    fling: {
+      basePower: 20
+    },
+	onStart(pokemon) {
+      const types = pokemon.getTypes();
+      if (types.length === 1 && !types.includes("Wind")) {
+        pokemon.itemData = pokemon.itemData || {};
+        pokemon.itemData.windCrayonOriginalType = types[0];
+        pokemon.itemData.windCrayonActivated = false;
+        const isIllusionActive = !!pokemon.illusion;
+        if (!isIllusionActive) {
+          this.add("-item", pokemon, "Wind Crayon");
+          pokemon.itemData.windCrayonActivated = true;
+        }
+        pokemon.setType([types[0], "Wind"]);
+      }
+    },
+    onUpdate(pokemon) {
+      if (
+        pokemon.itemData?.windCrayonOriginalType &&
+        !pokemon.itemData.windCrayonActivated
+      ) {
+        const isIllusionActive = !!pokemon.illusion;
+        if (!isIllusionActive) {
+          this.add("-item", pokemon, "Wind Crayon");
+          pokemon.itemData.windCrayonActivated = true;
+        }
+      }
+    },
+    onEnd(pokemon) {
+      if (pokemon.itemData?.windCrayonOriginalType) {
+        const isIllusionActive = !!pokemon.illusion;
+        if (!isIllusionActive) {
+          this.add("-enditem", pokemon, "Wind Crayon");
+        }
+        pokemon.setType([pokemon.itemData.windCrayonOriginalType]);
+        delete pokemon.itemData.windCrayonOriginalType;
+        delete pokemon.itemData.windCrayonActivated;
+      }
+    },
+    num: 3238,
+    gen: 9
   },
   winderaser: {
     name: "Wind Eraser",
