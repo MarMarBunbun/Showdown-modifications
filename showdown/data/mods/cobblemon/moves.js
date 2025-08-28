@@ -4930,7 +4930,7 @@ const Moves = {
       volatileStatus: "flinch"
     },
     target: "normal",
-    type: "Psychic",
+    type: "Crystal",
     contestType: "Cool"
   },
   diamonddust: {
