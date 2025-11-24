@@ -16,7 +16,7 @@ public class ShowdownItemManager {
                 new ShowdownItemModificationEvent(new ArrayList<>()),
                 showdownItemModificationEvent -> Unit.INSTANCE,
                 showdownItemModificationEvent -> {
-                    injectItems(showdownFolder, showdownItemModificationEvent.itemModificationEntries);
+//                    injectItems(showdownFolder, showdownItemModificationEvent.itemModificationEntries);
                     return Unit.INSTANCE;
                 });
     }

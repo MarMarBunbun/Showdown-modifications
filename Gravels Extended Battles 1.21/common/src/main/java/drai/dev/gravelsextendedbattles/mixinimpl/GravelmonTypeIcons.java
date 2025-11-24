@@ -7,12 +7,10 @@ import drai.dev.gravelsextendedbattles.interfaces.*;
 import kotlin.jvm.internal.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.resources.*;
-import net.minecraft.util.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
 
-import static com.cobblemon.mod.common.api.gui.GuiUtilsKt.blitk;
-import static drai.dev.gravelsextendedbattles.GravelsExtendedBattles.ICON_MIXIN_INIT;
-import static drai.dev.gravelsextendedbattles.GravelsExtendedBattles.TYPE_COUNT;
+import static com.cobblemon.mod.common.api.gui.GuiUtilsKt.*;
+import static drai.dev.gravelsextendedbattles.GravelsExtendedBattles.*;
 
 public class GravelmonTypeIcons {
 

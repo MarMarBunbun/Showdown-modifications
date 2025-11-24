@@ -6,8 +6,6 @@ import com.cobblemon.mod.common.api.pokemon.evolution.*;
 import com.cobblemon.mod.common.pokemon.*;
 import com.google.gson.*;
 import net.minecraft.resources.*;
-import net.minecraft.util.*;
-import org.intellij.lang.annotations.*;
 import org.jetbrains.annotations.*;
 
 public class GravelmonLazyPreEvolution implements PreEvolution {

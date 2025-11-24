@@ -7,8 +7,7 @@ import eu.midnightdust.lib.config.*;
 import java.util.*;
 import java.util.logging.*;
 
-import static drai.dev.gravelsextendedbattles.GravelsExtendedBattles.LOGGER;
-import static drai.dev.gravelsextendedbattles.GravelsExtendedBattles.PASSWORDS;
+import static drai.dev.gravelsextendedbattles.GravelsExtendedBattles.*;
 
 public class GravelmonConfig extends MidnightConfig implements IGravelmonConfig {
     @Entry(name = "Banned Labels: ")

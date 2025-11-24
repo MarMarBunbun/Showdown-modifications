@@ -1,8 +1,6 @@
 package drai.dev.gravelsextendedbattles.showdown;
 
 import java.nio.file.*;
-import java.util.*;
-import java.util.function.*;
 
 public class ShowdownInjectionManager {
 

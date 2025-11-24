@@ -6,7 +6,6 @@ import drai.dev.gravelsextendedbattles.interfaces.*;
 import drai.dev.gravelsextendedbattles.mixinimpl.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.resources.*;
-import net.minecraft.util.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;

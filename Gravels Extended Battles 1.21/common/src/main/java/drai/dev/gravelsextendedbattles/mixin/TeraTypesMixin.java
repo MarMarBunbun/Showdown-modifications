@@ -8,8 +8,6 @@ import drai.dev.gravelsextendedbattles.registries.*;
 import drai.dev.gravelsextendedbattles.types.*;
 import net.minecraft.*;
 import net.minecraft.resources.*;
-import net.minecraft.util.*;
-import org.intellij.lang.annotations.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
@@ -17,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.callback.*;
 import java.util.*;
 import java.util.function.*;
 
-import static drai.dev.gravelsextendedbattles.types.GravelmonTeraTypes.addTeraType;
+import static drai.dev.gravelsextendedbattles.types.GravelmonTeraTypes.*;
 
 @Mixin(TeraTypes.class)
 public abstract class TeraTypesMixin {
@@ -48,9 +46,10 @@ public abstract class TeraTypesMixin {
             GravelmonTeraTypes.SLIME = addTeraType(func, GravelmonElementalTypes.SLIME, ChatFormatting.GREEN);
             GravelmonTeraTypes.SOUND = addTeraType(func, GravelmonElementalTypes.SOUND, ChatFormatting.GRAY);
             GravelmonTeraTypes.WIND = addTeraType(func, GravelmonElementalTypes.WIND, ChatFormatting.AQUA);
-
+            GravelsExtendedBattles.TERA_TYPES_INITIATED = true;
             initializing = false;
             isInit=true;
+            GravelsExtendedBattlesItems.initTeraShards();
         }
     }
 

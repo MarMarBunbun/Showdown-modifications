@@ -199,7 +199,16 @@ public enum Aspect {
     AROMIAN,
     MIKITARIAN,
     FEMALE,
-    ISHIRIAN, ARMORED_DELTA, SHADOW, MALE, DELTA_INACTIVE, DELTA_ACTIVE, DELTA_CRYSTAL;
+    ISHIRIAN,
+    ARMORED_DELTA,
+    SHADOW,
+    MALE,
+    DELTA_INACTIVE,
+    DELTA_ACTIVE,
+    DELTA_CRYSTAL,
+    GUITARIST,
+    DRUMMER,
+    BASSIST;
     private String name;
     private boolean isNew;
     private boolean isDefault;

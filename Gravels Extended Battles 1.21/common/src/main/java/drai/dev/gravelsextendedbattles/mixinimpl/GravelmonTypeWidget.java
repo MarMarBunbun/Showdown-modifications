@@ -6,11 +6,9 @@ import com.mojang.blaze3d.vertex.*;
 import drai.dev.gravelsextendedbattles.*;
 import kotlin.jvm.internal.*;
 import net.minecraft.resources.*;
-import net.minecraft.util.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
 
-import static com.cobblemon.mod.common.api.gui.GuiUtilsKt.blitk;
-import static drai.dev.gravelsextendedbattles.GravelsExtendedBattles.ICON_WIDGET_INIT;
+import static com.cobblemon.mod.common.api.gui.GuiUtilsKt.*;
 
 public class GravelmonTypeWidget {
     public static void changeTypeWidget(TypeWidget typeWidget, ResourceLocation typeResource, ElementalType type, PoseStack pMatrixStack, double pX, int pY, CallbackInfo ci) {

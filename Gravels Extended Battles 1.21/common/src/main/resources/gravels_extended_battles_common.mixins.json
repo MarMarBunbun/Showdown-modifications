@@ -19,7 +19,6 @@
     "LevelRequirementAccessor",
     "NationalDexAccessor",
     "NationalDexMixin",
-    "NbtItemPredicateAccessor",
     "PokedexManagerAccessor",
     "PokemonSpawnDetailMixin",
     "PokemonSpeciesAccessor",
@@ -31,6 +30,9 @@
     "loot.LootItemAccessor",
     "loot.LootPoolAccessor",
     "loot.LootTableAccessor",
+    "megashowdown.ElementalZCrystalAccessor",
+    "megashowdown.FormChangeHeldItemAccessor",
+    "megashowdown.MegaShowdownMixin",
     "megashowdown.TeraTypeHelperMixin"
   ]
 }

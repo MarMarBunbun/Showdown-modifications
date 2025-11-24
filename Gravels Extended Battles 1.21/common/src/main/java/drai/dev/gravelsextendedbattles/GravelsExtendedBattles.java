@@ -1,43 +1,32 @@
 package drai.dev.gravelsextendedbattles;
 
-import com.cobblemon.mod.common.*;
 import com.cobblemon.mod.common.api.*;
-import com.cobblemon.mod.common.api.battles.model.*;
 import com.cobblemon.mod.common.api.events.*;
 import com.cobblemon.mod.common.api.fossil.*;
 import com.cobblemon.mod.common.api.pokedex.*;
 import com.cobblemon.mod.common.api.pokemon.*;
 import com.cobblemon.mod.common.api.pokemon.status.*;
-import com.cobblemon.mod.common.api.spawning.*;
-import com.cobblemon.mod.common.api.spawning.detail.*;
 import com.cobblemon.mod.common.api.types.tera.*;
-import com.cobblemon.mod.common.brewing.*;
-import com.cobblemon.mod.common.brewing.ingredient.*;
 import com.cobblemon.mod.common.pokemon.status.*;
 import dev.architectury.injectables.annotations.*;
 import drai.dev.gravelsextendedbattles.interfaces.*;
 import drai.dev.gravelsextendedbattles.loot.*;
 import drai.dev.gravelsextendedbattles.mixin.*;
-import drai.dev.gravelsextendedbattles.mixinimpl.*;
 import drai.dev.gravelsextendedbattles.registries.*;
 import drai.dev.gravelsextendedbattles.resorting.*;
 import drai.dev.gravelsextendedbattles.resorting.nodes.*;
-import drai.dev.gravelsextendedbattles.showdown.*;
 import drai.dev.gravelsextendedbattles.starters.*;
-import drai.dev.gravelsextendedbattles.types.*;
 import eu.midnightdust.lib.config.*;
 import kotlin.*;
-import kotlin.collections.*;
 import kotlin.ranges.*;
+import net.minecraft.advancements.critereon.*;
+import net.minecraft.core.registries.*;
 import net.minecraft.resources.*;
-import net.minecraft.world.item.*;
-import net.minecraft.world.item.alchemy.*;
 
 import java.util.*;
 import java.util.logging.*;
 
-import static com.cobblemon.mod.common.util.MiscUtilsKt.cobblemonResource;
-import static drai.dev.gravelsextendedbattles.registries.GravelsExtendedBattlesItems.FROST_HEAL;
+import static com.cobblemon.mod.common.util.MiscUtilsKt.*;
 
 public class GravelsExtendedBattles {
 
@@ -54,6 +43,7 @@ public class GravelsExtendedBattles {
     public static List<String> IMPLEMENTED_TYPES = new ArrayList<>();
     public static int TYPE_COUNT = 18;
     public static boolean ADD_STARTERS = false;
+    public static boolean TERA_TYPES_INITIATED = false;
     public static List<IEvolutionNode> SORTED_SPECIES = new ArrayList<>();
     public static IGravelmonConfig gravelmonConfig;
     public static Status FROSTBITE = new PersistentStatus(cobblemonResource("frostbite"), "fbt",
@@ -79,8 +69,13 @@ public class GravelsExtendedBattles {
         });
 
         Fossils.INSTANCE.getObservable().subscribe(Priority.LOWEST, fossils -> {
-            fossils.all().forEach(fossil -> {
-                var identifiers = fossil.getFossils().stream().map(fossilPredicate-> ((RegistryLikeIdentifierConditionAccessor)fossilPredicate.component1()).getIdentifier()).toList();
+            Fossils.all().forEach(fossil -> {
+                var identifiers = fossil.getFossils().stream()
+                        .map(ItemPredicate::items)
+                        .filter(Optional::isPresent)
+                        .flatMap(opt->opt.get().stream())
+                        .map(itemHolder -> BuiltInRegistries.ITEM.getKey(itemHolder.value()))
+                        .toList();
                 for (ResourceLocation identifier : identifiers) {
                     FOSSIL_MAP.put(identifier, fossil);
                 }
@@ -103,33 +98,9 @@ public class GravelsExtendedBattles {
         GravelsExtendedBattlesItems.touch();
         GravelsExtendedBattlesItems.register();
 
-        CobblemonEvents.HELD_ITEM_POST.subscribe(Priority.LOWEST, GravelmonEventHandlers::onHeldItemChange);
-
         Statuses.INSTANCE.registerStatus(FROSTBITE);
 
         Statuses.INSTANCE.registerStatus(BLIGHT);
-
-//        BrewingRecipesAccessor accessor = (BrewingRecipesAccessor)(Object) BrewingRecipes.INSTANCE;
-//        Lazy<List<Triple<CobblemonIngredient, Item, Item>>> delegate = accessor.getRecipesDelegate();
-//
-//        List<Triple<CobblemonIngredient, Item, Item>> list = delegate.getValue();
-//
-//        try {
-//            list.add(new Triple<>(
-//                    new CobblemonItemIngredient(CobblemonItems.ICE_HEAL),
-//                    CobblemonItems.RAWST_BERRY,
-//                    FROST_HEAL.get()
-//            ));
-//        } catch (UnsupportedOperationException e) {
-//            List<Triple<CobblemonIngredient, Item, Item>> mutableCopy = new ArrayList<>(list);
-//            mutableCopy.add(new Triple<>(
-//                    new CobblemonItemIngredient(CobblemonItems.ICE_HEAL),
-//                    CobblemonItems.RAWST_BERRY,
-//                    FROST_HEAL.get()
-//            ));
-//            accessor.setRecipesDelegate(LazyKt.lazy(() -> mutableCopy));
-//        }
-//        BrewingRecipes.INSTANCE.getRecipes().add(new Triple<>(new CobblemonItemIngredient(CobblemonItems.ICE_HEAL), CobblemonItems.RAWST_BERRY, FROST_HEAL.get()));
     }
 
     private static boolean speciesFinished = false;

@@ -12,7 +12,7 @@ import net.neoforged.neoforge.event.*;
 
 import java.util.function.*;
 
-@EventBusSubscriber(modid = GravelsExtendedBattles.MOD_ID, bus = EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = GravelsExtendedBattles.MOD_ID)
 public class CreativeTabsInit {
 
     @SubscribeEvent

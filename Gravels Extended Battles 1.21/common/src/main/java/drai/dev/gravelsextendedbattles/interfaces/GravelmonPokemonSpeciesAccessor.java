@@ -3,7 +3,6 @@ package drai.dev.gravelsextendedbattles.interfaces;
 import com.cobblemon.mod.common.pokemon.*;
 import com.google.common.collect.*;
 import net.minecraft.resources.*;
-import net.minecraft.util.*;
 
 import java.util.*;
 

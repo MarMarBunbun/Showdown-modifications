@@ -45,11 +45,15 @@ dependencies {
     shadowBundle project(path: ':common', configuration: 'transformProductionNeoForge')
 
     modImplementation "com.cobblemon:neoforge:${cobblemon_file}"
-    modImplementation "maven.modrinth:midnightlib:YeePowOJ"
-    forgeRuntimeLibrary("thedarkcolour:kotlinforforge-neoforge:5.5.0") {
+    modImplementation "maven.modrinth:midnightlib:uGySRC8x"
+    modImplementation "curse.maven:supermartijn642s-config-lib-438332:5546996"
+    forgeRuntimeLibrary("thedarkcolour:kotlinforforge-neoforge:${kotlin_neo_version}") {
         exclude group: "net.neoforged.fancymodloader", module: "loader"
     }
-    modImplementation("maven.modrinth:cobblemon-mega-showdown:${megashowdown}-neoforge")
+
+
+    modImplementation files("libs/mega_showdown-neoforge-${megashowdown}.jar")
+//    modImplementation("maven.modrinth:cobblemon-mega-showdown:${megashowdown}-neoforge")
 
     // Compile against only the API artifact
     compileOnly("top.theillusivec4.curios:curios-neoforge:9.2.2+1.21.1:api")

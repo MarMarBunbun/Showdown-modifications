@@ -50,15 +50,16 @@ dependencies {
     shadowBundle project(path: ':common', configuration: 'transformProductionFabric')
 
     modImplementation("com.cobblemon:fabric:${cobblemon_file}") { transitive = false }
-    modImplementation "maven.modrinth:midnightlib:Ct1rAic5"
+    modImplementation "maven.modrinth:midnightlib:gDxRS3a2"
     modImplementation("net.fabricmc:fabric-language-kotlin:${fabric_kotlin}")
 
     //Mega showdown compat
-    modImplementation("maven.modrinth:cobblemon-mega-showdown:${megashowdown}-fabric")
-
+    modImplementation files("libs/mega_showdown-fabric-${megashowdown}.jar")
+//    modImplementation("maven.modrinth:cobblemon-mega-showdown:${megashowdown}-fabric")
+    modImplementation "curse.maven:supermartijn642s-config-lib-438332:5546988"
     modImplementation("maven.modrinth:supermartijn642s-config-lib:1.1.8-fabric-mc1.21")
 
-    modImplementation("dev.emi:trinkets:3.10.0")
+    modImplementation include("io.wispforest:accessories-fabric:${project.accessories_version}")
 }
 def replaceProperties = [mod_id          : mod_id,
                          mod_name        : mod_name,

@@ -5,7 +5,6 @@ import com.cobblemon.mod.common.api.pokedex.def.*;
 import com.cobblemon.mod.common.api.pokedex.entry.*;
 import com.cobblemon.mod.common.api.pokemon.*;
 import com.cobblemon.mod.common.pokemon.*;
-import drai.dev.gravelmon.pokemon.attributes.*;
 import drai.dev.gravelsextendedbattles.interfaces.*;
 import drai.dev.gravelsextendedbattles.mixin.*;
 import drai.dev.gravelsextendedbattles.resorting.*;
@@ -13,8 +12,7 @@ import net.minecraft.resources.*;
 
 import java.util.*;
 
-import static drai.dev.gravelsextendedbattles.SpeciesManager.containsBannedLabels;
-import static drai.dev.gravelsextendedbattles.SpeciesManager.getSpeciesToBeRemoved;
+import static drai.dev.gravelsextendedbattles.SpeciesManager.*;
 
 public class GravelmonPokedexManager {
 

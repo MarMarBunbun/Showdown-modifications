@@ -1,13 +1,13 @@
-package drai.dev.gravelmonElementalTypes.types;
+package drai.dev.gravelsextendedbattles.types;
 
+import com.cobblemon.mod.common.api.data.*;
 import com.cobblemon.mod.common.api.types.*;
-import drai.dev.gravelsextendedbattles.types.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
 
 import java.util.function.*;
 
-import static drai.dev.gravelsextendedbattles.GravelsExtendedBattles.TYPE_COUNT;
+import static drai.dev.gravelsextendedbattles.GravelsExtendedBattles.*;
 
 public class GravelmonTypes {
     private static boolean isInit = false;
@@ -37,7 +37,7 @@ public class GravelmonTypes {
         var type = new ElementalType(typeName, Component.translatable("cobblemon.type."+typeName),
                 hue,TYPE_COUNT,
                 ResourceLocation.fromNamespaceAndPath("gravelmon",
-                        "types/"+typeName+".png"));
+                        "types/"+typeName+".png"), ShowdownIdentifiable.Companion.getREGEX$common().replace(typeName.toLowerCase(), ""));
         TYPE_COUNT++;
         var elementalType = registrationFunction.apply(type);
 

@@ -1,6 +1,5 @@
 package drai.dev.gravelmon.pokemon.attributes;
 
-import com.google.common.collect.Comparators;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
