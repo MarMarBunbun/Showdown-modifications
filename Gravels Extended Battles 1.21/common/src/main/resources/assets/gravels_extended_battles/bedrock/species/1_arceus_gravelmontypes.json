@@ -6,7 +6,7 @@
       "aspects": [
         "blood-plate"
       ],
-      "texture": "cobblemon:textures/pokemon/0493_arceus/arceus_blood.png",
+      "texture": "gravels_extended_battles:textures/pokemon/0493_arceus/arceus_blood.png",
       "layers": [
         {
           "name": "emissive",
@@ -19,7 +19,7 @@
       "aspects": [
         "cosmic-plate"
       ],
-      "texture": "cobblemon:textures/pokemon/0493_arceus/arceus_cosmic.png",
+      "texture": "gravels_extended_battles:textures/pokemon/0493_arceus/arceus_cosmic.png",
       "layers": [
         {
           "name": "emissive",
@@ -32,7 +32,7 @@
       "aspects": [
         "crystal-plate"
       ],
-      "texture": "cobblemon:textures/pokemon/0493_arceus/arceus_crystal.png",
+      "texture": "gravels_extended_battles:textures/pokemon/0493_arceus/arceus_crystal.png",
       "layers": [
         {
           "name": "emissive",
@@ -45,7 +45,7 @@
       "aspects": [
         "digital-plate"
       ],
-      "texture": "cobblemon:textures/pokemon/0493_arceus/arceus_digital.png",
+      "texture": "gravels_extended_battles:textures/pokemon/0493_arceus/arceus_digital.png",
       "layers": [
         {
           "name": "emissive",
@@ -58,7 +58,7 @@
       "aspects": [
         "eldritch-plate"
       ],
-      "texture": "cobblemon:textures/pokemon/0493_arceus/arceus_eldritch.png",
+      "texture": "gravels_extended_battles:textures/pokemon/0493_arceus/arceus_eldritch.png",
       "layers": [
         {
           "name": "emissive",
@@ -71,7 +71,7 @@
       "aspects": [
         "questionmark-plate"
       ],
-      "texture": "cobblemon:textures/pokemon/0493_arceus/arceus_questionmark.png",
+      "texture": "gravels_extended_battles:textures/pokemon/0493_arceus/arceus_questionmark.png",
       "layers": [
         {
           "name": "emissive",
@@ -84,7 +84,7 @@
       "aspects": [
         "light-plate"
       ],
-      "texture": "cobblemon:textures/pokemon/0493_arceus/arceus_light.png",
+      "texture": "gravels_extended_battles:textures/pokemon/0493_arceus/arceus_light.png",
       "layers": [
         {
           "name": "emissive",
@@ -97,7 +97,7 @@
       "aspects": [
         "nuclear-plate"
       ],
-      "texture": "cobblemon:textures/pokemon/0493_arceus/arceus_nuclear.png",
+      "texture": "gravels_extended_battles:textures/pokemon/0493_arceus/arceus_nuclear.png",
       "layers": [
         {
           "name": "emissive",
@@ -110,7 +110,7 @@
       "aspects": [
         "plastic-plate"
       ],
-      "texture": "cobblemon:textures/pokemon/0493_arceus/arceus_plastic.png",
+      "texture": "gravels_extended_battles:textures/pokemon/0493_arceus/arceus_plastic.png",
       "layers": [
         {
           "name": "emissive",
@@ -123,7 +123,7 @@
       "aspects": [
         "shadow-plate"
       ],
-      "texture": "cobblemon:textures/pokemon/0493_arceus/arceus_shadow.png",
+      "texture": "gravels_extended_battles:textures/pokemon/0493_arceus/arceus_shadow.png",
       "layers": [
         {
           "name": "emissive",
@@ -136,7 +136,7 @@
       "aspects": [
         "slime-plate"
       ],
-      "texture": "cobblemon:textures/pokemon/0493_arceus/arceus_slime.png",
+      "texture": "gravels_extended_battles:textures/pokemon/0493_arceus/arceus_slime.png",
       "layers": [
         {
           "name": "emissive",
@@ -149,7 +149,7 @@
       "aspects": [
         "sound-plate"
       ],
-      "texture": "cobblemon:textures/pokemon/0493_arceus/arceus_sound.png",
+      "texture": "gravels_extended_battles:textures/pokemon/0493_arceus/arceus_sound.png",
       "layers": [
         {
           "name": "emissive",
@@ -162,7 +162,7 @@
       "aspects": [
         "wind-plate"
       ],
-      "texture": "cobblemon:textures/pokemon/0493_arceus/arceus_wind.png",
+      "texture": "gravels_extended_battles:textures/pokemon/0493_arceus/arceus_wind.png",
       "layers": [
         {
           "name": "emissive",
@@ -176,7 +176,7 @@
         "blood-plate",
         "shiny"
       ],
-      "texture": "cobblemon:textures/pokemon/0493_arceus/arceus_blood_shiny.png",
+      "texture": "gravels_extended_battles:textures/pokemon/0493_arceus/arceus_blood_shiny.png",
       "layers": [
         {
           "name": "emissive",
@@ -190,7 +190,7 @@
         "cosmic-plate",
         "shiny"
       ],
-      "texture": "cobblemon:textures/pokemon/0493_arceus/arceus_cosmic_shiny.png",
+      "texture": "gravels_extended_battles:textures/pokemon/0493_arceus/arceus_cosmic_shiny.png",
       "layers": [
         {
           "name": "emissive",
@@ -204,7 +204,7 @@
         "crystal-plate",
         "shiny"
       ],
-      "texture": "cobblemon:textures/pokemon/0493_arceus/arceus_crystal_shiny.png",
+      "texture": "gravels_extended_battles:textures/pokemon/0493_arceus/arceus_crystal_shiny.png",
       "layers": [
         {
           "name": "emissive",
@@ -218,7 +218,7 @@
         "digital-plate",
         "shiny"
       ],
-      "texture": "cobblemon:textures/pokemon/0493_arceus/arceus_digital_shiny.png",
+      "texture": "gravels_extended_battles:textures/pokemon/0493_arceus/arceus_digital_shiny.png",
       "layers": [
         {
           "name": "emissive",
@@ -232,7 +232,7 @@
         "eldritch-plate",
         "shiny"
       ],
-      "texture": "cobblemon:textures/pokemon/0493_arceus/arceus_eldritch_shiny.png",
+      "texture": "gravels_extended_battles:textures/pokemon/0493_arceus/arceus_eldritch_shiny.png",
       "layers": [
         {
           "name": "emissive",
@@ -246,7 +246,7 @@
         "questionmark-plate",
         "shiny"
       ],
-      "texture": "cobblemon:textures/pokemon/0493_arceus/arceus_questionmark_shiny.png",
+      "texture": "gravels_extended_battles:textures/pokemon/0493_arceus/arceus_questionmark_shiny.png",
       "layers": [
         {
           "name": "emissive",
@@ -260,7 +260,7 @@
         "light-plate",
         "shiny"
       ],
-      "texture": "cobblemon:textures/pokemon/0493_arceus/arceus_light_shiny.png",
+      "texture": "gravels_extended_battles:textures/pokemon/0493_arceus/arceus_light_shiny.png",
       "layers": [
         {
           "name": "emissive",
@@ -274,7 +274,7 @@
         "nuclear-plate",
         "shiny"
       ],
-      "texture": "cobblemon:textures/pokemon/0493_arceus/arceus_nuclear_shiny.png",
+      "texture": "gravels_extended_battles:textures/pokemon/0493_arceus/arceus_nuclear_shiny.png",
       "layers": [
         {
           "name": "emissive",
@@ -288,7 +288,7 @@
         "plastic-plate",
         "shiny"
       ],
-      "texture": "cobblemon:textures/pokemon/0493_arceus/arceus_plastic_shiny.png",
+      "texture": "gravels_extended_battles:textures/pokemon/0493_arceus/arceus_plastic_shiny.png",
       "layers": [
         {
           "name": "emissive",
@@ -302,7 +302,7 @@
         "shadow-plate",
         "shiny"
       ],
-      "texture": "cobblemon:textures/pokemon/0493_arceus/arceus_shadow_shiny.png",
+      "texture": "gravels_extended_battles:textures/pokemon/0493_arceus/arceus_shadow_shiny.png",
       "layers": [
         {
           "name": "emissive",
@@ -316,7 +316,7 @@
         "slime-plate",
         "shiny"
       ],
-      "texture": "cobblemon:textures/pokemon/0493_arceus/arceus_slime_shiny.png",
+      "texture": "gravels_extended_battles:textures/pokemon/0493_arceus/arceus_slime_shiny.png",
       "layers": [
         {
           "name": "emissive",
@@ -330,7 +330,7 @@
         "sound-plate",
         "shiny"
       ],
-      "texture": "cobblemon:textures/pokemon/0493_arceus/arceus_sound_shiny.png",
+      "texture": "gravels_extended_battles:textures/pokemon/0493_arceus/arceus_sound_shiny.png",
       "layers": [
         {
           "name": "emissive",
@@ -344,7 +344,7 @@
         "wind-plate",
         "shiny"
       ],
-      "texture": "cobblemon:textures/pokemon/0493_arceus/arceus_wind_shiny.png",
+      "texture": "gravels_extended_battles:textures/pokemon/0493_arceus/arceus_wind_shiny.png",
       "layers": [
         {
           "name": "emissive",
