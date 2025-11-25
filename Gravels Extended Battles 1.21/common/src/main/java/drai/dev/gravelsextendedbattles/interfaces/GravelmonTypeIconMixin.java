@@ -3,8 +3,6 @@ package drai.dev.gravelsextendedbattles.interfaces;
 import com.cobblemon.mod.common.api.types.*;
 import com.cobblemon.mod.common.client.gui.*;
 import net.minecraft.resources.*;
-import net.minecraft.util.*;
-import org.intellij.lang.annotations.*;
 
 public interface GravelmonTypeIconMixin {
     boolean getSmall();

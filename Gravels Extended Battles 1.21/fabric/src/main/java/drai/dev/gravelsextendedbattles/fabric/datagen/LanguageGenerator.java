@@ -1,6 +1,8 @@
 package drai.dev.gravelsextendedbattles.fabric.datagen;
 
-import drai.dev.gravelsextendedbattles.items.*;
+import com.github.yajatkaul.mega_showdown.item.custom.form_change.*;
+import drai.dev.gravelsextendedbattles.items.megashowdown.*;
+import drai.dev.gravelsextendedbattles.mixin.megashowdown.*;
 import drai.dev.gravelsextendedbattles.registries.*;
 import net.fabricmc.fabric.api.datagen.v1.*;
 import net.fabricmc.fabric.api.datagen.v1.provider.*;
@@ -10,7 +12,7 @@ import net.minecraft.world.item.*;
 import java.util.concurrent.*;
 import java.util.function.*;
 
-import static drai.dev.gravelsextendedbattles.registries.GravelsExtendedBattlesItems.FROST_HEAL;
+import static drai.dev.gravelsextendedbattles.registries.GravelsExtendedBattlesItems.*;
 
 public class LanguageGenerator extends FabricLanguageProvider {
 
@@ -47,40 +49,44 @@ public class LanguageGenerator extends FabricLanguageProvider {
                 translationBuilder.add(value.get(), capitalizeWords(itemName.replace("_", " ")));
             }
 
-            var typeName = capitalizeWords(value.get().getType());
+            var typeName = capitalizeWords(itemName.replaceAll("_", "").replaceAll("_memory", ""));
             translationBuilder.add("tooltip.gravels_extended_battles." + itemName + ".tooltip",
                     "Boosts the power of the holder's first "+typeName+"-type move. Consumed after use.");
         }
         translationBuilder.add("tooltip.gravels_extended_battles.consumed_after_use.tooltip",
                 "Consumed after use");
 
-        for (Supplier<TypedItem> value : GravelsExtendedBattlesItems.MEMORIES) {
+        for (Supplier<Item> value : GravelsExtendedBattlesItems.MEMORIES) {
             if(value == GravelsExtendedBattlesItems.QUESTION_MARK_MEMORY) {
                 translationBuilder.add(value.get(), "Mystery Memory");
             } else {
                 translationBuilder.add(value.get(), capitalizeWords(value.get().getDescriptionId().replace("item.gravels_extended_battles.", "").replace("_", " ")));
             }
-            String itemName = value.get().getDescriptionId().replace("item.gravels_extended_battles.", "");
+            String itemName = value.get().getDescriptionId().replace("item.gravels_extended_battles.", "").toLowerCase();
 //            translationBuilder.add(value.get(), capitalizeWords(itemName.replace("_", " ")));
-            var typeName = capitalizeWords(value.get().getType());
+            var typeName = capitalizeWords(itemName.replaceAll("_", "").replaceAll("_memory", ""));
             translationBuilder.add("tooltip.gravels_extended_battles." + itemName + ".tooltip",
                     "A disc with "+typeName+"-type data. It changes Silvally's type.");
         }
 
-        for (Supplier<TypedItem> value : GravelsExtendedBattlesItems.Z_CRYSTALS.keySet()) {
+        for (Supplier<Item> value : GravelsExtendedBattlesItems.Z_CRYSTALS.keySet()) {
             String itemName = value.get().getDescriptionId().replace("item.gravels_extended_battles.", "");
             translationBuilder.add(value.get(), capitalizeWords(itemName.replace("_", " ")));
-            var typeName = capitalizeWords(value.get().getType());
-            translationBuilder.add("tooltip.gravels_extended_battles." + itemName + ".tooltip",
-                    "Z-Crystal associated with the "+typeName+" type and allows Pokémon to upgrade their "+typeName+"-type moves to Z-Moves.");
+            if(value.get() instanceof GravelmonElementalZCrystal gravelmonElementalZCrystal) {
+                var typeName = capitalizeWords(gravelmonElementalZCrystal.getElement().getName());
+                translationBuilder.add("tooltip.gravels_extended_battles." + itemName + ".tooltip",
+                        "Z-Crystal associated with the "+typeName+" type and allows Pokémon to upgrade their "+typeName+"-type moves to Z-Moves.");
+            }
         }
 
         for (Supplier<? extends Item> value : GravelsExtendedBattlesItems.PLATES) {
             String itemName = value.get().getDescriptionId().replace("item.gravels_extended_battles.", "");
             translationBuilder.add(value.get(), capitalizeWords(itemName.replace("_", " ")));
-            var typeName = capitalizeWords(((HasType)value.get()).getType());
-            translationBuilder.add("tooltip.gravels_extended_battles." + itemName + ".tooltip",
-                    "A tablet that raises the power of "+typeName+"-type moves. When held by Arceus, it changes to the "+typeName+" type.");
+            if(value.get() instanceof FormChangeHeldItem formChangeHeldItem) {
+                var typeName = capitalizeWords(((FormChangeHeldItemAccessor)formChangeHeldItem).getApplyAspect().replaceAll("multitype=",""));
+                translationBuilder.add("tooltip.gravels_extended_battles." + itemName + ".tooltip",
+                        "A tablet that raises the power of "+typeName+"-type moves. When held by Arceus, it changes to the "+typeName+" type.");
+            }
         }
 
         for (Supplier<Item> value : GravelsExtendedBattlesItems.TERA_SHARDS_BY_TYPE_NAME.values()) {

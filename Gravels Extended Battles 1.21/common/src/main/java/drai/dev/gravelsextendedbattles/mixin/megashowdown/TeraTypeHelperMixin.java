@@ -1,14 +1,14 @@
 package drai.dev.gravelsextendedbattles.mixin.megashowdown;
 
 import com.cobblemon.mod.common.api.types.*;
-import com.cobblemon.yajatkaul.mega_showdown.utility.*;
+import com.github.yajatkaul.mega_showdown.utils.*;
 import drai.dev.gravelsextendedbattles.registries.*;
 import net.minecraft.world.item.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
 
-@Mixin(TeraTypeHelper.class)
+@Mixin(TeraHelper.class)
 public class TeraTypeHelperMixin {
 
     /*@Inject(method = "getType", at = @At("HEAD"), cancellable = true)

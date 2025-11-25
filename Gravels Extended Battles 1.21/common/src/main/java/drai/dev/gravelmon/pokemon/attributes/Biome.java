@@ -1,6 +1,5 @@
 package drai.dev.gravelmon.pokemon.attributes;
 
-import com.cobblemon.mod.common.registry.*;
 import net.minecraft.resources.*;
 
 public enum Biome {

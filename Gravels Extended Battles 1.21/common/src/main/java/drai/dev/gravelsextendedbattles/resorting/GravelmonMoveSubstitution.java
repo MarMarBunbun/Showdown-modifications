@@ -6,7 +6,6 @@ import com.cobblemon.mod.common.pokemon.*;
 import drai.dev.gravelmon.pokemon.attributes.*;
 import drai.dev.gravelmon.pokemon.attributes.Move;
 import drai.dev.gravelsextendedbattles.*;
-import net.minecraft.util.*;
 import org.apache.commons.lang3.math.*;
 
 import java.util.*;

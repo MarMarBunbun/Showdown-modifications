@@ -4,8 +4,6 @@ import com.cobblemon.mod.common.api.types.*;
 import com.cobblemon.mod.common.api.types.tera.*;
 import drai.dev.gravelsextendedbattles.registries.*;
 import net.minecraft.*;
-import net.minecraft.world.item.*;
-import org.spongepowered.asm.mixin.injection.callback.*;
 
 import java.util.*;
 import java.util.function.*;

@@ -1,21 +1,23 @@
 architectury {
-    common rootProject.enabled_platforms.split(',')
+    common enabled_platforms.split(',')
 }
 
 dependencies {
     // We depend on Fabric Loader here to use the Fabric @Environment annotations,
     // which get remapped to the correct annotations on each platform.
     // Do NOT use other classes from Fabric Loader.
-    modImplementation "net.fabricmc:fabric-loader:$rootProject.fabric_loader_version"
+    modImplementation "net.fabricmc:fabric-loader:$fabric_loader_version"
 
-    modImplementation "dev.architectury:architectury:$rootProject.architectury_api_version"
+    modImplementation "dev.architectury:architectury:$architectury_api_version"
+
+    modImplementation "dev.architectury:architectury:$architectury_api_version"
     modImplementation "com.cobblemon:mod:${cobblemon_file}"
-    modImplementation "maven.modrinth:midnightlib:Ct1rAic5"
+    modImplementation "maven.modrinth:midnightlib:gDxRS3a2"
 
     //Mega showdown compat
-    modImplementation("maven.modrinth:cobblemon-mega-showdown:${megashowdown}-fabric")
+//    modImplementation("maven.modrinth:cobblemon-mega-showdown:${megashowdown}-fabric")
+    modImplementation files("libs/mega_showdown-fabric-${megashowdown}.jar")
+    modImplementation "curse.maven:supermartijn642s-config-lib-438332:5546988"
 
-    modImplementation("maven.modrinth:supermartijn642s-config-lib:1.1.8-fabric-mc1.21")
-
-    modImplementation("dev.emi:trinkets:3.10.0")
+    modCompileOnly "io.wispforest:accessories-common:${project.accessories_version}"
 }

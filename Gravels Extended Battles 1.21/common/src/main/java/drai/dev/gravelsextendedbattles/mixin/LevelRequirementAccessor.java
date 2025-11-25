@@ -1,6 +1,6 @@
 package drai.dev.gravelsextendedbattles.mixin;
 
-import com.cobblemon.mod.common.pokemon.evolution.requirements.*;
+import com.cobblemon.mod.common.pokemon.requirements.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.gen.*;
 

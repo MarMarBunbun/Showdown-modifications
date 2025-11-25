@@ -6,7 +6,6 @@ import com.cobblemon.mod.common.api.pokemon.feature.*;
 import drai.dev.gravelsextendedbattles.*;
 
 import java.util.*;
-import java.util.stream.*;
 
 public class GravelmonStarterManager {
     public static Map<String, List<StarterCategoryDataHolder>> NEW_STARTERS = new HashMap<>();

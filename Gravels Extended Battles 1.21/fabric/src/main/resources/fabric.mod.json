@@ -27,7 +27,7 @@
     "java": ">=21",
     "fabric-api": "*",
     "cobblemon": ">=1.6.0",
-    "midnightlib": ">=1.6"
+    "midnightlib": ">=1.9.1"
   },
   "recommends": {
     "mega_showdown": ">=9.7.3",

@@ -5,7 +5,6 @@ import com.cobblemon.mod.common.pokemon.*;
 import com.google.common.collect.*;
 import drai.dev.gravelsextendedbattles.interfaces.*;
 import net.minecraft.resources.*;
-import net.minecraft.util.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.gen.*;
 

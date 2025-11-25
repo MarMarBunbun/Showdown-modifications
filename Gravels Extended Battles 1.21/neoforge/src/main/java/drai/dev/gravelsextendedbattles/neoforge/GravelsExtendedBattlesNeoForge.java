@@ -2,6 +2,7 @@ package drai.dev.gravelsextendedbattles.neoforge;
 
 import com.cobblemon.mod.common.*;
 import com.cobblemon.mod.common.api.types.*;
+import dev.architectury.platform.*;
 import drai.dev.gravelsextendedbattles.*;
 import drai.dev.gravelsextendedbattles.loot.*;
 import drai.dev.gravelsextendedbattles.mixin.loot.*;
@@ -11,6 +12,7 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.trading.*;
 import net.minecraft.world.level.storage.loot.*;
 import net.neoforged.fml.common.*;
+import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.loading.*;
 import net.neoforged.neoforge.common.*;
 import net.neoforged.neoforge.event.*;
@@ -25,7 +27,7 @@ import java.util.function.*;
 @Mod(GravelsExtendedBattles.MOD_ID)
 public class GravelsExtendedBattlesNeoForge {
     public GravelsExtendedBattlesNeoForge() {
-        GravelsExtendedBattles.init();
+        if(!Platform.isModLoaded("mega_showdown")) GravelsExtendedBattles.init();
         NeoForge.EVENT_BUS.addListener(this::onLootTableLoad);
         NeoForge.EVENT_BUS.addListener(this::onVillagerTrade);
     }

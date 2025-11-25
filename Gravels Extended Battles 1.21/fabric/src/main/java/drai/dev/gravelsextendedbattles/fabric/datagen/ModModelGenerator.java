@@ -3,14 +3,10 @@ package drai.dev.gravelsextendedbattles.fabric.datagen;
 import drai.dev.gravelsextendedbattles.registries.*;
 import net.fabricmc.fabric.api.datagen.v1.*;
 import net.fabricmc.fabric.api.datagen.v1.provider.*;
-import net.minecraft.core.registries.*;
 import net.minecraft.data.models.*;
 import net.minecraft.data.models.model.*;
-import net.minecraft.world.item.*;
 
-import java.util.function.*;
-
-import static drai.dev.gravelsextendedbattles.registries.GravelsExtendedBattlesItems.FROST_HEAL;
+import static drai.dev.gravelsextendedbattles.registries.GravelsExtendedBattlesItems.*;
 
 public class ModModelGenerator extends FabricModelProvider {
     public ModModelGenerator(FabricDataOutput output) {

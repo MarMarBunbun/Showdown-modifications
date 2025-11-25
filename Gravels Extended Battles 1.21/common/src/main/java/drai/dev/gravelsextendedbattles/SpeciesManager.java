@@ -3,18 +3,16 @@ package drai.dev.gravelsextendedbattles;
 import com.cobblemon.mod.common.api.drop.*;
 import com.cobblemon.mod.common.api.pokemon.*;
 import com.cobblemon.mod.common.api.pokemon.evolution.*;
-import com.cobblemon.mod.common.api.pokemon.evolution.requirement.*;
 import com.cobblemon.mod.common.api.pokemon.feature.*;
+import com.cobblemon.mod.common.api.pokemon.requirement.*;
 import com.cobblemon.mod.common.api.types.*;
 import com.cobblemon.mod.common.pokemon.*;
-import com.cobblemon.mod.common.pokemon.evolution.requirements.*;
 import com.cobblemon.mod.common.pokemon.evolution.variants.*;
-import com.google.common.collect.*;
+import com.cobblemon.mod.common.pokemon.requirements.*;
 import drai.dev.gravelmon.pokemon.attributes.*;
 import drai.dev.gravelsextendedbattles.interfaces.*;
 import drai.dev.gravelsextendedbattles.mixin.*;
 import net.minecraft.resources.*;
-import net.minecraft.util.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -43,20 +41,6 @@ public class SpeciesManager {
                 if (species.getImplemented() || !containsBannedLabels(List.of("not_modeled"))) {
                     pokemonSpecies.getImplemented().add(species);
                 }
-                var evolutions = new ArrayList<>(species.getEvolutions());
-                for (var evolutionData : evolutions) {
-                    var result = evolutionData.getResult();
-
-                    var resultSpecies = currentSpecies.get(ResourceLocation.fromNamespaceAndPath("cobblemon", result.getSpecies() != null ? result.getSpecies() : ""));
-                    if (resultSpecies != null) {
-                        var resultForm = resultSpecies.getForm(Collections.singleton(result.getForm()));
-                        if (containsBannedLabels(resultForm.getLabels().stream().toList()) || containsBannedLabels(resultSpecies.getLabels().stream().toList())) {
-                            species.getEvolutions().remove(evolutionData);
-                        }
-                    } else {
-                        species.getEvolutions().remove(evolutionData);
-                    }
-                }
 
                 var forms = new ArrayList<>(species.getForms());
                 for (var formData : forms) {
@@ -69,20 +53,47 @@ public class SpeciesManager {
                     var formEvolutions = new ArrayList<>(formData.getEvolutions());
                     for (var formEvolutionData : formEvolutions) {
                         var result = formEvolutionData.getResult();
-                        var resultSpecies = currentSpecies.get(ResourceLocation.fromNamespaceAndPath("cobblemon", result.getSpecies() != null ? result.getSpecies() : ""));
-                        if (resultSpecies != null) {
-                            var resultForm = resultSpecies.getForm(Collections.singleton(result.getForm()));
-                            if (containsBannedLabels(resultForm.getLabels().stream().toList())) {
-                                species.getEvolutions().remove(formEvolutionData);
-                            }
-                        } else {
+                        if(evolutionShouldBeRemoved(currentSpecies, result)){
                             formData.getEvolutions().remove(formEvolutionData);
                         }
+                    }
+                }
+                var evolutions = new ArrayList<>(species.getEvolutions());
+                for (var evolutionData : evolutions) {
+                    var result = evolutionData.getResult();
+                    if(evolutionShouldBeRemoved(currentSpecies, result)){
+                        species.getEvolutions().remove(evolutionData);
                     }
                 }
             }
         }
 
+    }
+
+    private static boolean evolutionShouldBeRemoved(HashMap<ResourceLocation, Species> currentSpecies, PokemonProperties result) {
+        var resultSpecies = currentSpecies.get(ResourceLocation.fromNamespaceAndPath("cobblemon", result.getSpecies() != null ? result.getSpecies() : ""));
+
+        if (resultSpecies == null) {
+            return true;
+        }
+        if(result.getForm()==null || result.getAspects().isEmpty()){
+            return false;
+        }
+        if(resultSpecies.getForms().stream().noneMatch(formData -> formData.getName().equalsIgnoreCase(result.getAspects().stream().toList().getFirst()))) {
+            return true;
+        }
+        var resultForm = resultSpecies.getForm(Collections.singleton(result.getForm()));
+        if(resultForm.getName().equalsIgnoreCase("normal")){
+            if(!result.getAspects().isEmpty()) resultForm = resultSpecies.getForm(result.getAspects());
+            if(resultForm.getName().equalsIgnoreCase("normal")) {
+                return true;
+            }
+        }
+        if (containsBannedLabels(resultForm.getLabels().stream().toList())
+                || containsBannedLabels(resultSpecies.getLabels().stream().toList())) {
+            return true;
+        }
+        return false;
     }
 
     public static @NotNull List<Map.Entry<ResourceLocation, Species>> getSpeciesToBeRemoved(HashMap<ResourceLocation, Species> currentSpecies) {
@@ -314,14 +325,14 @@ public class SpeciesManager {
         var result = PokemonProperties.Companion.parse(evolutionEntry.getResult());
         if (result.getSpecies() == null) return null;
         if (evolutionEntry.getKind() == EvolutionType.LEVEL_UP) {
-            Set<EvolutionRequirement> requirements = getEvolutionRequirements(evolutionEntry);
+            Set<Requirement> requirements = getEvolutionRequirements(evolutionEntry);
             return new LevelUpEvolution(evolutionId, result, shedder, true, false, requirements, new HashSet<>(), new DropTable(), true);
         }
         return null;
     }
 
-    private static @NotNull Set<EvolutionRequirement> getEvolutionRequirements(EvolutionEntry evolutionEntry) {
-        Set<EvolutionRequirement> requirements = new HashSet<>();
+    private static @NotNull Set<Requirement> getEvolutionRequirements(EvolutionEntry evolutionEntry) {
+        Set<Requirement> requirements = new HashSet<>();
         evolutionEntry.getRequirements().forEach(evolutionRequirementEntry -> {
             if (evolutionRequirementEntry.getRequirementKind().equalsIgnoreCase(EvolutionRequirementCondition.LEVEL.getName())) {
                 var requirement = new LevelRequirement();

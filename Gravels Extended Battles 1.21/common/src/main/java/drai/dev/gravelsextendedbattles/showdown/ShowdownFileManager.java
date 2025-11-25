@@ -7,7 +7,7 @@ import java.nio.file.*;
 import java.util.*;
 import java.util.regex.*;
 
-import static drai.dev.gravelsextendedbattles.GravelsExtendedBattles.gravelmonConfig;
+import static drai.dev.gravelsextendedbattles.GravelsExtendedBattles.*;
 
 public class ShowdownFileManager {
     public static final ArrayList<String> SHOWDOWN_FILES = new ArrayList<>(
@@ -100,8 +100,8 @@ public class ShowdownFileManager {
                 ShowdownFileManager.exportResource(showdownSimFolder, "pokemon.js");
             } else {
                 ShowdownInjectionManager.injectEntry(showdownSimFolder + "pokemon.js",
-                        "this.modifyStat(\"atk\", 0.5);\n",
-                        "\t\t\tif (this.status === \"fbt\")\n" +
+                        "this.modifyStat(\"atk\", 0.5);",
+                        "\n\t\t\tif (this.status === \"fbt\")\n" +
                                 "\t\t\t\tthis.modifyStat(\"spa\", 0.5);");
             }
             ShowdownFileManager.exportResource(showdownFolder.replaceAll("data/mods/cobblemon/","server/chat-commands/"), "info.js");
