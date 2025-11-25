@@ -51,9 +51,7 @@ dependencies {
         exclude group: "net.neoforged.fancymodloader", module: "loader"
     }
 
-
-    modImplementation files("libs/mega_showdown-neoforge-${megashowdown}.jar")
-//    modImplementation("maven.modrinth:cobblemon-mega-showdown:${megashowdown}-neoforge")
+    modImplementation("maven.modrinth:cobblemon-mega-showdown:${megashowdown_neoforge}")
 
     // Compile against only the API artifact
     compileOnly("top.theillusivec4.curios:curios-neoforge:9.2.2+1.21.1:api")
