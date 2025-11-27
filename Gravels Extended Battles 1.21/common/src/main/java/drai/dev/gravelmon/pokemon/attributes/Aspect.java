@@ -91,7 +91,7 @@ public enum Aspect {
     QAMORAN("qamoran"),
     NOSTAN,
     VARITASIAN,
-    X,
+    X("x_form"),
     SEVIIAN,
     DEEP,
     AYREIAN,
