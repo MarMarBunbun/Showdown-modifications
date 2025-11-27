@@ -53,6 +53,41 @@ public class ShowdownFileManager {
                 throw new RuntimeException(e);
             }
         }
+        injectStage2(showdownFolder);
+
+//        ShowdownItemManager.injectItems(showdownFolder);
+
+        boolean enableFanGameTypeChart = gravelmonConfig.getEnableOriginalFanGameTypings();
+        if (enableFanGameTypeChart) {
+            for (String fileName : FAN_GAME_TYPE_CHART) {
+                try {
+                    ShowdownFileManager.exportResource(showdownFolder, fileName);
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+            }
+
+            // Rename the typechart2.js file after loading
+            try {
+                String originalFilePath = showdownFolder + File.separator + "typechart2.js";
+                String renamedFilePath = showdownFolder + File.separator + "typechart.js";
+                ShowdownFileManager.renameFile(originalFilePath, renamedFilePath);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        } else {
+            // If fangameTypechart is disabled, use showdownFiles instead
+            for (String fileName : GEB_TYPE_CHART) {
+                try {
+                    ShowdownFileManager.exportResource(showdownFolder, fileName);
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        }
+    }
+
+    private static void injectStage2(String showdownFolder) {
         try {
             String showdownSimFolder = showdownFolder.replaceAll("data/mods/cobblemon/", "sim/");
             if(!Files.exists(Paths.get(showdownSimFolder + "battle-actions.js"))) {
@@ -104,44 +139,28 @@ public class ShowdownFileManager {
                         "\n\t\t\tif (this.status === \"fbt\")\n" +
                                 "\t\t\t\tthis.modifyStat(\"spa\", 0.5);");
             }
+            ShowdownInjectionManager.injectEntry(showdownSimFolder + "dex.js",
+                    "const targetTyping = target.getTypes?.() || target.types || target;",
+                    """
+                            
+                            
+                            \t\tif (sourceType === "Shadow" && Array.isArray(targetTyping)) {
+                                    const effects = targetTyping.map(type => this.getEffectiveness(sourceType, type));
+                                    const max = Math.max(...effects);
+                                    const min = Math.min(...effects);
+                                    if (max > 0 && min < 0) return 0; // Weakness + Resistance = Neutral
+                                    if (max > 0) return 1;            // At least one Weakness
+                                    if (min < 0) return -1;           // At least one Resistance
+                                    return 0;                         // Neutral
+                                }"""
+            );
             ShowdownFileManager.exportResource(showdownFolder.replaceAll("data/mods/cobblemon/","server/chat-commands/"), "info.js");
             ShowdownFileManager.exportResource(showdownFolder.replaceAll("data/mods/cobblemon/","server/chat-plugins/"), "datasearch.js");
             ShowdownFileManager.exportResource(showdownFolder.replaceAll("data/mods/cobblemon/","data/text/"), "default.js");
             ShowdownFileManager.exportResource(showdownFolder.replaceAll("data/mods/cobblemon/","config/"), "formats.js");
-            ShowdownFileManager.exportResource(showdownFolder.replaceAll("data/mods/cobblemon/","sim/"), "dex.js");
+
         } catch (Exception e) {
             throw new RuntimeException(e);
-        }
-
-        ShowdownItemManager.injectItems(showdownFolder);
-
-        boolean enableFangameTypechart = gravelmonConfig.getEnableOriginalFanGameTypings();
-        if (enableFangameTypechart) {
-            for (String fileName : FAN_GAME_TYPE_CHART) {
-                try {
-                    ShowdownFileManager.exportResource(showdownFolder, fileName);
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
-            }
-
-            // Rename the typechart2.js file after loading
-            try {
-                String originalFilePath = showdownFolder + File.separator + "typechart2.js";
-                String renamedFilePath = showdownFolder + File.separator + "typechart.js";
-                ShowdownFileManager.renameFile(originalFilePath, renamedFilePath);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        } else {
-            // If fangameTypechart is disabled, use showdownFiles instead
-            for (String fileName : GEB_TYPE_CHART) {
-                try {
-                    ShowdownFileManager.exportResource(showdownFolder, fileName);
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
-            }
         }
     }
 
