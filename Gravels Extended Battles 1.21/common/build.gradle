@@ -15,8 +15,7 @@ dependencies {
     modImplementation "maven.modrinth:midnightlib:gDxRS3a2"
 
     //Mega showdown compat
-//    modImplementation("maven.modrinth:cobblemon-mega-showdown:${megashowdown}-fabric")
-    modImplementation files("libs/mega_showdown-fabric-${megashowdown}.jar")
+    modImplementation("maven.modrinth:cobblemon-mega-showdown:${megashowdown_fabric}")
     modImplementation "curse.maven:supermartijn642s-config-lib-438332:5546988"
 
     modCompileOnly "io.wispforest:accessories-common:${project.accessories_version}"
