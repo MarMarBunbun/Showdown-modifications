@@ -1,6 +1,0 @@
-{
-    "keys": [ "grass" ],
-    "type": "flag",
-    "isAspect": true,
-    "default": false
-  }

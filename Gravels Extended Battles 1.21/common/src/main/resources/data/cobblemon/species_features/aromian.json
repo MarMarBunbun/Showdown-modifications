@@ -1,6 +1,0 @@
-{
-    "keys": [ "aromian" ],
-    "type": "flag",
-    "isAspect": true,
-    "default": false
-  }

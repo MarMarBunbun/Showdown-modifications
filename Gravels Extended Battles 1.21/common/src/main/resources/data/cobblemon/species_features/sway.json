@@ -1,6 +1,0 @@
-{
-    "keys": [ "sway" ],
-    "type": "flag",
-    "isAspect": true,
-    "default": false
-  }

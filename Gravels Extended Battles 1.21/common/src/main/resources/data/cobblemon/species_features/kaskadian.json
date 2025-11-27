@@ -1,6 +1,0 @@
-{
-    "keys": [ "kaskadian" ],
-    "type": "flag",
-    "isAspect": true,
-    "default": false
-  }

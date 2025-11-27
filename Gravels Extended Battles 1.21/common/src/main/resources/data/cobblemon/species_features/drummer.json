@@ -1,6 +1,0 @@
-{
-    "keys": [ "drummer" ],
-    "type": "flag",
-    "isAspect": true,
-    "default": false
-  }

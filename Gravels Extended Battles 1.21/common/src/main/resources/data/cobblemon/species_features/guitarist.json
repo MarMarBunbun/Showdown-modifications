@@ -1,6 +1,0 @@
-{
-    "keys": [ "guitarist" ],
-    "type": "flag",
-    "isAspect": true,
-    "default": false
-  }

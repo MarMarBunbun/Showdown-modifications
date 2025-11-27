@@ -1,6 +1,0 @@
-{
-    "keys": [ "vesitan" ],
-    "type": "flag",
-    "isAspect": true,
-    "default": false
-  }

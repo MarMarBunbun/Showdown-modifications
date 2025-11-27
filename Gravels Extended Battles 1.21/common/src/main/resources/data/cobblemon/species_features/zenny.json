@@ -1,6 +1,0 @@
-{
-    "keys": [ "zenny" ],
-    "type": "flag",
-    "isAspect": true,
-    "default": false
-  }

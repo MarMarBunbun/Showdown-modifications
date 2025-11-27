@@ -1,6 +1,0 @@
-{
-    "keys": [ "electric" ],
-    "type": "flag",
-    "isAspect": true,
-    "default": false
-  }

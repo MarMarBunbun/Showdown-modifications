@@ -1,6 +1,0 @@
-{
-    "keys": [ "fighting" ],
-    "type": "flag",
-    "isAspect": true,
-    "default": false
-  }

@@ -1,6 +1,0 @@
-{
-    "keys": [ "elbian" ],
-    "type": "flag",
-    "isAspect": true,
-    "default": false
-  }

@@ -1,6 +1,0 @@
-{
-    "keys": [ "terrestrial" ],
-    "type": "flag",
-    "isAspect": true,
-    "default": false
-  }

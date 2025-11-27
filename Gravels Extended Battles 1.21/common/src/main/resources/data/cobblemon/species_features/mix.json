@@ -1,6 +1,0 @@
-{
-    "keys": [ "mix" ],
-    "type": "flag",
-    "isAspect": true,
-    "default": false
-  }

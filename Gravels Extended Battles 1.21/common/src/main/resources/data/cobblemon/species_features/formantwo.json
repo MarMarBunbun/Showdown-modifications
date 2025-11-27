@@ -1,6 +1,0 @@
-{
-    "keys": [ "formantwo" ],
-    "type": "flag",
-    "isAspect": true,
-    "default": false
-  }

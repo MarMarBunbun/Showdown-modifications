@@ -1,6 +1,0 @@
-{
-    "keys": [ "allergy" ],
-    "type": "flag",
-    "isAspect": true,
-    "default": false
-  }

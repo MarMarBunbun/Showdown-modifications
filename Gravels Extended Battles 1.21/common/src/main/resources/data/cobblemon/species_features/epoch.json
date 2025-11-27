@@ -1,6 +1,0 @@
-{
-    "keys": [ "epoch" ],
-    "type": "flag",
-    "isAspect": true,
-    "default": false
-  }

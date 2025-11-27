@@ -1,6 +1,0 @@
-{
-    "keys": [ "epoch_mega" ],
-    "type": "flag",
-    "isAspect": true,
-    "default": false
-  }

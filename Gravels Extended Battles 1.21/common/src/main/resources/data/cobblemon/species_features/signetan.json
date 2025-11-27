@@ -1,6 +1,0 @@
-{
-    "keys": [ "signetan" ],
-    "type": "flag",
-    "isAspect": true,
-    "default": false
-  }

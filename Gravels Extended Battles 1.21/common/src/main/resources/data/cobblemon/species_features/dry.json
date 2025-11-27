@@ -1,6 +1,0 @@
-{
-    "keys": [ "dry" ],
-    "type": "flag",
-    "isAspect": true,
-    "default": false
-  }

@@ -1,6 +1,0 @@
-{
-    "keys": [ "delta_crystal_mega" ],
-    "type": "flag",
-    "isAspect": true,
-    "default": false
-  }

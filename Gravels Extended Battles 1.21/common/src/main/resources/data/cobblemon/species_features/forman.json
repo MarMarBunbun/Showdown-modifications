@@ -1,6 +1,0 @@
-{
-    "keys": [ "forman" ],
-    "type": "flag",
-    "isAspect": true,
-    "default": false
-  }

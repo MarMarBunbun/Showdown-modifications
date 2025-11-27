@@ -1,6 +1,0 @@
-{
-    "keys": [ "deltawater" ],
-    "type": "flag",
-    "isAspect": true,
-    "default": false
-  }

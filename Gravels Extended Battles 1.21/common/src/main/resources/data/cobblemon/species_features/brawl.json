@@ -1,6 +1,0 @@
-{
-    "keys": [ "brawl" ],
-    "type": "flag",
-    "isAspect": true,
-    "default": false
-  }

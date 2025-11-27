@@ -1,6 +1,0 @@
-{
-    "keys": [ "windy" ],
-    "type": "flag",
-    "isAspect": true,
-    "default": false
-  }

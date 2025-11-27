@@ -1,6 +1,0 @@
-{
-    "keys": [ "deltaactive" ],
-    "type": "flag",
-    "isAspect": true,
-    "default": false
-  }

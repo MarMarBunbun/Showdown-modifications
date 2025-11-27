@@ -1,6 +1,0 @@
-{
-    "keys": [ "deltaberry" ],
-    "type": "flag",
-    "isAspect": true,
-    "default": false
-  }

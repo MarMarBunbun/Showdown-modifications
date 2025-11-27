@@ -1,6 +1,0 @@
-{
-    "keys": [ "swarm" ],
-    "type": "flag",
-    "isAspect": true,
-    "default": false
-  }

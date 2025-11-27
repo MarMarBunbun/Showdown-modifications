@@ -1,6 +1,0 @@
-{
-    "keys": [ "cefiranelectric" ],
-    "type": "flag",
-    "isAspect": true,
-    "default": false
-  }

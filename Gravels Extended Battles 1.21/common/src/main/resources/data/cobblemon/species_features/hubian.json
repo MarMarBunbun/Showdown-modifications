@@ -1,6 +1,0 @@
-{
-    "keys": [ "hubian" ],
-    "type": "flag",
-    "isAspect": true,
-    "default": false
-  }

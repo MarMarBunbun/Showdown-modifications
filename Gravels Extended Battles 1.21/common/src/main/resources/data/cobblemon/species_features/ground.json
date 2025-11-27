@@ -1,6 +1,0 @@
-{
-    "keys": [ "ground" ],
-    "type": "flag",
-    "isAspect": true,
-    "default": false
-  }

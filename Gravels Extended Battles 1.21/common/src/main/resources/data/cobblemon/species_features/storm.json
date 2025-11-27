@@ -1,6 +1,0 @@
-{
-    "keys": [ "storm" ],
-    "type": "flag",
-    "isAspect": true,
-    "default": false
-  }

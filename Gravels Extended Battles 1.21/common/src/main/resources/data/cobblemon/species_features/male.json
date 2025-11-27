@@ -1,6 +1,0 @@
-{
-    "keys": [ "male" ],
-    "type": "flag",
-    "isAspect": true,
-    "default": false
-  }

@@ -1,6 +1,0 @@
-{
-    "keys": [ "amazeall" ],
-    "type": "flag",
-    "isAspect": true,
-    "default": false
-  }

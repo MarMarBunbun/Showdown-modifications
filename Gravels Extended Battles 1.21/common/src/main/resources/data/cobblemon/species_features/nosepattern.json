@@ -1,6 +1,0 @@
-{
-    "keys": [ "nosepattern" ],
-    "type": "flag",
-    "isAspect": true,
-    "default": false
-  }

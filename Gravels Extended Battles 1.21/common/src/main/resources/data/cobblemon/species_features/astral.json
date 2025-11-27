@@ -1,6 +1,0 @@
-{
-    "keys": [ "astral" ],
-    "type": "flag",
-    "isAspect": true,
-    "default": false
-  }

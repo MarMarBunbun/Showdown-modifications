@@ -1,6 +1,0 @@
-{
-    "keys": [ "deltaspider" ],
-    "type": "flag",
-    "isAspect": true,
-    "default": false
-  }

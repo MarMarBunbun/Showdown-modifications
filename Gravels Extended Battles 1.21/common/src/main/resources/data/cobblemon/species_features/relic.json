@@ -1,6 +1,0 @@
-{
-    "keys": [ "relic" ],
-    "type": "flag",
-    "isAspect": true,
-    "default": false
-  }
