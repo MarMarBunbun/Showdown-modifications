@@ -12,4 +12,7 @@ public interface ElementalZCrystalAccessor {
     @Mutable
     @Accessor("element")
     void gravelmon_setElement(ElementalType evolutions);
+    @Mutable
+    @Accessor("pokemons")
+    List<String> gravelmon_getPokemons();
 }

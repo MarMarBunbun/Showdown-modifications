@@ -10,6 +10,7 @@ import java.util.function.*;
 
 public class GravelmonTeraTypes {
     public static final Map<TeraType, ChatFormatting> TERA_TYPES_TO_CHAT_FORMATTING = new HashMap<>();
+    public static final Map<ElementalType, ChatFormatting> TYPES_TO_CHAT_FORMATTING = new HashMap<>();
     public static TeraType BLOOD;
     public static TeraType COSMIC;
     public static TeraType CRYSTAL;
@@ -30,6 +31,7 @@ public class GravelmonTeraTypes {
         var shard = GravelsExtendedBattlesItems.TERA_SHARDS_BY_TYPE_NAME.get(elementalType.getName().toLowerCase());
         GravelsExtendedBattlesItems.TERA_SHARD_SUPPLIERS.put(shard, teraType);
         GravelmonTeraTypes.TERA_TYPES_TO_CHAT_FORMATTING.put(teraType, chatFormatting);
+        GravelmonTeraTypes.TYPES_TO_CHAT_FORMATTING.put(elementalType, chatFormatting);
         return teraType;
     }
 }

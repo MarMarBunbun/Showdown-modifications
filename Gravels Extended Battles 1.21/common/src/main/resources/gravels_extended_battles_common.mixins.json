@@ -11,6 +11,7 @@
     "defaultRequire": 1
   },
   "mixins": [
+    "BattleManagerMixin",
     "CobblemonPreEvolutionAdapterMixin",
     "CobblemonSpawnPoolsMixin",
     "ElementalTypesMixin",
@@ -32,6 +33,7 @@
     "loot.LootTableAccessor",
     "megashowdown.ElementalZCrystalAccessor",
     "megashowdown.FormChangeHeldItemAccessor",
+    "megashowdown.GlowHandlerMixin",
     "megashowdown.MegaShowdownMixin",
     "megashowdown.TeraTypeHelperMixin"
   ]
