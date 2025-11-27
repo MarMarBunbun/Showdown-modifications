@@ -1,0 +1,6 @@
+{
+    "keys": [ "deltacrystal" ],
+    "type": "flag",
+    "isAspect": true,
+    "default": false
+  }

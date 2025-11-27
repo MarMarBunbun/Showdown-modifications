@@ -1,0 +1,6 @@
+{
+    "keys": [ "sorcery" ],
+    "type": "flag",
+    "isAspect": true,
+    "default": false
+  }

@@ -1,0 +1,6 @@
+{
+    "keys": [ "green" ],
+    "type": "flag",
+    "isAspect": true,
+    "default": false
+  }

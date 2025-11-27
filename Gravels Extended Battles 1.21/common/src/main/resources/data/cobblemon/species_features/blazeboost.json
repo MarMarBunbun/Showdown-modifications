@@ -1,0 +1,6 @@
+{
+    "keys": [ "blazeboost" ],
+    "type": "flag",
+    "isAspect": true,
+    "default": false
+  }

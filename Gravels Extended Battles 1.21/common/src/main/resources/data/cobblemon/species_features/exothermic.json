@@ -1,0 +1,6 @@
+{
+    "keys": [ "exothermic" ],
+    "type": "flag",
+    "isAspect": true,
+    "default": false
+  }

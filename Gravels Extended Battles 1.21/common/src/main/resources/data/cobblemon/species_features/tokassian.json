@@ -1,0 +1,6 @@
+{
+    "keys": [ "tokassian" ],
+    "type": "flag",
+    "isAspect": true,
+    "default": false
+  }

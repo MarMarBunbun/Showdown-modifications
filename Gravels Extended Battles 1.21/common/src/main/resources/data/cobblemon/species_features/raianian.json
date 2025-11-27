@@ -1,0 +1,6 @@
+{
+    "keys": [ "raianian" ],
+    "type": "flag",
+    "isAspect": true,
+    "default": false
+  }

@@ -1,0 +1,6 @@
+{
+    "keys": [ "space" ],
+    "type": "flag",
+    "isAspect": true,
+    "default": false
+  }

@@ -1,0 +1,6 @@
+{
+    "keys": [ "mega_mystis" ],
+    "type": "flag",
+    "isAspect": true,
+    "default": false
+  }

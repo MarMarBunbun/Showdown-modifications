@@ -1,0 +1,6 @@
+{
+    "keys": [ "malex" ],
+    "type": "flag",
+    "isAspect": true,
+    "default": false
+  }

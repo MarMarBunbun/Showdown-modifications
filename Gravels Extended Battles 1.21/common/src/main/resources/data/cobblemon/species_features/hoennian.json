@@ -1,0 +1,6 @@
+{
+    "keys": [ "hoennian" ],
+    "type": "flag",
+    "isAspect": true,
+    "default": false
+  }

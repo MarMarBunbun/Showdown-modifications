@@ -1,0 +1,6 @@
+{
+    "keys": [ "dragon" ],
+    "type": "flag",
+    "isAspect": true,
+    "default": false
+  }

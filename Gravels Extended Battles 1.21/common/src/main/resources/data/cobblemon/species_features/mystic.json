@@ -1,0 +1,6 @@
+{
+    "keys": [ "mystic" ],
+    "type": "flag",
+    "isAspect": true,
+    "default": false
+  }

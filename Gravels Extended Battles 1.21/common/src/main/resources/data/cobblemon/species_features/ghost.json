@@ -1,0 +1,6 @@
+{
+    "keys": [ "ghost" ],
+    "type": "flag",
+    "isAspect": true,
+    "default": false
+  }

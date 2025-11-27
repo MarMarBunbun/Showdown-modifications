@@ -1,0 +1,6 @@
+{
+    "keys": [ "deltaten" ],
+    "type": "flag",
+    "isAspect": true,
+    "default": false
+  }

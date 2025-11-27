@@ -1,0 +1,6 @@
+{
+    "keys": [ "deep" ],
+    "type": "flag",
+    "isAspect": true,
+    "default": false
+  }

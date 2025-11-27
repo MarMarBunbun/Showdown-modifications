@@ -1,0 +1,6 @@
+{
+    "keys": [ "epochten" ],
+    "type": "flag",
+    "isAspect": true,
+    "default": false
+  }

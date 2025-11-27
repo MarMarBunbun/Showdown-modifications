@@ -1,0 +1,6 @@
+{
+    "keys": [ "water" ],
+    "type": "flag",
+    "isAspect": true,
+    "default": false
+  }

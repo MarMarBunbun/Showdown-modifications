@@ -1,0 +1,6 @@
+{
+    "keys": [ "fire" ],
+    "type": "flag",
+    "isAspect": true,
+    "default": false
+  }

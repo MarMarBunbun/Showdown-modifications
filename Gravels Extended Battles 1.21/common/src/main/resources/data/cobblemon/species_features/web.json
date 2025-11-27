@@ -1,0 +1,6 @@
+{
+    "keys": [ "web" ],
+    "type": "flag",
+    "isAspect": true,
+    "default": false
+  }

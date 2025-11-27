@@ -1,0 +1,6 @@
+{
+    "keys": [ "magician" ],
+    "type": "flag",
+    "isAspect": true,
+    "default": false
+  }

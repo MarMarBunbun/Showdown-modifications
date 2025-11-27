@@ -1,0 +1,6 @@
+{
+    "keys": [ "browpattern" ],
+    "type": "flag",
+    "isAspect": true,
+    "default": false
+  }

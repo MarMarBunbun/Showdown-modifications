@@ -1,0 +1,6 @@
+{
+    "keys": [ "ferranian" ],
+    "type": "flag",
+    "isAspect": true,
+    "default": false
+  }

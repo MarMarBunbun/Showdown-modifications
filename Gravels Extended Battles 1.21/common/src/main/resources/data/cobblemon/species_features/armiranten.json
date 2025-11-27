@@ -1,0 +1,6 @@
+{
+    "keys": [ "armiranten" ],
+    "type": "flag",
+    "isAspect": true,
+    "default": false
+  }

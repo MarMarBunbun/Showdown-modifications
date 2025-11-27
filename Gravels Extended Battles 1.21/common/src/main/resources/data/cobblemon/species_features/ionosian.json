@@ -1,0 +1,6 @@
+{
+    "keys": [ "ionosian" ],
+    "type": "flag",
+    "isAspect": true,
+    "default": false
+  }

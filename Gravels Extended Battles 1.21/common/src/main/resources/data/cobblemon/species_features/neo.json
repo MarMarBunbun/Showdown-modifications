@@ -1,0 +1,6 @@
+{
+    "keys": [ "neo" ],
+    "type": "flag",
+    "isAspect": true,
+    "default": false
+  }

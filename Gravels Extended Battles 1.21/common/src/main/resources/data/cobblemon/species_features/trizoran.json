@@ -1,0 +1,6 @@
+{
+    "keys": [ "trizoran" ],
+    "type": "flag",
+    "isAspect": true,
+    "default": false
+  }

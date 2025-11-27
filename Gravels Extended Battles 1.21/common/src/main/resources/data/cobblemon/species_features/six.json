@@ -1,0 +1,6 @@
+{
+    "keys": [ "six" ],
+    "type": "flag",
+    "isAspect": true,
+    "default": false
+  }

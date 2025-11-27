@@ -1,0 +1,6 @@
+{
+    "keys": [ "tribal" ],
+    "type": "flag",
+    "isAspect": true,
+    "default": false
+  }

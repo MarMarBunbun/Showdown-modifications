@@ -1,0 +1,6 @@
+{
+    "keys": [ "flying" ],
+    "type": "flag",
+    "isAspect": true,
+    "default": false
+  }

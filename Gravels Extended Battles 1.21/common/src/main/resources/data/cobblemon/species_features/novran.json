@@ -1,0 +1,6 @@
+{
+    "keys": [ "novran" ],
+    "type": "flag",
+    "isAspect": true,
+    "default": false
+  }

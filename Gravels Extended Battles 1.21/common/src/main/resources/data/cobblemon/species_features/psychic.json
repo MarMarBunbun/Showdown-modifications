@@ -1,0 +1,6 @@
+{
+    "keys": [ "psychic" ],
+    "type": "flag",
+    "isAspect": true,
+    "default": false
+  }

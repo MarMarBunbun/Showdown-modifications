@@ -1,0 +1,6 @@
+{
+    "keys": [ "crozoican" ],
+    "type": "flag",
+    "isAspect": true,
+    "default": false
+  }

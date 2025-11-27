@@ -1,0 +1,6 @@
+{
+    "keys": [ "havaiian" ],
+    "type": "flag",
+    "isAspect": true,
+    "default": false
+  }

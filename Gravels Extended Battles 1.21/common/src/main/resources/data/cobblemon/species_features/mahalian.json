@@ -1,0 +1,6 @@
+{
+    "keys": [ "mahalian" ],
+    "type": "flag",
+    "isAspect": true,
+    "default": false
+  }

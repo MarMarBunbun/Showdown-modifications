@@ -1,0 +1,6 @@
+{
+    "keys": [ "deltaruin" ],
+    "type": "flag",
+    "isAspect": true,
+    "default": false
+  }

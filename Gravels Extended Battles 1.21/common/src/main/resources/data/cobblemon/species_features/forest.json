@@ -1,0 +1,6 @@
+{
+    "keys": [ "forest" ],
+    "type": "flag",
+    "isAspect": true,
+    "default": false
+  }

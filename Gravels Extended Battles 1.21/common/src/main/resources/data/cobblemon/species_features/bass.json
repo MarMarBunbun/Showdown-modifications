@@ -1,0 +1,6 @@
+{
+    "keys": [ "bass" ],
+    "type": "flag",
+    "isAspect": true,
+    "default": false
+  }

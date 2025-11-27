@@ -1,0 +1,6 @@
+{
+    "keys": [ "nuclear_mega" ],
+    "type": "flag",
+    "isAspect": true,
+    "default": false
+  }

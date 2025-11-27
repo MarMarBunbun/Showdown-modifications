@@ -1,0 +1,6 @@
+{
+    "keys": [ "cefiranfire" ],
+    "type": "flag",
+    "isAspect": true,
+    "default": false
+  }

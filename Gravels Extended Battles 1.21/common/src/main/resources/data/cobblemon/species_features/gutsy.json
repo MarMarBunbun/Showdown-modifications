@@ -1,0 +1,6 @@
+{
+    "keys": [ "gutsy" ],
+    "type": "flag",
+    "isAspect": true,
+    "default": false
+  }

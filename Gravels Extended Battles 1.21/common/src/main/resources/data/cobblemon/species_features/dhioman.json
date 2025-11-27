@@ -1,0 +1,6 @@
+{
+    "keys": [ "dhioman" ],
+    "type": "flag",
+    "isAspect": true,
+    "default": false
+  }

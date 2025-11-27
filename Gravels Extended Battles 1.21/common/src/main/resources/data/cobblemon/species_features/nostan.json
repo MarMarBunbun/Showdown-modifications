@@ -1,0 +1,6 @@
+{
+    "keys": [ "nostan" ],
+    "type": "flag",
+    "isAspect": true,
+    "default": false
+  }

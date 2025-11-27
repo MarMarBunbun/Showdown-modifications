@@ -1,0 +1,6 @@
+{
+    "keys": [ "poison" ],
+    "type": "flag",
+    "isAspect": true,
+    "default": false
+  }

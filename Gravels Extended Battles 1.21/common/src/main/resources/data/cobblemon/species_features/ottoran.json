@@ -1,0 +1,6 @@
+{
+    "keys": [ "ottoran" ],
+    "type": "flag",
+    "isAspect": true,
+    "default": false
+  }

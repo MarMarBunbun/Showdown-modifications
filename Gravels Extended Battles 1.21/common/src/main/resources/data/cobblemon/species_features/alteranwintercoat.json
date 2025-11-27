@@ -1,0 +1,6 @@
+{
+    "keys": [ "alteranwintercoat" ],
+    "type": "flag",
+    "isAspect": true,
+    "default": false
+  }

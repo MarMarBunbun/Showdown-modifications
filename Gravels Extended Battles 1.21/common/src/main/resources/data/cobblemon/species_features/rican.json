@@ -1,0 +1,6 @@
+{
+    "keys": [ "rican" ],
+    "type": "flag",
+    "isAspect": true,
+    "default": false
+  }

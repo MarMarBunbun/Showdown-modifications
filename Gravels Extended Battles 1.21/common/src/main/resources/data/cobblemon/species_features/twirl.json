@@ -1,0 +1,6 @@
+{
+    "keys": [ "twirl" ],
+    "type": "flag",
+    "isAspect": true,
+    "default": false
+  }

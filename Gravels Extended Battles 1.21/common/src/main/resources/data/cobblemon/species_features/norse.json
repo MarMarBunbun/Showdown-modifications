@@ -1,0 +1,6 @@
+{
+    "keys": [ "norse" ],
+    "type": "flag",
+    "isAspect": true,
+    "default": false
+  }

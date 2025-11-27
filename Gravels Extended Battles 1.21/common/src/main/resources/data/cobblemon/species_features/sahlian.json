@@ -1,0 +1,6 @@
+{
+    "keys": [ "sahlian" ],
+    "type": "flag",
+    "isAspect": true,
+    "default": false
+  }
