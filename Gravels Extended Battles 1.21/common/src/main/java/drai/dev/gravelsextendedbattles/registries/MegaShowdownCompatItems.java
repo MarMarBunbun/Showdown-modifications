@@ -2,13 +2,18 @@ package drai.dev.gravelsextendedbattles.registries;
 
 import com.cobblemon.mod.common.api.types.*;
 import com.cobblemon.mod.common.api.types.tera.*;
+import com.github.yajatkaul.mega_showdown.*;
+import com.github.yajatkaul.mega_showdown.components.*;
 import com.github.yajatkaul.mega_showdown.creative.*;
 import com.github.yajatkaul.mega_showdown.item.custom.form_change.*;
 import com.github.yajatkaul.mega_showdown.item.custom.z.*;
+import com.github.yajatkaul.mega_showdown.utils.*;
 import dev.architectury.registry.registries.*;
+import drai.dev.gravelsextendedbattles.*;
 import drai.dev.gravelsextendedbattles.items.megashowdown.*;
 import net.minecraft.*;
 import net.minecraft.network.chat.*;
+import net.minecraft.resources.*;
 import net.minecraft.world.item.*;
 
 import java.util.*;
@@ -44,15 +49,19 @@ public class MegaShowdownCompatItems {
         );
     }
 
-    public static RegistrySupplier<Item> registerZCrystalItem(String name,  Supplier<ElementalType> type) {
-        return ITEMS.register(name, () -> new GravelmonElementalZCrystal(new Item.Properties().arch$tab(MegaShowdownTabs.Z_TAB),
+    public static Supplier<Item> registerZCrystalItem(String name,  Supplier<ElementalType> type) {
+        return () -> new GravelmonElementalZCrystal(new Item.Properties()
+                .component(MegaShowdownDataComponents.REGISTRY_TYPE_COMPONENT.get(), RegistryLocator.Z_CRYSTAL_ITEM)
+                .component(MegaShowdownDataComponents.RESOURCE_LOCATION_COMPONENT.get(),
+                        ResourceLocation.fromNamespaceAndPath(GravelsExtendedBattles.MOD_ID, name))
+                .arch$tab(MegaShowdownTabs.Z_TAB),
                 null,
                 null,
                 List.of("Arceus"),
                 "",
                 true,
                 type
-        ));
+        );
     }
 
     private static RegistrySupplier<Item> registerFormChangeHeldItems(String name, String revertAspect, String applyAspect, List<String> pokemons, String effectId, boolean tradable) {

@@ -184,13 +184,12 @@ public class GravelsExtendedBattlesItems {
     public static void register() {
         ITEMS.register();
         registered = true;
-        initTeraShards();
     }
 
     public static RegistrySupplier<Item> registerZCrystalItem(String name, RegistrySupplier<Item> gem, String type, Supplier<ElementalType> elementalTypeSupplier) {
         RegistrySupplier<Item> register;
         if(Platform.isModLoaded("mega_showdown")){
-            register = MegaShowdownCompatItems.registerZCrystalItem(name, elementalTypeSupplier);
+            register = ITEMS.register(name, MegaShowdownCompatItems.registerZCrystalItem(name, elementalTypeSupplier));
         } else {
             register = ITEMS.register(name.trim().replaceAll("\\W", ""), () -> new Item(new Item.Properties()) {
                 @Override
@@ -290,16 +289,5 @@ public class GravelsExtendedBattlesItems {
         registerHeldItemLookup(name, register);
         HELD_ITEMS.add(register);
         return register;
-    }
-
-    public static void initTeraShards() {
-        if(GravelsExtendedBattles.TERA_TYPES_INITIATED && registered) {
-            for (Supplier<? extends Item> supplier : Z_CRYSTALS.values()) {
-                Item item = supplier.get();
-                if (item instanceof GravelmonElementalZCrystal crystal) {
-                    crystal.initialize();
-                }
-            }
-        }
     }
 }

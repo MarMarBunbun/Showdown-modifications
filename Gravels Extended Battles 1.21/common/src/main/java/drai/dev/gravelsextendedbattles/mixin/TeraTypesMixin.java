@@ -49,7 +49,6 @@ public abstract class TeraTypesMixin {
             GravelsExtendedBattles.TERA_TYPES_INITIATED = true;
             initializing = false;
             isInit=true;
-            GravelsExtendedBattlesItems.initTeraShards();
         }
     }
 
