@@ -339,6 +339,17 @@ const Abilities = {
     rating: 4,
     num: 3192
   },
+  artillerist: {
+    onBasePower(relayVar, source, target, move) {
+      if (move.flags['bullet']) {
+        return this.chainModify(1.5);
+      }
+    },
+    flags: {},
+    name: "Artillerist",
+    rating: 3.5,
+    num: 3251
+  },
   athenian: {
     onModifySpAPriority: 5,
     onModifySpA(spa) {
@@ -423,6 +434,24 @@ const Abilities = {
     rating: 3.5,
     num: 3014
   },
+  baitedline: {
+    onFoeTrapPokemon(pokemon) {
+      if (pokemon.hasType("Water") && pokemon.isAdjacent(this.effectState.target)) {
+        pokemon.tryTrap(true);
+      }
+    },
+    onFoeMaybeTrapPokemon(pokemon, source) {
+      if (!source) source = this.effectState.target;
+      if (!source || !pokemon.isAdjacent(source)) return;
+      if (!pokemon.knownType || pokemon.hasType("Water")) {
+        pokemon.maybeTrapped = true;
+      }
+    },
+    flags: {},
+    name: "Baited Line",
+    rating: 4,
+    num: 3233
+  },
   blackhole: {
     onFoeTrapPokemon(pokemon) {
       if (pokemon.hasType("Psychic", "Cosmic") && pokemon.isAdjacent(this.effectState.target)) {
@@ -441,6 +470,24 @@ const Abilities = {
     name: "Black Hole",
     rating: 4,
     num: 3015
+  },
+  blademaster: {
+    onBasePowerPriority: 19,
+    onBasePower(basePower, attacker, defender, move) {
+      if (move.flags["blade"]) {
+        this.debug('Blademaster boost');
+        return this.chainModify(1.2);
+      }
+    },
+    onModifyCritRatio(relayVar, source, target, move) {
+      if (move.flags["slicing"]) {
+        return relayVar + 1;
+      }
+    },
+    flags: {},
+    name: "Blademaster",
+    rating: 3.5,
+    num: 3234
   },
   blazingsoul: {
     onModifyPriority(priority, pokemon, target, move) {
@@ -567,6 +614,19 @@ const Abilities = {
     rating: 3.5,
     num: 3224
   },
+  bonecollector: {
+    onFaint(target, source, effect) {
+      if (!source || !target || source.fainted || source === target) return;
+      if (source.ability !== 'bonecollector') return;
+      if (source.side !== target.side) {
+        this.add('-ability', source, 'Bone Collector');
+        this.heal(source.maxhp / 2, source);
+      }
+    },
+    name: "Bone Collector",
+    rating: 3.5,
+    num: 3263
+   },
   borealinstinct: {
     onBasePowerPriority: 19,
     onBasePower(basePower, attacker, defender, move) {
@@ -683,6 +743,19 @@ const Abilities = {
     name: "Carbon Capture",
     rating: 1.5,
     num: 3025
+  },
+  carpenter: {
+    onAllyBasePowerPriority: 23,
+    onAllyBasePower(relayVar, attacker, defender, move) {
+      if (attacker.getTypes().some(type => ["Grass", "Rock", "Steel"].includes(type))) {
+        this.debug("Carpenter boost");
+        return this.chainModify(1.3)
+      }
+    },
+    flags: {},
+    name: "Carpenter",
+    rating: 2,
+    num: 3257
   },
   cashsplash: {
     onUpdate(pokemon) {
@@ -1124,6 +1197,24 @@ const Abilities = {
     rating: 3,
     num: 3043
   },
+  crystaljaw: {
+    onModifyMove(move, pokemon, target) {
+      if (move.flags["bite"]) {
+        move.overrideOffensiveStat = "spa";
+      }
+    },
+    onBasePowerPriority: 19,
+    onBasePower(relayVar, source, target, move) {
+      if (move.flags["bite"]) {
+        this.debug("Crystal Kaw boost");
+        return this.chainModify(1.3);
+      }
+    },
+    flags: { breakable: 1 },
+    name: "Crystal Jaw",
+    rating: 3.5,
+    num: 3235
+  },
   damp: {
     onAnyTryMove(target, source, effect) {
       if ([ "atomsplit", "explosion", "mindblown", "mistyexplosion", "selfdestruct"].includes(effect.id)) {
@@ -1300,6 +1391,29 @@ const Abilities = {
     name: "Druidry",
     rating: 1.5,
     num: 3049
+  },
+  dubious: {
+    onSwitchIn(pokemon) {
+      this.effectState.switchingIn = true;
+    },
+    onStart(pokemon) {
+      if (!this.effectState.switchingIn) return;
+      const targets = pokemon.side.pokemon.filter(p => !p.fainted && p !== pokemon);
+      if (targets.length === 0) return;
+      const target = targets[this.random(targets.length)]
+      if (target) {
+        pokemon.transformInto(target);
+        // this.add('-activate', pokemon, 'ability: Dubious');
+        if (pokemon.hasType("Dark")) return;
+        if (!pokemon.addType("Dark")) return;
+        this.add('-start', pokemon, 'typeadd', 'Dark', '[from] ability: Dubious');
+      }
+      this.effectState.switchingIn = false;
+    },
+    flags: { failroleplay: 1, noreceiver: 1, noentrain: 1, notrace: 1 },
+    name: "Dubious",
+    rating: 5,
+    num: 3258
   },
   dustdevil: {
     onStart(source) {
@@ -1531,6 +1645,24 @@ const Abilities = {
     rating: 4,
     num: 3063
   },
+  fervor: {
+    onStart(target) {
+      target.addVolatile("fervor");
+    },
+    condition: {
+      noCopy: true,
+      onSourceDamagingHit(damage, target, source, move) {
+        if (this.checkMoveMakesContact(move, source, target)) {
+          this.boost({ spe: 1 }, source);
+          source.removeVolatile("fervor");
+        }
+      }
+    },
+    flags: {},
+    name: "Fervor",
+    rating: 2,
+    num: 3236
+  },
   fieldworker: {
     onBasePowerPriority: 19,
     onBasePower(basePower, attacker, defender, move) {
@@ -1749,6 +1881,30 @@ const Abilities = {
     rating: 2,
     num: 3208
   },
+  freezeover: {
+    onStart(source) {
+      if (source.hasItem("icyrock")) {
+        for (const action of this.queue) {
+          if (action.choice === 'runPrimal' && action.pokemon === source && source.species.id === 'kyogre') return;
+          if (action.choice !== 'runSwitch' && action.choice !== 'runPrimal') break;
+        }
+        this.field.setWeather("hail");
+      }
+    },
+    onWeatherChange(pokemon) {
+      if (pokemon.baseSpecies.baseSpecies !== "Croacrozen" || pokemon.transformed) return;
+      const weather = pokemon.effectiveWeather();
+      if (weather === "hail" || weather === "snow") {
+        pokemon.formeChange("Croacrozen-Frozen", this.effect, false, "[msg]");
+      } else {
+        pokemon.formeChange("Croacrozen", this.effect, false, "[msg]");
+      }
+	},
+    flags: { failroleplay: 1, noreceiver: 1, noentrain: 1, notrace: 1 },
+    name: "Freeze Over",
+    rating: 2,
+    num: 3248
+  },
   frighten: {
     onStart(pokemon) {
       let activated = false;
@@ -1855,6 +2011,13 @@ const Abilities = {
     rating: 4,
     num: 3072
   },
+  globetrotter: {
+    flags: {},
+    name: "Globetrotter",
+    rating: 2,
+    num: 3255
+    // Hazard and Field Condition Immunity implemented in moves.ts and conditions.ts
+  },
   grasspelt: {
     onModifyDefPriority: 6,
     onModifyDef(pokemon) {
@@ -1876,6 +2039,26 @@ const Abilities = {
     name: "Gravity Sling",
     rating: 3,
     num: 3073
+  },
+  grimtears: {
+    onStart(pokemon) {
+      let activated = false;
+      for (const target of pokemon.adjacentFoes()) {
+        if (!activated) {
+          this.add('-ability', pokemon, 'Grim Tears', 'boost');
+          activated = true;
+        }
+        if (target.volatiles['substitute']) {
+          this.add('-immune', target);
+        } else {
+          this.boost({ spa: -1 }, target, pokemon, null, true);
+        }
+      }
+    },
+    flags: {},
+    name: "Grim Tears",
+    rating: 3.5,
+    num: 3237
   },
   guttermind: {
     onModifyTypePriority: -1,
@@ -1982,6 +2165,31 @@ const Abilities = {
     rating: 3.5,
     num: 3079
   },
+  headchef: {
+    onTryHeal(relayVar, target, source, effect) {
+      this.add("-activate", target, "ability: Head Chef");
+      return this.chainModify(1.2);
+    },
+    flags: {},
+    name: "Head Chef",
+    rating: 2,
+    num: 3254
+  },
+  healingsun: {
+    onWeather(target, source, effect) {
+      if (target.hasItem("utilityumbrella")) return;
+      if (effect.id === "sunnyday") {
+        this.heal(target.baseMaxhp / 16);
+      }
+      else if (effect.id === "desolateland") {
+        this.heal(target.baseMaxhp / 10);
+      }
+    },
+    flags: {},
+    name: "Healing Sun",
+    rating: 2,
+    num: 3238
+  },
   heeho: {
     onStart(source) {
       this.field.setWeather("snow");
@@ -2056,6 +2264,18 @@ const Abilities = {
     name: "Holy Guard",
     rating: 3.5,
     num: 3174
+  },
+  hottemperament: {
+	onBasePowerPriority: 19,
+	onBasePower(relayVar, source, target, move) {
+      if (move.priority > 0) {
+        this.chainModify(1.3);
+      }
+	},
+	flags: {},
+	name: "Hot Temperament",
+	rating: 2,
+	num: 3260
   },
   hubris: {
     onSourceAfterFaint(length, target, source, effect) {
@@ -2273,6 +2493,17 @@ const Abilities = {
     rating: 3,
     num: 3091
   },
+  junglefury: {
+    onModifyCritRatio(relayVar, source, target, move) {
+      if (this.field.isTerrain("grassyterrain")) {
+        return relayVar + 2;
+      }
+    },
+    flags: { breakable: 1 },
+    name: "Jungle Fury",
+    rating: 0.5,
+    num: 3239
+  },
   junglespirit: {
     onModifyMove(move) {
       move.stab = 2;
@@ -2471,6 +2702,17 @@ const Abilities = {
     rating: 1.5,
     num: 196
   },
+  microstrike: {
+	onModifyDamage(relayVar, source, target, move) {
+      if (source.weighthg < target.weighthg) {
+        return this.chainModify(1.3);
+      }
+	},
+	flags: {},
+	name: "Micro Strike",
+	rating: 2,
+	num: 3240
+  },
   mimicry: {
     onStart(pokemon) {
       this.singleEvent("TerrainChange", this.effect, this.effectState, pokemon);
@@ -2518,6 +2760,46 @@ const Abilities = {
     name: "Mimicry",
     rating: 0,
     num: 250
+  },
+  momentum: {
+	onStart(target) {
+      target.addVolatile("momentum")
+	},
+	flags: {},
+	name: "Momentum",
+	rating: 4,
+	num: 3256,
+	condition: {
+      onStart(pokemon) {
+        this.effectState.lastMove = '';
+        this.effectState.numConsecutive = 0;
+      },
+      onTryMovePriority: -3,
+      onTryMove(pokemon, target, move) {
+        if (!pokemon.hasAbility('momentum')) {
+          pokemon.removeVolatile('momentum');
+          return;
+        }
+        if (this.effectState.lastMove === move.id && pokemon.moveLastTurnResult) {
+          this.effectState.numConsecutive++;
+        } else if (pokemon.volatiles['twoturnmove']) {
+          if (this.effectState.lastMove !== move.id) {
+            this.effectState.numConsecutive = 1;
+          } else {
+            this.effectState.numConsecutive++;
+          }
+        } else {
+          this.effectState.numConsecutive = 0;
+        }
+        this.effectState.lastMove = move.id;
+      },
+      onModifyDamage(damage, source, target, move) {
+        const dmgMod = [4096, 4915, 5734, 6553, 7372, 8192];
+        const numConsecutive = this.effectState.numConsecutive > 5 ? 5 : this.effectState.numConsecutive;
+        this.debug(`Current Momentum boost: ${dmgMod[numConsecutive]}/4096`);
+        return this.chainModify([dmgMod[numConsecutive], 4096]);
+      }
+	}
   },
   mytheater: {
     onTryHitPriority: 1,
@@ -2605,6 +2887,59 @@ const Abilities = {
     rating: 1.5,
     num: 3105
   },
+  neuronalactivation: {
+    onStart(pokemon) {
+      this.singleEvent("TerrainChange", this.effect, this.effectState, pokemon);
+    },
+    onTerrainChange(pokemon) {
+      if (pokemon.transformed)
+        return;
+      if (this.field.isTerrain("electricterrain")) {
+        pokemon.addVolatile("neuronalactivation");
+      }
+    },
+    onTryHit(target, source, move) {
+      if (target !== source && move.type === "Electric") {
+        if (!target.addVolatile("neuronalactivation")) {
+          this.add("-immune", target, "[from] ability: Neuronal Activation");
+        }
+        return null;
+      }
+    },
+    onEnd(pokemon) {
+      pokemon.removeVolatile("neuronalactivation");
+    },
+    condition: {
+      noCopy: true,
+      onStart(target) {
+        this.add("-start", target, "ability: Neuronal Activation");
+      },
+      onModifySTAB(stab, source, target, move) {
+        if (move.forceSTAB || source.hasType(move.type)) {
+          if (stab === 2) {
+            return 2.25;
+          }
+          return 2;
+        }
+      },
+      onMoveAborted(pokemon, target, move) {
+        if (pokemon.hasType(move.type) && move.category !== "Status" && !this.field.isTerrain("electricterrain")) {
+          pokemon.removeVolatile("neuronalactivation");
+        }
+      },
+      onAfterMove(pokemon, target, move) {
+        if (pokemon.hasType(move.type) && move.category !== "Status" && !this.field.isTerrain("electricterrain")) {
+          pokemon.removeVolatile("neuronalactivation");
+        }
+      },
+      onEnd(target) {
+        this.add("-end", target, "ability: Neuronal Activation");
+      }
+    },
+    name: "Neuronal Activation",
+    rating: 3.5,
+    num: 3232
+  },
   noctem: {
     onStart(source) {
       this.field.setWeather("darkness");
@@ -2684,6 +3019,41 @@ const Abilities = {
     name: "Orbital Tide",
     rating: 4,
     num: 3109
+  },
+  overcharge: {
+	onModifyAtkPriority: 5,
+	onModifyAtk(atk, attacker, defender, move) {
+      if (move.type === "Electric" && attacker.hp <= attacker.maxhp / 3) {
+        this.debug("Overcharge boost");
+        return this.chainModify(1.5);
+      }
+	},
+	onModifySpAPriority: 5,
+	onModifySpA(atk, attacker, defender, move) {
+      if (move.type === "Electric" && attacker.hp <= attacker.maxhp / 3) {
+        this.debug("Overcharge boost");
+        return this.chainModify(1.5);
+      }
+	},
+	flags: {},
+	name: "Overcharge",
+	rating: 2,
+	num: 3252
+  },
+  overwrite: {
+	onStart(target) {
+      let moveName = target.moveSlots[0].move;
+      if (!moveName) return;
+      let move = this.dex.moves.get(moveName);
+      if (move) {
+        if (!target.setType(move.type)) return;
+        this.add('-start', target, 'typechange', move.type, '[from] ability: Overwrite');
+      }
+	},
+	flags: { failroleplay: 1, noreceiver: 1, noentrain: 1, notrace: 1 },
+	name: "Overwrite",
+	rating: 4,
+	num: 3249
   },
   pastelveil: {
     onStart(pokemon) {
@@ -2902,6 +3272,44 @@ const Abilities = {
     name: "Power of Alchemy",
     rating: 0,
     num: 223
+  },
+  premonition: {
+	onModifySpA(relayVar, source, target, move) {
+      if (move.id === "futuresight") {
+        this.add('-activate', source, 'ability: Premonition');
+        return this.chainModify(2);
+      }
+	},
+	onAfterMove(pokemon, target, move) {
+      if (move.category === 'Status' || move.flags['charge'] ||
+        move.flags['futuremove'] || move.spreadHit || move.isZ || move.isMax) return;
+      if (!pokemon.hasType(move.type)) return;
+      if (!target.side.addSlotCondition(target, 'futuremove')) return;
+      let premonitionHit = Object.assign({}, move)
+      premonitionHit.secondaries = []
+      premonitionHit.flags.futuremove = 1
+      this.add('-activate', pokemon, 'ability: Premonition');
+      Object.assign(target.side.slotConditions[target.position]["futuremove"], {
+        move: premonitionHit.id,
+        source: pokemon,
+        duration: 2,
+        moveData: {
+          id: premonitionHit.id,
+          name: premonitionHit.name,
+          accuracy: premonitionHit.accuracy,
+          basePower: premonitionHit.basePower,
+          category: premonitionHit.category,
+          priority: premonitionHit.priority,
+          flags: premonitionHit.flags,
+          effectType: 'Move',
+          type: premonitionHit.type,
+        }
+      });
+	},
+	flags: {},
+	name: "Premonition",
+	rating: 5,
+	num: 3259
   },
   prismatichue: {
     onStart(pokemon) {
@@ -3168,6 +3576,49 @@ const Abilities = {
     rating: 3.5,
     num: 3125
   },
+  rushdown: {
+    onStart(pokemon) {
+      pokemon.abilityState.choiceLock = "";
+    },
+    onBeforeMove(pokemon, target, move) {
+      if (move.isZOrMaxPowered || move.id === 'struggle') return;
+      if (pokemon.abilityState.choiceLock && pokemon.abilityState.choiceLock !== move.id) {
+        // Fails unless ability is being ignored (these events will not run), no PP lost.
+        this.addMove('move', pokemon, move.name);
+        this.attrLastMove('[still]');
+        this.debug("Disabled by Rush Down");
+        this.add('-fail', pokemon);
+        return false;
+      }
+    },
+    onModifyMove(move, pokemon) {
+      if (pokemon.abilityState.choiceLock || move.isZOrMaxPowered || move.id === 'struggle') return;
+      pokemon.abilityState.choiceLock = move.id;
+    },
+    onModifyAtkPriority: 1,
+    onModifySpe(spe, pokemon) {
+      if (pokemon.volatiles['dynamax']) return;
+      // PLACEHOLDER
+      this.debug('Rush Down Spe Boost');
+      return this.chainModify(1.5);
+    },
+    onDisableMove(pokemon) {
+      if (!pokemon.abilityState.choiceLock) return;
+      if (pokemon.volatiles['dynamax']) return;
+      for (const moveSlot of pokemon.moveSlots) {
+        if (moveSlot.id !== pokemon.abilityState.choiceLock) {
+          pokemon.disableMove(moveSlot.id, false, this.effectState.sourceEffect);
+        }
+      }
+    },
+    onEnd(pokemon) {
+      pokemon.abilityState.choiceLock = "";
+    },
+    flags: {},
+    name: "Rush Down",
+    rating: 4.5,
+    num: 3261
+  },
   sandforce: {
     onBasePowerPriority: 21,
     onBasePower(basePower, attacker, defender, move) {
@@ -3405,6 +3856,18 @@ const Abilities = {
     rating: 5,
     num: 3137
   },
+  shiningbody: {
+    onDamagingHit(damage, target, source, move) {
+      if (this.checkMoveMakesContact(move, source, target, true)) {
+        this.add('-ability', target, 'Shining Body');
+        this.boost({ accuracy: -1 }, source, target, null, true);
+      }
+    },
+    flags: {},
+    name: "Shining Body",
+    rating: 2,
+    num: 3262
+  },
   siegedrive: {
     onBasePowerPriority: 19,
     onBasePower(basePower, attacker, defender, move) {
@@ -3592,6 +4055,38 @@ const Abilities = {
     name: "Seance",
     rating: 4,
     num: 3148
+  },
+  seancemazah: {
+	onAnyFaint(target) {
+      if (!this.effectState.target.hp) return;
+      const ability = target.getAbility();
+      if (ability.flags['noreceiver'] || ability.id === 'noability') return;
+      if (this.effectState.target.setAbility(ability)) {
+        this.add('-ability', this.effectState.target, ability, '[from] ability: Seance', '[of] ' + target);
+      }
+	},
+	flags: {failroleplay: 1, noreceiver: 1, noentrain: 1, notrace: 1},
+	name: "Seance Mazah",
+	rating: 0,
+	num: 3241
+  },
+  slipperypeel: {
+	onStart(target) {
+      target.addVolatile("slipperypeel");
+	},
+	condition: {
+      noCopy: true,
+      onDamagingHit(damage, target, source, move) {
+        if (this.checkMoveMakesContact(move, source, target)) {
+          source.forceSwitchFlag = true;
+          target.removeVolatile("slipperypeel");
+        }
+      }
+	},
+	flags: {},
+	name: "Slippery Peel",
+	rating: 2,
+	num: 3242
   },
   statictouch: {
     onSourceDamagingHit(damage, target, source, move) {
@@ -3807,6 +4302,30 @@ const Abilities = {
     rating: 4,
     num: 3156
   },
+  thermocool: {
+	onBasePower(relayVar, source, target, move) {
+      if (["sunnyday", "desolateland"].includes(source.effectiveWeather()) && move.type === "Ice") {
+        this.debug("Thermo Cool boost");
+        return this.chainModify(1.5);
+      }
+	},
+	flags: { breakable: 1 },
+	name: "Thermo Cool",
+	rating: 3.5,
+	num: 3243
+  },
+  thermoheat: {
+	onBasePower(relayVar, source, target, move) {
+      if (["hail", "snow"].includes(source.effectiveWeather()) && move.type === "Fire") {
+        this.debug("Thermo Heat boost");
+        return this.chainModify(1.5);
+      }
+	},
+	flags: { breakable: 1 },
+	name: "Thermo Heat",
+	rating: 3.5,
+	num: 3244
+  },
   tobe: {
     onTryHit(pokemon, target, move) {
       if (move.ohko) {
@@ -3839,6 +4358,27 @@ const Abilities = {
     name: "Toxic Boost",
     rating: 3,
     num: 137
+  },
+  toxicvoice: {
+	onModifyTypePriority: -1,
+	onSourceDamagingHit(damage, target, source, move) {
+      if (target.hasAbility("shielddust") || target.hasItem("covertcloak"))
+        return;
+      if (move.flags['sound'] || move.type === "Sound") {
+        if (this.randomChance(3, 10)) {
+          target.trySetStatus("psn", source);
+        }
+      }
+	},
+	onModifyType(move, pokemon) {
+      if ((move.flags['sound'] || move.type === "Sound") && !pokemon.volatiles['dynamax']) { // hardcode
+        move.type = 'Poison';
+      }
+	},
+	flags: {},
+	name: "Toxic Voice",
+	rating: 1.5,
+	num: 3250
   },
   trace: {
     onStart(pokemon) {
@@ -3889,6 +4429,12 @@ const Abilities = {
     rating: 4,
     num: 3157
   },
+  trickster: {
+	flags: {},
+	name: "Trickster",
+	rating: 4,
+	num: 3245
+  },
   trumpetweevil: {
     onModifyTypePriority: -1,
     onModifyType(move, pokemon) {
@@ -3905,6 +4451,31 @@ const Abilities = {
     name: "Trumpet Weevil",
     rating: 4,
     num: 3205
+  },
+  turbine: {
+	onTryHit(target, source, move) {
+      if (target !== source && move.type === 'Flying') {
+        if (!this.boost({atk: 1})) {
+          this.add('-immune', target, '[from] ability: Turbine');
+        }
+        return null;
+      }
+	},
+	onAnyRedirectTarget(target, source, source2, move) {
+      if (move.type !== 'Flying' || move.flags['pledgecombo']) return;
+      const redirectTarget = ['randomNormal', 'adjacentFoe'].includes(move.target) ? 'normal' : move.target;
+      if (this.validTarget(this.effectState.target, source, redirectTarget)) {
+        if (move.smartTarget) move.smartTarget = false;
+        if (this.effectState.target !== target) {
+          this.add('-activate', this.effectState.target, 'ability: Turbine');
+        }
+        return this.effectState.target;
+      }
+	},
+	flags: { breakable: 1 },
+	name: "Turbine",
+	rating: 3,
+	num: 3253
   },
   unstable: {
     onPrepareHit(source, target, move) {
@@ -4031,6 +4602,38 @@ const Abilities = {
     name: "Voice Tuning",
     rating: 4,
     num: 3163
+  },
+  voltaicspirit: {
+	onModifyAtkPriority: 5,
+	onModifyAtk(atk, attacker, defender, move) {
+      if (move.type === "Electric") {
+        this.debug("Voltaic Spirit boost");
+        return this.chainModify(1.5);
+      }
+	},
+	onModifySpAPriority: 5,
+	onModifySpA(atk, attacker, defender, move) {
+      if (move.type === "Electric") {
+        this.debug("Voltaic Spirit boost");
+        return this.chainModify(1.5);
+      }
+	},
+	flags: {},
+	name: "Voltaic Spirit",
+	rating: 3.5,
+	num: 3246
+  },
+  warriorspirit: {
+	onModifyDamage(relayVar, source, target, move) {
+      if (target.runEffectiveness(move) > 0) {
+        this.debug("Warrior Spirit boost");
+        return this.chainModify(1.5);
+      }
+	},
+	flags: {},
+	name: "Warrior Spirit",
+	rating: 3,
+	num: 3247
   },
   warpmist: {
     onTryHit(target, source, move) {
