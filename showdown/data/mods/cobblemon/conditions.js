@@ -135,9 +135,14 @@ const Conditions = {
       return 5;
     },
     onWeatherModifyDamage(damage, attacker, defender, move) {
-      if (defender.hasItem("utilityumbrella") || defender.hasAbility("hydrophobic"))
+      if (defender.hasItem("utilityumbrella") || defender.hasAbility("hydrophobic") || defender.hasAbility("globetrotter"))
         return;
-      if (move.type === "Water") {
+      // Cobblemania modification
+	  if (move.id === "steamburst") {
+        this.debug("Rain Steam Burst boost")
+        return this.chainModify(1.5);
+	  }
+	  if (move.type === "Water") {
         this.debug("rain water boost");
         return this.chainModify(1.5);
       }
@@ -164,6 +169,133 @@ const Conditions = {
       this.add("-weather", "none");
     }
   },
+  primordialsea: {
+    name: "PrimordialSea",
+    effectType: "Weather",
+    duration: 0,
+    onTryMovePriority: 1,
+    onTryMove(attacker, defender, move) {
+      if (move.type === "Fire" && move.category !== "Status") {
+        this.debug("Primordial Sea fire suppress");
+        this.add("-fail", attacker, move, "[from] Primordial Sea");
+        this.attrLastMove("[still]");
+        return null;
+      }
+    },
+    onWeatherModifyDamage(damage, attacker, defender, move) {
+      if (defender.hasItem("utilityumbrella") || defender.hasAbility("globetrotter"))
+        return;
+      // Cobblemania modification
+	  if (move.id === "steamburst") {
+        this.debug("Rain Steam Burst boost")
+        return this.chainModify(1.5);
+	  }
+	  if (move.type === "Water") {
+        this.debug("Rain water boost");
+        return this.chainModify(1.5);
+      }
+    },
+    onFieldStart(field, source, effect) {
+      this.add("-weather", "PrimordialSea", "[from] ability: " + effect.name, "[of] " + source);
+    },
+    onFieldResidualOrder: 1,
+    onFieldResidual() {
+      this.add("-weather", "PrimordialSea", "[upkeep]");
+      this.eachEvent("Weather");
+    },
+    onFieldEnd() {
+      this.add("-weather", "none");
+    }
+  },
+  sunnyday: {
+    name: "SunnyDay",
+    effectType: "Weather",
+    duration: 5,
+    durationCallback(source, effect) {
+      if (source?.hasItem("heatrock")) {
+        return 8;
+      }
+      return 5;
+    },
+    onWeatherModifyDamage(damage, attacker, defender, move) {
+      if (move.id === "hydrosteam" && !attacker.hasItem("utilityumbrella")) {
+        this.debug("Sunny Day Hydro Steam boost");
+        return this.chainModify(1.5);
+      }
+      if (defender.hasItem("utilityumbrella") || defender.hasAbility("globetrotter"))
+        return;
+      if (move.type === "Fire") {
+        this.debug("Sunny Day fire boost");
+        return this.chainModify(1.5);
+      }
+      if (move.type === "Water") {
+        this.debug("Sunny Day water suppress");
+        return this.chainModify(0.5);
+      }
+    },
+    onFieldStart(battle, source, effect) {
+      if (effect?.effectType === "Ability") {
+        if (this.gen <= 5)
+          this.effectState.duration = 0;
+        this.add("-weather", "SunnyDay", "[from] ability: " + effect.name, "[of] " + source);
+      } else {
+        this.add("-weather", "SunnyDay");
+      }
+    },
+    onImmunity(type, pokemon) {
+      if (pokemon.hasItem("utilityumbrella") || defender.hasAbility("globetrotter"))
+        return;
+      if (type === "frz")
+        return false;
+    },
+    onFieldResidualOrder: 1,
+    onFieldResidual() {
+      this.add("-weather", "SunnyDay", "[upkeep]");
+      this.eachEvent("Weather");
+    },
+    onFieldEnd() {
+      this.add("-weather", "none");
+    }
+  },
+  desolateland: {
+    name: "DesolateLand",
+    effectType: "Weather",
+    duration: 0,
+    onTryMovePriority: 1,
+    onTryMove(attacker, defender, move) {
+      if (move.type === "Water" && move.category !== "Status") {
+        this.debug("Desolate Land water suppress");
+        this.add("-fail", attacker, move, "[from] Desolate Land");
+        this.attrLastMove("[still]");
+        return null;
+      }
+    },
+    onWeatherModifyDamage(damage, attacker, defender, move) {
+      if (defender.hasItem("utilityumbrella") || defender.hasAbility("globetrotter"))
+        return;
+      if (move.type === "Fire") {
+        this.debug("Sunny Day fire boost");
+        return this.chainModify(1.5);
+      }
+    },
+    onFieldStart(field, source, effect) {
+      this.add("-weather", "DesolateLand", "[from] ability: " + effect.name, "[of] " + source);
+    },
+    onImmunity(type, pokemon) {
+      if (pokemon.hasItem("utilityumbrella") || defender.hasAbility("globetrotter"))
+        return;
+      if (type === "frz")
+        return false;
+    },
+    onFieldResidualOrder: 1,
+    onFieldResidual() {
+      this.add("-weather", "DesolateLand", "[upkeep]");
+      this.eachEvent("Weather");
+    },
+    onFieldEnd() {
+      this.add("-weather", "none");
+    }
+  },
   acidrain: {
     name: "AcidRain",
     effectType: "Weather",
@@ -175,7 +307,7 @@ const Conditions = {
       return 5;
     },
     onWeatherModifyDamage(damage, attacker, defender, move) {
-      if (defender.hasItem("utilityumbrella"))
+      if (defender.hasItem("utilityumbrella") || defender.hasAbility("globetrotter"))
         return;
       if (move.type === "Poison") {
         this.debug("acid rain poison boost");
@@ -307,7 +439,7 @@ const Conditions = {
       return 5;
     },
 	onWeatherModifyDamage(damage, attacker, defender, move) {
-      if (defender.hasItem("utilityumbrella"))
+      if (defender.hasItem("utilityumbrella") || defender.hasAbility("globetrotter"))
         return;
       if (move.type === "Ghost" || move.type === "Dark") {
         this.debug("darkness ghost boost");
@@ -347,7 +479,7 @@ const Conditions = {
       return 5;
     },
 	onWeatherModifyDamage(damage, attacker, defender, move) {
-      if (defender.hasItem("utilityumbrella"))
+      if (defender.hasItem("utilityumbrella") || defender.hasAbility("globetrotter"))
         return;
       if (move.type === "Electric") {
         this.debug("Dust Storm fairy suppress");
@@ -618,7 +750,7 @@ const Conditions = {
       return 5;
     },
 	onWeatherModifyDamage(damage, attacker, defender, move) {
-      if (defender.hasItem("utilityumbrella"))
+      if (defender.hasItem("utilityumbrella") || defender.hasAbility("globetrotter"))
         return;
       if (move.type === "Ice") {
         this.debug("Hail ice boost");
@@ -835,7 +967,7 @@ const Conditions = {
     // This should be applied directly to the stat before any of the other modifiers are chained
     // So we give it increased priority.
     onWeatherModifyDamage(damage, attacker, defender, move) {
-      if (defender.hasItem("utilityumbrella"))
+      if (defender.hasItem("utilityumbrella") || defender.hasAbility("globetrotter"))
         return;
       if (move.type === "Shadow") {
         this.debug("Shadowy Aura shadow boost");
@@ -915,9 +1047,14 @@ const Conditions = {
     // This should be applied directly to the stat before any of the other modifiers are chained
     // So we give it increased priority.
     onWeatherModifyDamage(damage, attacker, defender, move) {
-      if (defender.hasItem("utilityumbrella"))
+      if (defender.hasItem("utilityumbrella") || defender.hasAbility("globetrotter"))
         return;
-      if (move.type === "Electric") {
+      // Cobblemania modification
+	  if (move.id === "steamburst") {
+        this.debug("Rain Steam Burst boost")
+        return this.chainModify(1.5);
+	  }
+	  if (move.type === "Electric") {
         this.debug("Thunderstorm electric boost");
         return this.chainModify(1.5);
       }

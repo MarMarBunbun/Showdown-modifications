@@ -615,18 +615,18 @@ const Abilities = {
     num: 3224
   },
   bonecollector: {
-    onFaint(target, source, effect) {
-      if (!source || !target || source.fainted || source === target) return;
-      if (source.ability !== 'bonecollector') return;
-      if (source.side !== target.side) {
-        this.add('-ability', source, 'Bone Collector');
-        this.heal(source.maxhp / 2, source);
+    onSourceFaint(target, source, effect) {
+      if (!source || !effect || !effect.effectType) return;
+      if (effect.effectType === "Move" && effect.basePower > 0) {
+        this.heal(source.baseMaxhp / 2, source);
+
+        this.add("-ability", source, "Bone Collector");
       }
-    },
-    name: "Bone Collector",
+	},
+	name: "Bone Collector",
     rating: 3.5,
     num: 3263
-   },
+  },
   borealinstinct: {
     onBasePowerPriority: 19,
     onBasePower(basePower, attacker, defender, move) {
@@ -2265,18 +2265,6 @@ const Abilities = {
     rating: 3.5,
     num: 3174
   },
-  hottemperament: {
-	onBasePowerPriority: 19,
-	onBasePower(relayVar, source, target, move) {
-      if (move.priority > 0) {
-        this.chainModify(1.3);
-      }
-	},
-	flags: {},
-	name: "Hot Temperament",
-	rating: 2,
-	num: 3260
-  },
   hubris: {
     onSourceAfterFaint(length, target, source, effect) {
       if (effect && effect.effectType === "Move") {
@@ -3576,49 +3564,6 @@ const Abilities = {
     rating: 3.5,
     num: 3125
   },
-  rushdown: {
-    onStart(pokemon) {
-      pokemon.abilityState.choiceLock = "";
-    },
-    onBeforeMove(pokemon, target, move) {
-      if (move.isZOrMaxPowered || move.id === 'struggle') return;
-      if (pokemon.abilityState.choiceLock && pokemon.abilityState.choiceLock !== move.id) {
-        // Fails unless ability is being ignored (these events will not run), no PP lost.
-        this.addMove('move', pokemon, move.name);
-        this.attrLastMove('[still]');
-        this.debug("Disabled by Rush Down");
-        this.add('-fail', pokemon);
-        return false;
-      }
-    },
-    onModifyMove(move, pokemon) {
-      if (pokemon.abilityState.choiceLock || move.isZOrMaxPowered || move.id === 'struggle') return;
-      pokemon.abilityState.choiceLock = move.id;
-    },
-    onModifyAtkPriority: 1,
-    onModifySpe(spe, pokemon) {
-      if (pokemon.volatiles['dynamax']) return;
-      // PLACEHOLDER
-      this.debug('Rush Down Spe Boost');
-      return this.chainModify(1.5);
-    },
-    onDisableMove(pokemon) {
-      if (!pokemon.abilityState.choiceLock) return;
-      if (pokemon.volatiles['dynamax']) return;
-      for (const moveSlot of pokemon.moveSlots) {
-        if (moveSlot.id !== pokemon.abilityState.choiceLock) {
-          pokemon.disableMove(moveSlot.id, false, this.effectState.sourceEffect);
-        }
-      }
-    },
-    onEnd(pokemon) {
-      pokemon.abilityState.choiceLock = "";
-    },
-    flags: {},
-    name: "Rush Down",
-    rating: 4.5,
-    num: 3261
-  },
   sandforce: {
     onBasePowerPriority: 21,
     onBasePower(basePower, attacker, defender, move) {
@@ -3855,18 +3800,6 @@ const Abilities = {
     name: "Sharp Coral",
     rating: 5,
     num: 3137
-  },
-  shiningbody: {
-    onDamagingHit(damage, target, source, move) {
-      if (this.checkMoveMakesContact(move, source, target, true)) {
-        this.add('-ability', target, 'Shining Body');
-        this.boost({ accuracy: -1 }, source, target, null, true);
-      }
-    },
-    flags: {},
-    name: "Shining Body",
-    rating: 2,
-    num: 3262
   },
   siegedrive: {
     onBasePowerPriority: 19,

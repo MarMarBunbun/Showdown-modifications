@@ -3218,7 +3218,7 @@ const Moves = {
         this.add("-sidestart", side, "move: Construction Blocks");
       },
       onEntryHazard(pokemon) {
-        if (pokemon.hasItem("heavydutyboots"))
+        if (pokemon.hasItem("heavydutyboots") || pokemon.hasAbility("globetrotter"))
           return;
         const typeMod = this.clampIntRange(pokemon.runEffectiveness(this.dex.getActiveMove("constructionblocks")), -6, 6);
         this.damage(pokemon.maxhp * Math.pow(2, typeMod) / 8);
@@ -8114,6 +8114,23 @@ const Moves = {
     target: "normal",
     type: "Light"
   },
+  gmaxsteelsurge: {
+    inherit: true,
+	flags: {},
+	condition: {
+      onSideStart(side) {
+        this.add("-sidestart", side, "move: G-Max Steelsurge");
+      },
+      onEntryHazard(pokemon) {
+        if (pokemon.hasItem("heavydutyboots") || pokemon.hasAbility("globetrotter"))
+          return;
+        const steelHazard = this.dex.getActiveMove("Stealth Rock");
+        steelHazard.type = "Steel";
+        const typeMod = this.clampIntRange(pokemon.runEffectiveness(steelHazard), -6, 6);
+        this.damage(pokemon.maxhp * Math.pow(2, typeMod) / 8);
+      }
+    }
+  },
   goldenfist: {
     num: 3195,
     accuracy: 100,
@@ -8943,7 +8960,7 @@ const Moves = {
         this.add("-sidestart", side, "move: Hot Coals");
       },
       onEntryHazard(pokemon) {
-        if (pokemon.hasItem("heavydutyboots"))
+        if (pokemon.hasItem("heavydutyboots") || pokemon.hasAbility("globetrotter"))
           return;
         const typeMod = this.clampIntRange(pokemon.runEffectiveness(this.dex.getActiveMove("hotcoals")), -6, 6);
         this.damage(pokemon.maxhp * Math.pow(2, typeMod) / 8);
@@ -10128,7 +10145,7 @@ const Moves = {
         this.add("-sidestart", side, "move: Livewire", "[up to " + this.effectState.layers + " layers]");
       },
       onEntryHazard(pokemon) {
-        if (!pokemon.isGrounded() || pokemon.hasItem("heavydutyboots")) return;
+        if (!pokemon.isGrounded() || pokemon.hasItem("heavydutyboots") || pokemon.hasAbility("globetrotter")) return;
         if (
           pokemon.hasType("Electric") ||
           pokemon.hasType("Ground") ||
@@ -10295,6 +10312,39 @@ const Moves = {
   magicpowder: {
     inherit: true,
 	flags: { protect: 1, reflectable: 1, mirror: 1, allyanim: 1, metronome: 1, powder: 1, magic: 1 }
+  },
+  magicroom: {
+    inherit: true,
+	flags: { mirror: 1, metronome: 1 },
+	condition: {
+      duration: 5,
+      durationCallback(source, effect) {
+        if (source?.hasAbility("persistent") || source?.hasAbility("trickster")) {
+          this.add("-activate", source, "ability: Persistent", "[move] Magic Room");
+          return 7;
+        }
+        return 5;
+      },
+      onFieldStart(target, source) {
+        if (source?.hasAbility("persistent") || source?.hasAbility("trickster")) {
+          this.add("-fieldstart", "move: Magic Room", "[of] " + source, "[persistent]");
+        } else {
+          this.add("-fieldstart", "move: Magic Room", "[of] " + source);
+        }
+        for (const mon of this.getAllActive()) {
+          this.singleEvent("End", mon.getItem(), mon.itemState, mon);
+        }
+      },
+      onFieldRestart(target, source) {
+        this.field.removePseudoWeather("magicroom");
+      },
+      // Item suppression implemented in Pokemon.ignoringItem() within sim/pokemon.js
+      onFieldResidualOrder: 27,
+      onFieldResidualSubOrder: 6,
+      onFieldEnd() {
+        this.add("-fieldend", "move: Magic Room", "[of] " + this.effectState.source);
+      }
+    }
   },
   magicwall: {
     num: 3242,
@@ -12562,7 +12612,7 @@ const Moves = {
         this.add("-sidestart", side, "move: Permafrost", "[up to " + this.effectState.layers + " layers]");
       },
       onEntryHazard(pokemon) {
-        if (!pokemon.isGrounded() || pokemon.hasItem("heavydutyboots")) return;
+        if (!pokemon.isGrounded() || pokemon.hasItem("heavydutyboots") || pokemon.hasAbility("globetrotter")) return;
         if (pokemon.hasType("Fire") || pokemon.hasType("Ice")) {
           this.add("-sideend", pokemon.side, "move: Permafrost", "[of] " + pokemon);
           pokemon.side.removeSideCondition("permafrost");
@@ -14619,7 +14669,7 @@ const Moves = {
         this.add("-sidestart", side, "move: Scorched Ashes");
       },
       onEntryHazard(pokemon) {
-        if (!pokemon.isGrounded() || pokemon.hasItem("heavydutyboots"))
+        if (!pokemon.isGrounded() || pokemon.hasItem("heavydutyboots") || pokemon.hasAbility("globetrotter"))
           return;
         this.add("-activate", pokemon, "move: Scorched Ashes");
         this.boost({ atk: -1 }, pokemon, this.effectState.source, this.dex.getActiveMove("scorchedashes"));
@@ -16745,6 +16795,29 @@ const Moves = {
     type: "Rock",
     contestType: "Cool"
   },
+  spikes: {
+    inherit: true,
+	flags: { reflectable: 1, nonsky: 1, metronome: 1, mustpressure: 1 },
+	condition: {
+      // this is a side condition
+      onSideStart(side) {
+        this.add("-sidestart", side, "Spikes");
+        this.effectState.layers = 1;
+      },
+      onSideRestart(side) {
+        if (this.effectState.layers >= 3)
+          return false;
+        this.add("-sidestart", side, "Spikes");
+        this.effectState.layers++;
+      },
+      onEntryHazard(pokemon) {
+        if (!pokemon.isGrounded() || pokemon.hasItem("heavydutyboots") || pokemon.hasAbility("globetrotter"))
+          return;
+        const damageAmounts = [0, 3, 4, 6];
+        this.damage(damageAmounts[this.effectState.layers] * pokemon.maxhp / 24);
+      }
+    }
+  },
   spindash: {
     num: 3476,
     accuracy: 85,
@@ -17273,7 +17346,7 @@ const Moves = {
         this.add("-sidestart", side, "move: Stealth Rock");
       },
       onEntryHazard(pokemon) {
-        if (pokemon.hasItem("heavydutyboots"))
+        if (pokemon.hasItem("heavydutyboots") || pokemon.hasAbility("globetrotter"))
           return;
         const typeMod = this.clampIntRange(pokemon.runEffectiveness(this.dex.getActiveMove("stealthrock")), -6, 6);
         this.damage(pokemon.maxhp * Math.pow(2, typeMod) / 8);
@@ -17287,6 +17360,21 @@ const Moves = {
   steelbeam: {
     inherit: true,
 	flags: { protect: 1, mirror: 1, beam: 1 }
+  },
+  stickyweb: {
+    inherit: true,
+	flags: { reflectable: 1, metronome: 1 },
+	condition: {
+      onSideStart(side) {
+        this.add("-sidestart", side, "move: Sticky Web");
+      },
+      onEntryHazard(pokemon) {
+        if (!pokemon.isGrounded() || pokemon.hasItem("heavydutyboots") || pokemon.hasAbility("globetrotter"))
+          return;
+        this.add("-activate", pokemon, "move: Sticky Web");
+        this.boost({ spe: -1 }, pokemon, pokemon.side.foe.active[0], this.dex.getActiveMove("stickyweb"));
+      }
+    }
   },
   stingfreeze: {
     num: 3401,
@@ -18498,6 +18586,37 @@ const Moves = {
     type: "Water",
     contestType: "Tough"
   },
+  toxicspikes: {
+    inherit: true,
+	flags: { reflectable: 1, nonsky: 1, metronome: 1, mustpressure: 1 },
+	condition: {
+      // this is a side condition
+      onSideStart(side) {
+        this.add("-sidestart", side, "move: Toxic Spikes");
+        this.effectState.layers = 1;
+      },
+      onSideRestart(side) {
+        if (this.effectState.layers >= 2)
+          return false;
+        this.add("-sidestart", side, "move: Toxic Spikes");
+        this.effectState.layers++;
+      },
+      onEntryHazard(pokemon) {
+        if (!pokemon.isGrounded())
+          return;
+        if (pokemon.hasType("Poison")) {
+          this.add("-sideend", pokemon.side, "move: Toxic Spikes", "[of] " + pokemon);
+          pokemon.side.removeSideCondition("toxicspikes");
+        } else if (pokemon.hasType("Steel") || pokemon.hasItem("heavydutyboots") || pokemon.hasAbility("globetrotter")) {
+          return;
+        } else if (this.effectState.layers >= 2) {
+          pokemon.trySetStatus("tox", pokemon.side.foe.active[0]);
+        } else {
+          pokemon.trySetStatus("psn", pokemon.side.foe.active[0]);
+        }
+      }
+    }
+  },
   toxifume: {
     num: 3432,
     accuracy: 100,
@@ -18618,6 +18737,36 @@ const Moves = {
     target: "normal",
     type: "Steel",
     contestType: "Cool"
+  },
+  trickroom: {
+    inherit: true,
+	flags: { mirror: 1, metronome: 1 },
+	condition: {
+      duration: 5,
+      durationCallback(source, effect) {
+        if (source?.hasAbility("persistent") || source?.hasAbility("trickster")) {
+          this.add("-activate", source, "ability: Persistent", "[move] Trick Room");
+          return 7;
+        }
+        return 5;
+      },
+      onFieldStart(target, source) {
+        if (source?.hasAbility("persistent") || source?.hasAbility("trickster")) {
+          this.add("-fieldstart", "move: Trick Room", "[of] " + source, "[persistent]");
+        } else {
+          this.add("-fieldstart", "move: Trick Room", "[of] " + source);
+        }
+      },
+      onFieldRestart(target, source) {
+        this.field.removePseudoWeather("trickroom");
+      },
+      // Speed modification is changed in Pokemon.getActionSpeed() in sim/pokemon.js
+      onFieldResidualOrder: 27,
+      onFieldResidualSubOrder: 1,
+      onFieldEnd() {
+        this.add("-fieldend", "move: Trick Room");
+      }
+    }
   },
   tripleaxel: {
     inherit: true,
@@ -19067,7 +19216,7 @@ const Moves = {
         this.add("-sidestart", side, "move: Velvet Scales");
       },
       onEntryHazard(pokemon) {
-        if (!pokemon.isGrounded() || pokemon.hasItem("heavydutyboots"))
+        if (!pokemon.isGrounded() || pokemon.hasItem("heavydutyboots") || pokemon.hasAbility("globetrotter"))
           return;
         this.add("-activate", pokemon, "move: Velvet Scales");
         this.boost({ def: -1, spd: -1 }, pokemon, this.effectState.source, this.dex.getActiveMove("velvetscales"));
@@ -19721,6 +19870,45 @@ const Moves = {
     secondary: null,
     target: "normal",
     type: "Flying"
+  },
+  wonderroom: {
+    inherit: true,
+	flags: { mirror: 1, metronome: 1 },
+	condition: {
+      duration: 5,
+      durationCallback(source, effect) {
+        if (source?.hasAbility("persistent") || source?.hasAbility("trickster")) {
+          this.add("-activate", source, "ability: Persistent", "[move] Wonder Room");
+          return 7;
+        }
+        return 5;
+      },
+      onModifyMove(move, source, target) {
+        if (!move.overrideOffensiveStat)
+          return;
+        const statAndBoosts = move.overrideOffensiveStat;
+        if (!["def", "spd"].includes(statAndBoosts))
+          return;
+        move.overrideOffensiveStat = statAndBoosts === "def" ? "spd" : "def";
+        this.hint(`${move.name} uses ${statAndBoosts === "def" ? "" : "Sp. "}Def boosts when Wonder Room is active.`);
+      },
+      onFieldStart(field, source) {
+        if (source?.hasAbility("persistent") || source?.hasAbility("trickster")) {
+          this.add("-fieldstart", "move: Wonder Room", "[of] " + source, "[persistent]");
+        } else {
+          this.add("-fieldstart", "move: Wonder Room", "[of] " + source);
+        }
+      },
+      onFieldRestart(target, source) {
+        this.field.removePseudoWeather("wonderroom");
+      },
+      // Swapping defenses partially implemented in sim/pokemon.js:Pokemon#calculateStat and Pokemon#getStat
+      onFieldResidualOrder: 27,
+      onFieldResidualSubOrder: 5,
+      onFieldEnd() {
+        this.add("-fieldend", "move: Wonder Room");
+      }
+    }
   },
   wormhole: {
     num: 3454,
