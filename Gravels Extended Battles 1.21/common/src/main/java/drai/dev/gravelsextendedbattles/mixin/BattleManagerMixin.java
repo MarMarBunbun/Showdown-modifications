@@ -13,6 +13,6 @@ public class BattleManagerMixin {
 
     @Inject(method = "log", at =@At("HEAD"), remap = false)
     private void executeInject(String message, CallbackInfo ci) {
-        this.mute = GravelsExtendedBattles.gravelmonConfig.unmuteBattleLogs(); // Disable the mute setting for battles
+        this.mute = !GravelsExtendedBattles.gravelmonConfig.unmuteBattleLogs(); // Disable the mute setting for battles
     }
 }

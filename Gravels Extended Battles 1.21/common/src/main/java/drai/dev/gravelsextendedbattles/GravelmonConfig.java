@@ -28,6 +28,8 @@ public class GravelmonConfig extends MidnightConfig implements IGravelmonConfig 
     public static boolean addStartersToTheStarterScreen = true;
     @Entry(name = "Enable automatic move insertion: ")
     public static boolean enableAutomaticMoveInsertion = true;
+    @Entry(name = "Enable automatic move insertion: ")
+    public static boolean battleDebugging = false;
 
     @Override
     public boolean getEnableOriginalFanGameTypings() {
@@ -89,7 +91,7 @@ public class GravelmonConfig extends MidnightConfig implements IGravelmonConfig 
 
     @Override
     public boolean unmuteBattleLogs() {
-        return false;
+        return battleDebugging;
     }
     /*
     The .json language file for your config class could look similar to this:
