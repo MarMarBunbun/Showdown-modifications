@@ -179,6 +179,10 @@ const Moves = {
     zMove: { effect: "clearnegativeboost" },
     contestType: "Tough"
   },
+  aerialace: {
+    inherit: true,
+	flags: { contact: 1, protect: 1, mirror: 1, distance: 1, metronome: 1, slicing: 1, blade: 1 }
+  },
   aeroblast: {
     inherit: true,
 	flags: { protect: 1, mirror: 1, distance: 1, metronome: 1, wind: 1, legendary: 1 }
@@ -228,6 +232,10 @@ const Moves = {
     target: "normal",
     type: "Flying",
     contestType: "Tough"
+  },
+  airslash: {
+    inherit: true,
+	flags: { protect: 1, mirror: 1, distance: 1, metronome: 1, slicing: 1, blade: 1 }
   },
   allure: {
     num: 3005,
@@ -1156,7 +1164,7 @@ const Moves = {
   },
   behemothblade: {
     inherit: true,
-	flags: { contact: 1, protect: 1, mirror: 1, failcopycat: 1, failmimic: 1, slicing: 1, legendary: 1 }
+	flags: { contact: 1, protect: 1, mirror: 1, failcopycat: 1, failmimic: 1, slicing: 1, legendary: 1, blade: 1 }
   },
   bide: {
     inherit: true,
@@ -1253,6 +1261,10 @@ const Moves = {
     type: "Ice",
     zMove: { boost: { atk: 1 } },
     contestType: "Tough"
+  },
+  bitterblade: {
+    inherit: true,
+	flags: { contact: 1, protect: 1, mirror: 1, heal: 1, metronome: 1, slicing: 1, blade: 1 }
   },
   blackhole: {
     num: 3030,
@@ -1498,7 +1510,7 @@ const Moves = {
     name: "Blood Blade",
     pp: 10,
     priority: 0,
-    flags: { contact: 1, protect: 1, mirror: 1, metronome: 1, slicing: 1, magic: 1 },
+    flags: { contact: 1, protect: 1, mirror: 1, metronome: 1, slicing: 1, magic: 1, blade: 1 },
     onAfterMoveSecondarySelf(pokemon, target, move) {
       if (!target || target.fainted || target.hp <= 0) {
         // Target fainted, heal the user
@@ -2183,7 +2195,7 @@ const Moves = {
     name: "Brilliant Cut",
     pp: 10,
     priority: 0,
-    flags: { protect: 1, mirror: 1, contact: 1, slicing: 1 },
+    flags: { protect: 1, mirror: 1, contact: 1, slicing: 1, blade: 1 },
     secondary: {
       chance: 10,
       status: "par"
@@ -2200,7 +2212,7 @@ const Moves = {
     name: "Brilliant Cut Light",
     pp: 10,
     priority: 0,
-    flags: { protect: 1, mirror: 1, contact: 1, slicing: 1 },
+    flags: { protect: 1, mirror: 1, contact: 1, slicing: 1, blade: 1 },
     secondary: {
       chance: 10,
       status: "par"
@@ -2574,6 +2586,10 @@ const Moves = {
     type: "Ground",
     contestType: "Tough"
   },
+  ceaselessedge: {
+    inherit: true,
+	flags: { contact: 1, protect: 1, mirror: 1, metronome: 1, slicing: 1, blade: 1 }
+  },
   cerebralextraction: {
     num: 3758,
     accuracy: 100,
@@ -2830,7 +2846,7 @@ const Moves = {
     name: "Chilling Wail",
     pp: 10,
     priority: 0,
-    flags: { protect: 1, mirror: 1, metronome: 1 },
+    flags: { protect: 1, mirror: 1, metronome: 1, magic: 1 },
     secondary: {
       chance: 10,
       status: "fbt"
@@ -3823,6 +3839,10 @@ const Moves = {
     type: "Digital",
     contestType: "Tough"
   },
+  crosspoison: {
+    inherit: true,
+	flags: { contact: 1, protect: 1, mirror: 1, metronome: 1, slicing: 1, blade: 1 }
+  },
   crushgrip: {
     inherit: true,
 	flags: { contact: 1, protect: 1, mirror: 1, metronome: 1, legendary: 1 }
@@ -4011,7 +4031,7 @@ const Moves = {
   },
   cut: {
     inherit: true,
-	flags: { contact: 1, protect: 1, mirror: 1, slicing: 1, hm: 1 }
+	flags: { contact: 1, protect: 1, mirror: 1, slicing: 1, hm: 1, blade: 1 }
   },
   cyberfist: {
     num: 3655,
@@ -4922,7 +4942,7 @@ const Moves = {
     name: "Diamond Axe",
     pp: 10,
     priority: 0,
-    flags: { contact: 1, protect: 1, mirror: 1, slicing: 1 },
+    flags: { contact: 1, protect: 1, mirror: 1, slicing: 1, blade: 1 },
     critRatio: 2,
     secondary: null,
     target: "normal",
@@ -5043,7 +5063,7 @@ const Moves = {
     name: "Diamond Sword",
     pp: 15,
     priority: 0,
-    flags: { contact: 1, protect: 1, mirror: 1, slicing: 1 },
+    flags: { contact: 1, protect: 1, mirror: 1, slicing: 1, blade: 1 },
     critRatio: 2,
     secondary: null,
     target: "normal",
@@ -6222,7 +6242,7 @@ const Moves = {
     name: "Emperor's Edge",
     pp: 10,
     priority: 0,
-    flags: { protect: 1, mirror: 1, slicing: 1 },
+    flags: { protect: 1, mirror: 1, slicing: 1, blade: 1 },
     critRatio: 2,
     secondary: null,
     target: "normal",
@@ -6397,7 +6417,7 @@ const Moves = {
     name: "Excalibur",
     pp: 5,
     priority: 0,
-    flags: { contact: 1, protect: 1, mirror: 1, slicing: 1, magic: 1 },
+    flags: { contact: 1, protect: 1, mirror: 1, slicing: 1, magic: 1, blade: 1 },
     secondary: null,
 	onEffectiveness(typeMod, target, type) {
       if (type === "Ghost" || type === "Steel")
@@ -7407,7 +7427,7 @@ const Moves = {
     name: "Frost Kick",
     pp: 10,
     priority: 0,
-    flags: { contact: 1, protect: 1, mirror: 1, metronome: 1 },
+    flags: { contact: 1, protect: 1, mirror: 1, metronome: 1, kick: 1 },
     secondary: {
       chance: 10,
       status: "fbt"
@@ -7471,6 +7491,10 @@ const Moves = {
     zMove: { basePower: 120 },
     contestType: "Clever"
   },
+  furycutter: {
+    inherit: true,
+	flags: { contact: 1, protect: 1, mirror: 1, metronome: 1, slicing: 1, blade: 1 }
+  },
   fusionbolt: {
     inherit: true,
 	flags: { protect: 1, mirror: 1, metronome: 1, legendary: 1 }
@@ -7510,7 +7534,7 @@ const Moves = {
     name: "Galaxy Slash",
     pp: 15,
     priority: 0,
-    flags: { contact: 1, protect: 1, mirror: 1, slicing: 1 },
+    flags: { contact: 1, protect: 1, mirror: 1, slicing: 1, blade: 1 },
     critRatio: 2,
     secondary: null,
     target: "normal",
@@ -7590,7 +7614,7 @@ const Moves = {
     name: "Gamma Slash",
     pp: 15,
     priority: 0,
-    flags: { contact: 1, protect: 1, mirror: 1, slicing: 1 },
+    flags: { contact: 1, protect: 1, mirror: 1, slicing: 1, blade: 1 },
     critRatio: 2,
     secondary: null,
     target: "normal",
@@ -9270,7 +9294,7 @@ const Moves = {
     name: "Ice Slash",
     pp: 20,
     priority: 0,
-    flags: { contact: 1, protect: 1, mirror: 1, slicing: 1 },
+    flags: { contact: 1, protect: 1, mirror: 1, slicing: 1, blade: 1 },
     critRatio: 2,
     secondary: null,
     target: "normal",
@@ -9389,7 +9413,7 @@ const Moves = {
       if (type === "Fairy")
         return 1;
     },
-    flags: { contact: 1, protect: 1, mirror: 1, slicing: 1, magic: 1 },
+    flags: { contact: 1, protect: 1, mirror: 1, slicing: 1, magic: 1, blade: 1 },
     secondary: {
       chance: 30,
       status: "brn"
@@ -9656,7 +9680,7 @@ const Moves = {
     name: "Jolt Kick",
     pp: 10,
     priority: 0,
-    flags: { contact: 1, protect: 1, mirror: 1, metronome: 1 },
+    flags: { contact: 1, protect: 1, mirror: 1, metronome: 1, kick: 1 },
     critRatio: 2,
     secondary: {
       chance: 10,
@@ -9908,6 +9932,10 @@ const Moves = {
     type: "Psychic",
     contestType: "Beautiful"
   },
+  leafblade: {
+    inherit: true,
+	flags: { contact: 1, protect: 1, mirror: 1, metronome: 1, slicing: 1, blade: 1 }
+  },
   leafdarts: {
     num: 3235,
     accuracy: 90,
@@ -9958,7 +9986,7 @@ const Moves = {
     name: "Leek Cutter",
     pp: 10,
     priority: 0,
-    flags: { protect: 1, mirror: 1, slicing: 1 },
+    flags: { protect: 1, mirror: 1, slicing: 1, blade: 1 },
     secondary: {
       chance: 100,
       boosts: {
@@ -10119,7 +10147,7 @@ const Moves = {
     name: "Lion Sword",
     pp: 10,
     priority: 0,
-    flags: { contact: 1, protect: 1, mirror: 1, slicing: 1 },
+    flags: { contact: 1, protect: 1, mirror: 1, slicing: 1, blade: 1 },
     secondary: null,
     target: "normal",
     type: "Steel"
@@ -10389,7 +10417,7 @@ const Moves = {
     name: "Magma Blade",
     pp: 20,
     priority: 0,
-    flags: { contact: 1, protect: 1, mirror: 1, slicing: 1 },
+    flags: { contact: 1, protect: 1, mirror: 1, slicing: 1, blade: 1 },
     critRatio: 2,
     secondary: null,
     target: "normal",
@@ -10511,7 +10539,7 @@ const Moves = {
     name: "Mana Drain",
     pp: 5,
     priority: 0,
-    flags: { protect: 1, mirror: 1, metronome: 1, heal: 1 },
+    flags: { protect: 1, mirror: 1, metronome: 1, heal: 1, magic: 1 },
     drain: [1, 2],
     secondary: null,
     target: "normal",
@@ -11165,7 +11193,7 @@ const Moves = {
   },
   mightycleave: {
     inherit: true,
-	flags: { contact: 1, mirror: 1, metronome: 1, slicing: 1, legendary: 1 }
+	flags: { contact: 1, mirror: 1, metronome: 1, slicing: 1, legendary: 1, blade: 1 }
   },
   mightykick: {
     num: 3461,
@@ -11718,7 +11746,7 @@ const Moves = {
     name: "Mystic Blade",
     pp: 10,
     priority: 0,
-    flags: { contact: 1, protect: 1, mirror: 1, metronome: 1, slicing: 1, blade: 1 },
+    flags: { contact: 1, protect: 1, mirror: 1, metronome: 1, slicing: 1, blade: 1, magic: 1 },
     critRatio: 2,
     secondary: null,
     target: "normal",
@@ -12153,7 +12181,7 @@ const Moves = {
     name: "Nuclear Slash",
     pp: 20,
     priority: 0,
-    flags: { contact: 1, protect: 1, mirror: 1, slicing: 1 },
+    flags: { contact: 1, protect: 1, mirror: 1, slicing: 1, blade: 1 },
     secondary: null,
 	critRatio: 2,
     target: "normal",
@@ -12395,7 +12423,7 @@ const Moves = {
     name: "Page Fault",
     pp: 10,
     priority: 0,
-    flags: { contact: 1, protect: 1, mirror: 1, failinstruct: 1, slicing: 1 },
+    flags: { contact: 1, protect: 1, mirror: 1, failinstruct: 1, slicing: 1, blade: 1 },
     self: {
       volatileStatus: "lockedmove"
     },
@@ -12856,7 +12884,7 @@ const Moves = {
     name: "Plastic Blade",
     pp: 15,
     priority: 0,
-    flags: { contact: 1, protect: 1, mirror: 1, slicing: 1 },
+    flags: { contact: 1, protect: 1, mirror: 1, slicing: 1, blade: 1 },
     critRatio: 2,
     secondary: null,
     target: "normal",
@@ -13077,7 +13105,7 @@ const Moves = {
     name: "Polygonal Sword",
     pp: 15,
     priority: 0,
-    flags: { contact: 1, protect: 1, mirror: 1, slicing: 1 },
+    flags: { contact: 1, protect: 1, mirror: 1, slicing: 1, blade: 1 },
     critRatio: 2,
     secondary: null,
     target: "normal",
@@ -13388,7 +13416,7 @@ const Moves = {
   },
   psyblade: {
     inherit: true,
-	flags: { contact: 1, protect: 1, mirror: 1, metronome: 1, slicing: 1, legendary: 1, magic: 1 }
+	flags: { contact: 1, protect: 1, mirror: 1, metronome: 1, slicing: 1, legendary: 1, magic: 1, blade: 1 }
   },
   psybolt: {
     num: 3306,
@@ -13431,7 +13459,7 @@ const Moves = {
   },
   psychocut: {
     inherit: true,
-	flags: { protect: 1, mirror: 1, metronome: 1, slicing: 1, magic: 1 }
+	flags: { protect: 1, mirror: 1, metronome: 1, slicing: 1, magic: 1, blade: 1 }
   },
   psycrush: {
     num: 3883,
@@ -13661,7 +13689,7 @@ const Moves = {
     name: "Radiant Blade",
     pp: 10,
     priority: 0,
-    flags: { contact: 1, protect: 1, mirror: 1, slicing: 1 },
+    flags: { contact: 1, protect: 1, mirror: 1, slicing: 1, blade: 1 },
     critRatio: 2,
     secondary: null,
     target: "normal",
@@ -13832,7 +13860,7 @@ const Moves = {
     name: "Razor Blade",
     pp: 15,
     priority: 0,
-    flags: { contact: 1, protect: 1, mirror: 1, slicing: 1 },
+    flags: { contact: 1, protect: 1, mirror: 1, slicing: 1, blade: 1 },
     critRatio: 2,
     secondary: null,
     target: "normal",
@@ -13919,7 +13947,7 @@ const Moves = {
     name: "Reckless Rend",
     pp: 10,
     priority: 0,
-    flags: { contact: 1, protect: 1, mirror: 1, slicing: 1 },
+    flags: { contact: 1, protect: 1, mirror: 1, slicing: 1, blade: 1 },
 	critRatio: 2,
     secondary: {
       chance: 100,
@@ -14768,7 +14796,7 @@ const Moves = {
     name: "Searing Slash",
     pp: 10,
     priority: 0,
-    flags: { contact: 1, protect: 1, mirror: 1, slicing: 1 },
+    flags: { contact: 1, protect: 1, mirror: 1, slicing: 1, blade: 1 },
     secondary: {
       chance: 10,
       status: "brn"
@@ -15297,7 +15325,7 @@ const Moves = {
     name: "Shadow Rend",
     pp: 15,
     priority: 0,
-    flags: { contact: 1, protect: 1, mirror: 1, slicing: 1 },
+    flags: { contact: 1, protect: 1, mirror: 1, slicing: 1, blade: 1 },
     critRatio: 2,
     secondary: null,
     target: "normal",
@@ -15812,7 +15840,7 @@ const Moves = {
     name: "Siren Song",
     pp: 10,
     priority: 0,
-    flags: { protect: 1, mirror: 1, metronome: 1, sound: 1 },
+    flags: { protect: 1, mirror: 1, metronome: 1, sound: 1, magic: 1 },
     secondary: {
       chance: 10,
       volatileStatus: "slp"
@@ -15934,6 +15962,10 @@ const Moves = {
     target: "normal",
     type: "Flying",
     contestType: "Cute"
+  },
+  slash: {
+    inherit: true,
+	flags: { contact: 1, protect: 1, mirror: 1, metronome: 1, slicing: 1, blade: 1 }
   },
   sleeptalksound: {
     num: 3375,
@@ -16390,7 +16422,7 @@ const Moves = {
     name: "Solar Blade",
     pp: 10,
     priority: 0,
-    flags: { contact: 1, charge: 1, protect: 1, mirror: 1, slicing: 1, nosleeptalk: 1, failinstruct: 1 },
+    flags: { contact: 1, charge: 1, protect: 1, mirror: 1, slicing: 1, nosleeptalk: 1, failinstruct: 1, blade: 1 },
     onTryMove(attacker, defender, move) {
       if (attacker.removeVolatile(move.id)) {
         return;
@@ -17141,7 +17173,7 @@ const Moves = {
     name: "S-S-S-Slash",
     pp: 10,
     priority: 0,
-    flags: { contact: 1, charge: 1, protect: 1, mirror: 1, nosleeptalk: 1, failinstruct: 1, slicing: 1 },
+    flags: { contact: 1, charge: 1, protect: 1, mirror: 1, nosleeptalk: 1, failinstruct: 1, slicing: 1, blade: 1 },
 	multihit: 2,
 	critRatio: 2,
     onTryMove(attacker, defender, move) {
@@ -17392,6 +17424,10 @@ const Moves = {
     target: "normal",
     type: "Ice",
     contestType: "Cool"
+  },
+  stoneaxe: {
+    inherit: true,
+	flags: { contact: 1, protect: 1, mirror: 1, metronome: 1, slicing: 1, blade: 1 }
   },
   fakemonstonesurge: {
     num: 3402,
@@ -18064,7 +18100,7 @@ const Moves = {
   },
   tachyoncutter: {
     inherit: true,
-	flags: { protect: 1, mirror: 1, metronome: 1, slicing: 1, legendary: 1 }
+	flags: { protect: 1, mirror: 1, metronome: 1, slicing: 1, legendary: 1, blade: 1 }
   },
   tagout: {
     num: 3474,
@@ -18408,7 +18444,7 @@ const Moves = {
     name: "Thunder Slash",
     pp: 15,
     priority: 0,
-    flags: { contact: 1, protect: 1, mirror: 1, slicing: 1 },
+    flags: { contact: 1, protect: 1, mirror: 1, slicing: 1, blade: 1 },
     secondary: null,
 	critRatio: 2,
     target: "normal",
@@ -19236,7 +19272,7 @@ const Moves = {
     name: "Venom Strike",
     pp: 10,
     priority: 1,
-    flags: { contact: 1, protect: 1, mirror: 1, metronome: 1, bite: 1 },
+    flags: { contact: 1, protect: 1, mirror: 1, metronome: 1, bite: 1, speed: 1 },
     secondary: null,
     target: "normal",
     type: "Poison",
