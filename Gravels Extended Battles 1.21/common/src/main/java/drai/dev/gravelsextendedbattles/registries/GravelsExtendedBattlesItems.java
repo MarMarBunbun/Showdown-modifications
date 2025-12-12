@@ -171,6 +171,7 @@ public class GravelsExtendedBattlesItems {
     public static final RegistrySupplier<Item> OLD_SHIELD = registerHeldItem("old_shield", ()->new Item(new Item.Properties()));
     public static final RegistrySupplier<Item> SHOCKING_ORB = registerHeldItem("shocking_orb", ()->new Item(new Item.Properties()));
     public static final RegistrySupplier<Item> EARMUFFS = registerHeldItem("earmuffs", ()->new Item(new Item.Properties()));
+    public static final RegistrySupplier<Item> AVOCA_BERRY = registerHeldItem("avoca_berry", ()->new Item(new Item.Properties()));
     public static final RegistrySupplier<Item> BOOK_OF_SIN = registerHeldItem("book_of_sin", ()->new Item(new Item.Properties()));
     public static final RegistrySupplier<Item> MIDNIGHT_SEED = registerHeldItem("midnight_seed", ()->new Item(new Item.Properties()));
     public static final RegistrySupplier<Item> SNOWY_SEED = registerHeldItem("snowy_seed", ()->new Item(new Item.Properties()));
