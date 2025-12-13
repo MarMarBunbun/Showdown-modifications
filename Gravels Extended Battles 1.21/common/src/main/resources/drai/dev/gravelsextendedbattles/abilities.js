@@ -306,6 +306,19 @@ const Abilities = {
     rating: 3.5,
     num: 3009
   },
+  aquaboost: {
+    onAllyBasePowerPriority: 22,
+    onAllyBasePower(basePower, attacker, defender, move) {
+      if (move.type === "Water") {
+        this.debug("Aqua Boost boost");
+        return this.chainModify(1.5);
+      }
+    },
+    flags: {},
+    name: "Aqua Boost",
+    rating: 3.5,
+    num: 3260
+  },
   arcanum: {
     onStart(source) {
       this.field.setWeather("dragonforce");
@@ -414,6 +427,13 @@ const Abilities = {
     rating: 2,
     num: 3013
   },
+  backbone: {
+    onCriticalHit: false,
+    flags: { breakable: 1 },
+    name: "Backbone",
+    rating: 1,
+    num: 3261
+  },
   barbednest: {
     onDamagingHitOrder: 1,
     onDamagingHit(damage, target, source, move) {
@@ -451,6 +471,21 @@ const Abilities = {
     name: "Baited Line",
     rating: 4,
     num: 3233
+  },
+  bigkabuki: {
+    onSourceDamagingHit(damage, target, source, move) {
+      if (target.hasAbility("ironwill") || target.hasAbility("scrappy") || target.hasAbility("guarddog") || target.hasAbility("innerfocus") || target.hasAbility("oblivious") || target.hasAbility("owntempo"))
+        return;
+      if (this.checkMoveMakesContact(move, target, source)) {
+        if (this.randomChance(3, 10)) {
+          target.addVolatile("flinch", source);
+        }
+      }
+    },
+    flags: {},
+    name: "Big Kabuki",
+    rating: 2,
+    num: 3262
   },
   blackhole: {
     onFoeTrapPokemon(pokemon) {
@@ -655,6 +690,16 @@ const Abilities = {
     rating: 2.5,
     num: 3021
   },
+  boundlessambition: {
+    onSourceAfterFaint(length, target, source, effect) {
+      if (effect && effect.effectType === "Move") {
+        this.boost({ spe: length }, source);
+      }
+    },
+    name: "Boundless Ambition",
+    rating: 3,
+    num: 3263
+  },
   braveheart: {
     onFoeAfterBoost(boost, target, source, effect) {
       if (effect?.name === "Brave Heart" || effect?.name === "Mirror Herb")
@@ -679,6 +724,22 @@ const Abilities = {
     name: "Brave Heart",
     rating: 3,
     num: 3022
+  },
+  brotherhood: {
+    onStart(pokemon) {
+      let activated = false;
+      for (const ally of pokemon.adjacentAllies()) {
+        if (!activated) {
+          this.add("-ability", pokemon, "Brotherhood", "boost");
+          activated = true;
+        }
+        this.boost({ def: 1 }, ally, pokemon, null, true);
+      }
+	},
+    flags: {},
+    name: "Brotherhood",
+    rating: 3.5,
+    num: 3264
   },
   brutalize: {
     onModifyTypePriority: -1,

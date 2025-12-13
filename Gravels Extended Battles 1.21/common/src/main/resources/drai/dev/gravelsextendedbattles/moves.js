@@ -3346,6 +3346,22 @@ const Moves = {
     zMove: { effect: "clearnegativeboost" },
     contestType: "Cute"
   },
+  cooltrainer: {
+    num: 3896,
+    accuracy: 90,
+    basePower: 0,
+    category: "Status",
+    name: "CoolTrainer",
+    pp: 13,
+    priority: 0,
+    flags: { protect: 1, reflectable: 1, mirror: 1 },
+    status: "tox",
+    secondary: null,
+    target: "normal",
+    type: "Questionmark",
+    zMove: { boost: { def: 1 } },
+    contestType: "Clever"
+  },
   copypaste: {
     num: 3068,
     accuracy: true,
@@ -8368,7 +8384,7 @@ const Moves = {
     flags: { contact: 1, protect: 1, mirror: 1 },
     onBasePower(basePower, pokemon, target) {
       if (target.status === "slp") {
-        return this.chainModify(2);
+        return this.chainModify(3);
       }
     },
     secondary: null,
@@ -12344,6 +12360,22 @@ const Moves = {
     target: "normal",
     type: "Eldritch",
     contestType: "Tough"
+  },
+  overcharge: {
+    num: 3898,
+    accuracy: 100,
+    basePower: 160,
+    category: "Physical",
+    name: "Overcharge",
+    pp: 5,
+    priority: 0,
+    flags: { protect: 1, mirror: 1 },
+	onHit(target, source) {
+      source.trySetStatus("par", source);
+    },
+    secondary: null,
+    target: "normal",
+    type: "Electric"
   },
   overclock: {
     num: 3518,
@@ -18590,6 +18622,23 @@ const Moves = {
     target: "normal",
     type: "Questionmark",
     contestType: "Cool"
+  },
+  "tm47": {
+    num: 3897,
+    accuracy: 48,
+    basePower: 121,
+    category: "Physical",
+    name: "TM47",
+    pp: 16,
+    priority: 0,
+    flags: { protect: 1, mirror: 1, metronome: 1 },
+    secondary: {
+      chance: 30,
+      status: "psn"
+    },
+    target: "normal",
+    type: "Questionmark",
+    contestType: "Tough"
   },
   tornado: {
     num: 3431,
