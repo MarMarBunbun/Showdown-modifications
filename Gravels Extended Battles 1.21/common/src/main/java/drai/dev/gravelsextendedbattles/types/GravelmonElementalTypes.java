@@ -15,7 +15,7 @@ public class GravelmonElementalTypes {
     public static ElementalType LIGHT;
     public static ElementalType NUCLEAR;
     public static ElementalType PLASTIC;
-    public static ElementalType QUESTIONMARK;
+    public static ElementalType MYSTERY;
     public static ElementalType SHADOW;
     public static ElementalType SLIME;
     public static ElementalType SOUND;

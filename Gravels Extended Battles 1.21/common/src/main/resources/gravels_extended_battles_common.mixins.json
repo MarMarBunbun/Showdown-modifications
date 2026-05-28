@@ -12,6 +12,7 @@
   },
   "mixins": [
     "BattleManagerMixin",
+    "CobblemonRequirementAdapterMixin",
     "CobblemonPreEvolutionAdapterMixin",
     "CobblemonSpawnPoolsMixin",
     "ElementalTypesMixin",

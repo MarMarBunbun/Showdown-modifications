@@ -32,7 +32,7 @@ public enum Type {
     SLIME("slime", Type.POISON, "minecraft:slime_block"),
     CRYSTAL("crystal", Type.ROCK, "minecraft:amethyst_block"),
     ELDRITCH("eldritch", Type.GHOST, "minecraft:sculk"),
-    QUESTION_MARK("questionmark", Type.NORMAL, "minecraft:infested_stone"),
+    MYSTERY("mystery", Type.NORMAL, "minecraft:infested_stone"),
     BLOOD("blood", Type.DARK, "minecraft:nether_wart_block");
     private final String name;
     private final String preferredBlock;

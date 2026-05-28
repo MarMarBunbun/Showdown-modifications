@@ -38,7 +38,7 @@ public class GravelsExtendedBattlesItems {
     public static final RegistrySupplier<Item> DIGITAL_GEM = registerGemItem("digital_gem", "deserted_town_center_ruins", "luna_henge_ruins");
     public static final RegistrySupplier<Item> ELDRITCH_GEM = registerGemItem("eldritch_gem", "sol_henge_ruins", "stonjourner_henge_ruins");
     public static final RegistrySupplier<Item> LIGHT_GEM = registerGemItem("light_gem", "sol_henge_ruins", "stonjourner_henge_ruins");
-    public static final RegistrySupplier<Item> QUESTIONMARK_GEM = registerGemItem("questionmark_gem", "crumbling_arch_ruins", "deserted_house_ruins");
+    public static final RegistrySupplier<Item> MYSTERY_GEM = registerGemItem("mystery_gem", "crumbling_arch_ruins", "deserted_house_ruins");
     public static final RegistrySupplier<Item> NUCLEAR_GEM = registerGemItem("nuclear_gem", "rooted_arch_ruins", "crumbling_arch_ruins", "hidden_bunker_ruins");
     public static final RegistrySupplier<Item> PLASTIC_GEM = registerGemItem("plastic_gem", "unstable_cave_ruins", "deserted_house_ruins");
     public static final RegistrySupplier<Item> SHADOW_GEM = registerGemItem("shadow_gem", "fallen_statue_ruins", "luna_henge_ruins");
@@ -52,7 +52,7 @@ public class GravelsExtendedBattlesItems {
     public static final RegistrySupplier<Item> DIGITAL_PLATE = registerPlateItem("binary_plate", "digital");
     public static final RegistrySupplier<Item> ELDRITCH_PLATE = registerPlateItem("unearthly_plate", "eldritch");
     public static final RegistrySupplier<Item> LIGHT_PLATE = registerPlateItem("lumen_plate", "light");
-    public static final RegistrySupplier<Item> QUESTIONMARK_PLATE = registerPlateItem("mystery_plate", "questionmark");
+    public static final RegistrySupplier<Item> MYSTERY_PLATE = registerPlateItem("mystery_plate", "mystery");
     public static final RegistrySupplier<Item> NUCLEAR_PLATE = registerPlateItem("fission_plate", "nuclear");
     public static final RegistrySupplier<Item> PLASTIC_PLATE = registerPlateItem("polymer_plate", "plastic");
     public static final RegistrySupplier<Item> SHADOW_PLATE = registerPlateItem("penumbra_plate", "shadow");
@@ -66,7 +66,7 @@ public class GravelsExtendedBattlesItems {
     public static final RegistrySupplier<Item> DIGIUM_Z = registerZCrystalItem("digium_z", DIGITAL_GEM, "digital", ()->GravelmonElementalTypes.DIGITAL);
     public static final RegistrySupplier<Item> ELDRIUM_Z = registerZCrystalItem("eldrium_z", ELDRITCH_GEM, "eldritch", ()->GravelmonElementalTypes.ELDRITCH);
     public static final RegistrySupplier<Item> LIGHTINIUM_Z = registerZCrystalItem("lightinium_z", LIGHT_GEM, "light", ()->GravelmonElementalTypes.LIGHT);
-    public static final RegistrySupplier<Item> MYSTERIUM_Z = registerZCrystalItem("mysterium_z", QUESTIONMARK_GEM, "questionmark", ()->GravelmonElementalTypes.QUESTIONMARK);
+    public static final RegistrySupplier<Item> MYSTERIUM_Z = registerZCrystalItem("mysterium_z", MYSTERY_GEM, "mystery", ()->GravelmonElementalTypes.MYSTERY);
     public static final RegistrySupplier<Item> NUCLIUM_Z = registerZCrystalItem("nuclium_z", NUCLEAR_GEM, "nuclear", ()->GravelmonElementalTypes.NUCLEAR);
     public static final RegistrySupplier<Item> PLASTINIUM_Z = registerZCrystalItem("plastinium_z", PLASTIC_GEM, "plastic", ()->GravelmonElementalTypes.PLASTIC);
     public static final RegistrySupplier<Item> SHADIUM_Z = registerZCrystalItem("shadium_z", SHADOW_GEM, "shadow", ()->GravelmonElementalTypes.SHADOW);
@@ -80,7 +80,7 @@ public class GravelsExtendedBattlesItems {
     public static final RegistrySupplier<Item> DIGITAL_MEMORY = registerMemoryItem("digital_memory");
     public static final RegistrySupplier<Item> ELDRITCH_MEMORY = registerMemoryItem("eldritch_memory");
     public static final RegistrySupplier<Item> LIGHT_MEMORY = registerMemoryItem("light_memory");
-    public static final RegistrySupplier<Item> QUESTION_MARK_MEMORY = registerMemoryItem("question_mark_memory");
+    public static final RegistrySupplier<Item> MYSTERY_MEMORY = registerMemoryItem("mystery_memory");
     public static final RegistrySupplier<Item> NUCLEAR_MEMORY = registerMemoryItem("nuclear_memory");
     public static final RegistrySupplier<Item> PLASTIC_MEMORY = registerMemoryItem("plastic_memory");
     public static final RegistrySupplier<Item> SHADOW_MEMORY = registerMemoryItem("shadow_memory");
@@ -94,7 +94,7 @@ public class GravelsExtendedBattlesItems {
     public static final RegistrySupplier<Item> DIGITAL_TERA_SHARD = registerTeraShardItem("digital_tera_shard", ()->GravelmonTeraTypes.DIGITAL);
     public static final RegistrySupplier<Item> ELDRITCH_TERA_SHARD = registerTeraShardItem("eldritch_tera_shard", ()->GravelmonTeraTypes.ELDRITCH);
     public static final RegistrySupplier<Item> LIGHT_TERA_SHARD = registerTeraShardItem("light_tera_shard", ()->GravelmonTeraTypes.LIGHT);
-    public static final RegistrySupplier<Item> QUESTIONMARK_TERA_SHARD = registerTeraShardItem("questionmark_tera_shard", ()->GravelmonTeraTypes.QUESTIONMARK);
+    public static final RegistrySupplier<Item> MYSTERY_TERA_SHARD = registerTeraShardItem("mystery_tera_shard", ()->GravelmonTeraTypes.MYSTERY);
     public static final RegistrySupplier<Item> NUCLEAR_TERA_SHARD = registerTeraShardItem("nuclear_tera_shard", ()->GravelmonTeraTypes.NUCLEAR);
     public static final RegistrySupplier<Item> PLASTIC_TERA_SHARD = registerTeraShardItem("plastic_tera_shard", ()->GravelmonTeraTypes.PLASTIC);
     public static final RegistrySupplier<Item> SHADOW_TERA_SHARD = registerTeraShardItem("shadow_tera_shard", ()->GravelmonTeraTypes.SHADOW);
@@ -110,7 +110,7 @@ public class GravelsExtendedBattlesItems {
     public static final RegistrySupplier<Item> SOUND_CRAYON = registerHeldItem("sound_crayon", ()->new Item(new Item.Properties()));
     public static final RegistrySupplier<Item> SLIME_CRAYON = registerHeldItem("slime_crayon", ()->new Item(new Item.Properties()));
     public static final RegistrySupplier<Item> SHADOW_CRAYON = registerHeldItem("shadow_crayon", ()->new Item(new Item.Properties()));
-    public static final RegistrySupplier<Item> QUESTIONMARK_CRAYON = registerHeldItem("questionmark_crayon", ()->new Item(new Item.Properties()));
+    public static final RegistrySupplier<Item> MYSTERY_CRAYON = registerHeldItem("mystery_crayon", ()->new Item(new Item.Properties()));
     public static final RegistrySupplier<Item> PLASTIC_CRAYON = registerHeldItem("plastic_crayon", ()->new Item(new Item.Properties()));
     public static final RegistrySupplier<Item> NUCLEAR_CRAYON = registerHeldItem("nuclear_crayon", ()->new Item(new Item.Properties()));
     public static final RegistrySupplier<Item> LIGHT_CRAYON = registerHeldItem("light_crayon", ()->new Item(new Item.Properties()));
@@ -141,7 +141,7 @@ public class GravelsExtendedBattlesItems {
     public static final RegistrySupplier<Item> SOUND_ERASER = registerHeldItem("sound_eraser", ()->new Item(new Item.Properties()));
     public static final RegistrySupplier<Item> SLIME_ERASER = registerHeldItem("slime_eraser", ()->new Item(new Item.Properties()));
     public static final RegistrySupplier<Item> SHADOW_ERASER = registerHeldItem("shadow_eraser", ()->new Item(new Item.Properties()));
-    public static final RegistrySupplier<Item> QUESTIONMARK_ERASER = registerHeldItem("questionmark_eraser", ()->new Item(new Item.Properties()));
+    public static final RegistrySupplier<Item> MYSTERY_ERASER = registerHeldItem("mystery_eraser", ()->new Item(new Item.Properties()));
     public static final RegistrySupplier<Item> PLASTIC_ERASER = registerHeldItem("plastic_eraser", ()->new Item(new Item.Properties()));
     public static final RegistrySupplier<Item> NUCLEAR_ERASER = registerHeldItem("nuclear_eraser", ()->new Item(new Item.Properties()));
     public static final RegistrySupplier<Item> LIGHT_ERASER = registerHeldItem("light_eraser", ()->new Item(new Item.Properties()));

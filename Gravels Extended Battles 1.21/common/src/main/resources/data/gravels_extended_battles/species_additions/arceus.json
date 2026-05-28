@@ -354,8 +354,8 @@
       "battleOnly": false
     },
     {
-      "name": "Questionmark",
-      "primaryType": "questionmark",
+      "name": "mystery",
+      "primaryType": "mystery",
       "abilities": [
         "multitype"
       ],
@@ -390,7 +390,7 @@
         "legendary"
       ],
       "aspects": [
-        "questionmark-plate"
+        "mystery-plate"
       ],
       "height": 32,
       "weight": 3200,
@@ -583,7 +583,7 @@
     "light-plate",
     "nuclear-plate",
     "plastic-plate",
-    "questionmark-plate",
+    "mystery-plate",
     "shadow-plate",
     "slime-plate",
     "sound-plate",

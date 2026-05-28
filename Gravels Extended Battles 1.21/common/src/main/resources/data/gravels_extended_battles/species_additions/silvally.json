@@ -346,8 +346,8 @@
       "battleOnly": false
     },
     {
-      "name": "Questionmark",
-      "primaryType": "questionmark",
+      "name": "mystery",
+      "primaryType": "mystery",
       "abilities": [
         "rkssystem"
       ],
@@ -381,7 +381,7 @@
         "legendary"
       ],
       "aspects": [
-        "questionmark-memory"
+        "mystery-memory"
       ],
       "height": 23,
       "weight": 1005,
@@ -570,7 +570,7 @@
     "light-memory",
     "nuclear-memory",
     "plastic-memory",
-    "questionmark-memory",
+    "mystery-memory",
     "shadow-memory",
     "slime-memory",
     "sound-memory",

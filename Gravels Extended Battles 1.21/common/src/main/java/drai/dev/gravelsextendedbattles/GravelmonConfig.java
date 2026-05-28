@@ -151,7 +151,7 @@ public class GravelmonConfig extends MidnightConfig implements IGravelmonConfig 
                 "light",
                 "nuclear",
                 "plastic",
-                "questionmark",
+                "mystery",
                 "shadow",
                 "slime",
                 "sound",

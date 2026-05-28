@@ -21,7 +21,7 @@ public class GravelmonTypes {
             GravelmonElementalTypes.LIGHT = createType("light", 0xdad360);
             GravelmonElementalTypes.NUCLEAR = createType("nuclear", 0xa1d018);
             GravelmonElementalTypes.PLASTIC = createType("plastic", 0xc76e3d);
-            GravelmonElementalTypes.QUESTIONMARK = createType("questionmark", 0x5b8c9e);
+            GravelmonElementalTypes.MYSTERY = createType("mystery", 0x5b8c9e);
             GravelmonElementalTypes.SHADOW = createType("shadow", 0x222241);
             GravelmonElementalTypes.SLIME = createType("slime", 0x75e47b);
             GravelmonElementalTypes.SOUND = createType("sound", 0x64768e);

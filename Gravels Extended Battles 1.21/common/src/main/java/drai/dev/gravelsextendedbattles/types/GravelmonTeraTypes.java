@@ -17,7 +17,7 @@ public class GravelmonTeraTypes {
     public static TeraType DIGITAL;
     public static TeraType ELDRITCH;
     public static TeraType LIGHT;
-    public static TeraType QUESTIONMARK;
+    public static TeraType MYSTERY;
     public static TeraType NUCLEAR;
     public static TeraType PLASTIC;
     public static TeraType SHADOW;

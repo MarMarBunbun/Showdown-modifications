@@ -25,6 +25,10 @@ public class SpeciesManager {
     private static final HashMap<String, List<EvolutionEntry>> additionalFormEvolutions = new HashMap<>();
     private static final HashMap<String, Float> additionalFormBaseScaleChanges = new HashMap<>();
 
+    public static List<EvolutionEntry> getAdditionalFormEvolutions(String pokemonSpeciesName) {
+        return additionalFormEvolutions.get(pokemonSpeciesName);
+    }
+
     public static void banPokemon(@NotNull PokemonSpecies pokemonSpecies, GravelmonPokemonSpeciesAccessor accessor) {
         var currentSpecies = accessor.getSpeciesByIdentifier();
         var speciesToBeRemoved = getSpeciesToBeRemoved(currentSpecies);
@@ -154,7 +158,6 @@ public class SpeciesManager {
         return false;
     }
 
-    //
     public static void registerFormEvolution(String pokemon, EvolutionEntry moveToInsert) {
         additionalFormEvolutions.computeIfAbsent(pokemon, k -> new ArrayList<>()).add(moveToInsert);
     }

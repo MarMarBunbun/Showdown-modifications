@@ -69,13 +69,13 @@
     },
     {
       "aspects": [
-        "questionmark-plate"
+        "mystery-plate"
       ],
-      "texture": "gravels_extended_battles:textures/pokemon/0493_arceus/arceus_questionmark.png",
+      "texture": "gravels_extended_battles:textures/pokemon/0493_arceus/arceus_mystery.png",
       "layers": [
         {
           "name": "emissive",
-          "texture": "gravels_extended_battles:textures/pokemon/0493_arceus/arceus_emmisive_questionmark.png",
+          "texture": "gravels_extended_battles:textures/pokemon/0493_arceus/arceus_emmisive_mystery.png",
           "emissive": true
         }
       ]
@@ -243,14 +243,14 @@
     },
     {
       "aspects": [
-        "questionmark-plate",
+        "mystery-plate",
         "shiny"
       ],
-      "texture": "gravels_extended_battles:textures/pokemon/0493_arceus/arceus_questionmark_shiny.png",
+      "texture": "gravels_extended_battles:textures/pokemon/0493_arceus/arceus_mystery_shiny.png",
       "layers": [
         {
           "name": "emissive",
-          "texture": "gravels_extended_battles:textures/pokemon/0493_arceus/arceus_emmisive_questionmark.png",
+          "texture": "gravels_extended_battles:textures/pokemon/0493_arceus/arceus_emmisive_mystery.png",
           "emissive": true
         }
       ]

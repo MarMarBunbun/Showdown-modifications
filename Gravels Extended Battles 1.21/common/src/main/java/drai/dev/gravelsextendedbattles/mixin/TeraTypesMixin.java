@@ -39,7 +39,7 @@ public abstract class TeraTypesMixin {
             GravelmonTeraTypes.DIGITAL = addTeraType(func, GravelmonElementalTypes.DIGITAL, ChatFormatting.GREEN);
             GravelmonTeraTypes.ELDRITCH = addTeraType(func, GravelmonElementalTypes.ELDRITCH, ChatFormatting.DARK_RED);
             GravelmonTeraTypes.LIGHT = addTeraType(func, GravelmonElementalTypes.LIGHT, ChatFormatting.YELLOW);
-            GravelmonTeraTypes.QUESTIONMARK = addTeraType(func, GravelmonElementalTypes.QUESTIONMARK, ChatFormatting.AQUA);
+            GravelmonTeraTypes.MYSTERY = addTeraType(func, GravelmonElementalTypes.MYSTERY, ChatFormatting.AQUA);
             GravelmonTeraTypes.NUCLEAR = addTeraType(func, GravelmonElementalTypes.NUCLEAR, ChatFormatting.GREEN);
             GravelmonTeraTypes.PLASTIC = addTeraType(func, GravelmonElementalTypes.PLASTIC, ChatFormatting.GOLD);
             GravelmonTeraTypes.SHADOW = addTeraType(func, GravelmonElementalTypes.SHADOW, ChatFormatting.DARK_GRAY);

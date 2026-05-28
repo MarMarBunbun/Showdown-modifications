@@ -104,7 +104,7 @@ public class ShowdownFileManager {
                                 "\t\t\tLight: \"Max Radiance\",\n" +
                                 "\t\t\tNuclear: \"Max Meltdown\",\n" +
                                 "\t\t\tPlastic: \"Max Recast\",\n" +
-                                "\t\t\tQuestionmark: \"Max Questionmark\",\n" +
+                                "\t\t\tMystery: \"Max Mystery\",\n" +
                                 "\t\t\tShadow: \"Max Umbrage\",\n" +
                                 "\t\t\tSlime: \"Max Ooze Flood\",\n" +
                                 "\t\t\tSound: \"Max Reverb\",\n" +
@@ -122,7 +122,7 @@ public class ShowdownFileManager {
                                 "\t\t\tLight: \"Divine Nova\",\n" +
                                 "\t\t\tNuclear: \"Core Detonation\",\n" +
                                 "\t\t\tPlastic: \"Synthetic Evolution\",\n" +
-                                "\t\t\tQuestionmark: \"Questionmark Protocol\",\n" +
+                                "\t\t\tMystery: \"Mystery Protocol\",\n" +
                                 "\t\t\tShadow: \"Veil of Oblivion\",\n" +
                                 "\t\t\tSlime: \"Mucus Tsunami\",\n" +
                                 "\t\t\tSound: \"Bass Drop Finale\",\n" +

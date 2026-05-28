@@ -42,7 +42,7 @@ public class LanguageGenerator extends FabricLanguageProvider {
     public void generateTranslations(HolderLookup.Provider provider, TranslationBuilder translationBuilder) {
         for (var value : GravelsExtendedBattlesItems.GEMS) {
             String itemName = value.get().getDescriptionId().replace("item.gravels_extended_battles.", "");
-            if(value == GravelsExtendedBattlesItems.QUESTIONMARK_GEM) {
+            if(value == GravelsExtendedBattlesItems.MYSTERY_GEM) {
                 translationBuilder.add(value.get(), "Mystery Gem");
 
             } else {
@@ -57,7 +57,7 @@ public class LanguageGenerator extends FabricLanguageProvider {
                 "Consumed after use");
 
         for (Supplier<Item> value : GravelsExtendedBattlesItems.MEMORIES) {
-            if(value == GravelsExtendedBattlesItems.QUESTION_MARK_MEMORY) {
+            if(value == GravelsExtendedBattlesItems.MYSTERY_MEMORY) {
                 translationBuilder.add(value.get(), "Mystery Memory");
             } else {
                 translationBuilder.add(value.get(), capitalizeWords(value.get().getDescriptionId().replace("item.gravels_extended_battles.", "").replace("_", " ")));
@@ -90,7 +90,7 @@ public class LanguageGenerator extends FabricLanguageProvider {
         }
 
         for (Supplier<Item> value : GravelsExtendedBattlesItems.TERA_SHARDS_BY_TYPE_NAME.values()) {
-            if(value == GravelsExtendedBattlesItems.QUESTIONMARK_TERA_SHARD) {
+            if(value == GravelsExtendedBattlesItems.MYSTERY_TERA_SHARD) {
                 translationBuilder.add(value.get(), "Mystery Tera Shard");
                 continue;
             }

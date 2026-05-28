@@ -3,7 +3,7 @@
   "effects": [
     {
       "type": "cobblemon:typing",
-      "subcategory": "questionmark",
+      "subcategory": "mystery",
       "chance": 1.0,
       "value": 10.0
     }

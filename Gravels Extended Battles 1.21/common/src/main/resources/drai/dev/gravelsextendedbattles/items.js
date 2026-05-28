@@ -1529,10 +1529,10 @@ const Items = {
     isBerry: true,
     naturalGift: {
       basePower: 60,
-      type: "Questionmark"
+      type: "mystery"
     },
     onSourceModifyDamage(damage, source, target, move) {
-      if (move.type === "Questionmark" && target.getMoveHitData(move).typeMod > 0) {
+      if (move.type === "mystery" && target.getMoveHitData(move).typeMod > 0) {
         const hitSub = target.volatiles["substitute"] && !move.flags["bypasssub"] && !(move.infiltrates && this.gen >= 6);
         if (hitSub)
           return;
@@ -2321,7 +2321,7 @@ const Items = {
     },
     onBasePowerPriority: 15,
     onBasePower(basePower, user, target, move) {
-      if (move && move.type === "Questionmark") {
+      if (move && move.type === "mystery") {
         return this.chainModify([4915, 4096]);
       }
     },
@@ -3480,9 +3480,9 @@ const Items = {
     spritenum: 3090,
     onTakeItem: false,
     zMove: true,
-    zMoveType: "Questionmark",
-	onPlate: "Questionmark",
-    forcedForme: "Arceus-Questionmark",
+    zMoveType: "mystery",
+	onPlate: "mystery",
+    forcedForme: "Arceus-mystery",
     num: 3090,
     gen: 7,
     isNonstandard: "Past"
@@ -3490,10 +3490,10 @@ const Items = {
   mysteryplate: {
     name: "Mystery Plate",
     spritenum: 3097,
-    onPlate: "Questionmark",
+    onPlate: "mystery",
     onBasePowerPriority: 15,
     onBasePower(basePower, user, target, move) {
-      if (move.type === "Questionmark") {
+      if (move.type === "mystery") {
         return this.chainModify([4915, 4096]);
       }
     },
@@ -3503,7 +3503,7 @@ const Items = {
       }
       return true;
     },
-    forcedForme: "Arceus-Questionmark",
+    forcedForme: "Arceus-mystery",
     num: 3097,
     gen: 4
   },
@@ -4337,69 +4337,69 @@ const Items = {
     num: 3194,
     gen: 9
   },
-  questionmarkcrayon: {
-    name: "Questionmark Crayon",
+  mysterycrayon: {
+    name: "mystery Crayon",
     spritenum: 3233,
     fling: {
       basePower: 20
     },
 	onStart(pokemon) {
       const types = pokemon.getTypes();
-      if (types.length === 1 && !types.includes("Questionmark")) {
+      if (types.length === 1 && !types.includes("mystery")) {
         pokemon.itemData = pokemon.itemData || {};
-        pokemon.itemData.questionmarkCrayonOriginalType = types[0];
-        pokemon.itemData.questionmarkCrayonActivated = false;
+        pokemon.itemData.mysteryCrayonOriginalType = types[0];
+        pokemon.itemData.mysteryCrayonActivated = false;
         const isIllusionActive = !!pokemon.illusion;
         if (!isIllusionActive) {
-          this.add("-item", pokemon, "Questionmark Crayon");
-          pokemon.itemData.questionmarkCrayonActivated = true;
+          this.add("-item", pokemon, "mystery Crayon");
+          pokemon.itemData.mysteryCrayonActivated = true;
         }
-        pokemon.setType([types[0], "Questionmark"]);
+        pokemon.setType([types[0], "mystery"]);
       }
     },
     onUpdate(pokemon) {
       if (
-        pokemon.itemData?.questionmarkCrayonOriginalType &&
-        !pokemon.itemData.questionmarkCrayonActivated
+        pokemon.itemData?.mysteryCrayonOriginalType &&
+        !pokemon.itemData.mysteryCrayonActivated
       ) {
         const isIllusionActive = !!pokemon.illusion;
         if (!isIllusionActive) {
-          this.add("-item", pokemon, "Questionmark Crayon");
-          pokemon.itemData.questionmarkCrayonActivated = true;
+          this.add("-item", pokemon, "mystery Crayon");
+          pokemon.itemData.mysteryCrayonActivated = true;
         }
       }
     },
     onEnd(pokemon) {
-      if (pokemon.itemData?.questionmarkCrayonOriginalType) {
+      if (pokemon.itemData?.mysteryCrayonOriginalType) {
         const isIllusionActive = !!pokemon.illusion;
         if (!isIllusionActive) {
-          this.add("-enditem", pokemon, "Questionmark Crayon");
+          this.add("-enditem", pokemon, "mystery Crayon");
         }
-        pokemon.setType([pokemon.itemData.questionmarkCrayonOriginalType]);
-        delete pokemon.itemData.questionmarkCrayonOriginalType;
-        delete pokemon.itemData.questionmarkCrayonActivated;
+        pokemon.setType([pokemon.itemData.mysteryCrayonOriginalType]);
+        delete pokemon.itemData.mysteryCrayonOriginalType;
+        delete pokemon.itemData.mysteryCrayonActivated;
       }
     },
     num: 3233,
     gen: 9
   },
-  questionmarkeraser: {
-    name: "Questionmark Eraser",
+  mysteryeraser: {
+    name: "mystery Eraser",
     spritenum: 3204,
     fling: {
       basePower: 40
     },
 	onStart(pokemon) {
       const types = pokemon.getTypes();
-      if (types.length === 2 && types.includes("Questionmark")) {
+      if (types.length === 2 && types.includes("mystery")) {
         pokemon.itemData = pokemon.itemData || {};
-        pokemon.itemData.questionmarkEraserOriginalTypes = types;
-        pokemon.itemData.questionmarkEraserActivated = false;
-        const newTypes = types.filter(t => t !== "Questionmark");
+        pokemon.itemData.mysteryEraserOriginalTypes = types;
+        pokemon.itemData.mysteryEraserActivated = false;
+        const newTypes = types.filter(t => t !== "mystery");
         if (newTypes.length > 0) {
           if (!pokemon.illusion) {
-            this.add("-item", pokemon, "Questionmark Eraser");
-            pokemon.itemData.questionmarkEraserActivated = true;
+            this.add("-item", pokemon, "mystery Eraser");
+            pokemon.itemData.mysteryEraserActivated = true;
           }
           pokemon.setType(newTypes);
         }
@@ -4407,37 +4407,37 @@ const Items = {
     },
     onUpdate(pokemon) {
       if (
-        pokemon.itemData?.questionmarkEraserOriginalTypes &&
-        !pokemon.itemData.questionmarkEraserActivated
+        pokemon.itemData?.mysteryEraserOriginalTypes &&
+        !pokemon.itemData.mysteryEraserActivated
       ) {
         if (!pokemon.illusion) {
-          this.add("-item", pokemon, "Questionmark Eraser");
-          pokemon.itemData.questionmarkEraserActivated = true;
+          this.add("-item", pokemon, "mystery Eraser");
+          pokemon.itemData.mysteryEraserActivated = true;
         }
       }
     },
     onEnd(pokemon) {
-      if (pokemon.itemData?.questionmarkEraserOriginalTypes) {
+      if (pokemon.itemData?.mysteryEraserOriginalTypes) {
         if (!pokemon.illusion) {
-          this.add("-enditem", pokemon, "Questionmark Eraser");
+          this.add("-enditem", pokemon, "mystery Eraser");
         }
-        const originalTypes = pokemon.itemData.questionmarkEraserOriginalTypes;
+        const originalTypes = pokemon.itemData.mysteryEraserOriginalTypes;
         pokemon.setType(originalTypes);
-        delete pokemon.itemData.questionmarkEraserOriginalTypes;
-        delete pokemon.itemData.questionmarkEraserActivated;
+        delete pokemon.itemData.mysteryEraserOriginalTypes;
+        delete pokemon.itemData.mysteryEraserActivated;
       }
     },
     num: 3204,
     gen: 9
   },
-  questionmarkgem: {
-    name: "Questionmark Gem",
+  mysterygem: {
+    name: "mystery Gem",
     spritenum: 3110,
     isGem: true,
     onSourceTryPrimaryHit(target, source, move) {
       if (target === source || move.category === "Status")
         return;
-      if (move.type === "Questionmark" && source.useItem()) {
+      if (move.type === "mystery" && source.useItem()) {
         source.addVolatile("gem");
       }
     },
@@ -4445,18 +4445,18 @@ const Items = {
     gen: 5,
     isNonstandard: "Past"
   },
-  questionmarkmemory: {
-    name: "Questionmark Memory",
+  mysterymemory: {
+    name: "mystery Memory",
     spritenum: 3123,
-    onMemory: "Questionmark",
+    onMemory: "mystery",
     onTakeItem(item, pokemon, source) {
       if (source && source.baseSpecies.num === 773 || pokemon.baseSpecies.num === 773) {
         return false;
       }
       return true;
     },
-    forcedForme: "Silvally-Questionmark",
-    itemUser: ["Silvally-Questionmark"],
+    forcedForme: "Silvally-mystery",
+    itemUser: ["Silvally-mystery"],
     num: 3123,
     gen: 7,
     isNonstandard: "Past"

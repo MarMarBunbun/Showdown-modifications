@@ -1241,7 +1241,7 @@ const Moves = {
       }
     },
     target: "normal",
-    type: "Questionmark",
+    type: "mystery",
     contestType: "Tough"
   },
   bitingcold: {
@@ -3358,7 +3358,7 @@ const Moves = {
     status: "tox",
     secondary: null,
     target: "normal",
-    type: "Questionmark",
+    type: "mystery",
     zMove: { boost: { def: 1 } },
     contestType: "Clever"
   },
@@ -3459,7 +3459,7 @@ const Moves = {
     },
     secondary: null,
     target: "normal",
-    type: "Questionmark",
+    type: "mystery",
     contestType: "Tough"
   },
   coreenforcer: {
@@ -6332,7 +6332,7 @@ const Moves = {
     flags: { contact: 1, protect: 1, mirror: 1, punch: 1 },
     secondary: null,
     target: "normal",
-    type: "Questionmark",
+    type: "mystery",
     contestType: "Clever"
   },
   eternabeam: {
@@ -6509,7 +6509,7 @@ const Moves = {
     selfdestruct: "always",
     secondary: null,
     target: "allAdjacent",
-    type: "Questionmark",
+    type: "mystery",
     contestType: "Beautiful"
   },
   expunge: {
@@ -8080,7 +8080,7 @@ const Moves = {
       }
     },
     target: "normal",
-    type: "Questionmark",
+    type: "mystery",
     contestType: "Cute"
   },
   glorp: {
@@ -8524,7 +8524,7 @@ const Moves = {
     flags: { protect: 1, mirror: 1 },
     secondary: null,
     target: "normal",
-    type: "Questionmark",
+    type: "mystery",
     contestType: "Cool"
   },
   hairpinturn: {
@@ -9498,7 +9498,7 @@ const Moves = {
     flags: { protect: 1, mirror: 1 },
     secondary: null,
     target: "normal",
-    type: "Questionmark",
+    type: "mystery",
     contestType: "Beautiful"
   },
   invasivevector: {
@@ -9889,7 +9889,7 @@ const Moves = {
     flags: { protect: 1, mirror: 1 },
     secondary: null,
     target: "normal",
-    type: "Questionmark",
+    type: "mystery",
     contestType: "Beautiful"
   },
   landsliderush: {
@@ -10716,13 +10716,13 @@ const Moves = {
     type: "Digital",
     contestType: "Cool"
   },
-  maxquestionmark: {
+  maxmystery: {
     num: 3708,
     accuracy: true,
     basePower: 10,
     category: "Physical",
     isNonstandard: "Past",
-    name: "Max Questionmark",
+    name: "Max mystery",
     pp: 10,
     priority: 0,
     flags: {},
@@ -10739,7 +10739,7 @@ const Moves = {
       }
     },
     target: "adjacentFoe",
-    type: "Questionmark",
+    type: "mystery",
     contestType: "Cool"
   },
   maxradiance: {
@@ -12231,7 +12231,7 @@ const Moves = {
     flags: { protect: 1, mirror: 1, distance: 1, pulse: 1 },
     secondary: null,
     target: "any",
-    type: "Questionmark",
+    type: "mystery",
     contestType: "Beautiful"
   },
   oblivionwing: {
@@ -13662,23 +13662,23 @@ const Moves = {
     multihit: [2, 5],
     secondary: null,
     target: "normal",
-    type: "Questionmark",
+    type: "mystery",
     contestType: "Cool"
   },
-  questionmarkprotocol: {
+  mysteryprotocol: {
     num: 3722,
     accuracy: true,
     basePower: 1,
     category: "Physical",
     isNonstandard: "Past",
-    name: "Questionmark Protocol",
+    name: "mystery Protocol",
     pp: 1,
     priority: 0,
     flags: {},
     isZ: "mysteriumz",
     secondary: null,
     target: "normal",
-    type: "Questionmark",
+    type: "mystery",
     contestType: "Cool"
   },
   quickattack: {
@@ -14957,7 +14957,7 @@ const Moves = {
       }
     },
     target: "normal",
-    type: "Questionmark",
+    type: "mystery",
     contestType: "Cool"
   },
   shadetrance: {
@@ -15525,7 +15525,7 @@ const Moves = {
       volatileStatus: "confusion"
     },
     target: "allAdjacentFoes",
-    type: "Questionmark",
+    type: "mystery",
     contestType: "Beautiful"
   },
   shimmershotlight: {
@@ -15813,7 +15813,7 @@ const Moves = {
     ohko: true,
     secondary: null,
     target: "normal",
-    type: "Questionmark",
+    type: "mystery",
     zMove: { basePower: 180 },
     maxMove: { basePower: 130 },
     contestType: "Cool"
@@ -17221,7 +17221,7 @@ const Moves = {
     },
     secondary: null,
     target: "normal",
-    type: "Questionmark",
+    type: "mystery",
     contestType: "Beautiful"
   },
   standoff: {
@@ -18620,7 +18620,7 @@ const Moves = {
     },
     secondary: null,
     target: "normal",
-    type: "Questionmark",
+    type: "mystery",
     contestType: "Cool"
   },
   "tm47": {
@@ -18637,7 +18637,7 @@ const Moves = {
       status: "psn"
     },
     target: "normal",
-    type: "Questionmark",
+    type: "mystery",
     contestType: "Tough"
   },
   tornado: {

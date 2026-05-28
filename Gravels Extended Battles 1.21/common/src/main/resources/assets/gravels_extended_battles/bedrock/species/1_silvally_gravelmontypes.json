@@ -64,13 +64,13 @@
         },
         {
             "aspects": [
-                "questionmark-memory"
+                "mystery-memory"
             ],
             "layers":[
                 {
                     "name": "emissive",
 
-                    "texture": "gravels_extended_battles:textures/pokemon/0773_silvally/silvally_emmisive_questionmark.png"
+                    "texture": "gravels_extended_battles:textures/pokemon/0773_silvally/silvally_emmisive_mystery.png"
               }
             ]
         },

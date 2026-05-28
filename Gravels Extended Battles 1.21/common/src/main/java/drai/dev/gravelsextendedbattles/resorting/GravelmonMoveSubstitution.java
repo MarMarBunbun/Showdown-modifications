@@ -21,6 +21,10 @@ public class GravelmonMoveSubstitution {
         movesToAdd.computeIfAbsent(pokemon, k -> new ArrayList<>()).add(moveToInsert);
     }
 
+    public static List<MoveLearnSetEntry> getMoveInsertions(String pokemon){
+        return movesToAdd.get(pokemon);
+    }
+
     public static void substituteMoves(){
         registerGEBMovesForSubstitution();
         var pokemonSpecies = PokemonSpecies.INSTANCE.getSpecies();
