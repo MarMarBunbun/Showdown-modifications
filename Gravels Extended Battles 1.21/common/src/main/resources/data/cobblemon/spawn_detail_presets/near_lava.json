@@ -1,5 +1,0 @@
-{
-  "condition": {
-    "neededNearbyBlocks": ["#minecraft:lava"]
-  }
-}
