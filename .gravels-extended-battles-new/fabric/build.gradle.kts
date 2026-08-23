@@ -29,7 +29,7 @@ dependencies {
 
     //needed for cobblemon
     modImplementation("net.fabricmc:fabric-language-kotlin:${property("fabric_kotlin")}")
-    modImplementation("com.cobblemon:fabric:${property("cobblemon_version")}") { isTransitive = false }
+    modImplementation("com.cobblemon:fabric:${property("cobblemon_version")}") { isTransitive = true }
 
     implementation(project(":common", configuration = "namedElements"))
     "developmentFabric"(project(":common", configuration = "namedElements"))
@@ -37,6 +37,20 @@ dependencies {
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:${property("junit_version")}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${property("junit_version")}")
+
+    val midnightlib = "eu.midnightdust:midnightlib:${property("midnightlib_version")}-fabric"
+    modImplementation(midnightlib) {
+        exclude(
+            group = "com.terraformersmc",
+            module = "modmenu"
+        )
+    }
+    include(midnightlib) {
+    exclude(
+        group = "com.terraformersmc",
+        module = "modmenu"
+        )
+    }
 }
 
 tasks {

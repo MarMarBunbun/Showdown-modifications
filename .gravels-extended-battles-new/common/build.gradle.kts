@@ -15,10 +15,18 @@ loom {
 dependencies {
     minecraft("com.mojang:minecraft:${property("minecraft_version")}")
     mappings(loom.officialMojangMappings())
-    modImplementation("com.cobblemon:mod:${property("cobblemon_version")}") { isTransitive = false }
+    modImplementation("com.cobblemon:mod:${property("cobblemon_version")}") { isTransitive = true }
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:${property("junit_version")}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${property("junit_version")}")
+
+    val midnightlib = "eu.midnightdust:midnightlib:${property("midnightlib_version")}-fabric"
+    modImplementation(midnightlib) {
+        exclude(
+            group = "com.terraformersmc",
+            module = "modmenu"
+        )
+    }
 }
 
 tasks.test {
