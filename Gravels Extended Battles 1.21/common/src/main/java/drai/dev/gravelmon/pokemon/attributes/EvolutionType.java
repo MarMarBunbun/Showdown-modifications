@@ -12,4 +12,13 @@ public enum EvolutionType {
     public String getName() {
         return name;
     }
+
+    public static EvolutionType getEvolutionType(String name){
+        for(EvolutionType type : EvolutionType.values()){
+            if(type.getName().equals(name)){
+                return type;
+            }
+        }
+        return null;
+    }
 }

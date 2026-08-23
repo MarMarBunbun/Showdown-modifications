@@ -37,7 +37,7 @@ public enum Label {
     URANIUM("uranium"),
     REALIDEA_SYSTEM("realidea_system"),
     AZURE("azure"),
-    OPAL("opal"),
+    OPALO("opal"),
     ETERNAL_FOREST("eternal_forest"),
     UMBRA("umbra"),
     DENEB("deneb"),
@@ -51,7 +51,7 @@ public enum Label {
     MYTHIRE("mythire"),
     NOVRAI("novrai"),
     OKENO("okeno"),
-    OROHNHAVAI("orohnhavai"),
+    OROHN_HAVAI("orohn_havai"),
     QAMOR("qamor"),
     VARITAS("varitas"),
     RICA("rica"),
@@ -79,12 +79,12 @@ public enum Label {
     MONGRATIS("mongratis"),
     MUSHI("mushi"),
     MYSTIS("mystis"),
-    NEONINTENDO("neonintendo"),
+    NEONINTENDO("neo_nintendo"),
     NODORRO("nodorro"),
     OLYSOS("olysos"),
     ORBIS("orbis"),
     OTOPO("otopo"),
-    OTTORA("ottora"),
+    Beginnings("ottora"),
     PANJAEA("panjaea"),
     PASTEL_ISLAND("pastel_island"),
     RUSKOW("ruskow"),
@@ -94,16 +94,16 @@ public enum Label {
     ULTRASPACE("ultraspace"),
     URZAVOS("urzavos"),
     SPION("spion"),
-    NEO_NINTENDO("neonintendo"),
+    NEO_NINTENDO("neo_nintendo"),
     PASTELL_ISLAND("pastel_island"),
     CROZOIC("crozoic"),
     AFRICANUS,
-    CHAOSINVESTIA,
+    CHAOS_IN_VESTIA,
     SOULSTONES,
     MASTENIAN,
     FORM,
     KORZA,
-    RAIAN, PALMIA, NORSE, TRIZOR, ALDAO, BAGO, FRA, IVRIS, ELB(), FABEL(), FERRAN(), AROMA(), SAHL(), MAHAL(), BORAZUL(), KUULKID(), MIKITARI(), SORIN(), INSTAGRAM(), ISHIRIA(), SOLARLIGHTLUNARDARK(), TOCHI();
+    RAIAN, PALMIA, NORSE, TRIZOR, ALDAO, BAGO, FRA, IVRIS, ELB(), FABEL(), FERRAN(), AROMA(), SAHL(), MAHAL(), BORAZUL(), KUULKID(), MIKITARI(), SORIN(), INSTAGRAM(), GARNET(), SOLARLIGHTLUNARDARK(), TOCHI();
 
     private String name;
 
@@ -123,52 +123,52 @@ public enum Label {
 
     static {
         passwordProtectedLabels = new HashMap<>();
-//        passwordProtectedLabels.put(OTTORA, "15thaddictionIsAddicted");
-//        passwordProtectedLabels.put(IONOS, "airikr4283");
-//        passwordProtectedLabels.put(MASTENIA, "airikr4283");
-//        passwordProtectedLabels.put(NORHEIM, "airikr4283");
-//        passwordProtectedLabels.put(GOETIA, "aviculor");
-//        passwordProtectedLabels.put(AVORIS, "azriaPending");
-//        passwordProtectedLabels.put(OROHNHAVAI, "azriaPending");
-//        passwordProtectedLabels.put(ORBIS, "goneBlumoo");
-//        passwordProtectedLabels.put(MYSTIS, "breadbun.");
-//        passwordProtectedLabels.put(CYARE, "cobaltDragonPens");
-//        passwordProtectedLabels.put(ATLAS, "collaborativeEffort");
-//        passwordProtectedLabels.put(ENJIN, "collaborativeEffort");
-//        passwordProtectedLabels.put(HUB, "collaborativeEffort");
-//        passwordProtectedLabels.put(INTERREGIONAL, "collaborativeEffort");
-//        passwordProtectedLabels.put(NEO_NINTENDO, "collaborativeEffort");
-//        passwordProtectedLabels.put(MUSHI, "deepzekrom");
-//        passwordProtectedLabels.put(FERROA, "drtapewormRulez");
-//        passwordProtectedLabels.put(MYTHIRE, "drtapewormRulez");
-//        passwordProtectedLabels.put(RUSKOW, "extyrannomon");
-//        passwordProtectedLabels.put(AMAVI, "vanishedEntity");
-//        passwordProtectedLabels.put(ARISTOS, "ginzuishou");
-//        passwordProtectedLabels.put(HIZA, "godOfWarioReverance");
-//        passwordProtectedLabels.put(TERRANOV, "godOfWarioReverance");
-//        passwordProtectedLabels.put(LAGOONE, "godOfWarioReverance");
-//        passwordProtectedLabels.put(DHIOME, "vanishedHaritos");
-//        passwordProtectedLabels.put(PANJAEA, "janejewelShiny");
-//        passwordProtectedLabels.put(LONAVA, "kingTapirDec");
-//        passwordProtectedLabels.put(THEOS, "lehnk");
-//        passwordProtectedLabels.put(QAMOR, "considerateCrustle");
-//        passwordProtectedLabels.put(OKENO, "mymarshlands");
-//        passwordProtectedLabels.put(ENRIKO, "nixliz");
-//        passwordProtectedLabels.put(OTOPO, "pixelmisterdec");
-//        passwordProtectedLabels.put(JUNNIN, "vanished");
-//        passwordProtectedLabels.put(NOSTO, "vanished");
-//        passwordProtectedLabels.put(URZAVOS, "scarfflesLooker");
-//        passwordProtectedLabels.put(SPION, "sketchyant");
-//        passwordProtectedLabels.put(AVALOS, "skur01Rocks");
-//        passwordProtectedLabels.put(FLIGA, "skur01Rocks");
-//        passwordProtectedLabels.put(NOVRAI, "znogyrop");
-//        passwordProtectedLabels.put(PASTEL_ISLAND, "mysteriousIsland");
-//        passwordProtectedLabels.put(MYTH, "dramaQueen");
-//        passwordProtectedLabels.put(ISIAH, "hiddenNinjaVillage");
-//        passwordProtectedLabels.put(CROZOIC, "prehistoric");
-//        passwordProtectedLabels.put(INSTAGRAM, "thezuccc");
-//        passwordProtectedLabels.put(ISHIRIA, "ishirian");
-//        passwordProtectedLabels.put(TOCHI, "toyota");
+        passwordProtectedLabels.put(Beginnings, "15thaddictionIsAddicted");
+        passwordProtectedLabels.put(IONOS, "airikr4283");
+        passwordProtectedLabels.put(MASTENIA, "airikr4283");
+        passwordProtectedLabels.put(NORHEIM, "airikr4283");
+        passwordProtectedLabels.put(GOETIA, "aviculor");
+        passwordProtectedLabels.put(AVORIS, "azriaPending");
+        passwordProtectedLabels.put(OROHN_HAVAI, "azriaPending");
+        passwordProtectedLabels.put(ORBIS, "goneBlumoo");
+        passwordProtectedLabels.put(MYSTIS, "breadbun.");
+        passwordProtectedLabels.put(CYARE, "cobaltDragonPens");
+        passwordProtectedLabels.put(ATLAS, "collaborativeEffort");
+        passwordProtectedLabels.put(ENJIN, "collaborativeEffort");
+        passwordProtectedLabels.put(HUB, "collaborativeEffort");
+        passwordProtectedLabels.put(INTERREGIONAL, "collaborativeEffort");
+        passwordProtectedLabels.put(NEO_NINTENDO, "collaborativeEffort");
+        passwordProtectedLabels.put(MUSHI, "deepzekrom");
+        passwordProtectedLabels.put(FERROA, "drtapewormRulez");
+        passwordProtectedLabels.put(MYTHIRE, "drtapewormRulez");
+        passwordProtectedLabels.put(RUSKOW, "extyrannomon");
+        passwordProtectedLabels.put(AMAVI, "vanishedEntity");
+        passwordProtectedLabels.put(ARISTOS, "ginzuishou");
+        passwordProtectedLabels.put(HIZA, "godOfWarioReverance");
+        passwordProtectedLabels.put(TERRANOV, "godOfWarioReverance");
+        passwordProtectedLabels.put(LAGOONE, "godOfWarioReverance");
+        passwordProtectedLabels.put(DHIOME, "vanishedHaritos");
+        passwordProtectedLabels.put(PANJAEA, "janejewelShiny");
+        passwordProtectedLabels.put(LONAVA, "kingTapirDec");
+        passwordProtectedLabels.put(THEOS, "lehnk");
+        passwordProtectedLabels.put(QAMOR, "considerateCrustle");
+        passwordProtectedLabels.put(OKENO, "mymarshlands");
+        passwordProtectedLabels.put(ENRIKO, "nixliz");
+        passwordProtectedLabels.put(OTOPO, "pixelmisterdec");
+        passwordProtectedLabels.put(JUNNIN, "vanished");
+        passwordProtectedLabels.put(NOSTO, "vanished");
+        passwordProtectedLabels.put(URZAVOS, "scarfflesLooker");
+        passwordProtectedLabels.put(SPION, "sketchyant");
+        passwordProtectedLabels.put(AVALOS, "skur01Rocks");
+        passwordProtectedLabels.put(FLIGA, "skur01Rocks");
+        passwordProtectedLabels.put(NOVRAI, "znogyrop");
+        passwordProtectedLabels.put(PASTEL_ISLAND, "mysteriousIsland");
+        passwordProtectedLabels.put(MYTH, "dramaQueen");
+        passwordProtectedLabels.put(ISIAH, "hiddenNinjaVillage");
+        passwordProtectedLabels.put(CROZOIC, "prehistoric");
+        passwordProtectedLabels.put(INSTAGRAM, "thezuccc");
+        passwordProtectedLabels.put(GARNET, "ishirian");
+        passwordProtectedLabels.put(TOCHI, "toyota");
     }
 
     public static Map<Label, String> getPasswordProtectedLabels() {

@@ -21,4 +21,6 @@ public class MoveLearnSetEntry {
     public Move getMove() {
         return move;
     }
+
+
 }

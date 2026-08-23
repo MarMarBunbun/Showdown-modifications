@@ -2,7 +2,6 @@ package drai.dev.gravelsextendedbattles.resorting;
 
 import com.cobblemon.mod.common.api.moves.*;
 import com.cobblemon.mod.common.api.pokemon.*;
-import com.cobblemon.mod.common.pokemon.*;
 import drai.dev.gravelmon.pokemon.attributes.*;
 import drai.dev.gravelmon.pokemon.attributes.Move;
 import drai.dev.gravelsextendedbattles.*;

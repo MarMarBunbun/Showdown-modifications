@@ -10,6 +10,7 @@ import com.cobblemon.mod.common.api.types.tera.*;
 import com.cobblemon.mod.common.pokemon.adapters.*;
 import com.cobblemon.mod.common.pokemon.status.*;
 import dev.architectury.injectables.annotations.*;
+import drai.dev.gravelmon.pokemon.attributes.*;
 import drai.dev.gravelsextendedbattles.interfaces.*;
 import drai.dev.gravelsextendedbattles.loot.*;
 import drai.dev.gravelsextendedbattles.registries.*;
@@ -63,6 +64,7 @@ public class GravelsExtendedBattles {
     }
 
     public static void init() {
+        Move.PSYCHIC.getName();
         PokemonSpecies.INSTANCE.getObservable().subscribe(Priority.LOWEST, pokemonSpecies -> {
             speciesFinished = true;
             applyGravelmonExtensions();
