@@ -1,0 +1,20 @@
+{
+  "portraitScale": 0.5,
+  "portraitTranslation": [0.0, 2.0, 2.0],
+  "profileScale": 0.5,
+  "profileTranslation": [-0.0, 1.6, 0.0],
+  "poses": {
+    "profile": {
+      "poseName": "profile",
+      "poseTypes": ["PROFILE"],
+      "transformTicks": 10,
+      "animations": ["bedrock(cutout, pc_fix)"]
+    },
+    "portrait": {
+      "poseName": "portrait",
+      "poseTypes": ["NONE","PORTRAIT"],
+      "transformTicks": 10,
+      "animations": ["bedrock(cutout, summary_fix)"]
+    }
+  }
+}

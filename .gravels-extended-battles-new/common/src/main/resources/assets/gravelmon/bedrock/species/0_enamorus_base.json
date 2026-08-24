@@ -1,0 +1,32 @@
+{
+  "species": "cobblemon:enamorus",
+  "order": -1,
+  "variations": [
+    {
+      "aspects": [],
+      "poser": "gravelmon:cutout_poser",
+      "model": "gravelmon:cutout_geb.geo",
+      "texture": "gravelmon:textures/pokemon/enamorus.png",
+      "layers": []
+    },
+    {
+      "aspects": [
+        "shiny"
+      ],
+      "texture": "gravelmon:textures/pokemon/enamorus_shiny.png"
+    },
+    {
+      "aspects": [
+        "therian"
+      ],
+      "texture": "gravelmon:textures/pokemon/enamorus_therian.png"
+    }  ,
+    {
+      "aspects": [
+        "therian",
+        "shiny"
+      ],
+      "texture": "gravelmon:textures/pokemon/enamorus_therian_shiny.png"
+    }
+  ]
+}

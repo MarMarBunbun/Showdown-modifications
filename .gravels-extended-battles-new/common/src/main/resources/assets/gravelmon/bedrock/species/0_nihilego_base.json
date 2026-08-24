@@ -1,0 +1,18 @@
+{
+  "species": "cobblemon:nihilego",
+  "order": -1,
+  "variations": [
+    {
+      "aspects": [],
+      "poser": "gravelmon:cutout_poser",
+      "model": "gravelmon:cutout_geb.geo",
+      "texture": "gravelmon:textures/pokemon/nihilego.png",
+      "layers": []
+    },
+    {
+      "aspects": [
+        "shiny"
+      ],
+      "texture": "gravelmon:textures/pokemon/nihilego_shiny.png"
+    }  ]
+}

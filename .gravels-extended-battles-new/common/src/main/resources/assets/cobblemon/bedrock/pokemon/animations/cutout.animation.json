@@ -1,0 +1,30 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"animation.cutout.fix": {
+			"loop": true,
+			"bones": {
+				"body": {
+					"rotation": [0, "325-360", 0]
+				}
+			}
+		},
+		"animation.cutout.pc_fix": {
+			"loop": true,
+			"animation_length": 0.04167,
+			"bones": {
+				"body": {
+					"rotation": [0, "325-360", 0]
+				}
+			}
+		},
+		"animation.cutout.summary_fix": {
+			"loop": true,
+			"bones": {
+				"body": {
+					"rotation": [0, 35, 0]
+				}
+			}
+		}
+	}
+}

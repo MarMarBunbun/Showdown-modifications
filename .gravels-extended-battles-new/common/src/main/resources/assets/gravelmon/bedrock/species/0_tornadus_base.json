@@ -1,0 +1,32 @@
+{
+  "species": "cobblemon:tornadus",
+  "order": -1,
+  "variations": [
+    {
+      "aspects": [],
+      "poser": "gravelmon:cutout_poser",
+      "model": "gravelmon:cutout_geb.geo",
+      "texture": "gravelmon:textures/pokemon/tornadus.png",
+      "layers": []
+    },
+    {
+      "aspects": [
+        "shiny"
+      ],
+      "texture": "gravelmon:textures/pokemon/tornadus_shiny.png"
+    },
+    {
+      "aspects": [
+        "therian"
+      ],
+      "texture": "gravelmon:textures/pokemon/tornadus_therian.png"
+    }  ,
+    {
+      "aspects": [
+        "therian",
+        "shiny"
+      ],
+      "texture": "gravelmon:textures/pokemon/tornadus_therian_shiny.png"
+    }
+  ]
+}

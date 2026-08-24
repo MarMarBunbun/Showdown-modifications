@@ -1,0 +1,45 @@
+{
+  "species": "cobblemon:zygarde",
+  "order": -1,
+  "variations": [
+    {
+      "aspects": [],
+      "poser": "gravelmon:cutout_poser",
+      "model": "gravelmon:cutout_geb.geo",
+      "texture": "gravelmon:textures/pokemon/zygarde.png",
+      "layers": []
+    },
+    {
+      "aspects": [
+        "shiny"
+      ],
+      "texture": "gravelmon:textures/pokemon/zygarde_shiny.png"
+    },
+    {
+      "aspects": [
+        "10%"
+      ],
+      "texture": "gravelmon:textures/pokemon/zygarde_10_percent.png"
+    },
+    {
+      "aspects": [
+        "10%",
+        "shiny"
+      ],
+      "texture": "gravelmon:textures/pokemon/zygarde_10_percent_shiny.png"
+    },
+    {
+      "aspects": [
+        "complete"
+      ],
+      "texture": "gravelmon:textures/pokemon/zygarde_complete.png"
+    },
+    {
+      "aspects": [
+        "complete",
+        "shiny"
+      ],
+      "texture": "gravelmon:textures/pokemon/zygarde_complete_shiny.png"
+    }
+  ]
+}

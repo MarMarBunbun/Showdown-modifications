@@ -1,0 +1,31 @@
+{
+  "species": "cobblemon:moltres",
+  "order": -1,
+  "variations": [
+    {
+      "aspects": ["galarian"],
+      "poser": "gravelmon:cutout_poser",
+      "model": "gravelmon:cutout_geb.geo",
+      "texture": "gravelmon:textures/pokemon/galarian_moltres.png",
+      "layers": [
+        {
+          "name": "emissive"
+        }
+      ]
+    },
+    {
+      "aspects": [
+        "shiny",
+        "galarian"
+      ],
+      "poser": "gravelmon:cutout_poser",
+      "model": "gravelmon:cutout_geb.geo",
+      "texture": "gravelmon:textures/pokemon/galarian_moltres_shiny.png",
+      "layers": [
+        {
+          "name": "emissive"
+        }
+      ]
+    }
+  ]
+}

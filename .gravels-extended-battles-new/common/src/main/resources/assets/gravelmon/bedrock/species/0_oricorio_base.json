@@ -1,0 +1,58 @@
+{
+  "species": "cobblemon:oricorio",
+  "order": -1,
+  "variations": [
+    {
+      "aspects": [],
+      "poser": "gravelmon:cutout_poser",
+      "model": "gravelmon:cutout_geb.geo",
+      "texture": "gravelmon:textures/pokemon/oricorio.png",
+      "layers": []
+    },
+    {
+      "aspects": [
+        "shiny"
+      ],
+      "texture": "gravelmon:textures/pokemon/oricorio_shiny.png"
+    },
+    {
+      "aspects": [
+        "pom-pom"
+      ],
+      "texture": "gravelmon:textures/pokemon/oricorio_pom_pom.png"
+    }  ,
+    {
+      "aspects": [
+        "pom-pom",
+        "shiny"
+      ],
+      "texture": "gravelmon:textures/pokemon/oricorio_pom_pom_shiny.png"
+    },
+    {
+      "aspects": [
+        "pa'u"
+      ],
+      "texture": "gravelmon:textures/pokemon/oricorio_pau.png"
+    },
+    {
+      "aspects": [
+        "pa'u",
+        "shiny"
+      ],
+      "texture": "gravelmon:textures/pokemon/oricorio_pau_shiny.png"
+    },
+    {
+      "aspects": [
+        "sensu"
+      ],
+      "texture": "gravelmon:textures/pokemon/oricorio_sensu.png"
+    },
+    {
+      "aspects": [
+        "sensu",
+        "shiny"
+      ],
+      "texture": "gravelmon:textures/pokemon/oricorio_sensu_shiny.png"
+    }
+  ]
+}

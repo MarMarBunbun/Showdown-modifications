@@ -1,0 +1,21 @@
+{
+  "species": "cobblemon:zapdos",
+  "order": -1,
+  "variations": [
+    {
+      "aspects": ["galarian"],
+      "poser": "gravelmon:cutout_poser",
+      "model": "gravelmon:cutout_geb.geo",
+      "texture": "gravelmon:textures/pokemon/galarian_zapdos.png",
+      "layers": []
+    },
+    {
+      "aspects": [
+        "shiny",
+        "galarian"
+      ],
+      "poser": "gravelmon:cutout_poser",
+      "model": "gravelmon:cutout_geb.geo",
+      "texture": "gravelmon:textures/pokemon/galarian_zapdos_shiny.png"
+    }  ]
+}

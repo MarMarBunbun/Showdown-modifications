@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "gravels_extended_battles:item/frost_heal"
+  }
+}
