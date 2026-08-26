@@ -41,7 +41,7 @@ const Moves = {
     contestType: "Cool"
   },
   accelerock: {
-    inherit: true,
+    num: 709,
 	flags: { contact: 1, protect: 1, mirror: 1, speed: 1 }
   },
   acesplay: {
@@ -180,11 +180,11 @@ const Moves = {
     contestType: "Tough"
   },
   aerialace: {
-    inherit: true,
+    num: 332,
 	flags: { contact: 1, protect: 1, mirror: 1, distance: 1, metronome: 1, slicing: 1, blade: 1 }
   },
   aeroblast: {
-    inherit: true,
+    num: 177,
 	flags: { protect: 1, mirror: 1, distance: 1, metronome: 1, wind: 1, legendary: 1 }
   },
   aerobuster: {
@@ -18623,7 +18623,7 @@ const Moves = {
     type: "Questionmark",
     contestType: "Cool"
   },
-  "tm47": {
+  tm47: {
     num: 3897,
     accuracy: 48,
     basePower: 121,

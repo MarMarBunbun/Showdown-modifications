@@ -1,0 +1,4 @@
+{
+  num: 249,
+	flags: { contact: 1, protect: 1, mirror: 1, hm: 1 }
+}

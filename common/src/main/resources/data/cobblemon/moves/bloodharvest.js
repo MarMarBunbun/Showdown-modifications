@@ -1,0 +1,39 @@
+{
+    num: 3761,
+    accuracy: 100,
+    basePower: 70,
+    category: "Physical",
+    name: "Blood Harvest",
+    pp: 10,
+    priority: 0,
+    flags: { contact: 1, protect: 1, mirror: 1, metronome: 1, heal: 1, slicing: 1 },
+	onAfterHit(target, source, move) {
+
+      if (!target || !target.hp || source.fainted) return;
+
+      const damage = Math.floor(target.lastDamage / 2);
+      if (!damage) return;
+
+
+      let healTarget = source;
+
+
+      if (source.side.active.length > 1) {
+        for (const ally of source.side.active) {
+          if (!ally || ally.fainted) continue;
+          const allyHpRatio = ally.hp / ally.maxhp;
+          const healHpRatio = healTarget.hp / healTarget.maxhp;
+          if (allyHpRatio < healHpRatio) {
+            healTarget = ally;
+          }
+        }
+      }
+
+
+      this.heal(damage, healTarget, source, move);
+    },
+    secondary: null,
+    target: "normal",
+    type: "Blood",
+    contestType: "Cute"
+}
