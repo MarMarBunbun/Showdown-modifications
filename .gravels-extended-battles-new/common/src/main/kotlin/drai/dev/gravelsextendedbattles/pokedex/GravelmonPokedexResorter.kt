@@ -5,6 +5,7 @@ import com.cobblemon.mod.common.api.pokedex.def.AggregatePokedexDef
 import com.cobblemon.mod.common.api.pokedex.entry.PokedexEntry
 import com.cobblemon.mod.common.api.pokedex.entry.PokedexForm
 import com.cobblemon.mod.common.api.pokemon.PokemonSpecies
+import drai.dev.gravelsextendedbattles.BanListManager
 import drai.dev.gravelsextendedbattles.mixin.accessors.PokemonSpeciesAccessor
 import drai.dev.gravelsextendedbattles.mixin.accessors.SimplePokedexDefAccessor
 import net.minecraft.resources.ResourceLocation
@@ -23,8 +24,8 @@ object GravelmonPokedexResorter {
         val allDexes = ArrayList(dexes.dexEntryMap.entries)
         for ((key, dexDef) in allDexes) {
             if (dexDef is AggregatePokedexDef) continue
-            val entries = java.util.ArrayList<PokedexEntry>(dexDef.getEntries())
-            val resourceLocationEntries = java.util.ArrayList<ResourceLocation?>()
+            val entries = java.util.ArrayList(dexDef.getEntries())
+            val resourceLocationEntries = java.util.ArrayList<ResourceLocation>()
             for (i in entries.indices) {
                 resourceLocationEntries.add(entries[i].id)
             }
@@ -34,8 +35,8 @@ object GravelmonPokedexResorter {
                         .toTypedArray()[0].split(" ".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()[0]
                 )
                 if (species == null || !currentSpecies.contains(species)) {
-                    resourceLocationEntries.removeIf { currentEntry: ResourceLocation? ->
-                        currentEntry!!.path.equals(entry.id.path, ignoreCase = true)
+                    resourceLocationEntries.removeIf { currentEntry: ResourceLocation ->
+                        currentEntry.path.equals(entry.id.path, ignoreCase = true)
                                 && currentEntry.namespace.equals(entry.id.namespace, ignoreCase = true)
                     }
                     continue
@@ -50,7 +51,7 @@ object GravelmonPokedexResorter {
                         )
                     ) return@filter true
                     val labels = form.labels.stream().toList()
-                    if (containsBannedLabels(labels)) {
+                    if (BanListManager.containsBannedLabels(labels)) {
                         return@filter true
                     }
                     false
@@ -59,8 +60,8 @@ object GravelmonPokedexResorter {
                     entry.forms.remove(form)
                 }
                 if (shouldRemoveIfNoForms && entry.forms.isEmpty()) {
-                    resourceLocationEntries.removeIf { currentEntry: ResourceLocation? ->
-                        currentEntry!!.path.equals(entry.id.path, ignoreCase = true)
+                    resourceLocationEntries.removeIf { currentEntry: ResourceLocation ->
+                        currentEntry.path.equals(entry.id.path, ignoreCase = true)
                                 && currentEntry.namespace.equals(entry.id.namespace, ignoreCase = true)
                     }
                 }
@@ -70,15 +71,15 @@ object GravelmonPokedexResorter {
                 dexes.dexEntryMap.remove(key)
             }
         }
-
-        for (dex in allDexes) {
-            if (dex.value.id.path.equals("national", ignoreCase = true)) continue
-            val currentEntries = java.util.ArrayList(dex.value.getEntries())
-            dex.value.getEntries().clear()
-            for (i in currentEntries.indices) {
-                dex.value.getEntries().add(currentEntries[i])
-            }
-        }
+        //seems to do absolutely nothing
+//        for (dex in allDexes) {
+//            if (dex.value.id.path.equals("national", ignoreCase = true)) continue
+//            val currentEntries = java.util.ArrayList(dex.value.getEntries())
+//            dex.value.getEntries().clear()
+//            for (i in currentEntries.indices) {
+//                dex.value.getEntries().add(currentEntries[i])
+//            }
+//        }
     }
 
     fun processPokedexResorting(nationalDexEntries: MutableList<PokedexEntry?>): MutableList<PokedexEntry?> {

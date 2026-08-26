@@ -1,11 +1,20 @@
-package drai.dev.gravelsextendedbattles.config
+package drai.dev.GEBConfig
 
 import eu.midnightdust.lib.config.MidnightConfig
+import net.minecraft.resources.ResourceLocation
 
-class GEBConfig : MidnightConfig() {
+object GEBConfig : MidnightConfig() {
+
     @Entry(name = "Banned Labels: ")
     var bannedLabels: MutableList<String> = mutableListOf("not_modeled", "joke")
+    
+    @Entry(name = "Banned IDs: ")
+    var bannedIds: MutableList<String> = mutableListOf()
 
+    fun getBannedResourceLocations(): MutableList<ResourceLocation?> {
+        return bannedIds.map { ResourceLocation.tryParse(it) }.toMutableList()
+    }
+    
     @Entry(name = "Allowed Labels: ")
     var allowedLabels: MutableList<String> = mutableListOf()
 
@@ -44,7 +53,7 @@ class GEBConfig : MidnightConfig() {
             SpawnModifier(parts[0].toFloat(), parts[1])
         }
 
-    companion object {
+    
         fun getInitForTypes(): List<String> = listOf(
             "normal",
             "fire",
@@ -78,5 +87,5 @@ class GEBConfig : MidnightConfig() {
             "eldritch",
             "blood"
         )
-    }
+    
 }

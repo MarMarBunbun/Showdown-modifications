@@ -5,7 +5,7 @@ import com.cobblemon.mod.common.api.pokedex.Dexes
 import com.cobblemon.mod.common.api.pokemon.PokemonSpecies
 import com.cobblemon.mod.common.data.StarterDataLoader
 import drai.dev.gravelsextendedbattles.additions.status.GravelmonStatus
-import drai.dev.gravelsextendedbattles.config.GEBConfig
+import drai.dev.GEBConfig.GEBConfig
 import drai.dev.gravelsextendedbattles.mixin.accessors.PokemonSpeciesAccessor
 import drai.dev.gravelsextendedbattles.pokedex.GravelmonPokedexResorter
 import drai.dev.gravelsextendedbattles.starters.GravelmonStarterManager
@@ -21,7 +21,7 @@ object GravelsExtendedBattles {
     @JvmField
     val LOGGER: Logger = LogManager.getLogger()
     @JvmField
-    val CONFIG: GEBConfig = GEBConfig()
+    val CONFIG: GEBConfig = GEBConfig
 
     @JvmStatic
     fun initialize() {
@@ -60,7 +60,7 @@ object GravelsExtendedBattles {
             GravelmonPokedexResorter.resort(pokemonSpecies)
         }
 
-        SpeciesManager.banPokemon(pokemonSpecies, (pokemonSpecies as PokemonSpeciesAccessor))
+        BanListManager.banPokemon(pokemonSpecies, (pokemonSpecies as PokemonSpeciesAccessor))
         GravelmonPokedexManager.processPokedexBans(dexes)
 
         if (CONFIG.enableAutomaticMoveInsertion) GravelmonMoveSubstitution.substituteMoves()

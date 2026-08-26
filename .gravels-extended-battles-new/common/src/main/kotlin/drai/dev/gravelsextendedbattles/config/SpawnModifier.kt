@@ -1,4 +1,4 @@
-package drai.dev.gravelsextendedbattles.config
+package drai.dev.GEBConfig
 
 data class SpawnModifier(
     val modifier: Float,

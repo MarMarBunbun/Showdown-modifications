@@ -39,7 +39,7 @@ object ShowdownFileManager {
     }
 
     private fun injectTypeChart(showdownFolder: Path) {
-        if (GravelsExtendedBattles.CONFIG.enableFangameTypechart) {
+        if (GEBConfig.enableFangameTypechart) {
             exportResource(showdownFolder, FAN_GAME_TYPE_CHART)
 
             val source = showdownFolder.resolve(FAN_GAME_TYPE_CHART)

@@ -12,6 +12,6 @@ public class BattleManagerMixin {
 
     @Inject(method = "log", at =@At("HEAD"), remap = false)
     private void executeInject(String message, CallbackInfo ci) {
-        this.mute = !GravelsExtendedBattles.CONFIG.getBattleDebugging(); // Disable the mute setting for battles
+        this.mute = !GEBConfig.getBattleDebugging(); // Disable the mute setting for battles
     }
 }
