@@ -4,6 +4,8 @@ import com.cobblemon.mod.common.Cobblemon
 import com.cobblemon.mod.common.ResourcePackActivationBehaviour
 import drai.dev.gravelsextendedbattles.GravelsExtendedBattles
 import drai.dev.gravelsextendedbattles.gravelmonResource
+import drai.dev.gravelsextendedbattles.registries.GEBBlocks
+import drai.dev.gravelsextendedbattles.registries.GEBItems
 import net.minecraft.server.packs.PackLocationInfo
 import net.minecraft.server.packs.PackSelectionConfig
 import net.minecraft.server.packs.PackType
@@ -13,13 +15,22 @@ import net.minecraft.server.packs.repository.KnownPack
 import net.minecraft.server.packs.repository.Pack
 import net.minecraft.server.packs.repository.Pack.Position
 import net.minecraft.server.packs.repository.PackSource
+import net.minecraft.util.RandomSource
+import net.minecraft.world.entity.Entity
+import net.minecraft.world.entity.npc.VillagerProfession
+import net.minecraft.world.entity.npc.VillagerTrades
+import net.minecraft.world.item.ItemStack
+import net.minecraft.world.item.Items
+import net.minecraft.world.item.trading.ItemCost
+import net.minecraft.world.item.trading.MerchantOffer
 import net.neoforged.fml.ModList
 import net.neoforged.fml.common.Mod
 import net.neoforged.neoforge.common.NeoForge
 import net.neoforged.neoforge.event.AddPackFindersEvent
-import net.neoforged.neoforge.event.OnDatapackSyncEvent
-import java.util.Optional
+import net.neoforged.neoforge.event.village.VillagerTradesEvent
+import net.neoforged.neoforge.registries.RegisterEvent
 import thedarkcolour.kotlinforforge.neoforge.forge.MOD_BUS
+import java.util.*
 
 @Mod(Cobblemon.MODID)
 object GravelsExtendedBattlesNeoforge {
@@ -29,10 +40,10 @@ object GravelsExtendedBattlesNeoforge {
             addListener(::onAddPackFindersEvent)
         }
         with(NeoForge.EVENT_BUS) {
-            addListener(::onDataPackSync)
+            addListener(::onVillagerTrade)
         }
     }
-    // This event gets fired before init, so we need to put resource packs in EARLY
+
     fun onAddPackFindersEvent(event: AddPackFindersEvent) {
         val modFile = ModList.get().getModContainerById(GravelsExtendedBattles.MODID).get().modInfo
         GravelsExtendedBattles.builtinPacks
@@ -59,7 +70,53 @@ object GravelsExtendedBattlesNeoforge {
             }
     }
 
-    fun onDataPackSync(event: OnDatapackSyncEvent) {
-        //todo add
+    fun registerItems() {
+        with(MOD_BUS) {
+            addListener<RegisterEvent> { event ->
+                event.register(GEBItems.resourceKey) { helper ->
+                    GEBItems.register { identifier, item -> helper.register(identifier, item) }
+                }
+            }
+            addListener<RegisterEvent> { event ->
+                event.register(GEBBlocks.resourceKey) { helper ->
+                    GEBBlocks.register { identifier, item -> helper.register(identifier, item) }
+                }
+            }
+//            addListener<RegisterEvent> { event ->
+//                event.register(Registries.CREATIVE_MODE_TAB) { helper ->
+//                    CobblemonItemGroups.register { holder ->
+//                        val itemGroup = CreativeModeTab.builder()
+//                            .title(holder.displayName)
+//                            .icon(holder.displayIconProvider)
+//                            .displayItems(holder.entryCollector)
+//                            .build()
+//                        helper.register(holder.key, itemGroup)
+//                        itemGroup
+//                    }
+//                }
+//            }
+        }
+    }
+
+    fun registerVillagerTrades() {
+        //do it through the event
+    }
+
+    fun onVillagerTrade(event: VillagerTradesEvent) {
+        if (event.getType() === VillagerProfession.FARMER) {
+            val level = 5 // Novice
+
+            val trades = event.getTrades().get(level)
+
+            trades.add(VillagerTrades.ItemListing { _: Entity?, _: RandomSource? ->
+                MerchantOffer(
+                    ItemCost(Items.EMERALD, 10),
+                    Optional.of(ItemCost(Items.GLASS_BOTTLE)),
+                    ItemStack(GEBItems.FROST_HEAL, 1),
+                    12, 30, .75f
+                )
+            }
+            )
+        }
     }
 }

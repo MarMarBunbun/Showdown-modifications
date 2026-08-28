@@ -13,7 +13,7 @@
   "entrypoints": {
     "main": [
       {
-        "value": "drai.dev.gravelmon.GravelsExtendedBattlesFabric",
+        "value": "drai.dev.gravelmon.fabric.GravelsExtendedBattlesFabric",
         "adapter": "kotlin"
       }
     ]
