@@ -3,6 +3,7 @@ package drai.dev.gravelsextendedbattles.mixin;
 import com.cobblemon.mod.common.api.*;
 import com.cobblemon.mod.common.api.spawning.*;
 import com.cobblemon.mod.common.api.spawning.detail.*;
+import drai.dev.gravelsextendedbattles.spawning.*;
 import kotlin.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
@@ -16,7 +17,7 @@ public class CobblemonSpawnPoolsMixin {
         CobblemonSpawnPools.WORLD_SPAWN_POOL.getObservable().subscribe(Priority.LOWEST, event->{
             event.getDetails().forEach(spawnDetail -> {
                 if(spawnDetail instanceof PokemonSpawnDetail pokemonSpawnDetail) {
-                    GravelmonSpawnDetailsManager.modifySpawnDetail(pokemonSpawnDetail);
+                    GravelmonSpawnDetailsManager.INSTANCE.modifySpawnDetail(pokemonSpawnDetail);
                 }
             });
             return Unit.INSTANCE;

@@ -13,7 +13,7 @@ public class ShowdownThreadMixin {
     @Inject(method = "attemptUnbundle", at = @At("TAIL"), remap = false)
     private void injected(CallbackInfo ci) {
         if(!gravels_extended_battles$loaded) {
-            ShowdownFileManager.injectShowdown();
+            ShowdownFileManager.INSTANCE.injectShowdown();
             gravels_extended_battles$loaded = true;
         }
     }

@@ -3,9 +3,10 @@ package drai.dev.gravelsextendedbattles
 import com.cobblemon.mod.common.api.pokemon.PokemonProperties
 import com.cobblemon.mod.common.api.pokemon.PokemonSpecies
 import com.cobblemon.mod.common.api.pokemon.PokemonSpecies.getByName
+import com.cobblemon.mod.common.api.pokemon.evolution.Evolution
 import com.cobblemon.mod.common.pokemon.FormData
 import com.cobblemon.mod.common.pokemon.Species
-import drai.dev.GEBConfig.GEBConfig
+import drai.dev.gravelsextendedbattles.config.GEBConfig
 import drai.dev.gravelsextendedbattles.mixin.accessors.PokemonSpeciesAccessor
 import net.minecraft.resources.ResourceLocation
 
@@ -21,40 +22,31 @@ object BanListManager {
         }
         for (species in currentSpecies.values) {
             if (species != null) {
-                accessor.getSpeciesByDex().remove(species.resourceIdentifier.getNamespace(), species.nationalPokedexNumber)
-                accessor.getSpeciesByDex().put(species.resourceIdentifier.getNamespace(), species.nationalPokedexNumber, species)
+                accessor.getSpeciesByDex().remove(species.resourceIdentifier.namespace, species.nationalPokedexNumber)
+                accessor.getSpeciesByDex().put(species.resourceIdentifier.namespace, species.nationalPokedexNumber, species)
                 
-                val forms: ArrayList<*> = ArrayList<Any?>(species.getForms())
+                val forms = ArrayList<FormData>(species.forms)
                 for (formData in forms) {
-                    val labels: MutableList<String?>? = formData.getLabels().stream().toList()
-                    if (pokemonShouldBeRemoved(labels)) {
-                        species.getForms().remove(formData)
+                    if (pokemonShouldBeRemoved(formData)) {
+                        species.forms.remove(formData)
                         continue
                     }
 
-                    val formEvolutions: ArrayList<*> = ArrayList<Any?>(formData.getEvolutions())
+                    val formEvolutions = ArrayList<Evolution>(formData.evolutions)
                     for (formEvolutionData in formEvolutions) {
                         val result =
-                            formEvolutionData.getResult()
-                        if (evolutionShouldBeRemoved(
-                                currentSpecies,
-                                result
-                            )
-                        ) {
-                            formData.getEvolutions().remove(formEvolutionData)
+                            formEvolutionData.result
+                        if (pokemonShouldBeRemoved(result)) {
+                            formData.evolutions.remove(formEvolutionData)
                         }
                     }
                 }
-                val evolutions: ArrayList<*> = ArrayList<Any?>(species.getEvolutions())
+                val evolutions = ArrayList<Evolution>(species.evolutions)
                 for (evolutionData in evolutions) {
                     val result =
-                        evolutionData.getResult()
-                    if (evolutionShouldBeRemoved(
-                            currentSpecies,
-                            result
-                        )
-                    ) {
-                        species.getEvolutions().remove(evolutionData)
+                        evolutionData.result
+                    if (pokemonShouldBeRemoved(result)) {
+                        species.evolutions.remove(evolutionData)
                     }
                 }
             }
@@ -63,22 +55,14 @@ object BanListManager {
 
     fun getSpeciesToBeRemoved(currentSpecies: HashMap<ResourceLocation?, Species>): List<MutableMap.MutableEntry<ResourceLocation?, Species>> {
         val speciesToBeRemoved = currentSpecies.entries.stream()
-
             .filter { resourceLocationSpeciesEntry: MutableMap.MutableEntry<ResourceLocation?, Species> ->
                 pokemonShouldBeRemoved(resourceLocationSpeciesEntry.value)
-            }
-            .filter { resourceLocationSpeciesEntry: MutableMap.MutableEntry<ResourceLocation?, Species> ->
-                val speciesEntry = resourceLocationSpeciesEntry.value
-                val labels = speciesEntry.labels.stream().toList()
-                pokemonShouldBeRemoved(labels)
             }.toList()
         return speciesToBeRemoved
     }
 
-    fun pokemonShouldBeRemoved(species: String?, form: String?): Boolean {
+    fun pokemonShouldBeRemoved(species: Species?, form: String? = null): Boolean {
         if (species == null) return true
-        val pokemon = getByName(species)
-        if (pokemon == null) return true
 
         val aspects = HashSet<String>()
         if (form != null) aspects.addAll(
@@ -86,39 +70,35 @@ object BanListManager {
                 *form.split(" ".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
             )
         )
-        return pokemonShouldBeRemoved(pokemon.getForm(aspects).labels.stream().toList())
+        return pokemonShouldBeRemoved( species.getForm(aspects))
+    }
+
+    fun pokemonShouldBeRemoved(species: String?, form: String?): Boolean {
+        if (species == null) return true
+        val pokemon = getByName(species)
+        return pokemonShouldBeRemoved(pokemon, form)
     }
 
     fun pokemonShouldBeRemoved(species: String?, aspects: Set<String>): Boolean {
         if (species == null) return true
-        val pokemon = getByName(species)
-        if (pokemon == null) return true
-        if (aspects.isEmpty()) return pokemonShouldBeRemoved(pokemon.getForm(aspects).labels.stream().toList())
-        val form1 = pokemon.getForm(aspects)
-        if (form1.name.equals("normal", ignoreCase = true)) return true
-        val foundForm = form1.labels.stream().toList()
-        return containsBannedLabels(foundForm)
+        val pokemon = getByName(species) ?: return true
+        return pokemonShouldBeRemoved(pokemon.getForm(aspects))
     }
 
-    fun getLabelsFromProperties(pokemon: PokemonProperties): MutableList<String?> {
-        return drai.dev.gravelsextendedbattles.SpeciesManager.getLabelsFromSpecies(
-            pokemon.species,
-            drai.dev.gravelsextendedbattles.SpeciesManager.getAspectsFromProperties(pokemon)
-        )
-    }
-
-    fun getLabelsFromSpecies(species: String?, aspects: Set<String>): List<String> {
-        if (species == null) return mutableListOf()
-        val pokemon = getByName(species) ?: return mutableListOf()
-        return pokemon.getForm(aspects).labels.stream().toList()
-    }
     //I want to make a method that checks if a species should be removed by passing the species object
-    fun pokemonShouldBeRemoved(species: Species, aspects: Set<String>): Boolean {
-
-        return containsBannedLabels(getLabelsFromSpecies(species.name, aspects))
+    fun pokemonShouldBeRemoved(formData: FormData): Boolean {
+        val isIndividuallyBanned = GEBConfig.getBannedPokemonProperties()
+            .any { bannedProperties ->
+                bannedProperties.species == formData.name
+                        &&
+                        ((formData.aspects.isNotEmpty() && formData.name.equals("normal", ignoreCase = true))
+                                && bannedProperties.aspects.containsAll(formData.aspects)) }
+        if(isIndividuallyBanned) return true
+        val labels = formData.labels
+        return containsBannedLabels(labels)
     }
 
-    fun containsBannedLabels(labels: List<String>?): Boolean {
+    fun containsBannedLabels(labels: Set<String>?): Boolean {
         if (labels == null) return false
         if (labels.isEmpty()) return false
         for (label in labels) {
@@ -128,5 +108,9 @@ object BanListManager {
             }
         }
         return false
+    }
+
+    fun pokemonShouldBeRemoved(pokemonProperties: PokemonProperties): Boolean {
+        return pokemonShouldBeRemoved(pokemonProperties.asRenderablePokemon().form)
     }
 }

@@ -3,7 +3,7 @@ package drai.dev.gravelsextendedbattles.mixin;
 import com.cobblemon.mod.common.api.pokemon.evolution.*;
 import com.cobblemon.mod.common.pokemon.evolution.adapters.*;
 import com.google.gson.*;
-import drai.dev.gravelsextendedbattles.data.*;
+import drai.dev.gravelsextendedbattles.additions.evolutions.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;

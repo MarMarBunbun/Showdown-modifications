@@ -31,11 +31,9 @@ dependencies {
     mappings(loom.officialMojangMappings())
     neoForge("net.neoforged:neoforge:${property("neoforge_version")}")
 
-    modImplementation("com.cobblemon:neoforge:${property("cobblemon_version")}") { isTransitive = true }
+    modImplementation("com.cobblemon:neoforge:${property("cobblemon_version")}") { isTransitive = false }
     //Needed for cobblemon
-    forgeRuntimeLibrary("thedarkcolour:kotlinforforge-neoforge:${property("kotlin_for_forge_version")}") {
-        exclude("net.neoforged.fancymodloader", "loader")
-    }
+    implementation("thedarkcolour:kotlinforforge-neoforge:${property("kotlin_for_forge_version")}")
 
     implementation(project(":common", configuration = "namedElements"))
     "developmentNeoForge"(project(":common", configuration = "namedElements")) {

@@ -374,7 +374,7 @@ const Items = {
     gen: 6,
     isNonstandard: "Past"
   },
-  eldritchcrayon: {
+  bloodcrayon: {
     name: "Blood Crayon",
     spritenum: 3240,
     fling: {

@@ -1,25 +1,27 @@
-package drai.dev.GEBConfig
+package drai.dev.gravelsextendedbattles.config
 
+import com.cobblemon.mod.common.api.pokemon.PokemonProperties
 import eu.midnightdust.lib.config.MidnightConfig
-import net.minecraft.resources.ResourceLocation
 
 object GEBConfig : MidnightConfig() {
 
     @Entry(name = "Banned Labels: ")
     var bannedLabels: MutableList<String> = mutableListOf("not_modeled", "joke")
     
-    @Entry(name = "Banned IDs: ")
-    var bannedIds: MutableList<String> = mutableListOf()
+    @Entry(name = "Banned Pokemon: ")
+    var bannedPokemon: MutableList<String> = mutableListOf()
 
-    fun getBannedResourceLocations(): MutableList<ResourceLocation?> {
-        return bannedIds.map { ResourceLocation.tryParse(it) }.toMutableList()
+    fun getBannedPokemonProperties(): MutableList<PokemonProperties> {
+        return bannedPokemon.map { PokemonProperties.parse(it) }.toMutableList()
     }
     
     @Entry(name = "Allowed Labels: ")
     var allowedLabels: MutableList<String> = mutableListOf()
 
     @Entry(name = "Spawn Modifiers (Formatted as <label>:<modifier number>, eg 'delta:1.5'): ")
-    var spawnModifiers: MutableList<String> = mutableListOf()
+    private var _spawnModifiers: MutableList<String> = mutableListOf()
+    val spawnModifiers: MutableList<SpawnModifier>
+        get() = _spawnModifiers.map { it.split(":") }.map { SpawnModifier(it[1].toFloat(), it[0]) }.toMutableList()
 
     @Entry(name = "Passwords: ")
     var passwords: MutableList<String> = mutableListOf()
@@ -42,18 +44,6 @@ object GEBConfig : MidnightConfig() {
     @Entry(name = "Enable automatic move insertion: ")
     var battleDebugging: Boolean = false
 
-    fun getSpawnModifierInstances(): List<SpawnModifier> =
-        spawnModifiers.map { raw ->
-            val parts = raw.split(":")
-
-            if (parts.size < 2) {
-                println("Invalid spawn modifier format: $raw")
-            }
-
-            SpawnModifier(parts[0].toFloat(), parts[1])
-        }
-
-    
         fun getInitForTypes(): List<String> = listOf(
             "normal",
             "fire",

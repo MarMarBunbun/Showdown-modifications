@@ -3,6 +3,7 @@ package drai.dev.gravelsextendedbattles.mixin.client;
 import com.cobblemon.mod.common.api.types.*;
 import com.cobblemon.mod.common.client.gui.*;
 import drai.dev.gravelsextendedbattles.client.renderer.*;
+import drai.dev.gravelsextendedbattles.interfaces.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.resources.*;
 import org.spongepowered.asm.mixin.*;

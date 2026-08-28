@@ -1,5 +1,6 @@
 package drai.dev.gravelsextendedbattles.showdown
 
+import drai.dev.gravelsextendedbattles.config.GEBConfig
 import drai.dev.gravelsextendedbattles.GravelsExtendedBattles
 import java.io.IOException
 import java.nio.file.Files

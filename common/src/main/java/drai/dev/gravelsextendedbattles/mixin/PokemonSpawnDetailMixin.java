@@ -2,7 +2,7 @@ package drai.dev.gravelsextendedbattles.mixin;
 
 import com.cobblemon.mod.common.api.spawning.detail.*;
 import com.mojang.brigadier.exceptions.*;
-import drai.dev.gravelsextendedbattles.mixinimpl.*;
+import drai.dev.gravelsextendedbattles.spawning.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.callback.*;
 public class PokemonSpawnDetailMixin {
     @Inject(method = "isValid", at = @At("HEAD"), cancellable = true, remap = false)
     public void executeInject(CallbackInfoReturnable<Boolean> cir) throws CommandSyntaxException {
-        GravelmonSpawnDetailsManager.checkForBannedPokemon(getSelf(), cir);
+        GravelmonSpawnDetailsManager.INSTANCE.checkForBannedPokemon(getSelf(), cir);
     }
 
     public PokemonSpawnDetail getSelf() {

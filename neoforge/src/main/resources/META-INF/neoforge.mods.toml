@@ -2,7 +2,10 @@ modLoader="kotlinforforge"
 loaderVersion="[5.10,)"
 #issueTrackerURL = "A valid URL to your issue tracker where people can open bug tickets"
 license = "MIT License"
-
+[[mixins]]
+config = "gravels_extended_battles_neoforge.mixins.json"
+[[mixins]]
+config = "gravels_extended_battles_common.mixins.json"
 [[mods]]
 modId = "cobblemon_multiplatform_mdk"
 version = "${version}"

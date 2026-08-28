@@ -37,10 +37,30 @@ https://wiki.cobblemon.com/index.php/Datapackable_Move_Effects
 
 from __future__ import annotations
 
-import argparse
 import re
 from pathlib import Path
 
+# ---------------------------------------------------------------------------
+# Configuration
+# ---------------------------------------------------------------------------
+
+# Input files
+MOVES_INPUT = Path("data/mods/cobblemon/moves.js")
+ABILITIES_INPUT = Path("data/mods/cobblemon/abilities.js")
+ITEMS_INPUT = Path("data/mods/cobblemon/items.js")
+
+# Original Showdown files containing the original `num` values.
+MOVES_NUM_SOURCE = Path("data/moves.js")
+ABILITIES_NUM_SOURCE = Path("data/abilities.js")
+ITEMS_NUM_SOURCE = Path("data/items.js")
+
+# Output directories
+MOVES_OUTPUT = Path("../common/src/main/resources/data/cobblemon/moves")
+ABILITIES_OUTPUT = Path("../common/src/main/resources/data/cobblemon/abilities")
+HELD_ITEMS_OUTPUT = Path("../common/src/main/resources/data/cobblemon/held_items")
+
+# Set to True if existing files should be replaced.
+OVERWRITE = True
 
 # ---------------------------------------------------------------------------
 # JavaScript parsing helpers
@@ -131,6 +151,126 @@ def find_matching_brace(text: str, opening: int) -> int:
         i += 1
 
     raise ValueError("Could not find matching closing brace")
+
+def extract_items(
+    input_file: Path,
+    num_source_file: Path,
+    output_directory: Path,
+    *,
+    overwrite: bool = False,
+) -> None:
+    # ================================================================
+    # Read modified items
+    # ================================================================
+
+    items = load_data_entries(
+        input_file,
+        "Items",
+    )
+
+    # ================================================================
+    # Read original items
+    # ================================================================
+
+    print(
+        f"Reading item num source: "
+        f"{num_source_file}"
+    )
+
+    num_items = load_data_entries(
+        num_source_file,
+        "Items",
+    )
+
+    # ================================================================
+    # Build item ID -> num lookup
+    # ================================================================
+
+    num_lookup = build_num_lookup(num_items)
+
+    print(
+        f"Loaded {len(num_lookup)} item numbers "
+        f"from {num_source_file}"
+    )
+
+    # ================================================================
+    # Output
+    # ================================================================
+
+    output_directory.mkdir(
+        parents=True,
+        exist_ok=True,
+    )
+
+    print(f"Found {len(items)} modified items.")
+
+    for item_id, item_object in items:
+
+        validate_filename(item_id)
+
+        inherited = is_inherited(item_object)
+
+        # ------------------------------------------------------------
+        # Inherited item
+        # ------------------------------------------------------------
+
+        if inherited:
+
+            num = num_lookup.get(item_id)
+
+            if num is None:
+                print(
+                    f"WARNING: {item_id} has inherit: true "
+                    f"but no num was found in {num_source_file}"
+                )
+
+                # Still remove inherit and write the file.
+                item_object = remove_inherit_true(
+                    item_object
+                )
+
+            else:
+                # Remove inherit:true
+                item_object = remove_inherit_true(
+                    item_object
+                )
+
+                # Add the original item number.
+                item_object = item_object.replace(
+                    "{",
+                    f"{{\n  num: {num},",
+                    1,
+                )
+
+                print(
+                    f"  {item_id}: "
+                    f"inherited -> num {num}"
+                )
+
+        # ------------------------------------------------------------
+        # Format
+        # ------------------------------------------------------------
+
+        output = format_move(item_object)
+
+        destination = (
+            output_directory /
+            f"{item_id}.js"
+        )
+
+        if destination.exists() and not overwrite:
+            print(
+                f"SKIP  {item_id}: "
+                f"{destination} already exists"
+            )
+            continue
+
+        destination.write_text(
+            output,
+            encoding="utf-8",
+        )
+
+        print(f"WRITE {destination}")
 
 
 def find_moves_object(text: str) -> tuple[int, int]:
@@ -845,95 +985,63 @@ def extract_moves(
 # ---------------------------------------------------------------------------
 
 def main():
-    parser = argparse.ArgumentParser(
-        description=(
-            "Convert Showdown data into "
-            "Cobblemon datapack files."
-        )
-    )
-
-    subparsers = parser.add_subparsers(
-        dest="type",
-        required=True,
-    )
+    print("=" * 70)
+    print("Showdown -> Cobblemon datapack converter")
+    print("=" * 70)
 
     # ================================================================
     # Moves
     # ================================================================
 
-    moves_parser = subparsers.add_parser(
-        "moves",
-        help="Convert moves",
-    )
+    print()
+    print("-" * 70)
+    print("MOVES")
+    print("-" * 70)
 
-    moves_parser.add_argument(
-        "input",
-        type=Path,
-    )
-
-    moves_parser.add_argument(
-        "num_source",
-        type=Path,
-    )
-
-    moves_parser.add_argument(
-        "output",
-        type=Path,
-    )
-
-    moves_parser.add_argument(
-        "--overwrite",
-        action="store_true",
+    extract_moves(
+        MOVES_INPUT,
+        MOVES_NUM_SOURCE,
+        MOVES_OUTPUT,
+        overwrite=OVERWRITE,
     )
 
     # ================================================================
     # Abilities
     # ================================================================
 
-    abilities_parser = subparsers.add_parser(
-        "abilities",
-        help="Convert abilities",
+    print()
+    print("-" * 70)
+    print("ABILITIES")
+    print("-" * 70)
+
+    extract_abilities(
+        ABILITIES_INPUT,
+        ABILITIES_NUM_SOURCE,
+        ABILITIES_OUTPUT,
+        overwrite=OVERWRITE,
     )
 
-    abilities_parser.add_argument(
-        "input",
-        type=Path,
+    # ================================================================
+    # Held items
+    # ================================================================
+
+    print()
+    print("-" * 70)
+    print("HELD ITEMS")
+    print("-" * 70)
+
+    extract_items(
+        ITEMS_INPUT,
+        ITEMS_NUM_SOURCE,
+        HELD_ITEMS_OUTPUT,
+        overwrite=OVERWRITE,
     )
 
-    abilities_parser.add_argument(
-        "num_source",
-        type=Path,
-    )
+    print()
+    print("=" * 70)
+    print("Done.")
+    print("=" * 70)
 
-    abilities_parser.add_argument(
-        "output",
-        type=Path,
-    )
-
-    abilities_parser.add_argument(
-        "--overwrite",
-        action="store_true",
-    )
-
-    args = parser.parse_args()
-
-    if args.type == "moves":
-
-        extract_moves(
-            args.input,
-            args.num_source,
-            args.output,
-            overwrite=args.overwrite,
-        )
-
-    elif args.type == "abilities":
-
-        extract_abilities(
-            args.input,
-            args.num_source,
-            args.output,
-            overwrite=args.overwrite,
-        )
 
 if __name__ == "__main__":
     main()

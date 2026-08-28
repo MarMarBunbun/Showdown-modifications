@@ -2,6 +2,7 @@ package drai.dev.gravelsextendedbattles.starters
 
 import com.cobblemon.mod.common.Cobblemon.starterConfig
 import com.cobblemon.mod.common.config.starter.StarterCategory
+import drai.dev.gravelsextendedbattles.BanListManager
 
 object GravelmonStarterManager {
     fun processStarters()
@@ -11,7 +12,7 @@ object GravelmonStarterManager {
         val finalCategories: MutableList<StarterCategory> = ArrayList()
         currentStarters.forEach { starterCategory: StarterCategory ->
             val starters = starterCategory.pokemon.stream()
-                .filter { pokemonProperties -> !SpeciesManager.propertyContainsBannedLabels(pokemonProperties) }
+                .filter { pokemonProperties -> !BanListManager.pokemonShouldBeRemoved(pokemonProperties) }
                 .toList()
             if(starters.isEmpty()) return@forEach
             val newCategory = StarterCategory(

@@ -29,12 +29,8 @@
     "accessors.PokedexManagerAccessor",
     "accessors.PokemonSpeciesAccessor",
     "accessors.RegistryLikeIdentifierConditionAccessor",
+    "accessors.ServerCommonPacketListenerImplAccessor",
     "accessors.SimplePokedexDefAccessor",
-    "invokers.TeraTypesInvoker",
-    "megashowdown.ElementalZCrystalAccessor",
-    "megashowdown.FormChangeHeldItemAccessor",
-    "megashowdown.GlowHandlerMixin",
-    "megashowdown.MegaShowdownMixin",
-    "megashowdown.TeraTypeHelperMixin"
+    "invokers.TeraTypesInvoker"
   ]
 }

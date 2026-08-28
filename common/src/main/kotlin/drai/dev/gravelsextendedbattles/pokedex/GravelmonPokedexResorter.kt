@@ -50,8 +50,7 @@ object GravelmonPokedexResorter {
                             pokedexForm.displayForm
                         )
                     ) return@filter true
-                    val labels = form.labels.stream().toList()
-                    if (BanListManager.containsBannedLabels(labels)) {
+                    if (BanListManager.pokemonShouldBeRemoved(form)) {
                         return@filter true
                     }
                     false
