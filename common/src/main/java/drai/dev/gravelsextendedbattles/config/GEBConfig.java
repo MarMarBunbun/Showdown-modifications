@@ -1,7 +1,12 @@
 package drai.dev.gravelsextendedbattles.config;
 
 import com.cobblemon.mod.common.api.pokemon.*;
+import com.cobblemon.mod.common.api.types.*;
+import com.cobblemon.mod.common.pokemon.*;
+import drai.dev.gravelsextendedbattles.*;
+import drai.dev.gravelsextendedbattles.additions.types.*;
 import eu.midnightdust.lib.config.*;
+import org.jetbrains.annotations.*;
 
 import java.util.*;
 import java.util.logging.*;
@@ -30,8 +35,12 @@ public class GEBConfig extends MidnightConfig {
     @Entry(name = "Banned Pokemon: ")
     public static List<String> bannedPokemon = new ArrayList<>();
 
-    public List<PokemonProperties> getBannedPokemonProperties() {
-        return new ArrayList<>(bannedPokemon.stream().map(PokemonProperties.Companion::parse).toList());
+    private List<RenderablePokemon> bannedRenderablePokemon;
+
+    public List<RenderablePokemon> getBannedPokemonProperties() {
+        if(bannedRenderablePokemon != null) return bannedRenderablePokemon;
+        bannedRenderablePokemon = bannedPokemon.stream().map(PokemonProperties.Companion::parse).map(PokemonProperties::asRenderablePokemon).toList();
+        return bannedRenderablePokemon;
     }
     public boolean getEnableOriginalFanGameTypings() {
         return enableFangameTypechart;

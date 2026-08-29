@@ -8,12 +8,12 @@ import drai.dev.gravelsextendedbattles.additions.types.Type
 import drai.dev.gravelsextendedbattles.additions.types.TypeChange
 import drai.dev.gravelsextendedbattles.mixin.accessors.FormDataAccessor
 import drai.dev.gravelsextendedbattles.mixin.accessors.PokemonSpeciesAccessor
+import drai.dev.gravelsextendedbattles.mixin.accessors.SpeciesAccessor
 import kotlin.collections.component1
 import kotlin.collections.component2
 import kotlin.collections.forEach
 import kotlin.text.equals
 
-@Suppress("CAST_NEVER_SUCCEEDS")
 object SpeciesManager {
     fun processFormEvolutionAdditions(additionalEvolutions: Collection<AdditionalEvolution>) {
         additionalEvolutions.forEach { additionalEvolution : AdditionalEvolution ->
@@ -42,7 +42,7 @@ object SpeciesManager {
             if (!implementedTypes.contains(typeChange.to.name)) return@forEach
             val newType = typeChange.to.elementalType ?: return@forEach
             val oldType = typeChange.from?.elementalType
-            val agreeableForm: FormDataAccessor = form as FormDataAccessor
+            val agreeableForm = form as FormDataAccessor
             if (form.primaryType == oldType) agreeableForm.setPrimaryType(newType)
             else if (form.secondaryType == oldType) agreeableForm.setSecondaryType(newType)
         }
@@ -50,30 +50,57 @@ object SpeciesManager {
 
     private fun substituteType(species: Species) {
         val implementedTypes = GravelsExtendedBattles.CONFIG.implementedTypes
-
+        if (implementedTypes.none { it.equals(species.primaryType.name, ignoreCase = true) }) {
+            val type = Type.getByName(species.primaryType.name)
+            if (type != null) {
+                val substitutionType = type.substitutionType
+                if (substitutionType != null) {
+                    val newType = substitutionType.elementalType
+                    if (newType != null) {
+                        val formDataAccessor = species as SpeciesAccessor
+                        formDataAccessor.setPrimaryType(newType)
+                    }
+                }
+            }
+        }
+        if (species.secondaryType != null) {
+            if (implementedTypes.none { it.equals(species.secondaryType!!.name, ignoreCase = true) }) {
+                val type = Type.getByName(species.secondaryType!!.name)
+                if (type != null) {
+                    val substitutionType = type.substitutionType
+                    if (substitutionType != null) {
+                        val newType = substitutionType.elementalType
+                        if (newType != null) {
+                            val formDataAccessor = species as SpeciesAccessor
+                            formDataAccessor.setSecondaryType(newType)
+                        }
+                    }
+                }
+            }
+        }
         species.forms.forEach { formData ->
-            if (!implementedTypes.contains(formData.primaryType.name)) {
+            if (implementedTypes.none { it.equals(formData.primaryType.name, ignoreCase = true) }) {
                 val type = Type.getByName(formData.primaryType.name)
                 if (type != null) {
                     val substitutionType = type.substitutionType
                     if (substitutionType != null) {
                         val newType = substitutionType.elementalType
                         if (newType != null) {
-                            val formDataAccessor: FormDataAccessor = formData as FormDataAccessor
+                            val formDataAccessor = formData as FormDataAccessor
                             formDataAccessor.setPrimaryType(newType)
                         }
                     }
                 }
             }
             if (formData.secondaryType != null) {
-                if (!implementedTypes.contains(formData.secondaryType!!.name)) {
+                if (implementedTypes.none { it.equals(formData.secondaryType!!.name, ignoreCase = true) }) {
                     val type = Type.getByName(formData.secondaryType!!.name)
                     if (type != null) {
                         val substitutionType = type.substitutionType
                         if (substitutionType != null) {
                             val newType = substitutionType.elementalType
                             if (newType != null) {
-                                val formDataAccessor: FormDataAccessor = formData as FormDataAccessor
+                                val formDataAccessor = formData as FormDataAccessor
                                 formDataAccessor.setSecondaryType(newType)
                             }
                         }
