@@ -10,7 +10,7 @@
     ohko: true,
     secondary: null,
     target: "normal",
-    type: "Questionmark",
+    type: "Mystery",
     zMove: { basePower: 180 },
     maxMove: { basePower: 130 },
     contestType: "Cool"

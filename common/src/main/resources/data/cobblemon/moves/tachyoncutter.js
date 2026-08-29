@@ -1,4 +1,17 @@
 {
+	flags: { protect: 1, mirror: 1, metronome: 1, slicing: 1, legendary: 1, blade: 1 },
   num: 911,
-	flags: { protect: 1, mirror: 1, metronome: 1, slicing: 1, legendary: 1, blade: 1 }
+  accuracy: true,
+  basePower: 50,
+  category: "Special",
+  name: "Tachyon Cutter",
+  pp: 10,
+  priority: 0,
+  multihit: 2,
+  secondary: null,
+  target: "normal",
+  type: "Steel",
+  zMove: { basePower: 180 },
+  maxMove: { basePower: 140 },
+  contestType: "Clever",
 }

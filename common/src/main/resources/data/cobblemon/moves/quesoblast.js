@@ -10,6 +10,6 @@
     multihit: [2, 5],
     secondary: null,
     target: "normal",
-    type: "Questionmark",
+    type: "Mystery",
     contestType: "Cool"
 }

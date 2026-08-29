@@ -303,6 +303,575 @@ def load_data_entries(
         data_object
     )
 
+def get_top_level_field_names(object_text: str) -> set[str]:
+    """
+    Extract the names of all top-level properties from a JavaScript object.
+
+    Unlike find_top_level_properties(), this works with properties whose
+    values are numbers, strings, arrays, functions, objects, etc.
+    """
+    return set(get_top_level_field_names_in_order(object_text))
+
+
+def get_top_level_field_names_in_order(object_text: str) -> list[str]:
+    """
+    Return the top-level property names in their original object order.
+    """
+    fields: list[str] = []
+
+    content = object_text[1:-1]
+    length = len(content)
+
+    depth = 0
+    i = 0
+
+    in_string = None
+    in_line_comment = False
+    in_block_comment = False
+    escaped = False
+
+    while i < length:
+        char = content[i]
+        next_char = content[i + 1] if i + 1 < length else ""
+
+        # ------------------------------------------------------------
+        # Comments
+        # ------------------------------------------------------------
+
+        if in_line_comment:
+            if char == "\n":
+                in_line_comment = False
+            i += 1
+            continue
+
+        if in_block_comment:
+            if char == "*" and next_char == "/":
+                in_block_comment = False
+                i += 2
+                continue
+            i += 1
+            continue
+
+        # ------------------------------------------------------------
+        # Strings
+        # ------------------------------------------------------------
+
+        if in_string:
+            if escaped:
+                escaped = False
+            elif char == "\\":
+                escaped = True
+            elif char == in_string:
+                in_string = None
+
+            i += 1
+            continue
+
+        if char == "/" and next_char == "/":
+            in_line_comment = True
+            i += 2
+            continue
+
+        if char == "/" and next_char == "*":
+            in_block_comment = True
+            i += 2
+            continue
+
+        if char in ('"', "'", "`"):
+            in_string = char
+            i += 1
+            continue
+
+        # ------------------------------------------------------------
+        # Track object/array nesting
+        # ------------------------------------------------------------
+
+        if char in "{[":
+            depth += 1
+            i += 1
+            continue
+
+        if char in "}]":
+            depth -= 1
+            i += 1
+            continue
+
+        # ------------------------------------------------------------
+        # Top-level property
+        # ------------------------------------------------------------
+
+        if depth == 0:
+            # Skip whitespace
+            if char.isspace() or char == ",":
+                i += 1
+                continue
+
+            # Parse identifier property names.
+            if char.isalpha() or char in "_$":
+                start = i
+
+                i += 1
+                while i < length and (
+                    content[i].isalnum()
+                    or content[i] in "_-$"
+                ):
+                    i += 1
+
+                name = content[start:i]
+
+                # Skip whitespace before colon or method params
+                while i < length and content[i].isspace():
+                    i += 1
+
+                if i < length and content[i] == ":":
+                    fields.append(name)
+                elif i < length and content[i] == "(":
+                    j = i
+                    paren_depth = 0
+                    while j < length:
+                        ch = content[j]
+                        if ch in ('"', "'", "`"):
+                            quote = ch
+                            j += 1
+                            escaped = False
+                            while j < length:
+                                if escaped:
+                                    escaped = False
+                                elif content[j] == "\\":
+                                    escaped = True
+                                elif content[j] == quote:
+                                    j += 1
+                                    break
+                                j += 1
+                            continue
+                        if ch == "(":
+                            paren_depth += 1
+                        elif ch == ")":
+                            paren_depth -= 1
+                            if paren_depth == 0:
+                                j += 1
+                                break
+                        j += 1
+
+                    while j < length and content[j].isspace():
+                        j += 1
+
+                    if j < length and content[j] == "{":
+                        closing = find_matching_brace(content, j)
+                        i = closing + 1
+                    else:
+                        i = j
+
+                    fields.append(name)
+
+                continue
+
+            # Parse quoted property names.
+            if char in ('"', "'", "`"):
+                quote = char
+                i += 1
+
+                name_chars = []
+                escaped = False
+
+                while i < length:
+                    char = content[i]
+
+                    if escaped:
+                        name_chars.append(char)
+                        escaped = False
+
+                    elif char == "\\":
+                        escaped = True
+
+                    elif char == quote:
+                        i += 1
+                        break
+
+                    else:
+                        name_chars.append(char)
+
+                    i += 1
+
+                name = "".join(name_chars)
+
+                # Skip whitespace before colon or method params
+                while i < length and content[i].isspace():
+                    i += 1
+
+                if i < length and content[i] == ":":
+                    fields.append(name)
+                elif i < length and content[i] == "(":
+                    j = i
+                    paren_depth = 0
+                    while j < length:
+                        ch = content[j]
+                        if ch in ('"', "'", "`"):
+                            quote = ch
+                            j += 1
+                            escaped = False
+                            while j < length:
+                                if escaped:
+                                    escaped = False
+                                elif content[j] == "\\":
+                                    escaped = True
+                                elif content[j] == quote:
+                                    j += 1
+                                    break
+                                j += 1
+                            continue
+                        if ch == "(":
+                            paren_depth += 1
+                        elif ch == ")":
+                            paren_depth -= 1
+                            if paren_depth == 0:
+                                j += 1
+                                break
+                        j += 1
+
+                    while j < length and content[j].isspace():
+                        j += 1
+
+                    if j < length and content[j] == "{":
+                        closing = find_matching_brace(content, j)
+                        i = closing + 1
+                    else:
+                        i = j
+
+                    fields.append(name)
+
+                continue
+
+        i += 1
+
+    return fields
+
+
+def extract_missing_fields(
+    current_object: str,
+    original_object: str,
+) -> list[tuple[str, str]]:
+    """
+    Return top-level fields that exist in the original object but not
+    in the current object.
+
+    The returned values are complete `name: value` property strings,
+    preserving the original field contents.
+    """
+
+    current_fields = get_top_level_field_names(current_object)
+    ordered_original_fields = get_top_level_field_names_in_order(original_object)
+
+    missing = []
+    seen = set()
+
+    for field_name in ordered_original_fields:
+        if field_name in current_fields or field_name in seen:
+            continue
+
+        seen.add(field_name)
+
+        field = extract_top_level_field(
+            original_object,
+            field_name,
+        )
+
+        if field is not None:
+            missing.append((field_name, field))
+
+    return missing
+
+
+def extract_top_level_field(
+    object_text: str,
+    field_name: str,
+) -> str | None:
+    """
+    Extract a complete top-level field from a JavaScript object.
+
+    Example return value:
+
+        category: "Physical",
+
+    or:
+
+        flags: {contact: 1},
+
+    The field value may contain nested objects, arrays, strings,
+    comments, or functions.
+    """
+
+    content = object_text[1:-1]
+    length = len(content)
+
+    depth = 0
+    i = 0
+    candidate = None
+
+    in_string = None
+    in_line_comment = False
+    in_block_comment = False
+    escaped = False
+
+    while i < length:
+        char = content[i]
+        next_char = content[i + 1] if i + 1 < length else ""
+
+        if in_line_comment:
+            if char == "\n":
+                in_line_comment = False
+            i += 1
+            continue
+
+        if in_block_comment:
+            if char == "*" and next_char == "/":
+                in_block_comment = False
+                i += 2
+                continue
+            i += 1
+            continue
+
+        if in_string:
+            if escaped:
+                escaped = False
+            elif char == "\\":
+                escaped = True
+            elif char == in_string:
+                in_string = None
+
+            i += 1
+            continue
+
+        if char == "/" and next_char == "/":
+            in_line_comment = True
+            i += 2
+            continue
+
+        if char == "/" and next_char == "*":
+            in_block_comment = True
+            i += 2
+            continue
+
+        if char in ('"', "'", "`"):
+            in_string = char
+            i += 1
+            continue
+
+        if depth == 0:
+            if char.isspace() or char == ",":
+                i += 1
+                continue
+
+            parsed_name = None
+            property_start = i
+
+            if char in ('"', "'", "`"):
+                quote = char
+                i += 1
+
+                name_chars = []
+                escaped = False
+
+                while i < length:
+                    char = content[i]
+
+                    if escaped:
+                        name_chars.append(char)
+                        escaped = False
+
+                    elif char == "\\":
+                        escaped = True
+
+                    elif char == quote:
+                        i += 1
+                        break
+
+                    else:
+                        name_chars.append(char)
+
+                    i += 1
+
+                parsed_name = "".join(name_chars)
+
+            elif char.isalpha() or char in "_$":
+                start = i
+                i += 1
+                while i < length and (
+                    content[i].isalnum()
+                    or content[i] in "_-$"
+                ):
+                    i += 1
+                parsed_name = content[start:i]
+
+            else:
+                i += 1
+                continue
+
+            while i < length and content[i].isspace():
+                i += 1
+
+            if i < length and content[i] == ":":
+                i += 1
+
+                value_depth = 0
+                value_string = None
+                value_line_comment = False
+                value_block_comment = False
+                value_escaped = False
+
+                while i < length:
+                    char = content[i]
+                    next_char = content[i + 1] if i + 1 < length else ""
+
+                    if value_line_comment:
+                        if char == "\n":
+                            value_line_comment = False
+                        i += 1
+                        continue
+
+                    if value_block_comment:
+                        if char == "*" and next_char == "/":
+                            value_block_comment = False
+                            i += 2
+                            continue
+                        i += 1
+                        continue
+
+                    if value_string:
+                        if value_escaped:
+                            value_escaped = False
+                        elif char == "\\":
+                            value_escaped = True
+                        elif char == value_string:
+                            value_string = None
+
+                        i += 1
+                        continue
+
+                    if char == "/" and next_char == "/":
+                        value_line_comment = True
+                        i += 2
+                        continue
+
+                    if char == "/" and next_char == "*":
+                        value_block_comment = True
+                        i += 2
+                        continue
+
+                    if char in ('"', "'", "`"):
+                        value_string = char
+                        i += 1
+                        continue
+
+                    if char in "{[":
+                        value_depth += 1
+                    elif char in "]}":
+                        if value_depth == 0:
+                            break
+                        value_depth -= 1
+                    elif char == "," and value_depth == 0:
+                        break
+
+                    i += 1
+
+                field_text = content[property_start:i].strip()
+                if not field_text.endswith(","):
+                    field_text += ","
+
+                if parsed_name == field_name:
+                    candidate = field_text
+
+            elif i < length and content[i] == "(":
+                j = i
+                paren_depth = 0
+                while j < length:
+                    ch = content[j]
+                    if ch in ('"', "'", "`"):
+                        quote = ch
+                        j += 1
+                        escaped = False
+                        while j < length:
+                            if escaped:
+                                escaped = False
+                            elif content[j] == "\\":
+                                escaped = True
+                            elif content[j] == quote:
+                                j += 1
+                                break
+                            j += 1
+                        continue
+                    if ch == "(":
+                        paren_depth += 1
+                    elif ch == ")":
+                        paren_depth -= 1
+                        if paren_depth == 0:
+                            j += 1
+                            break
+                    j += 1
+
+                while j < length and content[j].isspace():
+                    j += 1
+
+                if j < length and content[j] == "{":
+                    closing = find_matching_brace(content, j)
+                    i = closing + 1
+                else:
+                    i = j
+
+            continue
+
+        if char in "{[":
+            depth += 1
+        elif char in "}]":
+            depth -= 1
+
+        i += 1
+
+    return candidate
+
+
+def merge_missing_fields(
+    current_object: str,
+    original_object: str,
+) -> str:
+    """
+    Copy every top-level field from the original object that is missing
+    from the current object.
+
+    Fields already present in the current object are left untouched.
+    """
+
+    missing_fields = extract_missing_fields(
+        current_object,
+        original_object,
+    )
+
+    if not missing_fields:
+        return current_object
+
+    # Remove the closing brace.
+    body = current_object.rstrip()
+
+    if not body.endswith("}"):
+        raise ValueError(
+            "Expected move object to end with '}'"
+        )
+
+    body = body[:-1].rstrip()
+
+    # Ensure the existing final property is comma-terminated.
+    if body and not body.endswith(","):
+        body += ","
+
+    body += "\n"
+
+    for _, field in missing_fields:
+        body += f"  {field}\n"
+
+    body += "}"
+
+    return body
+
 
 def find_data_object(text: str, object_name: str) -> tuple[int, int]:
     """
@@ -587,12 +1156,25 @@ def build_num_lookup(moves):
 
 
 def is_inherited(move_object: str) -> bool:
-    return bool(
-        re.search(
-            r'\binherit\s*:\s*true\b',
-            move_object,
-        )
-    )
+    """
+    Explicit inherited moves use `inherit: true`.
+
+    Some modded move entries are written as a minimal override object like:
+
+        accelerock: {
+          num: 709,
+          flags: { ... }
+        }
+
+    which is semantically equivalent to inheriting the original move and
+    only overriding flags. Treat those as inherited too, so we can merge in
+    the original move data automatically.
+    """
+    if re.search(r'\binherit\s*:\s*true\b', move_object):
+        return True
+
+    fields = get_top_level_field_names(move_object)
+    return bool(fields) and fields <= {"num", "flags", "inherit"}
 
 def remove_inherit_true(move_object: str) -> str:
     pattern = re.compile(
@@ -917,35 +1499,66 @@ def extract_moves(
 
         if inherited:
 
-            num = num_lookup.get(move_id)
+                   num = num_lookup.get(move_id)
 
-            if num is None:
-                print(
-                    f"WARNING: {move_id} has inherit: true "
-                    f"but no num was found in {num_source_file}"
-                )
+                   # Find the complete original move object.
+                   original_move = dict(num_moves).get(move_id)
 
-                # Still remove inherit and write the file.
-                move_object = remove_inherit_true(
-                    move_object
-                )
+                   if original_move is None:
+                       print(
+                           f"WARNING: {move_id} has inherit: true "
+                           f"but no original move was found in "
+                           f"{num_source_file}"
+                       )
 
-            else:
-                # Remove inherit:true
-                move_object = remove_inherit_true(
-                    move_object
-                )
+                       move_object = remove_inherit_true(
+                           move_object
+                       )
 
-                # Add the original move number.
-                move_object = move_object.replace(
-                    "{",
-                    f"{{\n  num: {num},",
-                    1,
-                )
+                   else:
+                       # ------------------------------------------------------------
+                       # Copy all fields that are missing from the modified move.
+                       #
+                       # Existing fields in the modified move always take priority.
+                       # ------------------------------------------------------------
 
-                print(
-                    f"  {move_id}: inherited -> num {num}"
-                )
+                       move_object = merge_missing_fields(
+                           move_object,
+                           original_move,
+                       )
+
+                       # Remove inherit:true
+                       move_object = remove_inherit_true(
+                           move_object
+                       )
+
+                       # ------------------------------------------------------------
+                       # Add the original move number.
+                       # ------------------------------------------------------------
+
+                       if num is not None:
+                           current_fields = get_top_level_field_names(
+                               move_object
+                           )
+
+                           if "num" not in current_fields:
+                               move_object = move_object.replace(
+                                   "{",
+                                   f"{{\n  num: {num},",
+                                   1,
+                               )
+
+                           print(
+                               f"  {move_id}: "
+                               f"inherited -> num {num}, "
+                               f"copied missing fields"
+                           )
+
+                       else:
+                           print(
+                               f"WARNING: {move_id} has inherit: true "
+                               f"but no num was found in {num_source_file}"
+                           )
 
         # ------------------------------------------------------------
         # Normal move

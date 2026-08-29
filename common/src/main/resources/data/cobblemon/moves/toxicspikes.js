@@ -1,5 +1,4 @@
 {
-  num: 390,
 	flags: { reflectable: 1, nonsky: 1, metronome: 1, mustpressure: 1 },
 	condition: {
 
@@ -27,5 +26,18 @@
           pokemon.trySetStatus("psn", pokemon.side.foe.active[0]);
         }
       }
-    }
+    },
+  num: 390,
+  accuracy: true,
+  basePower: 0,
+  category: "Status",
+  name: "Toxic Spikes",
+  pp: 20,
+  priority: 0,
+  sideCondition: "toxicspikes",
+  secondary: null,
+  target: "foeSide",
+  type: "Poison",
+  zMove: { boost: { def: 1 } },
+  contestType: "Clever",
 }

@@ -12,6 +12,6 @@
       status: "psn"
     },
     target: "normal",
-    type: "Questionmark",
+    type: "Mystery",
     contestType: "Tough"
 }

@@ -1,4 +1,15 @@
 {
+	flags: { protect: 1, mirror: 1, metronome: 1, magic: 1 },
   num: 149,
-	flags: { protect: 1, mirror: 1, metronome: 1, magic: 1 }
+  accuracy: 100,
+  basePower: 0,
+  category: "Special",
+  isNonstandard: "Past",
+  name: "Psywave",
+  pp: 15,
+  priority: 0,
+  secondary: null,
+  target: "normal",
+  type: "Psychic",
+  contestType: "Clever",
 }

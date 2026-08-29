@@ -1,4 +1,16 @@
 {
+	flags: { protect: 1, mirror: 1, legendary: 1 },
   num: 617,
-	flags: { protect: 1, mirror: 1, legendary: 1 }
+  accuracy: 90,
+  basePower: 140,
+  category: "Special",
+  isNonstandard: "Past",
+  name: "Light of Ruin",
+  pp: 5,
+  priority: 0,
+  recoil: [1, 2],
+  secondary: null,
+  target: "normal",
+  type: "Fairy",
+  contestType: "Beautiful",
 }

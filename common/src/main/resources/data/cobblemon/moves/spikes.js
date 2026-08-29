@@ -1,5 +1,4 @@
 {
-  num: 191,
 	flags: { reflectable: 1, nonsky: 1, metronome: 1, mustpressure: 1 },
 	condition: {
 
@@ -19,5 +18,18 @@
         const damageAmounts = [0, 3, 4, 6];
         this.damage(damageAmounts[this.effectState.layers] * pokemon.maxhp / 24);
       }
-    }
+    },
+  num: 191,
+  accuracy: true,
+  basePower: 0,
+  category: "Status",
+  name: "Spikes",
+  pp: 20,
+  priority: 0,
+  sideCondition: "spikes",
+  secondary: null,
+  target: "foeSide",
+  type: "Ground",
+  zMove: { boost: { def: 1 } },
+  contestType: "Clever",
 }

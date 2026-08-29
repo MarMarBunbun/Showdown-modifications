@@ -1,5 +1,4 @@
 {
-  num: 1,
 	flags: {},
 	condition: {
       onSideStart(side) {
@@ -13,5 +12,25 @@
         const typeMod = this.clampIntRange(pokemon.runEffectiveness(steelHazard), -6, 6);
         this.damage(pokemon.maxhp * Math.pow(2, typeMod) / 8);
       }
-    }
+    },
+  num: 1e3,
+  accuracy: true,
+  basePower: 10,
+  category: "Physical",
+  isNonstandard: "Gigantamax",
+  name: "G-Max Steelsurge",
+  pp: 5,
+  priority: 0,
+  isMax: "Copperajah",
+  self: {
+      onHit(source) {
+        for (const side of source.side.foeSidesWithConditions()) {
+          side.addSideCondition("gmaxsteelsurge");
+        }
+      }
+    },
+  secondary: null,
+  target: "adjacentFoe",
+  type: "Steel",
+  contestType: "Cool",
 }

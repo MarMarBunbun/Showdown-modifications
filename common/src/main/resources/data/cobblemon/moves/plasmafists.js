@@ -1,4 +1,16 @@
 {
+	flags: { contact: 1, protect: 1, mirror: 1, punch: 1, legendary: 1 },
   num: 721,
-	flags: { contact: 1, protect: 1, mirror: 1, punch: 1, legendary: 1 }
+  accuracy: 100,
+  basePower: 100,
+  category: "Physical",
+  isNonstandard: "Past",
+  name: "Plasma Fists",
+  pp: 15,
+  priority: 0,
+  pseudoWeather: "iondeluge",
+  secondary: null,
+  target: "normal",
+  type: "Electric",
+  contestType: "Cool",
 }

@@ -1,19 +1,19 @@
 {
-    name: "Questionmark Eraser",
+    name: "Mystery Eraser",
     spritenum: 3204,
     fling: {
       basePower: 40
     },
 	onStart(pokemon) {
       const types = pokemon.getTypes();
-      if (types.length === 2 && types.includes("Questionmark")) {
+      if (types.length === 2 && types.includes("Mystery")) {
         pokemon.itemData = pokemon.itemData || {};
         pokemon.itemData.questionmarkEraserOriginalTypes = types;
         pokemon.itemData.questionmarkEraserActivated = false;
-        const newTypes = types.filter(t => t !== "Questionmark");
+        const newTypes = types.filter(t => t !== "Mystery");
         if (newTypes.length > 0) {
           if (!pokemon.illusion) {
-            this.add("-item", pokemon, "Questionmark Eraser");
+            this.add("-item", pokemon, "Mystery Eraser");
             pokemon.itemData.questionmarkEraserActivated = true;
           }
           pokemon.setType(newTypes);
@@ -26,7 +26,7 @@
         !pokemon.itemData.questionmarkEraserActivated
       ) {
         if (!pokemon.illusion) {
-          this.add("-item", pokemon, "Questionmark Eraser");
+          this.add("-item", pokemon, "Mystery Eraser");
           pokemon.itemData.questionmarkEraserActivated = true;
         }
       }
@@ -34,7 +34,7 @@
     onEnd(pokemon) {
       if (pokemon.itemData?.questionmarkEraserOriginalTypes) {
         if (!pokemon.illusion) {
-          this.add("-enditem", pokemon, "Questionmark Eraser");
+          this.add("-enditem", pokemon, "Mystery Eraser");
         }
         const originalTypes = pokemon.itemData.questionmarkEraserOriginalTypes;
         pokemon.setType(originalTypes);

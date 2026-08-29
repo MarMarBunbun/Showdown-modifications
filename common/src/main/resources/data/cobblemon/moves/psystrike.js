@@ -1,4 +1,15 @@
 {
+	flags: { protect: 1, mirror: 1, legendary: 1, magic: 1 },
   num: 540,
-	flags: { protect: 1, mirror: 1, legendary: 1, magic: 1 }
+  accuracy: 100,
+  basePower: 100,
+  category: "Special",
+  overrideDefensiveStat: "def",
+  name: "Psystrike",
+  pp: 10,
+  priority: 0,
+  secondary: null,
+  target: "normal",
+  type: "Psychic",
+  contestType: "Cool",
 }

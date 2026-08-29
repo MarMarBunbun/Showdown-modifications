@@ -10,7 +10,7 @@
     status: "tox",
     secondary: null,
     target: "normal",
-    type: "Questionmark",
+    type: "Mystery",
     zMove: { boost: { def: 1 } },
     contestType: "Clever"
 }

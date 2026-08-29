@@ -12,6 +12,6 @@
       volatileStatus: "confusion"
     },
     target: "allAdjacentFoes",
-    type: "Questionmark",
+    type: "Mystery",
     contestType: "Beautiful"
 }

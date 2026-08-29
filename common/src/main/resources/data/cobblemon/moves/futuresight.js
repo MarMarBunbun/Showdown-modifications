@@ -1,4 +1,15 @@
 {
+	flags: { allyanim: 1, metronome: 1, futuremove: 1, magic: 1 },
   num: 248,
-	flags: { allyanim: 1, metronome: 1, futuremove: 1, magic: 1 }
+  accuracy: 100,
+  basePower: 120,
+  category: "Special",
+  name: "Future Sight",
+  pp: 10,
+  priority: 0,
+  ignoreImmunity: true,
+  secondary: null,
+  target: "normal",
+  type: "Psychic",
+  contestType: "Clever",
 }

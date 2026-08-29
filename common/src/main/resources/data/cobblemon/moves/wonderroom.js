@@ -1,5 +1,4 @@
 {
-  num: 472,
 	flags: { mirror: 1, metronome: 1 },
 	condition: {
       duration: 5,
@@ -35,5 +34,18 @@
       onFieldEnd() {
         this.add("-fieldend", "move: Wonder Room");
       }
-    }
+    },
+  num: 472,
+  accuracy: true,
+  basePower: 0,
+  category: "Status",
+  name: "Wonder Room",
+  pp: 10,
+  priority: 0,
+  pseudoWeather: "wonderroom",
+  secondary: null,
+  target: "all",
+  type: "Psychic",
+  zMove: { boost: { spd: 1 } },
+  contestType: "Clever",
 }

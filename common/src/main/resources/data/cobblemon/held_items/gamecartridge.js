@@ -6,7 +6,7 @@
     },
     onBasePowerPriority: 15,
     onBasePower(basePower, user, target, move) {
-      if (move && move.type === "Questionmark") {
+      if (move && move.type === "Mystery") {
         return this.chainModify([4915, 4096]);
       }
     },

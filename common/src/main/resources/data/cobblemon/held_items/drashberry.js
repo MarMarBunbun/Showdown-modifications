@@ -4,10 +4,10 @@
     isBerry: true,
     naturalGift: {
       basePower: 60,
-      type: "Questionmark"
+      type: "Mystery"
     },
     onSourceModifyDamage(damage, source, target, move) {
-      if (move.type === "Questionmark" && target.getMoveHitData(move).typeMod > 0) {
+      if (move.type === "Mystery" && target.getMoveHitData(move).typeMod > 0) {
         const hitSub = target.volatiles["substitute"] && !move.flags["bypasssub"] && !(move.infiltrates && this.gen >= 6);
         if (hitSub)
           return;

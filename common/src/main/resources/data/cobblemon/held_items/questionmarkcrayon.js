@@ -1,21 +1,21 @@
 {
-    name: "Questionmark Crayon",
+    name: "Mystery Crayon",
     spritenum: 3233,
     fling: {
       basePower: 20
     },
 	onStart(pokemon) {
       const types = pokemon.getTypes();
-      if (types.length === 1 && !types.includes("Questionmark")) {
+      if (types.length === 1 && !types.includes("Mystery")) {
         pokemon.itemData = pokemon.itemData || {};
         pokemon.itemData.questionmarkCrayonOriginalType = types[0];
         pokemon.itemData.questionmarkCrayonActivated = false;
         const isIllusionActive = !!pokemon.illusion;
         if (!isIllusionActive) {
-          this.add("-item", pokemon, "Questionmark Crayon");
+          this.add("-item", pokemon, "Mystery Crayon");
           pokemon.itemData.questionmarkCrayonActivated = true;
         }
-        pokemon.setType([types[0], "Questionmark"]);
+        pokemon.setType([types[0], "Mystery"]);
       }
     },
     onUpdate(pokemon) {
@@ -25,7 +25,7 @@
       ) {
         const isIllusionActive = !!pokemon.illusion;
         if (!isIllusionActive) {
-          this.add("-item", pokemon, "Questionmark Crayon");
+          this.add("-item", pokemon, "Mystery Crayon");
           pokemon.itemData.questionmarkCrayonActivated = true;
         }
       }
@@ -34,7 +34,7 @@
       if (pokemon.itemData?.questionmarkCrayonOriginalType) {
         const isIllusionActive = !!pokemon.illusion;
         if (!isIllusionActive) {
-          this.add("-enditem", pokemon, "Questionmark Crayon");
+          this.add("-enditem", pokemon, "Mystery Crayon");
         }
         pokemon.setType([pokemon.itemData.questionmarkCrayonOriginalType]);
         delete pokemon.itemData.questionmarkCrayonOriginalType;

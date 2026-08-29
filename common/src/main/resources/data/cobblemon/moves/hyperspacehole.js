@@ -1,4 +1,15 @@
 {
+	flags: { mirror: 1, bypasssub: 1, legendary: 1 },
   num: 593,
-	flags: { mirror: 1, bypasssub: 1, legendary: 1 }
+  accuracy: true,
+  basePower: 80,
+  category: "Special",
+  name: "Hyperspace Hole",
+  pp: 5,
+  priority: 0,
+  breaksProtect: true,
+  secondary: null,
+  target: "normal",
+  type: "Psychic",
+  contestType: "Clever",
 }

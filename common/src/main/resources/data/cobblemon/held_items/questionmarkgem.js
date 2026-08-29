@@ -1,11 +1,11 @@
 {
-    name: "Questionmark Gem",
+    name: "Mystery Gem",
     spritenum: 3110,
     isGem: true,
     onSourceTryPrimaryHit(target, source, move) {
       if (target === source || move.category === "Status")
         return;
-      if (move.type === "Questionmark" && source.useItem()) {
+      if (move.type === "Mystery" && source.useItem()) {
         source.addVolatile("gem");
       }
     },

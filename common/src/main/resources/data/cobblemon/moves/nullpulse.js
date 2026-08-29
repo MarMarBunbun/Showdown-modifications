@@ -9,6 +9,6 @@
     flags: { protect: 1, mirror: 1, distance: 1, pulse: 1 },
     secondary: null,
     target: "any",
-    type: "Questionmark",
+    type: "Mystery",
     contestType: "Beautiful"
 }

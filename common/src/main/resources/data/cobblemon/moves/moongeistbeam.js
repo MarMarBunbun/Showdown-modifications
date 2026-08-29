@@ -1,4 +1,15 @@
 {
+	flags: { protect: 1, mirror: 1, beam: 1, legendary: 1 },
   num: 714,
-	flags: { protect: 1, mirror: 1, beam: 1, legendary: 1 }
+  accuracy: 100,
+  basePower: 100,
+  category: "Special",
+  name: "Moongeist Beam",
+  pp: 5,
+  priority: 0,
+  ignoreAbility: true,
+  secondary: null,
+  target: "normal",
+  type: "Ghost",
+  contestType: "Cool",
 }

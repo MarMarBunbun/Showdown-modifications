@@ -1,4 +1,15 @@
 {
     num: 177,
-	flags: { protect: 1, mirror: 1, distance: 1, metronome: 1, wind: 1, legendary: 1 }
+	flags: { protect: 1, mirror: 1, distance: 1, metronome: 1, wind: 1, legendary: 1 },
+  accuracy: 95,
+  basePower: 100,
+  category: "Special",
+  name: "Aeroblast",
+  pp: 5,
+  priority: 0,
+  critRatio: 2,
+  secondary: null,
+  target: "any",
+  type: "Flying",
+  contestType: "Cool",
 }

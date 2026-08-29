@@ -9,6 +9,6 @@
     flags: { protect: 1, mirror: 1 },
     secondary: null,
     target: "normal",
-    type: "Questionmark",
+    type: "Mystery",
     contestType: "Cool"
 }

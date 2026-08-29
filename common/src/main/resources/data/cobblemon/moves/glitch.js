@@ -18,6 +18,6 @@
       }
     },
     target: "normal",
-    type: "Questionmark",
+    type: "Mystery",
     contestType: "Cute"
 }

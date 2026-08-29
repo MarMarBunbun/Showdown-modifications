@@ -1,4 +1,16 @@
 {
+	flags: { contact: 1, kick: 1 },
   num: 699,
-	flags: { contact: 1, kick: 1 }
+  accuracy: true,
+  basePower: 195,
+  category: "Physical",
+  isNonstandard: "Past",
+  name: "Soul-Stealing 7-Star Strike",
+  pp: 1,
+  priority: 0,
+  isZ: "marshadiumz",
+  secondary: null,
+  target: "normal",
+  type: "Ghost",
+  contestType: "Cool",
 }

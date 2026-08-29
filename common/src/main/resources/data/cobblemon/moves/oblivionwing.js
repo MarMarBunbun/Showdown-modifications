@@ -1,4 +1,16 @@
 {
+	flags: { protect: 1, mirror: 1, distance: 1, heal: 1, metronome: 1, legendary: 1 },
   num: 613,
-	flags: { protect: 1, mirror: 1, distance: 1, heal: 1, metronome: 1, legendary: 1 }
+  accuracy: 100,
+  basePower: 80,
+  category: "Special",
+  isNonstandard: "Past",
+  name: "Oblivion Wing",
+  pp: 10,
+  priority: 0,
+  drain: [3, 4],
+  secondary: null,
+  target: "any",
+  type: "Flying",
+  contestType: "Cool",
 }

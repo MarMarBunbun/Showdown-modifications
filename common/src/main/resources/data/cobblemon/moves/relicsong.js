@@ -1,5 +1,4 @@
 {
-  num: 547,
 	onHit(target, pokemon, move) {
       if (pokemon.baseSpecies.baseSpecies === "Meloetta" && !pokemon.transformed) {
         move.willChangeForme = true;
@@ -27,5 +26,19 @@
         return;
       }
 	},
-	flags: { protect: 1, mirror: 1, sound: 1, bypasssub: 1, legendary: 1 }
+	flags: { protect: 1, mirror: 1, sound: 1, bypasssub: 1, legendary: 1 },
+  num: 547,
+  accuracy: 100,
+  basePower: 75,
+  category: "Special",
+  name: "Relic Song",
+  pp: 10,
+  priority: 0,
+  secondary: {
+      chance: 10,
+      status: "slp"
+    },
+  target: "allAdjacentFoes",
+  type: "Normal",
+  contestType: "Beautiful",
 }

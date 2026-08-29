@@ -1,4 +1,15 @@
 {
+	flags: { contact: 1, protect: 1, mirror: 1, kick: 1 },
   num: 67,
-	flags: { contact: 1, protect: 1, mirror: 1, kick: 1 }
+  accuracy: 100,
+  basePower: 0,
+  category: "Physical",
+  name: "Low Kick",
+  pp: 20,
+  priority: 0,
+  secondary: null,
+  target: "normal",
+  type: "Fighting",
+  zMove: { basePower: 160 },
+  contestType: "Tough",
 }

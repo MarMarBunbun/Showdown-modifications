@@ -1,4 +1,16 @@
 {
+	flags: { protect: 1, mirror: 1, legendary: 1 },
   num: 720,
-	flags: { protect: 1, mirror: 1, legendary: 1 }
+  accuracy: 100,
+  basePower: 150,
+  category: "Special",
+  isNonstandard: "Past",
+  name: "Mind Blown",
+  pp: 5,
+  priority: 0,
+  mindBlownRecoil: true,
+  secondary: null,
+  target: "allAdjacent",
+  type: "Fire",
+  contestType: "Cool",
 }

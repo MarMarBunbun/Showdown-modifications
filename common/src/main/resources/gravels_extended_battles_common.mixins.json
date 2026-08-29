@@ -8,7 +8,8 @@
   },
   "client": [
     "client.TypeIconMixin",
-    "client.TypeWidgetMixin"
+    "client.TypeWidgetMixin",
+    "client.CobblemonClientMixin"
   ],
   "mixins": [
     "BattleManagerMixin",

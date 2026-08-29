@@ -1,4 +1,16 @@
 {
+	flags: { protect: 1, mirror: 1, metronome: 1, legendary: 1 },
   num: 687,
-	flags: { protect: 1, mirror: 1, metronome: 1, legendary: 1 }
+  accuracy: 100,
+  basePower: 100,
+  category: "Special",
+  isNonstandard: "Past",
+  name: "Core Enforcer",
+  pp: 10,
+  priority: 0,
+  secondary: null,
+  target: "allAdjacentFoes",
+  type: "Dragon",
+  zMove: { basePower: 140 },
+  contestType: "Tough",
 }

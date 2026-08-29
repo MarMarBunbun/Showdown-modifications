@@ -1,5 +1,4 @@
 {
-  num: 19,
     flags: {
       contact: 1,
       charge: 1,
@@ -25,5 +24,16 @@
           return this.chainModify(2);
         }
       }
-    }
+    },
+  num: 19,
+  accuracy: 95,
+  basePower: 90,
+  category: "Physical",
+  name: "Fly",
+  pp: 15,
+  priority: 0,
+  secondary: null,
+  target: "any",
+  type: "Flying",
+  contestType: "Clever",
 }

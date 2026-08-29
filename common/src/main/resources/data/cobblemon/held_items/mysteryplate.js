@@ -1,10 +1,10 @@
 {
     name: "Mystery Plate",
     spritenum: 3097,
-    onPlate: "Questionmark",
+    onPlate: "Mystery",
     onBasePowerPriority: 15,
     onBasePower(basePower, user, target, move) {
-      if (move.type === "Questionmark") {
+      if (move.type === "Mystery") {
         return this.chainModify([4915, 4096]);
       }
     },
@@ -14,7 +14,7 @@
       }
       return true;
     },
-    forcedForme: "Arceus-Questionmark",
+    forcedForme: "Arceus-Mystery",
     num: 3097,
     gen: 4
 }

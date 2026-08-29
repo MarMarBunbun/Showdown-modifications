@@ -18,6 +18,6 @@
     },
     secondary: null,
     target: "normal",
-    type: "Questionmark",
+    type: "Mystery",
     contestType: "Cool"
 }

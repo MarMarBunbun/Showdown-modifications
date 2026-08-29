@@ -1,5 +1,4 @@
 {
-  num: 433,
 	flags: { mirror: 1, metronome: 1 },
 	condition: {
       duration: 5,
@@ -26,5 +25,18 @@
       onFieldEnd() {
         this.add("-fieldend", "move: Trick Room");
       }
-    }
+    },
+  num: 433,
+  accuracy: true,
+  basePower: 0,
+  category: "Status",
+  name: "Trick Room",
+  pp: 5,
+  priority: -7,
+  pseudoWeather: "trickroom",
+  secondary: null,
+  target: "all",
+  type: "Psychic",
+  zMove: { boost: { accuracy: 1 } },
+  contestType: "Clever",
 }

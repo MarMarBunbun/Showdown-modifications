@@ -4,7 +4,7 @@
     basePower: 10,
     category: "Physical",
     isNonstandard: "Past",
-    name: "Max Questionmark",
+    name: "Max Mystery",
     pp: 10,
     priority: 0,
     flags: {},
@@ -21,6 +21,6 @@
       }
     },
     target: "adjacentFoe",
-    type: "Questionmark",
+    type: "Mystery",
     contestType: "Cool"
 }

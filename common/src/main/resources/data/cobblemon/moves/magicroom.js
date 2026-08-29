@@ -1,5 +1,4 @@
 {
-  num: 478,
 	flags: { mirror: 1, metronome: 1 },
 	condition: {
       duration: 5,
@@ -29,5 +28,18 @@
       onFieldEnd() {
         this.add("-fieldend", "move: Magic Room", "[of] " + this.effectState.source);
       }
-    }
+    },
+  num: 478,
+  accuracy: true,
+  basePower: 0,
+  category: "Status",
+  name: "Magic Room",
+  pp: 10,
+  priority: 0,
+  pseudoWeather: "magicroom",
+  secondary: null,
+  target: "all",
+  type: "Psychic",
+  zMove: { boost: { spd: 1 } },
+  contestType: "Clever",
 }
