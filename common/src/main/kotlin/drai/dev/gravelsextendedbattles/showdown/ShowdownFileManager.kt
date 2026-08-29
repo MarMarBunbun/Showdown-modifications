@@ -1,6 +1,5 @@
 package drai.dev.gravelsextendedbattles.showdown
 
-import drai.dev.gravelsextendedbattles.config.GEBConfig
 import drai.dev.gravelsextendedbattles.GravelsExtendedBattles
 import java.io.IOException
 import java.nio.file.Files
@@ -40,7 +39,7 @@ object ShowdownFileManager {
     }
 
     private fun injectTypeChart(showdownFolder: Path) {
-        if (GEBConfig.enableFangameTypechart) {
+        if (GravelsExtendedBattles.CONFIG.enableOriginalFanGameTypings) {
             exportResource(showdownFolder, FAN_GAME_TYPE_CHART)
 
             val source = showdownFolder.resolve(FAN_GAME_TYPE_CHART)
@@ -57,7 +56,7 @@ object ShowdownFileManager {
     }
 
     private fun injectStage2(showdownFolder: Path) {
-        val simFolder = showdownFolder
+        val simFolder = showdownFolder.parent.parent
             .resolveSibling("sim")
 
         injectBattleActions(simFolder)

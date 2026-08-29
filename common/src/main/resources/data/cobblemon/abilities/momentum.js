@@ -1,6 +1,6 @@
 {
 	onStart(target) {
-      target.addVolatile("momentum")
+      target.addVolatile("momentum");
 	},
 	flags: {},
 	name: "Momentum",

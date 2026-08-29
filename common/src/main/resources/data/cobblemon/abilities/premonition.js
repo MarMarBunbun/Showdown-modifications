@@ -10,9 +10,9 @@
         move.flags['futuremove'] || move.spreadHit || move.isZ || move.isMax) return;
       if (!pokemon.hasType(move.type)) return;
       if (!target.side.addSlotCondition(target, 'futuremove')) return;
-      let premonitionHit = Object.assign({}, move)
-      premonitionHit.secondaries = []
-      premonitionHit.flags.futuremove = 1
+      let premonitionHit = Object.assign({}, move);
+      premonitionHit.secondaries = [];
+      premonitionHit.flags.futuremove = 1;
       this.add('-activate', pokemon, 'ability: Premonition');
       Object.assign(target.side.slotConditions[target.position]["futuremove"], {
         move: premonitionHit.id,

@@ -2,14 +2,12 @@ package drai.dev.gravelsextendedbattles.additions
 
 import com.cobblemon.mod.common.api.pokemon.PokemonSpecies
 import com.cobblemon.mod.common.pokemon.Species
-import drai.dev.gravelsextendedbattles.config.GEBConfig
+import drai.dev.gravelsextendedbattles.GravelsExtendedBattles
 import drai.dev.gravelsextendedbattles.additions.evolutions.AdditionalEvolution
 import drai.dev.gravelsextendedbattles.additions.types.Type
 import drai.dev.gravelsextendedbattles.additions.types.TypeChange
 import drai.dev.gravelsextendedbattles.mixin.accessors.FormDataAccessor
 import drai.dev.gravelsextendedbattles.mixin.accessors.PokemonSpeciesAccessor
-import java.util.*
-import kotlin.collections.MutableList
 import kotlin.collections.component1
 import kotlin.collections.component2
 import kotlin.collections.forEach
@@ -38,7 +36,7 @@ object SpeciesManager {
     }
 
     private fun applyIndividualTypeChanges(typeChanges: Collection<TypeChange>) {
-        val implementedTypes = GEBConfig.implementedTypes
+        val implementedTypes = GravelsExtendedBattles.CONFIG.implementedTypes
         typeChanges.forEach { typeChange: TypeChange ->
             val form = typeChange.recipient.asRenderablePokemon().form
             if (!implementedTypes.contains(typeChange.to.name)) return@forEach
@@ -51,7 +49,7 @@ object SpeciesManager {
     }
 
     private fun substituteType(species: Species) {
-        val implementedTypes = GEBConfig.implementedTypes
+        val implementedTypes = GravelsExtendedBattles.CONFIG.implementedTypes
 
         species.forms.forEach { formData ->
             if (!implementedTypes.contains(formData.primaryType.name)) {

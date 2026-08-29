@@ -2,7 +2,7 @@ package drai.dev.gravelsextendedbattles.mixin;
 
 import com.cobblemon.mod.common.api.pokedex.def.*;
 import com.cobblemon.mod.common.api.pokedex.entry.*;
-import drai.dev.gravelsextendedbattles.config.*;
+import drai.dev.gravelsextendedbattles.*;
 import drai.dev.gravelsextendedbattles.pokedex.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
@@ -17,7 +17,7 @@ public class NationalDexMixin {
     private void injected(CallbackInfoReturnable<List<PokedexEntry>> cir) {
         var self = getSelf();
         if(!self.getId().getPath().equalsIgnoreCase("national")) return;
-        if(!GEBConfig.INSTANCE.getResortPokedexInEvolutionOrder()) return;
+        if(!GravelsExtendedBattles.CONFIG.getEnableDexResort()) return;
         var entries = cir.getReturnValue();
         cir.setReturnValue(GravelmonPokedexResorter.INSTANCE.processPokedexResorting(entries));
     }

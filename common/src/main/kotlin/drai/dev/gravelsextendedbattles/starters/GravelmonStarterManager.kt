@@ -2,6 +2,7 @@ package drai.dev.gravelsextendedbattles.starters
 
 import com.cobblemon.mod.common.Cobblemon.starterConfig
 import com.cobblemon.mod.common.config.starter.StarterCategory
+import com.cobblemon.mod.common.util.adapters.LearnsetAdapter
 import drai.dev.gravelsextendedbattles.BanListManager
 
 object GravelmonStarterManager {

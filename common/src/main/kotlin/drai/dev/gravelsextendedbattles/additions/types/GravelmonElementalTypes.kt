@@ -119,4 +119,9 @@ object GravelmonElementalTypes {
         TYPE_COUNT++
         return type
     }
+
+    @JvmStatic
+    fun touch() {
+        //do nothing except load clinit
+    }
 }

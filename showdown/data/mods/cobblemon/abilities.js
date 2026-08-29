@@ -1,3 +1,4 @@
+/* eslint semi: ["error", "always"] */
 "use strict";
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
@@ -810,7 +811,7 @@ const Abilities = {
     onAllyBasePower(relayVar, attacker, defender, move) {
       if (attacker.getTypes().some(type => ["Grass", "Rock", "Steel"].includes(type))) {
         this.debug("Carpenter boost");
-        return this.chainModify(1.3)
+        return this.chainModify(1.3);
       }
     },
     flags: {},
@@ -1461,7 +1462,7 @@ const Abilities = {
       if (!this.effectState.switchingIn) return;
       const targets = pokemon.side.pokemon.filter(p => !p.fainted && p !== pokemon);
       if (targets.length === 0) return;
-      const target = targets[this.random(targets.length)]
+      const target = targets[this.random(targets.length)];
       if (target) {
         pokemon.transformInto(target);
         // this.add('-activate', pokemon, 'ability: Dubious');
@@ -2812,7 +2813,7 @@ const Abilities = {
   },
   momentum: {
 	onStart(target) {
-      target.addVolatile("momentum")
+      target.addVolatile("momentum");
 	},
 	flags: {},
 	name: "Momentum",
@@ -3334,9 +3335,9 @@ const Abilities = {
         move.flags['futuremove'] || move.spreadHit || move.isZ || move.isMax) return;
       if (!pokemon.hasType(move.type)) return;
       if (!target.side.addSlotCondition(target, 'futuremove')) return;
-      let premonitionHit = Object.assign({}, move)
-      premonitionHit.secondaries = []
-      premonitionHit.flags.futuremove = 1
+      let premonitionHit = Object.assign({}, move);
+      premonitionHit.secondaries = [];
+      premonitionHit.flags.futuremove = 1;
       this.add('-activate', pokemon, 'ability: Premonition');
       Object.assign(target.side.slotConditions[target.position]["futuremove"], {
         move: premonitionHit.id,

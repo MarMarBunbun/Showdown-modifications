@@ -6,7 +6,7 @@
       if (!this.effectState.switchingIn) return;
       const targets = pokemon.side.pokemon.filter(p => !p.fainted && p !== pokemon);
       if (targets.length === 0) return;
-      const target = targets[this.random(targets.length)]
+      const target = targets[this.random(targets.length)];
       if (target) {
         pokemon.transformInto(target);
 

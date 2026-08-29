@@ -4,8 +4,8 @@ import com.cobblemon.mod.common.item.interactive.StatusCureItem
 import com.cobblemon.mod.common.platform.PlatformRegistry
 import com.cobblemon.mod.common.pokemon.helditem.CobblemonHeldItemManager
 import com.cobblemon.mod.common.util.cobblemonResource
+import drai.dev.gravelsextendedbattles.GravelsExtendedBattles
 import drai.dev.gravelsextendedbattles.additions.status.GravelmonStatus
-import drai.dev.gravelsextendedbattles.config.GEBConfig
 import drai.dev.gravelsextendedbattles.fossils.GEBLootPoolManager
 import drai.dev.gravelsextendedbattles.gravelmonResource
 import drai.dev.gravelsextendedbattles.items.GEBArceusPlateItem
@@ -99,7 +99,7 @@ object GEBItems : PlatformRegistry<Registry<Item>, ResourceKey<Registry<Item>>, 
     val WIND_TERA_SHARD = registerTeraShardItem("wind_tera_shard");
     
     val heldItems = mutableSetOf<Item>()
-    val FROST_HEAL = create("frost_heal", StatusCureItem("frost_heal", GravelmonStatus.FROSTBITE, block = GEBBlocks.FROST_HEAL));
+    val FROST_HEAL = create(gravelmonResource("frost_heal"), StatusCureItem("frost_heal", GravelmonStatus.FROSTBITE, block = GEBBlocks.FROST_HEAL));
     val POLARIZED_GLASS = heldItem("polarized_glass", Item(Item.Properties()))
     val TRAINING_WHEELS = heldItem("training_wheels", Item(Item.Properties()))
     val OLD_SHIELD = heldItem("old_shield", Item(Item.Properties()));
@@ -114,7 +114,7 @@ object GEBItems : PlatformRegistry<Registry<Item>, ResourceKey<Registry<Item>>, 
 
 
     fun registerGemItem(name: String, vararg lootPoolResourceLocation: String): Item? {
-        if (GEBConfig.implementedTypes.contains(name.replace("_gem".toRegex(), ""))) return null
+        if (GravelsExtendedBattles.CONFIG.implementedTypes.contains(name.replace("_gem".toRegex(), ""))) return null
         val item = heldItem(name)
         gems.add(item)
         lootPoolResourceLocation.forEach { lootPool-> GEBLootPoolManager.addUncommonItemToLootPool(cobblemonResource("ruins/common/$lootPool"), item) }
@@ -123,14 +123,15 @@ object GEBItems : PlatformRegistry<Registry<Item>, ResourceKey<Registry<Item>>, 
 
     fun registerZCrystalItem(name: String, gem: Item?, type: String): Item? {
         if(gem == null) return null
-        if (GEBConfig.implementedTypes.contains(name.replace("_gem".toRegex(), ""))) return null
+        if (GravelsExtendedBattles.CONFIG.implementedTypes.contains(name.replace("_gem".toRegex(), ""))) return null
         val item = heldItem(name, GEBZCrystal(type))
         zCrystals.add(item)
         return item
     }
 
     fun registerPlateItem(name: String, type: String): Item? {
-        if (GEBConfig.implementedTypes.contains(name.replace("_gem".toRegex(), ""))) return null
+        GravelsExtendedBattles.CONFIG
+        if (GravelsExtendedBattles.CONFIG.implementedTypes.contains(name.replace("_gem".toRegex(), ""))) return null
         val item = heldItem(name, GEBArceusPlateItem(type))
         plates.add(item)
         return item
@@ -138,15 +139,15 @@ object GEBItems : PlatformRegistry<Registry<Item>, ResourceKey<Registry<Item>>, 
 
     fun registerMemoryItem(name: String): Item? {
         val type = name.replace("_memory".toRegex(), "")
-        if (GEBConfig.implementedTypes.contains(type)) return null
+        if (GravelsExtendedBattles.CONFIG.implementedTypes.contains(type)) return null
         val item = heldItem(name, GEBMemoryItem(type))
         memories.add(item)
         return item
     }
 
     fun registerTeraShardItem(name: String): Item? {
-        val type = name.replace("_memory".toRegex(), "")
-        if (GEBConfig.implementedTypes.contains(type)) return null
+        val type = name.replace("_tera_shard".toRegex(), "")
+        if (GravelsExtendedBattles.CONFIG.implementedTypes.contains(type)) return null
         val item = heldItem(name, GEBTeraShardItem(type))
         teraShards.add(item)
         teraShardsByType[type] = item

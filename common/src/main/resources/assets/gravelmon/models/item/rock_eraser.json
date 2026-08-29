@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "gravelmon:item/erasers/rock_eraser"
+  }
+}

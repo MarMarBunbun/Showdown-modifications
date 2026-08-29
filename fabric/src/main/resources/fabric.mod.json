@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "id": "cobblemon_multiplatform_mdk",
+  "id": "gravels_extended_battles",
   "version": "${version}",
   "name": "Cobblemon Multi-platform Fabric MDK",
   "description": "A MDK useful for Fabric Development",
@@ -13,7 +13,7 @@
   "entrypoints": {
     "main": [
       {
-        "value": "drai.dev.gravelmon.fabric.GravelsExtendedBattlesFabric",
+        "value": "drai.dev.gravelsextendedbattles.fabric.GravelsExtendedBattlesImpl",
         "adapter": "kotlin"
       }
     ]

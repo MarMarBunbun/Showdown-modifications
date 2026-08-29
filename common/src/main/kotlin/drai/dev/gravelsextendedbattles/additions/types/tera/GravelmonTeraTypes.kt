@@ -59,4 +59,9 @@ object GravelmonTeraTypes {
     fun createTeraType(id: ResourceLocation, type: TeraType): TeraType {
         return teraTypes.invokeCreate(id, type)
     }
+
+    @JvmStatic
+    fun touch() {
+        //do nothing except call clinit
+    }
 }

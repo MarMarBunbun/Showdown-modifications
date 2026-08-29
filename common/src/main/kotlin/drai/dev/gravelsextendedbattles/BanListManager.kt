@@ -6,7 +6,6 @@ import com.cobblemon.mod.common.api.pokemon.PokemonSpecies.getByName
 import com.cobblemon.mod.common.api.pokemon.evolution.Evolution
 import com.cobblemon.mod.common.pokemon.FormData
 import com.cobblemon.mod.common.pokemon.Species
-import drai.dev.gravelsextendedbattles.config.GEBConfig
 import drai.dev.gravelsextendedbattles.mixin.accessors.PokemonSpeciesAccessor
 import net.minecraft.resources.ResourceLocation
 
@@ -87,7 +86,7 @@ object BanListManager {
 
     //I want to make a method that checks if a species should be removed by passing the species object
     fun pokemonShouldBeRemoved(formData: FormData): Boolean {
-        val isIndividuallyBanned = GEBConfig.getBannedPokemonProperties()
+        val isIndividuallyBanned = GravelsExtendedBattles.CONFIG.getBannedPokemonProperties()
             .any { bannedProperties ->
                 bannedProperties.species == formData.name
                         &&
@@ -102,8 +101,8 @@ object BanListManager {
         if (labels == null) return false
         if (labels.isEmpty()) return false
         for (label in labels) {
-            if (GEBConfig.allowedLabels.contains(label)) return false
-            if (GEBConfig.bannedLabels.contains(label)) {
+            if (GravelsExtendedBattles.CONFIG.allowedLabels.contains(label)) return false
+            if (GravelsExtendedBattles.CONFIG.bannedLabels.contains(label)) {
                 return true
             }
         }

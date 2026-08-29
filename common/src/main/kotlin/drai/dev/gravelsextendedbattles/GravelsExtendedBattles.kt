@@ -13,7 +13,9 @@ import com.cobblemon.mod.common.client.CobblemonPack
 import com.cobblemon.mod.common.data.StarterDataLoader
 import dev.architectury.injectables.annotations.ExpectPlatform
 import drai.dev.gravelsextendedbattles.additions.status.GravelmonStatus
+import drai.dev.gravelsextendedbattles.additions.types.GravelmonElementalTypes
 import drai.dev.gravelsextendedbattles.config.GEBConfig
+
 import drai.dev.gravelsextendedbattles.data.GEBDataProvider
 import drai.dev.gravelsextendedbattles.fossils.GEBLootPoolManager
 import drai.dev.gravelsextendedbattles.mixin.accessors.PokemonSpeciesAccessor
@@ -43,7 +45,7 @@ object GravelsExtendedBattles {
     @JvmField
     val LOGGER: Logger = LogManager.getLogger()
     @JvmField
-    val CONFIG: GEBConfig = GEBConfig
+    val CONFIG: GEBConfig = GEBConfig()
     @JvmField
     val fossils: MutableMap<ResourceLocation, Fossil> = HashMap()
 
@@ -61,6 +63,7 @@ object GravelsExtendedBattles {
 
         registerCobblemonEventHooks()
         registerItems()
+        registerVillagerTrades()
     }
 
     private fun registerCobblemonEventHooks() {
@@ -103,7 +106,7 @@ object GravelsExtendedBattles {
         val pokemonSpecies = PokemonSpecies
         val dexes = Dexes
 
-        if (CONFIG.resortPokedexInEvolutionOrder) {
+        if (CONFIG.enableDexResort) {
             GravelmonPokedexResorter.resort(pokemonSpecies)
         }
 
@@ -116,11 +119,13 @@ object GravelsExtendedBattles {
     }
 
     @ExpectPlatform
+    @JvmStatic
     fun registerVillagerTrades() {
         throw AssertionError()
     }
 
     @ExpectPlatform
+    @JvmStatic
     fun registerItems() {
         throw AssertionError()
     }

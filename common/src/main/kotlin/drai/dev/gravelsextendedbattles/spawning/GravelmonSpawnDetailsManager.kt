@@ -5,11 +5,9 @@ import com.cobblemon.mod.common.api.pokemon.PokemonSpecies
 import com.cobblemon.mod.common.api.spawning.detail.PokemonSpawnDetail
 import drai.dev.gravelsextendedbattles.BanListManager
 import drai.dev.gravelsextendedbattles.GravelsExtendedBattles
-import drai.dev.gravelsextendedbattles.config.GEBConfig
 import drai.dev.gravelsextendedbattles.config.SpawnModifier
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable
 import java.util.function.Consumer
-import java.util.logging.Level
 
 object GravelmonSpawnDetailsManager {
     private var notSuppressedYet = true
@@ -28,7 +26,7 @@ object GravelmonSpawnDetailsManager {
     private fun getBoostsForSpecies(properties: PokemonProperties): MutableList<SpawnModifier> {
         val labels = getLabelsFromProperties(properties)
         if (labels.isEmpty()) return mutableListOf()
-        return ArrayList(GEBConfig.spawnModifiers.stream()
+        return ArrayList(GravelsExtendedBattles.CONFIG.spawnModifiers.stream()
             .filter { spawnModifier -> labels.contains(spawnModifier.label) }.toList())
     }
 
