@@ -13,14 +13,12 @@ import com.cobblemon.mod.common.client.CobblemonPack
 import com.cobblemon.mod.common.data.StarterDataLoader
 import dev.architectury.injectables.annotations.ExpectPlatform
 import drai.dev.gravelsextendedbattles.additions.status.GravelmonStatus
-import drai.dev.gravelsextendedbattles.additions.types.GravelmonElementalTypes
 import drai.dev.gravelsextendedbattles.config.GEBConfig
 
 import drai.dev.gravelsextendedbattles.data.GEBDataProvider
 import drai.dev.gravelsextendedbattles.fossils.GEBLootPoolManager
 import drai.dev.gravelsextendedbattles.mixin.accessors.PokemonSpeciesAccessor
 import drai.dev.gravelsextendedbattles.pokedex.GravelmonPokedexResorter
-import drai.dev.gravelsextendedbattles.registries.GEBItems
 import drai.dev.gravelsextendedbattles.starters.GravelmonStarterManager
 import eu.midnightdust.lib.config.MidnightConfig
 import net.minecraft.advancements.critereon.ItemPredicate
@@ -40,8 +38,7 @@ import kotlin.collections.HashMap
 object GravelsExtendedBattles {
     private var speciesFinished: Boolean = false
     private var dexesFinished: Boolean = false
-    @JvmField
-    val MODID = "gravels_extended_battles"
+    const val MOD_ID = "gravels_extended_battles"
     @JvmField
     val LOGGER: Logger = LogManager.getLogger()
     @JvmField

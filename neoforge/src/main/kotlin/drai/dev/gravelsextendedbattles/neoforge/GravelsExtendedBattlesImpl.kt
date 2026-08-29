@@ -45,7 +45,7 @@ object GravelsExtendedBattlesImpl {
     }
 
     fun onAddPackFindersEvent(event: AddPackFindersEvent) {
-        val modFile = ModList.get().getModContainerById(GravelsExtendedBattles.MODID).get().modInfo
+        val modFile = ModList.get().getModContainerById(GravelsExtendedBattles.MOD_ID).get().modInfo
         GravelsExtendedBattles.builtinPacks
             .filter { it.packType == event.packType }
             .forEach {

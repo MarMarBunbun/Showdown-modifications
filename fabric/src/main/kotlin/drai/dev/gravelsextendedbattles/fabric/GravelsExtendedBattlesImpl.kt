@@ -36,7 +36,7 @@ object GravelsExtendedBattlesImpl: ModInitializer {
     override fun onInitialize() {
         GravelsExtendedBattles.initialize()
         GravelsExtendedBattles.builtinPacks.forEach {
-            val mod = FabricLoader.getInstance().getModContainer(GravelsExtendedBattles.MODID).get()
+            val mod = FabricLoader.getInstance().getModContainer(GravelsExtendedBattles.MOD_ID).get()
             val resourcePackActivationType = when (it.activationBehaviour) {
                 ResourcePackActivationBehaviour.NORMAL -> ResourcePackActivationType.NORMAL
                 ResourcePackActivationBehaviour.DEFAULT_ENABLED -> ResourcePackActivationType.DEFAULT_ENABLED
@@ -46,6 +46,7 @@ object GravelsExtendedBattlesImpl: ModInitializer {
             val subPath = "${ if (it.packType == PackType.CLIENT_RESOURCES) "resourcepacks" else "datapacks" }/${id.path}"
             ResourceManagerHelperImpl.registerBuiltinResourcePack(id, subPath, mod, it.displayName, resourcePackActivationType)
         }
+        GEBCreativeTabs.initCreativeTabs()
     }
 
     @JvmStatic

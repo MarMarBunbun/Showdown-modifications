@@ -22,6 +22,7 @@
     "ShowdownThreadMixin",
     "SpeciesMixin",
     "TeraTypesMixin",
+    "accessors.CobblemonBlocksAccessor",
     "accessors.FormDataAccessor",
     "accessors.LevelRequirementAccessor",
     "accessors.LootItemAccessor",
