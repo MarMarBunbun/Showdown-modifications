@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cross",
+  "ambientocclusion": false,
+  "gui_light": "front",
+  "textures": {
+    "cross": "gravelmon:block/type_gems/large_blood_gem_bud"
+  }
+}

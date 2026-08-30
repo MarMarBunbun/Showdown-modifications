@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "cobblemon:block/type_gems/bug_gem_block"
+    }
+  }
+}

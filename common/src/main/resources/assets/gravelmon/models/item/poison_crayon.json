@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "gravelmon:item/crayons/poison_crayon"
-  }
-}

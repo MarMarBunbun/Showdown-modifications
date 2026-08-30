@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "gravelmon:block/type_gems/slime_gem_block"
+  }
+}
