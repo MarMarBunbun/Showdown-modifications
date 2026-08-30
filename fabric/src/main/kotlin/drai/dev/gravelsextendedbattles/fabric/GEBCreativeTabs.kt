@@ -35,6 +35,44 @@ object GEBCreativeTabs {
                 ItemStack(CobblemonItems.FAIRY_GEM),
                 GEBItems.gems.map { ItemStack(it) }
             )
+
+            event.addAfter(
+                ItemStack(CobblemonItems.TYPE_GEM_CLUSTER_FAIRY),
+                listOf(
+                    GEBItems.BLOOD_GEM_CLUSTER,
+                    GEBItems.COSMIC_GEM_CLUSTER,
+                    GEBItems.CRYSTAL_GEM_CLUSTER,
+                    GEBItems.DIGITAL_GEM_CLUSTER,
+                    GEBItems.ELDRITCH_GEM_CLUSTER,
+                    GEBItems.LIGHT_GEM_CLUSTER,
+                    GEBItems.MYSTERY_GEM_CLUSTER,
+                    GEBItems.NUCLEAR_GEM_CLUSTER,
+                    GEBItems.PLASTIC_GEM_CLUSTER,
+                    GEBItems.SHADOW_GEM_CLUSTER,
+                    GEBItems.SLIME_GEM_CLUSTER,
+                    GEBItems.SOUND_GEM_CLUSTER,
+                    GEBItems.WIND_GEM_CLUSTER
+                ).map { ItemStack(it) }
+            )
+
+            event.addAfter(
+                ItemStack(CobblemonItems.TYPE_GEM_CLUSTER_FAIRY),
+                listOf(
+                    GEBItems.BLOOD_GEM_BLOCK,
+                    GEBItems.COSMIC_GEM_BLOCK,
+                    GEBItems.CRYSTAL_GEM_BLOCK,
+                    GEBItems.DIGITAL_GEM_BLOCK,
+                    GEBItems.ELDRITCH_GEM_BLOCK,
+                    GEBItems.LIGHT_GEM_BLOCK,
+                    GEBItems.MYSTERY_GEM_BLOCK,
+                    GEBItems.NUCLEAR_GEM_BLOCK,
+                    GEBItems.PLASTIC_GEM_BLOCK,
+                    GEBItems.SHADOW_GEM_BLOCK,
+                    GEBItems.SLIME_GEM_BLOCK,
+                    GEBItems.SOUND_GEM_BLOCK,
+                    GEBItems.WIND_GEM_BLOCK
+                ).map { ItemStack(it) }
+            )
         }
 
         ItemGroupEvents.modifyEntriesEvent(CONSUMABLES_KEY).register { event ->

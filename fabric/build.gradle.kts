@@ -19,6 +19,14 @@ loom {
 }
 val shadowCommon: Configuration = configurations.maybeCreate("shadowCommon")
 
+val generatedResources = file("src/generated/resources")
+
+sourceSets.main {
+    resources {
+        srcDir(generatedResources)
+    }
+}
+
 dependencies {
     minecraft("com.mojang:minecraft:${property("minecraft_version")}")
     mappings(loom.officialMojangMappings())
@@ -51,7 +59,11 @@ dependencies {
         )
     }
 }
-
+fabricApi {
+    configureDataGeneration() {
+        client = true
+    }
+}
 tasks {
     test {
         useJUnitPlatform()

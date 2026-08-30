@@ -78,6 +78,10 @@ object SpeciesManager {
                 }
             }
         }
+        if(species.primaryType == species.secondaryType) {
+            val speciesAccessor = species as SpeciesAccessor
+            speciesAccessor.setSecondaryType(null)
+        }
         species.forms.forEach { formData ->
             if (implementedTypes.none { it.equals(formData.primaryType.name, ignoreCase = true) }) {
                 val type = Type.getByName(formData.primaryType.name)
@@ -106,6 +110,10 @@ object SpeciesManager {
                         }
                     }
                 }
+            }
+            if (formData.primaryType == formData.secondaryType) {
+                val formDataAccessor = formData as FormDataAccessor
+                formDataAccessor.setSecondaryType(null)
             }
         }
     }

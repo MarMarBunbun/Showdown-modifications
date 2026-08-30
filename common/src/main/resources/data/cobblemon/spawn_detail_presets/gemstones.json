@@ -1,0 +1,7 @@
+{
+  "condition": {
+    "neededNearbyBlocks": [
+      "#cobblemon:gemstones"
+    ]
+  }
+}

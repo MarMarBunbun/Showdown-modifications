@@ -1,0 +1,17 @@
+{
+  "item": "gravels_extended_battles:touga_berry",
+  "effects": [
+    {
+      "type": "cobblemon:egg_group",
+      "chance": 1.00,
+      "value": 10.0,
+      "subcategory": "ice"
+    },
+    {
+      "type": "cobblemon:egg_group",
+      "chance": 1.00,
+      "value": 10.0,
+      "subcategory": "water_1"
+    }
+  ]
+}

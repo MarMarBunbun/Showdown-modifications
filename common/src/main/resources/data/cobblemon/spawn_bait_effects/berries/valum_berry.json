@@ -1,0 +1,11 @@
+{
+  "item": "gravels_extended_battles:valum_berry",
+  "effects": [
+    {
+      "type": "cobblemon:typing",
+      "subcategory": "digital",
+      "chance": 1.0,
+      "value": 10.0
+    }
+  ]
+}

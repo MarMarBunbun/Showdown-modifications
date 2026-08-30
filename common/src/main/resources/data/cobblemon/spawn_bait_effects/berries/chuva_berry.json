@@ -1,0 +1,11 @@
+{
+  "item": "gravels_extended_battles:chuva_berry",
+  "effects": [
+    {
+      "type": "cobblemon:typing",
+      "subcategory": "eldritch",
+      "chance": 1.0,
+      "value": 10.0
+    }
+  ]
+}

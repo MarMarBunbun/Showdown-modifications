@@ -16,6 +16,12 @@
         "value": "drai.dev.gravelsextendedbattles.fabric.GravelsExtendedBattlesImpl",
         "adapter": "kotlin"
       }
+    ],
+    "fabric-datagen": [
+      {
+        "value": "drai.dev.gravelsextendedbattles.data.GEBFabricDataGenerator",
+        "adapter": "kotlin"
+      }
     ]
   },
   "mixins": [

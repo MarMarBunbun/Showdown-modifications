@@ -15,6 +15,9 @@ import com.cobblemon.mod.common.client.CobblemonPack
 import com.cobblemon.mod.common.data.StarterDataLoader
 import dev.architectury.injectables.annotations.ExpectPlatform
 import drai.dev.gravelsextendedbattles.additions.evolutions.AdditionalEvolutions
+import drai.dev.gravelsextendedbattles.additions.moves.addition.MoveAdditions
+import drai.dev.gravelsextendedbattles.additions.moves.substitution.MoveSubstitution
+import drai.dev.gravelsextendedbattles.additions.moves.substitution.MoveSubstitutions
 import drai.dev.gravelsextendedbattles.additions.status.GravelmonStatus
 import drai.dev.gravelsextendedbattles.additions.types.TypeChanges
 import drai.dev.gravelsextendedbattles.config.GEBConfig
@@ -69,18 +72,7 @@ object GravelsExtendedBattles {
     }
 
     private fun registerCobblemonEventHooks() {
-        PokemonSpecies.observable.subscribe(Priority.LOWEST) {
-            speciesFinished = true
-            applyGravelmonExtensions()
-        }
-        PokemonSpecies.observable.subscribe(Priority.LOWEST) {
-            AdditionalEvolutions.speciesFinished = true
-            AdditionalEvolutions.applyAdditionalEvolutions()
-        }
-        PokemonSpecies.observable.subscribe(Priority.LOWEST) {
-            TypeChanges.speciesFinished = true
-            TypeChanges.applyTypeChanges()
-        }
+        pokemonSpeciesHooks()
         Dexes.observable.subscribe(Priority.LOWEST) {
             dexesFinished = true
             applyGravelmonExtensions()
@@ -112,6 +104,29 @@ object GravelsExtendedBattles {
         CobblemonEvents.EVOLUTION_COMPLETE.subscribe(Priority.NORMAL) { evolutionCompleteEvent: EvolutionCompleteEvent? ->
             if (evolutionCompleteEvent!!.component1().hasLabels("digimon")) evolutionCompleteEvent.component1()
                 .initializeMoveset(true)
+        }
+    }
+
+    private fun pokemonSpeciesHooks() {
+        PokemonSpecies.observable.subscribe(Priority.LOWEST) {
+            speciesFinished = true
+            applyGravelmonExtensions()
+        }
+        PokemonSpecies.observable.subscribe(Priority.LOWEST) {
+            AdditionalEvolutions.speciesFinished = true
+            AdditionalEvolutions.applyAdditionalEvolutions()
+        }
+        PokemonSpecies.observable.subscribe(Priority.LOWEST) {
+            TypeChanges.speciesFinished = true
+            TypeChanges.applyTypeChanges()
+        }
+        PokemonSpecies.observable.subscribe(Priority.LOWEST) {
+            MoveAdditions.speciesFinished = true
+            MoveAdditions.applyMoveAdditions()
+        }
+        PokemonSpecies.observable.subscribe(Priority.LOWEST) {
+            MoveSubstitutions.speciesFinished = true
+            MoveSubstitutions.applyMoveSubstitutions()
         }
     }
 

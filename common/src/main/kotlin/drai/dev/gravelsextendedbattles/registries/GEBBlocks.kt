@@ -21,6 +21,8 @@ import net.minecraft.world.level.material.PushReaction
 import kotlin.collections.set
 
 object GEBBlocks : PlatformRegistry<Registry<Block>, ResourceKey<Registry<Block>>, Block>() {
+    val typeGemClusters = mutableMapOf<ResourceLocation, Block>()
+    val typeGemBlocks = mutableMapOf<ResourceLocation, Block>()
     override val registry: Registry<Block> = BuiltInRegistries.BLOCK
     override val resourceKey: ResourceKey<Registry<Block>> = Registries.BLOCK
 
@@ -58,6 +60,7 @@ object GEBBlocks : PlatformRegistry<Registry<Block>, ResourceKey<Registry<Block>
         val resourceLocation = gravelmonResource(name)
         val typeGemBlock = this.create(resourceLocation, Block(BlockBehaviour.Properties.of().mapColor(mapColor).strength(3.0F, 6.0F).sound(CobblemonSounds.TYPE_GEM_BLOCK_SOUNDS)))
 
+        typeGemBlocks[resourceLocation] = typeGemBlock
         (CobblemonBlocks as CobblemonBlocksAccessor).typeGemBlocks[resourceLocation] = typeGemBlock
 
         return typeGemBlock
@@ -67,8 +70,10 @@ object GEBBlocks : PlatformRegistry<Registry<Block>, ResourceKey<Registry<Block>
         val resourceLocation = gravelmonResource(name)
         val gemClusterBlock = this.create(resourceLocation, TypeGemClusterBlock(BlockBehaviour.Properties.of().mapColor(mapColor).strength(2.0F, 3.0F).sound(CobblemonSounds.TYPE_GEM_CLUSTER_SOUNDS).pushReaction(PushReaction.DESTROY), gemBlock, dropItemId))
 
+
         TypeGemClusterBlock.gemToClusterMap[gemBlock] = gemClusterBlock
 
+        typeGemBlocks[resourceLocation] = gemClusterBlock
         (CobblemonBlocks as CobblemonBlocksAccessor).typeGemClusters[resourceLocation] = gemClusterBlock
 
         return gemClusterBlock

@@ -1,0 +1,11 @@
+{
+  "item": "gravelmon:hafli_berry",
+  "effects": [
+    {
+      "type": "cobblemon:typing",
+      "subcategory": "nuclear",
+      "chance": 1.0,
+      "value": 10.0
+    }
+  ]
+}

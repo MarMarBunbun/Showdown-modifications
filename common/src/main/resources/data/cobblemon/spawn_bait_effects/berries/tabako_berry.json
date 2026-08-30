@@ -1,0 +1,11 @@
+{
+  "item": "gravels_extended_battles:tabako_berry",
+  "effects": [
+    {
+      "type": "cobblemon:typing",
+      "subcategory": "plastic",
+      "chance": 1.0,
+      "value": 10.0
+    }
+  ]
+}

@@ -1,5 +1,7 @@
 package drai.dev.gravelsextendedbattles.registries
 
+import com.cobblemon.mod.common.CobblemonBlocks
+import com.cobblemon.mod.common.CobblemonItems
 import com.cobblemon.mod.common.api.moves.Moves
 import com.cobblemon.mod.common.item.interactive.StatusCureItem
 import com.cobblemon.mod.common.platform.PlatformRegistry
@@ -17,7 +19,10 @@ import net.minecraft.core.Registry
 import net.minecraft.core.registries.BuiltInRegistries
 import net.minecraft.core.registries.Registries
 import net.minecraft.resources.ResourceKey
+import net.minecraft.world.item.BlockItem
 import net.minecraft.world.item.Item
+import net.minecraft.world.item.Rarity
+import net.minecraft.world.level.block.Block
 
 object GEBItems : PlatformRegistry<Registry<Item>, ResourceKey<Registry<Item>>, Item>() {
     private val teraShardsByType = mutableMapOf<String, Item>()
@@ -38,6 +43,34 @@ object GEBItems : PlatformRegistry<Registry<Item>, ResourceKey<Registry<Item>>, 
     val SLIME_GEM = registerGemItem("slime_gem", "rooted_arch_ruins", "decaying_crypt_ruins")
     val SOUND_GEM = registerGemItem("sound_gem", "toppled_pillars_ruins", "fallen_statue_ruins", "decaying_crypt_ruins")
     val WIND_GEM = registerGemItem("wind_gem", "toppled_pillars_ruins", "fallen_statue_ruins")
+
+    val BLOOD_GEM_BLOCK = blockItem("blood_gem_block", GEBBlocks.BLOOD_GEM_BLOCK)
+    val COSMIC_GEM_BLOCK = blockItem("cosmic_gem_block", GEBBlocks.COSMIC_GEM_BLOCK)
+    val CRYSTAL_GEM_BLOCK = blockItem("crystal_gem_block", GEBBlocks.CRYSTAL_GEM_BLOCK)
+    val DIGITAL_GEM_BLOCK = blockItem("digital_gem_block", GEBBlocks.DIGITAL_GEM_BLOCK)
+    val ELDRITCH_GEM_BLOCK = blockItem("eldritch_gem_block", GEBBlocks.ELDRITCH_GEM_BLOCK)
+    val LIGHT_GEM_BLOCK = blockItem("light_gem_block", GEBBlocks.LIGHT_GEM_BLOCK)
+    val MYSTERY_GEM_BLOCK = blockItem("mystery_gem_block", GEBBlocks.MYSTERY_GEM_BLOCK)
+    val NUCLEAR_GEM_BLOCK = blockItem("nuclear_gem_block", GEBBlocks.NUCLEAR_GEM_BLOCK)
+    val PLASTIC_GEM_BLOCK = blockItem("plastic_gem_block", GEBBlocks.PLASTIC_GEM_BLOCK)
+    val SHADOW_GEM_BLOCK = blockItem("shadow_gem_block", GEBBlocks.SHADOW_GEM_BLOCK)
+    val SLIME_GEM_BLOCK = blockItem("slime_gem_block", GEBBlocks.SLIME_GEM_BLOCK)
+    val SOUND_GEM_BLOCK = blockItem("sound_gem_block", GEBBlocks.SOUND_GEM_BLOCK)
+    val WIND_GEM_BLOCK = blockItem("wind_gem_block", GEBBlocks.WIND_GEM_BLOCK)
+
+    val BLOOD_GEM_CLUSTER = blockItem("blood_gem_cluster", GEBBlocks.BLOOD_GEM_CLUSTER)
+    val COSMIC_GEM_CLUSTER = blockItem("cosmic_gem_cluster", GEBBlocks.COSMIC_GEM_CLUSTER)
+    val CRYSTAL_GEM_CLUSTER = blockItem("crystal_gem_cluster", GEBBlocks.CRYSTAL_GEM_CLUSTER)
+    val DIGITAL_GEM_CLUSTER = blockItem("digital_gem_cluster", GEBBlocks.DIGITAL_GEM_CLUSTER)
+    val ELDRITCH_GEM_CLUSTER = blockItem("eldritch_gem_cluster", GEBBlocks.ELDRITCH_GEM_CLUSTER)
+    val LIGHT_GEM_CLUSTER = blockItem("light_gem_cluster", GEBBlocks.LIGHT_GEM_CLUSTER)
+    val MYSTERY_GEM_CLUSTER = blockItem("mystery_gem_cluster", GEBBlocks.MYSTERY_GEM_CLUSTER)
+    val NUCLEAR_GEM_CLUSTER = blockItem("nuclear_gem_cluster", GEBBlocks.NUCLEAR_GEM_CLUSTER)
+    val PLASTIC_GEM_CLUSTER = blockItem("plastic_gem_cluster", GEBBlocks.PLASTIC_GEM_CLUSTER)
+    val SHADOW_GEM_CLUSTER = blockItem("shadow_gem_cluster", GEBBlocks.SHADOW_GEM_CLUSTER)
+    val SLIME_GEM_CLUSTER = blockItem("slime_gem_cluster", GEBBlocks.SLIME_GEM_CLUSTER)
+    val SOUND_GEM_CLUSTER = blockItem("sound_gem_cluster", GEBBlocks.SOUND_GEM_CLUSTER)
+    val WIND_GEM_CLUSTER = blockItem("wind_gem_cluster", GEBBlocks.WIND_GEM_CLUSTER)
 
     val plates = mutableSetOf<Item>()
     val BLOOD_PLATE = registerPlateItem("ichor_plate", "blood")
@@ -160,4 +193,7 @@ object GEBItems : PlatformRegistry<Registry<Item>, ResourceKey<Registry<Item>>, 
     private fun heldItem(name: String, item: Item): Item = create(gravelmonResource(name), item).also {
         CobblemonHeldItemManager.registerRemap(it, name.lowercase().replace("_",""))
     }
+
+    private fun blockItem(name: String, block: Block, rarity: Rarity = Rarity.COMMON): BlockItem = this.create(gravelmonResource(name), BlockItem(block, Item.Properties().rarity(rarity)))
+
 }

@@ -1,0 +1,8 @@
+{
+  "condition": {
+    "neededNearbyBlocks": [
+      "minecraft:beehive",
+      "minecraft:bee_nest"
+    ]
+  }
+}
