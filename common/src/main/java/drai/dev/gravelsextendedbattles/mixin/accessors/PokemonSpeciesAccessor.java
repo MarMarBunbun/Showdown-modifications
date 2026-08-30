@@ -13,8 +13,12 @@ import java.util.*;
 @Mixin(PokemonSpecies.class)
 public interface PokemonSpeciesAccessor {
     @Accessor
-    HashBasedTable<String, Integer, Species> getSpeciesByDex();
+    static HashBasedTable<String, Integer, Species> getSpeciesByDex() {
+        throw new UnsupportedOperationException("Mixin accessor stub");
+    }
 
     @Accessor
-    HashMap<ResourceLocation, Species> getSpeciesByIdentifier();
+    static HashMap<ResourceLocation, Species> getSpeciesByIdentifier() {
+        throw new UnsupportedOperationException("Mixin accessor stub");
+    }
 }

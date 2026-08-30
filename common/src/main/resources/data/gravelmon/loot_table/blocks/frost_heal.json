@@ -53,12 +53,11 @@
               "function": "minecraft:explosion_decay"
             }
           ],
-          "name": "gravelmon:frost_heal",
-
+          "name": "gravelmon:frost_heal"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "cobblemon:blocks/frost_heal"
+  "random_sequence": "gravelmon:blocks/frost_heal"
 }

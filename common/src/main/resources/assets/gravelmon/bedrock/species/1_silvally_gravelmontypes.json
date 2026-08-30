@@ -10,7 +10,7 @@
                 {
                     "name": "emissive",
                     
-                    "texture": "gravels_extended_battles:textures/pokemon/0773_silvally/silvally_emmisive_blood.png"
+                    "texture": "gravelmon:textures/pokemon/0773_silvally/silvally_emmisive_blood.png"
               }
             ] 
         },
@@ -22,7 +22,7 @@
                 {
                     "name": "emissive",
 
-                    "texture": "gravels_extended_battles:textures/pokemon/0773_silvally/silvally_emmisive_cosmic.png"
+                    "texture": "gravelmon:textures/pokemon/0773_silvally/silvally_emmisive_cosmic.png"
               }
             ]
         },
@@ -34,7 +34,7 @@
                 {
                     "name": "emissive",
 
-                    "texture": "gravels_extended_battles:textures/pokemon/0773_silvally/silvally_emmisive_crystal.png"
+                    "texture": "gravelmon:textures/pokemon/0773_silvally/silvally_emmisive_crystal.png"
               }
             ]
         },
@@ -46,7 +46,7 @@
                 {
                     "name": "emissive",
 
-                    "texture": "gravels_extended_battles:textures/pokemon/0773_silvally/silvally_emmisive_digital.png"
+                    "texture": "gravelmon:textures/pokemon/0773_silvally/silvally_emmisive_digital.png"
               }
             ]
         },
@@ -58,7 +58,7 @@
                 {
                     "name": "emissive",
 
-                    "texture": "gravels_extended_battles:textures/pokemon/0773_silvally/silvally_emmisive_eldritch.png"
+                    "texture": "gravelmon:textures/pokemon/0773_silvally/silvally_emmisive_eldritch.png"
               }
             ]
         },
@@ -70,7 +70,7 @@
                 {
                     "name": "emissive",
 
-                    "texture": "gravels_extended_battles:textures/pokemon/0773_silvally/silvally_emmisive_mystery.png"
+                    "texture": "gravelmon:textures/pokemon/0773_silvally/silvally_emmisive_mystery.png"
               }
             ]
         },
@@ -82,7 +82,7 @@
                 {
                     "name": "emissive",
 
-                    "texture": "gravels_extended_battles:textures/pokemon/0773_silvally/silvally_emmisive_light.png"
+                    "texture": "gravelmon:textures/pokemon/0773_silvally/silvally_emmisive_light.png"
               }
             ]
         },
@@ -94,7 +94,7 @@
                 {
                     "name": "emissive",
 
-                    "texture": "gravels_extended_battles:textures/pokemon/0773_silvally/silvally_emmisive_nuclear.png"
+                    "texture": "gravelmon:textures/pokemon/0773_silvally/silvally_emmisive_nuclear.png"
               }
             ]
         },
@@ -106,7 +106,7 @@
                 {
                     "name": "emissive",
 
-                    "texture": "gravels_extended_battles:textures/pokemon/0773_silvally/silvally_emmisive_plastic.png"
+                    "texture": "gravelmon:textures/pokemon/0773_silvally/silvally_emmisive_plastic.png"
               }
             ]
         },
@@ -118,7 +118,7 @@
                 {
                     "name": "emissive",
 
-                    "texture": "gravels_extended_battles:textures/pokemon/0773_silvally/silvally_emmisive_shadow.png"
+                    "texture": "gravelmon:textures/pokemon/0773_silvally/silvally_emmisive_shadow.png"
               }
             ]
         },
@@ -130,7 +130,7 @@
                 {
                     "name": "emissive",
 
-                    "texture": "gravels_extended_battles:textures/pokemon/0773_silvally/silvally_emmisive_slime.png"
+                    "texture": "gravelmon:textures/pokemon/0773_silvally/silvally_emmisive_slime.png"
               }
             ]
         },
@@ -142,7 +142,7 @@
                 {
                     "name": "emissive",
 
-                    "texture": "gravels_extended_battles:textures/pokemon/0773_silvally/silvally_emmisive_sound.png"
+                    "texture": "gravelmon:textures/pokemon/0773_silvally/silvally_emmisive_sound.png"
               }
             ]
         },
@@ -154,7 +154,7 @@
                 {
                     "name": "emissive",
 
-                    "texture": "gravels_extended_battles:textures/pokemon/0773_silvally/silvally_emmisive_wind.png"
+                    "texture": "gravelmon:textures/pokemon/0773_silvally/silvally_emmisive_wind.png"
               }
             ]
         }

@@ -11,7 +11,7 @@ import org.apache.commons.lang3.math.NumberUtils
 object MoveManager {
     fun processFormEvolutionAdditions(moveSubstitutions: MutableSet<MoveSubstitution>) {
         val moveSubstitutionsByTemplate: Map<MoveTemplate?, List<MoveSubstitution>> = moveSubstitutions.filter { it.shouldSubstitute() }.groupBy { it.oldMoveTemplate }
-        (PokemonSpecies as PokemonSpeciesAccessor).speciesByIdentifier.values.flatMap { it.forms }.forEach { pokemon ->
+        PokemonSpeciesAccessor.getSpeciesByIdentifier().values.flatMap { it.forms }.forEach { pokemon ->
             substituteMoves(moveSubstitutionsByTemplate, pokemon.moves.tmMoves)
             substituteMoves(moveSubstitutionsByTemplate, pokemon.moves.eggMoves)
             substituteMoves(moveSubstitutionsByTemplate, pokemon.moves.tutorMoves)

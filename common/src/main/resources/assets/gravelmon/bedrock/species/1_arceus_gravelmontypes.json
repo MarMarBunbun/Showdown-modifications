@@ -6,11 +6,11 @@
       "aspects": [
         "blood-plate"
       ],
-      "texture": "gravels_extended_battles:textures/pokemon/0493_arceus/arceus_blood.png",
+      "texture": "gravelmon:textures/pokemon/0493_arceus/arceus_blood.png",
       "layers": [
         {
           "name": "emissive",
-          "texture": "gravels_extended_battles:textures/pokemon/0493_arceus/arceus_emmisive_blood.png",
+          "texture": "gravelmon:textures/pokemon/0493_arceus/arceus_emmisive_blood.png",
           "emissive": true
         }
       ]
@@ -19,11 +19,11 @@
       "aspects": [
         "cosmic-plate"
       ],
-      "texture": "gravels_extended_battles:textures/pokemon/0493_arceus/arceus_cosmic.png",
+      "texture": "gravelmon:textures/pokemon/0493_arceus/arceus_cosmic.png",
       "layers": [
         {
           "name": "emissive",
-          "texture": "gravels_extended_battles:textures/pokemon/0493_arceus/arceus_emmisive_cosmic.png",
+          "texture": "gravelmon:textures/pokemon/0493_arceus/arceus_emmisive_cosmic.png",
           "emissive": true
         }
       ]
@@ -32,11 +32,11 @@
       "aspects": [
         "crystal-plate"
       ],
-      "texture": "gravels_extended_battles:textures/pokemon/0493_arceus/arceus_crystal.png",
+      "texture": "gravelmon:textures/pokemon/0493_arceus/arceus_crystal.png",
       "layers": [
         {
           "name": "emissive",
-          "texture": "gravels_extended_battles:textures/pokemon/0493_arceus/arceus_emmisive_crystal.png",
+          "texture": "gravelmon:textures/pokemon/0493_arceus/arceus_emmisive_crystal.png",
           "emissive": true
         }
       ]
@@ -45,11 +45,11 @@
       "aspects": [
         "digital-plate"
       ],
-      "texture": "gravels_extended_battles:textures/pokemon/0493_arceus/arceus_digital.png",
+      "texture": "gravelmon:textures/pokemon/0493_arceus/arceus_digital.png",
       "layers": [
         {
           "name": "emissive",
-          "texture": "gravels_extended_battles:textures/pokemon/0493_arceus/arceus_emmisive_digital.png",
+          "texture": "gravelmon:textures/pokemon/0493_arceus/arceus_emmisive_digital.png",
           "emissive": true
         }
       ]
@@ -58,11 +58,11 @@
       "aspects": [
         "eldritch-plate"
       ],
-      "texture": "gravels_extended_battles:textures/pokemon/0493_arceus/arceus_eldritch.png",
+      "texture": "gravelmon:textures/pokemon/0493_arceus/arceus_eldritch.png",
       "layers": [
         {
           "name": "emissive",
-          "texture": "gravels_extended_battles:textures/pokemon/0493_arceus/arceus_emmisive_eldritch.png",
+          "texture": "gravelmon:textures/pokemon/0493_arceus/arceus_emmisive_eldritch.png",
           "emissive": true
         }
       ]
@@ -71,11 +71,11 @@
       "aspects": [
         "mystery-plate"
       ],
-      "texture": "gravels_extended_battles:textures/pokemon/0493_arceus/arceus_mystery.png",
+      "texture": "gravelmon:textures/pokemon/0493_arceus/arceus_mystery.png",
       "layers": [
         {
           "name": "emissive",
-          "texture": "gravels_extended_battles:textures/pokemon/0493_arceus/arceus_emmisive_mystery.png",
+          "texture": "gravelmon:textures/pokemon/0493_arceus/arceus_emmisive_mystery.png",
           "emissive": true
         }
       ]
@@ -84,11 +84,11 @@
       "aspects": [
         "light-plate"
       ],
-      "texture": "gravels_extended_battles:textures/pokemon/0493_arceus/arceus_light.png",
+      "texture": "gravelmon:textures/pokemon/0493_arceus/arceus_light.png",
       "layers": [
         {
           "name": "emissive",
-          "texture": "gravels_extended_battles:textures/pokemon/0493_arceus/arceus_emmisive_light.png",
+          "texture": "gravelmon:textures/pokemon/0493_arceus/arceus_emmisive_light.png",
           "emissive": true
         }
       ]
@@ -97,11 +97,11 @@
       "aspects": [
         "nuclear-plate"
       ],
-      "texture": "gravels_extended_battles:textures/pokemon/0493_arceus/arceus_nuclear.png",
+      "texture": "gravelmon:textures/pokemon/0493_arceus/arceus_nuclear.png",
       "layers": [
         {
           "name": "emissive",
-          "texture": "gravels_extended_battles:textures/pokemon/0493_arceus/arceus_emmisive_nuclear.png",
+          "texture": "gravelmon:textures/pokemon/0493_arceus/arceus_emmisive_nuclear.png",
           "emissive": true
         }
       ]
@@ -110,11 +110,11 @@
       "aspects": [
         "plastic-plate"
       ],
-      "texture": "gravels_extended_battles:textures/pokemon/0493_arceus/arceus_plastic.png",
+      "texture": "gravelmon:textures/pokemon/0493_arceus/arceus_plastic.png",
       "layers": [
         {
           "name": "emissive",
-          "texture": "gravels_extended_battles:textures/pokemon/0493_arceus/arceus_emmisive_plastic.png",
+          "texture": "gravelmon:textures/pokemon/0493_arceus/arceus_emmisive_plastic.png",
           "emissive": true
         }
       ]
@@ -123,11 +123,11 @@
       "aspects": [
         "shadow-plate"
       ],
-      "texture": "gravels_extended_battles:textures/pokemon/0493_arceus/arceus_shadow.png",
+      "texture": "gravelmon:textures/pokemon/0493_arceus/arceus_shadow.png",
       "layers": [
         {
           "name": "emissive",
-          "texture": "gravels_extended_battles:textures/pokemon/0493_arceus/arceus_emmisive_shadow.png",
+          "texture": "gravelmon:textures/pokemon/0493_arceus/arceus_emmisive_shadow.png",
           "emissive": true
         }
       ]
@@ -136,11 +136,11 @@
       "aspects": [
         "slime-plate"
       ],
-      "texture": "gravels_extended_battles:textures/pokemon/0493_arceus/arceus_slime.png",
+      "texture": "gravelmon:textures/pokemon/0493_arceus/arceus_slime.png",
       "layers": [
         {
           "name": "emissive",
-          "texture": "gravels_extended_battles:textures/pokemon/0493_arceus/arceus_emmisive_slime.png",
+          "texture": "gravelmon:textures/pokemon/0493_arceus/arceus_emmisive_slime.png",
           "emissive": true
         }
       ]
@@ -149,11 +149,11 @@
       "aspects": [
         "sound-plate"
       ],
-      "texture": "gravels_extended_battles:textures/pokemon/0493_arceus/arceus_sound.png",
+      "texture": "gravelmon:textures/pokemon/0493_arceus/arceus_sound.png",
       "layers": [
         {
           "name": "emissive",
-          "texture": "gravels_extended_battles:textures/pokemon/0493_arceus/arceus_emmisive_sound.png",
+          "texture": "gravelmon:textures/pokemon/0493_arceus/arceus_emmisive_sound.png",
           "emissive": true
         }
       ]
@@ -162,11 +162,11 @@
       "aspects": [
         "wind-plate"
       ],
-      "texture": "gravels_extended_battles:textures/pokemon/0493_arceus/arceus_wind.png",
+      "texture": "gravelmon:textures/pokemon/0493_arceus/arceus_wind.png",
       "layers": [
         {
           "name": "emissive",
-          "texture": "gravels_extended_battles:textures/pokemon/0493_arceus/arceus_emmisive_wind.png",
+          "texture": "gravelmon:textures/pokemon/0493_arceus/arceus_emmisive_wind.png",
           "emissive": true
         }
       ]
@@ -176,11 +176,11 @@
         "blood-plate",
         "shiny"
       ],
-      "texture": "gravels_extended_battles:textures/pokemon/0493_arceus/arceus_blood_shiny.png",
+      "texture": "gravelmon:textures/pokemon/0493_arceus/arceus_blood_shiny.png",
       "layers": [
         {
           "name": "emissive",
-          "texture": "gravels_extended_battles:textures/pokemon/0493_arceus/arceus_emmisive_blood.png",
+          "texture": "gravelmon:textures/pokemon/0493_arceus/arceus_emmisive_blood.png",
           "emissive": true
         }
       ]
@@ -190,11 +190,11 @@
         "cosmic-plate",
         "shiny"
       ],
-      "texture": "gravels_extended_battles:textures/pokemon/0493_arceus/arceus_cosmic_shiny.png",
+      "texture": "gravelmon:textures/pokemon/0493_arceus/arceus_cosmic_shiny.png",
       "layers": [
         {
           "name": "emissive",
-          "texture": "gravels_extended_battles:textures/pokemon/0493_arceus/arceus_emmisive_cosmic.png",
+          "texture": "gravelmon:textures/pokemon/0493_arceus/arceus_emmisive_cosmic.png",
           "emissive": true
         }
       ]
@@ -204,11 +204,11 @@
         "crystal-plate",
         "shiny"
       ],
-      "texture": "gravels_extended_battles:textures/pokemon/0493_arceus/arceus_crystal_shiny.png",
+      "texture": "gravelmon:textures/pokemon/0493_arceus/arceus_crystal_shiny.png",
       "layers": [
         {
           "name": "emissive",
-          "texture": "gravels_extended_battles:textures/pokemon/0493_arceus/arceus_emmisive_crystal.png",
+          "texture": "gravelmon:textures/pokemon/0493_arceus/arceus_emmisive_crystal.png",
           "emissive": true
         }
       ]
@@ -218,11 +218,11 @@
         "digital-plate",
         "shiny"
       ],
-      "texture": "gravels_extended_battles:textures/pokemon/0493_arceus/arceus_digital_shiny.png",
+      "texture": "gravelmon:textures/pokemon/0493_arceus/arceus_digital_shiny.png",
       "layers": [
         {
           "name": "emissive",
-          "texture": "gravels_extended_battles:textures/pokemon/0493_arceus/arceus_emmisive_digital.png",
+          "texture": "gravelmon:textures/pokemon/0493_arceus/arceus_emmisive_digital.png",
           "emissive": true
         }
       ]
@@ -232,11 +232,11 @@
         "eldritch-plate",
         "shiny"
       ],
-      "texture": "gravels_extended_battles:textures/pokemon/0493_arceus/arceus_eldritch_shiny.png",
+      "texture": "gravelmon:textures/pokemon/0493_arceus/arceus_eldritch_shiny.png",
       "layers": [
         {
           "name": "emissive",
-          "texture": "gravels_extended_battles:textures/pokemon/0493_arceus/arceus_emmisive_eldritch.png",
+          "texture": "gravelmon:textures/pokemon/0493_arceus/arceus_emmisive_eldritch.png",
           "emissive": true
         }
       ]
@@ -246,11 +246,11 @@
         "mystery-plate",
         "shiny"
       ],
-      "texture": "gravels_extended_battles:textures/pokemon/0493_arceus/arceus_mystery_shiny.png",
+      "texture": "gravelmon:textures/pokemon/0493_arceus/arceus_mystery_shiny.png",
       "layers": [
         {
           "name": "emissive",
-          "texture": "gravels_extended_battles:textures/pokemon/0493_arceus/arceus_emmisive_mystery.png",
+          "texture": "gravelmon:textures/pokemon/0493_arceus/arceus_emmisive_mystery.png",
           "emissive": true
         }
       ]
@@ -260,11 +260,11 @@
         "light-plate",
         "shiny"
       ],
-      "texture": "gravels_extended_battles:textures/pokemon/0493_arceus/arceus_light_shiny.png",
+      "texture": "gravelmon:textures/pokemon/0493_arceus/arceus_light_shiny.png",
       "layers": [
         {
           "name": "emissive",
-          "texture": "gravels_extended_battles:textures/pokemon/0493_arceus/arceus_emmisive_light.png",
+          "texture": "gravelmon:textures/pokemon/0493_arceus/arceus_emmisive_light.png",
           "emissive": true
         }
       ]
@@ -274,11 +274,11 @@
         "nuclear-plate",
         "shiny"
       ],
-      "texture": "gravels_extended_battles:textures/pokemon/0493_arceus/arceus_nuclear_shiny.png",
+      "texture": "gravelmon:textures/pokemon/0493_arceus/arceus_nuclear_shiny.png",
       "layers": [
         {
           "name": "emissive",
-          "texture": "gravels_extended_battles:textures/pokemon/0493_arceus/arceus_emmisive_nuclear.png",
+          "texture": "gravelmon:textures/pokemon/0493_arceus/arceus_emmisive_nuclear.png",
           "emissive": true
         }
       ]
@@ -288,11 +288,11 @@
         "plastic-plate",
         "shiny"
       ],
-      "texture": "gravels_extended_battles:textures/pokemon/0493_arceus/arceus_plastic_shiny.png",
+      "texture": "gravelmon:textures/pokemon/0493_arceus/arceus_plastic_shiny.png",
       "layers": [
         {
           "name": "emissive",
-          "texture": "gravels_extended_battles:textures/pokemon/0493_arceus/arceus_emmisive_plastic.png",
+          "texture": "gravelmon:textures/pokemon/0493_arceus/arceus_emmisive_plastic.png",
           "emissive": true
         }
       ]
@@ -302,11 +302,11 @@
         "shadow-plate",
         "shiny"
       ],
-      "texture": "gravels_extended_battles:textures/pokemon/0493_arceus/arceus_shadow_shiny.png",
+      "texture": "gravelmon:textures/pokemon/0493_arceus/arceus_shadow_shiny.png",
       "layers": [
         {
           "name": "emissive",
-          "texture": "gravels_extended_battles:textures/pokemon/0493_arceus/arceus_emmisive_shadow.png",
+          "texture": "gravelmon:textures/pokemon/0493_arceus/arceus_emmisive_shadow.png",
           "emissive": true
         }
       ]
@@ -316,11 +316,11 @@
         "slime-plate",
         "shiny"
       ],
-      "texture": "gravels_extended_battles:textures/pokemon/0493_arceus/arceus_slime_shiny.png",
+      "texture": "gravelmon:textures/pokemon/0493_arceus/arceus_slime_shiny.png",
       "layers": [
         {
           "name": "emissive",
-          "texture": "gravels_extended_battles:textures/pokemon/0493_arceus/arceus_emmisive_slime.png",
+          "texture": "gravelmon:textures/pokemon/0493_arceus/arceus_emmisive_slime.png",
           "emissive": true
         }
       ]
@@ -330,11 +330,11 @@
         "sound-plate",
         "shiny"
       ],
-      "texture": "gravels_extended_battles:textures/pokemon/0493_arceus/arceus_sound_shiny.png",
+      "texture": "gravelmon:textures/pokemon/0493_arceus/arceus_sound_shiny.png",
       "layers": [
         {
           "name": "emissive",
-          "texture": "gravels_extended_battles:textures/pokemon/0493_arceus/arceus_emmisive_sound.png",
+          "texture": "gravelmon:textures/pokemon/0493_arceus/arceus_emmisive_sound.png",
           "emissive": true
         }
       ]
@@ -344,11 +344,11 @@
         "wind-plate",
         "shiny"
       ],
-      "texture": "gravels_extended_battles:textures/pokemon/0493_arceus/arceus_wind_shiny.png",
+      "texture": "gravelmon:textures/pokemon/0493_arceus/arceus_wind_shiny.png",
       "layers": [
         {
           "name": "emissive",
-          "texture": "gravels_extended_battles:textures/pokemon/0493_arceus/arceus_emmisive_wind.png",
+          "texture": "gravelmon:textures/pokemon/0493_arceus/arceus_emmisive_wind.png",
           "emissive": true
         }
       ]

@@ -30,8 +30,7 @@ object SpeciesManager {
     fun processTypeChanges(typeChanges: Collection<TypeChange>) {
         applyIndividualTypeChanges(typeChanges)
         val pokemonSpecies = PokemonSpecies
-        val accessor: PokemonSpeciesAccessor = (pokemonSpecies as PokemonSpeciesAccessor)
-        val currentSpecies = accessor.getSpeciesByIdentifier()
+        val currentSpecies = PokemonSpeciesAccessor.getSpeciesByIdentifier()
         currentSpecies.forEach { (_, value) -> substituteType(value) }
     }
 

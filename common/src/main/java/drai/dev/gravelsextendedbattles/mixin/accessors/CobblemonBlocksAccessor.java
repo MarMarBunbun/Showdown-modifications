@@ -13,8 +13,13 @@ import java.util.*;
 public interface CobblemonBlocksAccessor {
     @Mutable
     @Accessor("typeGemBlocks")
-    public Map<ResourceLocation, Block> getTypeGemBlocks();
+    static Map<ResourceLocation, Block> getTypeGemBlocks() {
+        throw new UnsupportedOperationException("Mixin accessor stub");
+    }
+
     @Mutable
     @Accessor("typeGemClusters")
-    public Map<ResourceLocation, Block> getTypeGemClusters();
+    static Map<ResourceLocation, Block> getTypeGemClusters() {
+        throw new UnsupportedOperationException("Mixin accessor stub");
+    }
 }

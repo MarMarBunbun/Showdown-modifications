@@ -54,14 +54,14 @@ object GEBBlocks : PlatformRegistry<Registry<Block>, ResourceKey<Registry<Block>
     val SOUND_GEM_CLUSTER = typeGemCluster("sound_gem_cluster", SOUND_GEM_BLOCK, gravelmonResource("sound_gem"), MapColor.COLOR_LIGHT_GRAY )
     val WIND_GEM_CLUSTER = typeGemCluster("wind_gem_cluster", WIND_GEM_BLOCK, gravelmonResource("wind_gem"), MapColor.COLOR_LIGHT_BLUE )
     
-    val FROST_HEAL = create("frost_heal", StackableItemBlock(BlockBehaviour.Properties.of().sound(SoundType.CANDLE).mapColor(MapColor.NONE).noOcclusion(), StackableItemBlock.StackableItemBlockType.STATUS_RESTORE))
+    val FROST_HEAL = create(gravelmonResource("frost_heal"), StackableItemBlock(BlockBehaviour.Properties.of().sound(SoundType.CANDLE).mapColor(MapColor.NONE).noOcclusion(), StackableItemBlock.StackableItemBlockType.STATUS_RESTORE))
 
     private fun typeGemBlock(name: String, mapColor: MapColor): Block {
         val resourceLocation = gravelmonResource(name)
         val typeGemBlock = this.create(resourceLocation, Block(BlockBehaviour.Properties.of().mapColor(mapColor).strength(3.0F, 6.0F).sound(CobblemonSounds.TYPE_GEM_BLOCK_SOUNDS)))
 
         typeGemBlocks[resourceLocation] = typeGemBlock
-        (CobblemonBlocks as CobblemonBlocksAccessor).typeGemBlocks[resourceLocation] = typeGemBlock
+        CobblemonBlocksAccessor.getTypeGemBlocks()[resourceLocation] = typeGemBlock
 
         return typeGemBlock
     }
@@ -74,7 +74,7 @@ object GEBBlocks : PlatformRegistry<Registry<Block>, ResourceKey<Registry<Block>
         TypeGemClusterBlock.gemToClusterMap[gemBlock] = gemClusterBlock
 
         typeGemBlocks[resourceLocation] = gemClusterBlock
-        (CobblemonBlocks as CobblemonBlocksAccessor).typeGemClusters[resourceLocation] = gemClusterBlock
+        CobblemonBlocksAccessor.getTypeGemClusters()[resourceLocation] = gemClusterBlock
 
         return gemClusterBlock
     }

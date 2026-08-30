@@ -12,17 +12,17 @@ import net.minecraft.resources.ResourceLocation
 object BanListManager {
 
     fun banPokemon(pokemonSpecies: PokemonSpecies, accessor: PokemonSpeciesAccessor) {
-        val currentSpecies = accessor.getSpeciesByIdentifier()
+        val currentSpecies = PokemonSpeciesAccessor.getSpeciesByIdentifier()
 //        val speciesToBeRemoved = getSpeciesToBeRemoved(currentSpecies)
-        accessor.getSpeciesByDex().clear()
+        PokemonSpeciesAccessor.getSpeciesByDex().clear()
 
 //        for ((key) in speciesToBeRemoved) {
 //            currentSpecies.remove(key)
 //        }
         for (species in currentSpecies.values) {
             if (species != null) {
-                accessor.getSpeciesByDex().remove(species.resourceIdentifier.namespace, species.nationalPokedexNumber)
-                accessor.getSpeciesByDex().put(species.resourceIdentifier.namespace, species.nationalPokedexNumber, species)
+                PokemonSpeciesAccessor.getSpeciesByDex().remove(species.resourceIdentifier.namespace, species.nationalPokedexNumber)
+                PokemonSpeciesAccessor.getSpeciesByDex().put(species.resourceIdentifier.namespace, species.nationalPokedexNumber, species)
                 if(pokemonShouldBeRemoved(species.standardForm)) { }
                 val forms = ArrayList<FormData>(species.forms)
                 for (formData in forms) {

@@ -20,7 +20,7 @@
     "FormDataMixin",
     "HabitatPoolsMixin",
     "NationalDexMixin",
-    "PokemonSpawnDetailMixin",
+    "SpawnDetailMixin",
     "ShowdownThreadMixin",
     "SpeciesMixin",
     "TeraTypesMixin",

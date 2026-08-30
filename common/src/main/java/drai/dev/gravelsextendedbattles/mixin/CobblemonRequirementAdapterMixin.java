@@ -13,11 +13,13 @@ import org.spongepowered.asm.mixin.injection.callback.*;
 @Mixin(CobblemonRequirementAdapter.class)
 public abstract class CobblemonRequirementAdapterMixin {
     @Accessor("types")
-    abstract HashBiMap<String, Class<? extends Requirement>> getTypes();
+    private static HashBiMap<String, Class<? extends Requirement>> getTypes() {
+        throw new UnsupportedOperationException("Mixin accessor stub");
+    }
 
     @Inject(method = "registerType", at = @At("TAIL"), remap = false)
     private void executeInject(CallbackInfo ci) {
-        var types = this.getTypes();
+        var types = getTypes();
         types.put(FriendshipBelowRequirement.Companion.getADAPTER_VARIANT(), FriendshipBelowRequirement.class);
     }
 }

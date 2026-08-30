@@ -19,8 +19,7 @@ object GravelmonPokedexResorter {
 
     fun processPokedexBans(dexes: Dexes) {
         val pokemonSpecies = PokemonSpecies
-        val pokemonSpeciesAccesssor = pokemonSpecies as PokemonSpeciesAccessor
-        val currentSpecies = pokemonSpeciesAccesssor.getSpeciesByIdentifier().values
+        val currentSpecies = PokemonSpeciesAccessor.getSpeciesByIdentifier().values
         val allDexes = ArrayList(dexes.dexEntryMap.entries)
         for ((key, dexDef) in allDexes) {
             if (dexDef is AggregatePokedexDef) continue

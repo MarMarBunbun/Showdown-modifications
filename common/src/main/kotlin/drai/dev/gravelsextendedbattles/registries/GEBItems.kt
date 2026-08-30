@@ -3,6 +3,7 @@ package drai.dev.gravelsextendedbattles.registries
 import com.cobblemon.mod.common.CobblemonBlocks
 import com.cobblemon.mod.common.CobblemonItems
 import com.cobblemon.mod.common.api.moves.Moves
+import com.cobblemon.mod.common.item.GemItem
 import com.cobblemon.mod.common.item.interactive.StatusCureItem
 import com.cobblemon.mod.common.platform.PlatformRegistry
 import com.cobblemon.mod.common.pokemon.helditem.CobblemonHeldItemManager
@@ -30,19 +31,19 @@ object GEBItems : PlatformRegistry<Registry<Item>, ResourceKey<Registry<Item>>, 
     override val resourceKey: ResourceKey<Registry<Item>> = Registries.ITEM
 
     val gems = mutableSetOf<Item>()
-    val BLOOD_GEM = registerGemItem("blood_gem", "mossy_oubliette_ruins", "deserted_town_center_ruins", "hidden_bunker_ruins")
-    val COSMIC_GEM = registerGemItem("cosmic_gem", "mossy_oubliette_ruins", "luna_henge_ruins")
-    val CRYSTAL_GEM = registerGemItem("crystal_gem", "deserted_town_center_ruins", "hidden_bunker_ruins")
-    val DIGITAL_GEM = registerGemItem("digital_gem", "deserted_town_center_ruins", "luna_henge_ruins")
-    val ELDRITCH_GEM = registerGemItem("eldritch_gem", "sol_henge_ruins", "stonjourner_henge_ruins")
-    val LIGHT_GEM = registerGemItem("light_gem", "sol_henge_ruins", "stonjourner_henge_ruins")
-    val MYSTERY_GEM = registerGemItem("mystery_gem", "crumbling_arch_ruins", "deserted_house_ruins")
-    val NUCLEAR_GEM = registerGemItem("nuclear_gem", "rooted_arch_ruins", "crumbling_arch_ruins", "hidden_bunker_ruins")
-    val PLASTIC_GEM = registerGemItem("plastic_gem", "unstable_cave_ruins", "deserted_house_ruins")
-    val SHADOW_GEM = registerGemItem("shadow_gem", "fallen_statue_ruins", "luna_henge_ruins")
-    val SLIME_GEM = registerGemItem("slime_gem", "rooted_arch_ruins", "decaying_crypt_ruins")
-    val SOUND_GEM = registerGemItem("sound_gem", "toppled_pillars_ruins", "fallen_statue_ruins", "decaying_crypt_ruins")
-    val WIND_GEM = registerGemItem("wind_gem", "toppled_pillars_ruins", "fallen_statue_ruins")
+    val BLOOD_GEM = registerGemItem("blood_gem", GEBBlocks.BLOOD_GEM_CLUSTER,"mossy_oubliette_ruins","deserted_town_center_ruins","hidden_bunker_ruins")
+    val COSMIC_GEM = registerGemItem("cosmic_gem", GEBBlocks.COSMIC_GEM_CLUSTER, "mossy_oubliette_ruins", "luna_henge_ruins")
+    val CRYSTAL_GEM = registerGemItem("crystal_gem", GEBBlocks.CRYSTAL_GEM_CLUSTER, "deserted_town_center_ruins", "hidden_bunker_ruins")
+    val DIGITAL_GEM = registerGemItem("digital_gem", GEBBlocks.DIGITAL_GEM_CLUSTER, "deserted_town_center_ruins", "luna_henge_ruins")
+    val ELDRITCH_GEM = registerGemItem("eldritch_gem", GEBBlocks.ELDRITCH_GEM_CLUSTER, "sol_henge_ruins", "stonjourner_henge_ruins")
+    val LIGHT_GEM = registerGemItem("light_gem", GEBBlocks.LIGHT_GEM_CLUSTER, "sol_henge_ruins", "stonjourner_henge_ruins")
+    val MYSTERY_GEM = registerGemItem("mystery_gem", GEBBlocks.MYSTERY_GEM_CLUSTER, "crumbling_arch_ruins", "deserted_house_ruins")
+    val NUCLEAR_GEM = registerGemItem("nuclear_gem", GEBBlocks.NUCLEAR_GEM_CLUSTER,"rooted_arch_ruins","crumbling_arch_ruins","hidden_bunker_ruins")
+    val PLASTIC_GEM = registerGemItem("plastic_gem", GEBBlocks.PLASTIC_GEM_CLUSTER, "unstable_cave_ruins", "deserted_house_ruins")
+    val SHADOW_GEM = registerGemItem("shadow_gem", GEBBlocks.SHADOW_GEM_CLUSTER, "fallen_statue_ruins", "luna_henge_ruins")
+    val SLIME_GEM = registerGemItem("slime_gem", GEBBlocks.SLIME_GEM_CLUSTER, "rooted_arch_ruins", "decaying_crypt_ruins")
+    val SOUND_GEM = registerGemItem("sound_gem", GEBBlocks.SOUND_GEM_CLUSTER,"toppled_pillars_ruins","fallen_statue_ruins","decaying_crypt_ruins")
+    val WIND_GEM = registerGemItem("wind_gem", GEBBlocks.WIND_GEM_CLUSTER, "toppled_pillars_ruins", "fallen_statue_ruins")
 
     val BLOOD_GEM_BLOCK = blockItem("blood_gem_block", GEBBlocks.BLOOD_GEM_BLOCK)
     val COSMIC_GEM_BLOCK = blockItem("cosmic_gem_block", GEBBlocks.COSMIC_GEM_BLOCK)
@@ -147,42 +148,40 @@ object GEBItems : PlatformRegistry<Registry<Item>, ResourceKey<Registry<Item>>, 
     //TODO aprijuice items and pokedexes
 
 
-    fun registerGemItem(name: String, vararg lootPoolResourceLocation: String): Item? {
-        if (!GravelsExtendedBattles.CONFIG.implementedTypes.contains(name.replace("_gem".toRegex(), ""))) return null
-        val item = heldItem(name)
-        Moves
+    fun registerGemItem(name: String, block: Block, vararg lootPoolResourceLocation: String): Item {
+        val item = heldItem(name, GemItem(Item.Properties(), block))
+        if (!GravelsExtendedBattles.CONFIG.implementedTypes.contains(name.replace("_gem".toRegex(), ""))) return item
         gems.add(item)
         lootPoolResourceLocation.forEach { lootPool-> GEBLootPoolManager.addUncommonItemToLootPool(cobblemonResource("ruins/common/$lootPool"), item) }
         return item
     }
 
-    fun registerZCrystalItem(name: String, gem: Item?, type: String): Item? {
-        if(gem == null) return null
-        if (!GravelsExtendedBattles.CONFIG.implementedTypes.contains(type)) return null
+    fun registerZCrystalItem(name: String, gem: Item?, type: String): Item {
         val item = heldItem(name, GEBZCrystal(type))
+        if (!GravelsExtendedBattles.CONFIG.implementedTypes.contains(type)) return item
         zCrystals.add(item)
         return item
     }
 
-    fun registerPlateItem(name: String, type: String): Item? {
-        if (!GravelsExtendedBattles.CONFIG.implementedTypes.contains(type)) return null
+    fun registerPlateItem(name: String, type: String): Item {
         val item = heldItem(name, GEBArceusPlateItem(type))
+        if (!GravelsExtendedBattles.CONFIG.implementedTypes.contains(type)) return item
         plates.add(item)
         return item
     }
 
-    fun registerMemoryItem(name: String): Item? {
+    fun registerMemoryItem(name: String): Item {
         val type = name.replace("_memory".toRegex(), "")
-        if (!GravelsExtendedBattles.CONFIG.implementedTypes.contains(type)) return null
         val item = heldItem(name, GEBMemoryItem(type))
+        if (!GravelsExtendedBattles.CONFIG.implementedTypes.contains(type)) return item
         memories.add(item)
         return item
     }
 
-    fun registerTeraShardItem(name: String): Item? {
+    fun registerTeraShardItem(name: String): Item {
         val type = name.replace("_tera_shard".toRegex(), "")
-        if (!GravelsExtendedBattles.CONFIG.implementedTypes.contains(type)) return null
         val item = heldItem(name, GEBTeraShardItem(type))
+        if (!GravelsExtendedBattles.CONFIG.implementedTypes.contains(type)) return item
         teraShards.add(item)
         teraShardsByType[type] = item
         return item
