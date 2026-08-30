@@ -42,8 +42,7 @@ object BanListManager {
                 }
                 val evolutions = ArrayList<Evolution>(species.evolutions)
                 for (evolutionData in evolutions) {
-                    val result =
-                        evolutionData.result
+                    val result = evolutionData.result
                     if (pokemonShouldBeRemoved(result)) {
                         species.evolutions.remove(evolutionData)
                     }

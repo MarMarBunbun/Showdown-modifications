@@ -1,12 +1,10 @@
 package drai.dev.gravelsextendedbattles.spawning
 
 import com.cobblemon.mod.common.api.pokemon.PokemonProperties
-import com.cobblemon.mod.common.api.pokemon.PokemonSpecies
 import com.cobblemon.mod.common.api.spawning.detail.PokemonSpawnDetail
 import drai.dev.gravelsextendedbattles.BanListManager
 import drai.dev.gravelsextendedbattles.GravelsExtendedBattles
 import drai.dev.gravelsextendedbattles.config.SpawnModifier
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable
 import java.util.function.Consumer
 
 object GravelmonSpawnDetailsManager {
@@ -34,45 +32,15 @@ object GravelmonSpawnDetailsManager {
         return properties.asRenderablePokemon().form.labels
     }
 
-    fun checkForBannedPokemon(spawnDetail: PokemonSpawnDetail, cir: CallbackInfoReturnable<Boolean?>) {
-        val pokemon = spawnDetail.pokemon
+    fun isSpawnForBannedPokemon(pokemon: PokemonProperties) : Boolean {
         if (pokemon.species != null) {
-//            var accesssor = (GravelmonPokemonSpeciesAccessor) (Object) PokemonSpecies.INSTANCE;
-            val species = PokemonSpecies.getByName(pokemon.species!!)
-            if (species == null) {
-                cir.setReturnValue(false)
-                cir.cancel()
-                return
-            }
-            if (BanListManager.pokemonShouldBeRemoved(pokemon)) {
-                cir.setReturnValue(false)
-                cir.cancel()
-                return
-            }
-
-            //            if(!pokemon.getAspects().isEmpty()){
-//                var formData = species.getForm(pokemon.getAspects());
-//                if(formData == species.getStandardForm()) {
-//                    cir.setReturnValue(false);
-//                    cir.cancel();
-//                    return;
-//                }
-//            }
-            /*for(var formData : species.getForms()){
-                if(SpeciesManager.containsBannedLabels(formData.getLabels().stream().toList())){
-                    cir.setReturnValue(false);
-                    cir.cancel();
-                    return;
-                }
-            }
-            if(species.getForm().getName()!=)*/
+            return BanListManager.pokemonShouldBeRemoved(pokemon)
         } else {
             if (notSuppressedYet) {
                 notSuppressedYet = false
                 GravelsExtendedBattles.LOGGER.log(org.apache.logging.log4j.Level.INFO ,"Suppressed invalid species spawn detail warnings")
             }
-            cir.setReturnValue(false)
-            cir.cancel()
+            return false
         }
     }
 }
