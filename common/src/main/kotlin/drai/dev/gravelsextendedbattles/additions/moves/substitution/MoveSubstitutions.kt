@@ -19,7 +19,7 @@ object MoveSubstitutions : JsonDataRegistry<MoveSubstitution> {
         .create()
 
     override val typeToken: TypeToken<MoveSubstitution> = TypeToken.get(MoveSubstitution::class.java)
-    override val resourcePath: String = "additional_evolutions"
+    override val resourcePath: String = "move_substitutions"
     val moveSubstitutions = mutableSetOf<MoveSubstitution>()
     var moveSubstitutionsReady = false
     override fun reload(data: Map<ResourceLocation, MoveSubstitution>) {
@@ -30,7 +30,7 @@ object MoveSubstitutions : JsonDataRegistry<MoveSubstitution> {
 
     }
 
-    override val id: ResourceLocation = gravelmonResource("additional_evolutions")
+    override val id: ResourceLocation = gravelmonResource("move_substitutions")
     override val type: PackType = PackType.SERVER_DATA
     override val observable = SimpleObservable<MoveSubstitutions>()
 
