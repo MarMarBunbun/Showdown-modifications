@@ -19,7 +19,7 @@ object MoveAdditions : JsonDataRegistry<MoveAddition> {
         .create()
 
     override val typeToken: TypeToken<MoveAddition> = TypeToken.get(MoveAddition::class.java)
-    override val resourcePath: String = "additional_evolutions"
+    override val resourcePath: String = "move_additions"
     val moveAdditions = mutableSetOf<MoveAddition>()
     var moveAdditionsReady = false
     override fun reload(data: Map<ResourceLocation, MoveAddition>) {
@@ -30,7 +30,7 @@ object MoveAdditions : JsonDataRegistry<MoveAddition> {
 
     }
 
-    override val id: ResourceLocation = gravelmonResource("additional_evolutions")
+    override val id: ResourceLocation = gravelmonResource("move_additions")
     override val type: PackType = PackType.SERVER_DATA
     override val observable = SimpleObservable<MoveAdditions>()
 
