@@ -27,7 +27,6 @@ object MoveAdditions : JsonDataRegistry<MoveAddition> {
         moveAdditions.addAll(data.values)
         moveAdditionsReady = true
         applyMoveAdditions()
-
     }
 
     override val id: ResourceLocation = gravelmonResource("move_additions")

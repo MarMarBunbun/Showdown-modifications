@@ -2,7 +2,6 @@ package drai.dev.gravelsextendedbattles.additions.moves
 
 import com.cobblemon.mod.common.api.moves.MoveTemplate
 import com.cobblemon.mod.common.api.moves.Moves.getByName
-import com.cobblemon.mod.common.api.pokemon.PokemonSpecies
 import drai.dev.gravelsextendedbattles.additions.moves.addition.MoveAddition
 import drai.dev.gravelsextendedbattles.additions.moves.substitution.MoveSubstitution
 import drai.dev.gravelsextendedbattles.mixin.accessors.PokemonSpeciesAccessor
@@ -55,22 +54,24 @@ object MoveManager {
     fun processMoveAdditions(moveAdditions: MutableSet<MoveAddition>) {
         moveAdditions.forEach { moveAddition: MoveAddition ->
             val moves = moveAddition.recipient.asRenderablePokemon().form.moves
-            val condition = moveAddition.learnsetEntry.split(":")[0]
-            val move = getByName(moveAddition.learnsetEntry.split(":")[1]) ?: return@forEach
-            if (condition.equals("tm", ignoreCase = true)) {
-                moves.tmMoves.add(move)
-            } else if (condition.equals("egg", ignoreCase = true)) {
-                moves.eggMoves.add(move)
-            } else if (condition.equals("tutor", ignoreCase = true)) {
-                moves.tutorMoves.add(move)
-            } else if (condition.equals("legacy", ignoreCase = true)) {
-                moves.legacyMoves.add(move)
-            } else if (condition.equals("special", ignoreCase = true)) {
-                moves.specialMoves.add(move)
-            } else if (condition.equals("form_change", ignoreCase = true)) {
-                moves.formChangeMoves.add(move)
-            } else if (NumberUtils.isCreatable(condition)) {
-                moves.levelUpMoves.computeIfAbsent(condition.toInt()) { ArrayList() }.add(move)
+            moveAddition.learnsetEntries.forEach { learnsetEntry ->
+                val condition = learnsetEntry.split(":")[0]
+                val move = getByName(learnsetEntry.split(":")[1]) ?: return@forEach
+                if (condition.equals("tm", ignoreCase = true)) {
+                    moves.tmMoves.add(move)
+                } else if (condition.equals("egg", ignoreCase = true)) {
+                    moves.eggMoves.add(move)
+                } else if (condition.equals("tutor", ignoreCase = true)) {
+                    moves.tutorMoves.add(move)
+                } else if (condition.equals("legacy", ignoreCase = true)) {
+                    moves.legacyMoves.add(move)
+                } else if (condition.equals("special", ignoreCase = true)) {
+                    moves.specialMoves.add(move)
+                } else if (condition.equals("form_change", ignoreCase = true)) {
+                    moves.formChangeMoves.add(move)
+                } else if (NumberUtils.isCreatable(condition)) {
+                    moves.levelUpMoves.computeIfAbsent(condition.toInt()) { ArrayList() }.add(move)
+                }
             }
         }
     }
