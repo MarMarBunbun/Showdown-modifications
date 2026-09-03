@@ -1,0 +1,15 @@
+{
+	flags: { protect: 1, mirror: 1, legendary: 1 },
+  num: 722,
+  accuracy: 100,
+  basePower: 100,
+  category: "Special",
+  name: "Photon Geyser",
+  pp: 5,
+  priority: 0,
+  ignoreAbility: true,
+  secondary: null,
+  target: "normal",
+  type: "Psychic",
+  contestType: "Cool",
+}

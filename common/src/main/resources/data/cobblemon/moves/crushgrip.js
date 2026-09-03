@@ -1,0 +1,16 @@
+{
+	flags: { contact: 1, protect: 1, mirror: 1, metronome: 1, legendary: 1 },
+  num: 462,
+  accuracy: 100,
+  basePower: 0,
+  category: "Physical",
+  name: "Crush Grip",
+  pp: 5,
+  priority: 0,
+  secondary: null,
+  target: "normal",
+  type: "Normal",
+  zMove: { basePower: 190 },
+  maxMove: { basePower: 140 },
+  contestType: "Tough",
+}

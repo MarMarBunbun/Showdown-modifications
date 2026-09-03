@@ -1,0 +1,119 @@
+package drai.dev.gravelsextendedbattles.additions
+
+import com.cobblemon.mod.common.api.pokemon.PokemonSpecies
+import com.cobblemon.mod.common.pokemon.Species
+import drai.dev.gravelsextendedbattles.GravelsExtendedBattles
+import drai.dev.gravelsextendedbattles.additions.evolutions.AdditionalEvolution
+import drai.dev.gravelsextendedbattles.additions.types.Type
+import drai.dev.gravelsextendedbattles.additions.types.TypeChange
+import drai.dev.gravelsextendedbattles.mixin.accessors.FormDataAccessor
+import drai.dev.gravelsextendedbattles.mixin.accessors.PokemonSpeciesAccessor
+import drai.dev.gravelsextendedbattles.mixin.accessors.SpeciesAccessor
+import kotlin.collections.component1
+import kotlin.collections.component2
+import kotlin.collections.forEach
+import kotlin.text.equals
+
+object SpeciesManager {
+    fun processFormEvolutionAdditions(additionalEvolutions: Collection<AdditionalEvolution>) {
+        additionalEvolutions.forEach { additionalEvolution : AdditionalEvolution ->
+            val form = additionalEvolution.recipient.asRenderablePokemon().form
+                if (form.name.equals("normal", ignoreCase = true)) return@forEach
+                val evolutions = form.evolutions
+                for (evolution in additionalEvolution.evolution) {
+                    evolutions.add(evolution)
+                    (form as FormDataAccessor).setEvolutions(evolutions)
+                }
+        }
+    }
+
+    fun processTypeChanges(typeChanges: Collection<TypeChange>) {
+        applyIndividualTypeChanges(typeChanges)
+        val pokemonSpecies = PokemonSpecies
+        val currentSpecies = PokemonSpeciesAccessor.getSpeciesByIdentifier()
+        currentSpecies.forEach { (_, value) -> substituteType(value) }
+    }
+
+    private fun applyIndividualTypeChanges(typeChanges: Collection<TypeChange>) {
+        val implementedTypes = GravelsExtendedBattles.CONFIG.implementedTypes
+        typeChanges.forEach { typeChange: TypeChange ->
+            val form = typeChange.recipient.asRenderablePokemon().form
+            if (!implementedTypes.contains(typeChange.to.name)) return@forEach
+            val newType = typeChange.to.elementalType ?: return@forEach
+            val oldType = typeChange.from?.elementalType
+            val agreeableForm = form as FormDataAccessor
+            if (form.primaryType == oldType) agreeableForm.setPrimaryType(newType)
+            else if (form.secondaryType == oldType) agreeableForm.setSecondaryType(newType)
+        }
+    }
+
+    private fun substituteType(species: Species) {
+        val implementedTypes = GravelsExtendedBattles.CONFIG.implementedTypes
+        if (implementedTypes.none { it.equals(species.primaryType.name, ignoreCase = true) }) {
+            val type = Type.getByName(species.primaryType.name)
+            if (type != null) {
+                val substitutionType = type.substitutionType
+                if (substitutionType != null) {
+                    val newType = substitutionType.elementalType
+                    if (newType != null) {
+                        val formDataAccessor = species as SpeciesAccessor
+                        formDataAccessor.setPrimaryType(newType)
+                    }
+                }
+            }
+        }
+        if (species.secondaryType != null) {
+            if (implementedTypes.none { it.equals(species.secondaryType!!.name, ignoreCase = true) }) {
+                val type = Type.getByName(species.secondaryType!!.name)
+                if (type != null) {
+                    val substitutionType = type.substitutionType
+                    if (substitutionType != null) {
+                        val newType = substitutionType.elementalType
+                        if (newType != null) {
+                            val formDataAccessor = species as SpeciesAccessor
+                            formDataAccessor.setSecondaryType(newType)
+                        }
+                    }
+                }
+            }
+        }
+        if(species.primaryType == species.secondaryType) {
+            val speciesAccessor = species as SpeciesAccessor
+            speciesAccessor.setSecondaryType(null)
+        }
+        species.forms.forEach { formData ->
+            if (implementedTypes.none { it.equals(formData.primaryType.name, ignoreCase = true) }) {
+                val type = Type.getByName(formData.primaryType.name)
+                if (type != null) {
+                    val substitutionType = type.substitutionType
+                    if (substitutionType != null) {
+                        val newType = substitutionType.elementalType
+                        if (newType != null) {
+                            val formDataAccessor = formData as FormDataAccessor
+                            formDataAccessor.setPrimaryType(newType)
+                        }
+                    }
+                }
+            }
+            if (formData.secondaryType != null) {
+                if (implementedTypes.none { it.equals(formData.secondaryType!!.name, ignoreCase = true) }) {
+                    val type = Type.getByName(formData.secondaryType!!.name)
+                    if (type != null) {
+                        val substitutionType = type.substitutionType
+                        if (substitutionType != null) {
+                            val newType = substitutionType.elementalType
+                            if (newType != null) {
+                                val formDataAccessor = formData as FormDataAccessor
+                                formDataAccessor.setSecondaryType(newType)
+                            }
+                        }
+                    }
+                }
+            }
+            if (formData.primaryType == formData.secondaryType) {
+                val formDataAccessor = formData as FormDataAccessor
+                formDataAccessor.setSecondaryType(null)
+            }
+        }
+    }
+}

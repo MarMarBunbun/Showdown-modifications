@@ -1,0 +1,15 @@
+{
+	flags: { protect: 1, mirror: 1, slicing: 1, legendary: 1 },
+  num: 548,
+  accuracy: 100,
+  basePower: 85,
+  category: "Special",
+  overrideDefensiveStat: "def",
+  name: "Secret Sword",
+  pp: 10,
+  priority: 0,
+  secondary: null,
+  target: "normal",
+  type: "Fighting",
+  contestType: "Beautiful",
+}

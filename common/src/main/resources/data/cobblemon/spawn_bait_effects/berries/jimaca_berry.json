@@ -1,0 +1,11 @@
+{
+  "item": "gravelmon:jimaca_berry",
+  "effects": [
+    {
+      "type": "cobblemon:typing",
+      "subcategory": "crystal",
+      "chance": 1.0,
+      "value": 10.0
+    }
+  ]
+}

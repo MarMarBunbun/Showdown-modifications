@@ -1,0 +1,11 @@
+{
+  "item": "gravelmon:drash_berry",
+  "effects": [
+    {
+      "type": "cobblemon:typing",
+      "subcategory": "mystery",
+      "chance": 1.0,
+      "value": 10.0
+    }
+  ]
+}

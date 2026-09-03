@@ -1,0 +1,18 @@
+{
+  "replace": false,
+  "values": [
+    "gravelmon:blood_gem_cluster",
+    "gravelmon:cosmic_gem_cluster",
+    "gravelmon:crystal_gem_cluster",
+    "gravelmon:digital_gem_cluster",
+    "gravelmon:eldritch_gem_cluster",
+    "gravelmon:light_gem_cluster",
+    "gravelmon:mystery_gem_cluster",
+    "gravelmon:nuclear_gem_cluster",
+    "gravelmon:plastic_gem_cluster",
+    "gravelmon:shadow_gem_cluster",
+    "gravelmon:slime_gem_cluster",
+    "gravelmon:sound_gem_cluster",
+    "gravelmon:wind_gem_cluster"
+  ]
+}

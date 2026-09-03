@@ -1,0 +1,43 @@
+{
+  "required": true,
+  "package": "drai.dev.gravelsextendedbattles.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "minVersion": "0.8",
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "client": [
+    "client.CobblemonClientMixin",
+    "client.TypeIconMixin",
+    "client.TypeWidgetMixin"
+  ],
+  "mixins": [
+    "BattleManagerMixin",
+    "CobblemonPreEvolutionAdapterMixin",
+    "CobblemonRequirementAdapterMixin",
+    "CobblemonSpawnPoolsMixin",
+    "ElementalTypesMixin",
+    "FormDataMixin",
+    "HabitatPoolsMixin",
+    "NationalDexMixin",
+    "PokemonHerdSpawnDetailMixin",
+    "ShowdownThreadMixin",
+    "SpawnDetailMixin",
+    "SpeciesMixin",
+    "TeraTypesMixin",
+    "accessors.CobblemonBlocksAccessor",
+    "accessors.FormDataAccessor",
+    "accessors.LevelRequirementAccessor",
+    "accessors.LootItemAccessor",
+    "accessors.LootPoolAccessor",
+    "accessors.LootTableAccessor",
+    "accessors.NationalDexAccessor",
+    "accessors.PokedexManagerAccessor",
+    "accessors.PokemonSpeciesAccessor",
+    "accessors.RegistryLikeIdentifierConditionAccessor",
+    "accessors.ServerCommonPacketListenerImplAccessor",
+    "accessors.SimplePokedexDefAccessor",
+    "accessors.SpeciesAccessor",
+    "invokers.TeraTypesInvoker"
+  ]
+}

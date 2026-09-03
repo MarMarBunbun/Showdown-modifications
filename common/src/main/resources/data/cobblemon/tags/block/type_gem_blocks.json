@@ -1,0 +1,18 @@
+{
+  "replace": false,
+  "values": [
+    "gravelmon:blood_gem_block",
+    "gravelmon:cosmic_gem_block",
+    "gravelmon:crystal_gem_block",
+    "gravelmon:digital_gem_block",
+    "gravelmon:eldritch_gem_block",
+    "gravelmon:light_gem_block",
+    "gravelmon:mystery_gem_block",
+    "gravelmon:nuclear_gem_block",
+    "gravelmon:plastic_gem_block",
+    "gravelmon:shadow_gem_block",
+    "gravelmon:slime_gem_block",
+    "gravelmon:sound_gem_block",
+    "gravelmon:wind_gem_block"
+  ]
+}

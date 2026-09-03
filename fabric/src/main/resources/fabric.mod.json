@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "id": "gravels_extended_battles",
+  "version": "${version}",
+  "name": "Cobblemon Multi-platform Fabric MDK",
+  "description": "A MDK useful for Fabric Development",
+  "authors": [
+    "Drai, MarMarBunBun"
+  ],
+  "license": "MIT License",
+  "icon": "assets/example/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      {
+        "value": "drai.dev.gravelsextendedbattles.fabric.GravelsExtendedBattlesImpl",
+        "adapter": "kotlin"
+      }
+    ],
+    "fabric-datagen": [
+      {
+        "value": "drai.dev.gravelsextendedbattles.data.GEBFabricDataGenerator",
+        "adapter": "kotlin"
+      }
+    ]
+  },
+  "mixins": [
+    "gravels_extended_battles_common.mixins.json",
+    "gravels_extended_battles_fabric.mixins.json"
+  ],
+  "depends": {
+    "minecraft": "1.21.1",
+    "cobblemon": ">=1.8.0 <1.9.0",
+    "midnightlib": ">=1.9.3"
+  }
+}

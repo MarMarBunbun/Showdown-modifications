@@ -1,0 +1,15 @@
+{
+	flags: { protect: 1, reflectable: 1, mirror: 1, allyanim: 1, beam: 1 },
+  num: 493,
+  accuracy: 100,
+  basePower: 0,
+  category: "Status",
+  name: "Simple Beam",
+  pp: 15,
+  priority: 0,
+  secondary: null,
+  target: "normal",
+  type: "Normal",
+  zMove: { boost: { spa: 1 } },
+  contestType: "Cute",
+}

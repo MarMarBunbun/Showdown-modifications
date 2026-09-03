@@ -1,0 +1,9 @@
+{
+  "required": true,
+  "package": "drai.dev.gravelsextendedbattles.neoforge.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "minVersion": "0.8",
+  "mixins": [
+    "CobblemonNeoForgeMixin"
+  ]
+}

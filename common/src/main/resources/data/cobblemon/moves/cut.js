@@ -1,0 +1,15 @@
+{
+	flags: { contact: 1, protect: 1, mirror: 1, slicing: 1, hm: 1, blade: 1 },
+  num: 15,
+  accuracy: 95,
+  basePower: 50,
+  category: "Physical",
+  isNonstandard: "Unobtainable",
+  name: "Cut",
+  pp: 30,
+  priority: 0,
+  secondary: null,
+  target: "normal",
+  type: "Normal",
+  contestType: "Cool",
+}

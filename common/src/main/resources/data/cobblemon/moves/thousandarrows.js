@@ -1,0 +1,18 @@
+{
+	flags: { protect: 1, mirror: 1, nonsky: 1, legendary: 1 },
+  num: 614,
+  accuracy: 100,
+  basePower: 90,
+  category: "Physical",
+  isNonstandard: "Past",
+  name: "Thousand Arrows",
+  pp: 10,
+  priority: 0,
+  volatileStatus: "smackdown",
+  ignoreImmunity: { "Ground": true },
+  secondary: null,
+  target: "allAdjacentFoes",
+  type: "Ground",
+  zMove: { basePower: 180 },
+  contestType: "Beautiful",
+}
