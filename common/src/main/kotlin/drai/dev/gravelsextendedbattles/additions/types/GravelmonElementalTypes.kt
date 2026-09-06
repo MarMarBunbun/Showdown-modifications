@@ -2,17 +2,21 @@ package drai.dev.gravelsextendedbattles.additions.types
 
 import com.cobblemon.mod.common.api.types.ElementalType
 import com.cobblemon.mod.common.api.types.ElementalTypes
+import net.minecraft.ChatFormatting
 import net.minecraft.network.chat.Component
 
 object GravelmonElementalTypes {
     var TYPE_COUNT: Int = 18
+    @JvmField
+    public val typesToChatFormatting: MutableMap<ElementalType?, ChatFormatting?> = HashMap()
 
     @JvmField
     val COSMIC = createType(
         name = "Cosmic",
         hue = 0x8832e5,
         primaryColor = 0xaf64ff,
-        secondaryColor = 0xaf64ff
+        secondaryColor = 0xaf64ff,
+        formatting = ChatFormatting.DARK_PURPLE
     )
 
     @JvmField
@@ -20,7 +24,8 @@ object GravelmonElementalTypes {
         name = "Crystal",
         hue = 0x35c3a0,
         primaryColor = 0x27a384,
-        secondaryColor = 0x4aedd1
+        secondaryColor = 0x4aedd1,
+        formatting = ChatFormatting.AQUA
     )
 
     @JvmField
@@ -28,7 +33,8 @@ object GravelmonElementalTypes {
         name = "Digital",
         hue = 0x305630,
         primaryColor = 0x1c381c,
-        secondaryColor = 0x558d55
+        secondaryColor = 0x558d55,
+        formatting = ChatFormatting.GREEN
     )
 
     @JvmField
@@ -36,7 +42,8 @@ object GravelmonElementalTypes {
         name = "Light",
         hue = 0xdad360,
         primaryColor = 0xc3bc4b,
-        secondaryColor = 0xf2ed96
+        secondaryColor = 0xf2ed96,
+        formatting = ChatFormatting.YELLOW
     )
 
     @JvmField
@@ -44,7 +51,8 @@ object GravelmonElementalTypes {
         name = "Nuclear",
         hue = 0xa1d018,
         primaryColor = 0x5eb811,
-        secondaryColor = 0xc3f531
+        secondaryColor = 0xc3f531,
+        formatting = ChatFormatting.GREEN
     )
 
     @JvmField
@@ -52,7 +60,8 @@ object GravelmonElementalTypes {
         name = "Plastic",
         hue = 0xc76e3d,
         primaryColor = 0xbb6131,
-        secondaryColor = 0xf28245
+        secondaryColor = 0xf28245,
+        formatting = ChatFormatting.GOLD
     )
 
     @JvmField
@@ -60,7 +69,8 @@ object GravelmonElementalTypes {
         name = "Mystery",
         hue = 0x5b8c9e,
         primaryColor = 0x79cca9,
-        secondaryColor = 0xb7fae0
+        secondaryColor = 0xb7fae0,
+        formatting = ChatFormatting.AQUA
     )
 
     @JvmField
@@ -68,7 +78,8 @@ object GravelmonElementalTypes {
         name = "Shadow",
         hue = 0x222241,
         primaryColor = 0x15152a,
-        secondaryColor = 0x35355a
+        secondaryColor = 0x35355a,
+        formatting = ChatFormatting.DARK_GRAY
     )
 
     @JvmField
@@ -76,7 +87,8 @@ object GravelmonElementalTypes {
         name = "Slime",
         hue = 0x75e47b,
         primaryColor = 0x60b964,
-        secondaryColor = 0xaff9b3
+        secondaryColor = 0xaff9b3,
+        formatting = ChatFormatting.GREEN
     )
 
     @JvmField
@@ -84,7 +96,8 @@ object GravelmonElementalTypes {
         name = "Sound",
         hue = 0x64768e,
         primaryColor = 0x4a5b71,
-        secondaryColor = 0x8392a6
+        secondaryColor = 0x8392a6,
+        formatting = ChatFormatting.GRAY
     )
 
     @JvmField
@@ -92,7 +105,8 @@ object GravelmonElementalTypes {
         name = "Wind",
         hue = 0x98c1b0,
         primaryColor = 0x93ccd4,
-        secondaryColor = 0xb9e7d4
+        secondaryColor = 0xb9e7d4,
+        formatting = ChatFormatting.AQUA
     )
 
     @JvmField
@@ -100,7 +114,8 @@ object GravelmonElementalTypes {
         name = "Eldritch",
         hue = 0x962c46,
         primaryColor = 0x6c223e,
-        secondaryColor = 0xb64b5a
+        secondaryColor = 0xb64b5a,
+        formatting = ChatFormatting.DARK_RED
     )
 
     @JvmField
@@ -108,20 +123,23 @@ object GravelmonElementalTypes {
         name = "Blood",
         hue = 0xFF7FE5,
         primaryColor = 0x540e08,
-        secondaryColor = 0x9e271d
+        secondaryColor = 0x9e271d,
+        formatting = ChatFormatting.DARK_RED
     )
 
-    private fun createType(name: String, hue: Int, primaryColor: Int, secondaryColor: Int): ElementalType {
+    private fun createType(name: String, hue: Int, primaryColor: Int, secondaryColor: Int, formatting: ChatFormatting): ElementalType {
         val type = ElementalTypes.register(
             name, Component.translatable("cobblemon.type." + name.lowercase()),
             hue, TYPE_COUNT, primaryColor, secondaryColor
         )
         TYPE_COUNT++
+        typesToChatFormatting[type] = formatting
         return type
     }
 
     @JvmStatic
     fun touch() {
+        GravelmonElementalTypes.BLOOD
         //do nothing except load clinit
     }
 }

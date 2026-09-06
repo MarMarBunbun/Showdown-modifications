@@ -11,6 +11,8 @@ import com.cobblemon.mod.common.api.habitats.HabitatPool
 import com.cobblemon.mod.common.api.habitats.HabitatPools
 import com.cobblemon.mod.common.api.pokedex.Dexes
 import com.cobblemon.mod.common.api.pokemon.PokemonSpecies
+import com.cobblemon.mod.common.api.types.ElementalTypes
+import com.cobblemon.mod.common.api.types.tera.TeraTypes
 import com.cobblemon.mod.common.client.CobblemonPack
 import com.cobblemon.mod.common.data.StarterDataLoader
 import dev.architectury.injectables.annotations.ExpectPlatform
@@ -19,7 +21,9 @@ import drai.dev.gravelsextendedbattles.additions.moves.addition.MoveAdditions
 import drai.dev.gravelsextendedbattles.additions.moves.substitution.MoveSubstitution
 import drai.dev.gravelsextendedbattles.additions.moves.substitution.MoveSubstitutions
 import drai.dev.gravelsextendedbattles.additions.status.GravelmonStatus
+import drai.dev.gravelsextendedbattles.additions.types.GravelmonElementalTypes
 import drai.dev.gravelsextendedbattles.additions.types.TypeChanges
+import drai.dev.gravelsextendedbattles.additions.types.tera.GravelmonTeraTypes
 import drai.dev.gravelsextendedbattles.config.GEBConfig
 
 import drai.dev.gravelsextendedbattles.data.GEBDataProvider
@@ -61,6 +65,7 @@ object GravelsExtendedBattles {
     @JvmStatic
     fun initialize() {
         LOGGER.info("Initializing Gravels Extended Battles")
+        initTypes()
         MidnightConfig.init("gravelmon", GEBConfig::class.java)
         GEBDataProvider.registerDefaults()
 
@@ -69,6 +74,14 @@ object GravelsExtendedBattles {
         registerCobblemonEventHooks()
         registerItems()
         registerVillagerTrades()
+    }
+
+    private fun initTypes() {
+//        ElementalTypes.BUG;
+//        val bug = ElementalTypes.get("bug") ?: throw IllegalStateException("Bug elemental type not found")
+//        val bugTera = TeraTypes.forElementalType(bug)
+//        GravelmonElementalTypes.touch()
+//        GravelmonTeraTypes.touch()
     }
 
     private fun registerCobblemonEventHooks() {
@@ -151,6 +164,15 @@ object GravelsExtendedBattles {
     @ExpectPlatform
     @JvmStatic
     fun registerVillagerTrades() {
+        throw AssertionError()
+    }
+
+    @JvmStatic
+    fun megaShowdownIsLoaded() = modIsLoaded("mega_showdown")
+
+    @ExpectPlatform
+    @JvmStatic
+    fun modIsLoaded(modId: String) : Boolean {
         throw AssertionError()
     }
 

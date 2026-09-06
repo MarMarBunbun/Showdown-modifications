@@ -46,6 +46,8 @@ dependencies {
     val midnightlib = "eu.midnightdust:midnightlib:${property("midnightlib_version")}-neoforge"
     modImplementation(midnightlib)
     include(midnightlib)
+    modImplementation("maven.modrinth:cobblemon-mega-showdown:${property("megashowdown_fabric")}")
+    modImplementation("dev.architectury:architectury:${property("architectury_version")}")
 }
 
 tasks {

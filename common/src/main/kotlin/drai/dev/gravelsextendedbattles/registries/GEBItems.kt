@@ -3,19 +3,24 @@ package drai.dev.gravelsextendedbattles.registries
 import com.cobblemon.mod.common.CobblemonBlocks
 import com.cobblemon.mod.common.CobblemonItems
 import com.cobblemon.mod.common.api.moves.Moves
+import com.cobblemon.mod.common.api.types.ElementalType
+import com.cobblemon.mod.common.api.types.ElementalTypes
 import com.cobblemon.mod.common.item.GemItem
 import com.cobblemon.mod.common.item.interactive.StatusCureItem
 import com.cobblemon.mod.common.platform.PlatformRegistry
 import com.cobblemon.mod.common.pokemon.helditem.CobblemonHeldItemManager
 import com.cobblemon.mod.common.util.cobblemonResource
 import drai.dev.gravelsextendedbattles.GravelsExtendedBattles
+import drai.dev.gravelsextendedbattles.GravelsExtendedBattles.megaShowdownIsLoaded
 import drai.dev.gravelsextendedbattles.additions.status.GravelmonStatus
+import drai.dev.gravelsextendedbattles.additions.types.GravelmonElementalTypes
 import drai.dev.gravelsextendedbattles.fossils.GEBLootPoolManager
 import drai.dev.gravelsextendedbattles.gravelmonResource
 import drai.dev.gravelsextendedbattles.items.GEBArceusPlateItem
 import drai.dev.gravelsextendedbattles.items.GEBMemoryItem
 import drai.dev.gravelsextendedbattles.items.GEBTeraShardItem
 import drai.dev.gravelsextendedbattles.items.GEBZCrystal
+import drai.dev.gravelsextendedbattles.msd.MegaShowdownCompat
 import net.minecraft.core.Registry
 import net.minecraft.core.registries.BuiltInRegistries
 import net.minecraft.core.registries.Registries
@@ -26,7 +31,8 @@ import net.minecraft.world.item.Rarity
 import net.minecraft.world.level.block.Block
 
 object GEBItems : PlatformRegistry<Registry<Item>, ResourceKey<Registry<Item>>, Item>() {
-    private val teraShardsByType = mutableMapOf<String, Item>()
+    @JvmField
+    val teraShardsByType = mutableMapOf<ElementalType, Item>()
     override val registry: Registry<Item> = BuiltInRegistries.ITEM
     override val resourceKey: ResourceKey<Registry<Item>> = Registries.ITEM
 
@@ -119,19 +125,19 @@ object GEBItems : PlatformRegistry<Registry<Item>, ResourceKey<Registry<Item>>, 
     val WIND_MEMORY = registerMemoryItem("wind_memory")
 
     val teraShards = mutableSetOf<Item>()
-    val BLOOD_TERA_SHARD = registerTeraShardItem("blood_tera_shard");
-    val COSMIC_TERA_SHARD = registerTeraShardItem("cosmic_tera_shard");
-    val CRYSTAL_TERA_SHARD = registerTeraShardItem("crystal_tera_shard");
-    val DIGITAL_TERA_SHARD = registerTeraShardItem("digital_tera_shard");
-    val ELDRITCH_TERA_SHARD = registerTeraShardItem("eldritch_tera_shard");
-    val LIGHT_TERA_SHARD = registerTeraShardItem("light_tera_shard");
-    val MYSTERY_TERA_SHARD = registerTeraShardItem("mystery_tera_shard");
-    val NUCLEAR_TERA_SHARD = registerTeraShardItem("nuclear_tera_shard");
-    val PLASTIC_TERA_SHARD = registerTeraShardItem("plastic_tera_shard");
-    val SHADOW_TERA_SHARD = registerTeraShardItem("shadow_tera_shard");
-    val SLIME_TERA_SHARD = registerTeraShardItem("slime_tera_shard");
-    val SOUND_TERA_SHARD = registerTeraShardItem("sound_tera_shard");
-    val WIND_TERA_SHARD = registerTeraShardItem("wind_tera_shard");
+    val BLOOD_TERA_SHARD = registerTeraShardItem("blood_tera_shard", GravelmonElementalTypes.BLOOD);
+    val COSMIC_TERA_SHARD = registerTeraShardItem("cosmic_tera_shard", GravelmonElementalTypes.COSMIC);
+    val CRYSTAL_TERA_SHARD = registerTeraShardItem("crystal_tera_shard", GravelmonElementalTypes.CRYSTAL);
+    val DIGITAL_TERA_SHARD = registerTeraShardItem("digital_tera_shard", GravelmonElementalTypes.DIGITAL);
+    val ELDRITCH_TERA_SHARD = registerTeraShardItem("eldritch_tera_shard", GravelmonElementalTypes.ELDRITCH);
+    val LIGHT_TERA_SHARD = registerTeraShardItem("light_tera_shard", GravelmonElementalTypes.LIGHT);
+    val MYSTERY_TERA_SHARD = registerTeraShardItem("mystery_tera_shard", GravelmonElementalTypes.MYSTERY);
+    val NUCLEAR_TERA_SHARD = registerTeraShardItem("nuclear_tera_shard", GravelmonElementalTypes.NUCLEAR);
+    val PLASTIC_TERA_SHARD = registerTeraShardItem("plastic_tera_shard", GravelmonElementalTypes.PLASTIC);
+    val SHADOW_TERA_SHARD = registerTeraShardItem("shadow_tera_shard", GravelmonElementalTypes.SHADOW);
+    val SLIME_TERA_SHARD = registerTeraShardItem("slime_tera_shard", GravelmonElementalTypes.SLIME);
+    val SOUND_TERA_SHARD = registerTeraShardItem("sound_tera_shard", GravelmonElementalTypes.SOUND);
+    val WIND_TERA_SHARD = registerTeraShardItem("wind_tera_shard", GravelmonElementalTypes.WIND);
     
     val heldItems = mutableSetOf<Item>()
     val FROST_HEAL = create(gravelmonResource("frost_heal"), StatusCureItem("frost_heal", GravelmonStatus.FROSTBITE, block = GEBBlocks.FROST_HEAL));
@@ -157,14 +163,19 @@ object GEBItems : PlatformRegistry<Registry<Item>, ResourceKey<Registry<Item>>, 
     }
 
     fun registerZCrystalItem(name: String, gem: Item?, type: String): Item {
-        val item = heldItem(name, GEBZCrystal(type))
+        val item : Item = if(megaShowdownIsLoaded()) {
+            val elementalType = ElementalTypes.get(type) ?: throw IllegalArgumentException("Elemental type not found for $name")
+            create(gravelmonResource(name), MegaShowdownCompat.registerZCrystal(name, elementalType))
+        } else heldItem(name, GEBZCrystal(type))
         if (!GravelsExtendedBattles.CONFIG.implementedTypes.contains(type)) return item
         zCrystals.add(item)
         return item
     }
 
     fun registerPlateItem(name: String, type: String): Item {
-        val item = heldItem(name, GEBArceusPlateItem(type))
+        val item : Item = if(megaShowdownIsLoaded()) {
+            create(gravelmonResource(name), MegaShowdownCompat.registerPlateItem(type))
+        } else heldItem(name, GEBArceusPlateItem(type))
         if (!GravelsExtendedBattles.CONFIG.implementedTypes.contains(type)) return item
         plates.add(item)
         return item
@@ -172,16 +183,19 @@ object GEBItems : PlatformRegistry<Registry<Item>, ResourceKey<Registry<Item>>, 
 
     fun registerMemoryItem(name: String): Item {
         val type = name.replace("_memory".toRegex(), "")
-        val item = heldItem(name, GEBMemoryItem(type))
+        val item : Item = if(megaShowdownIsLoaded()) {
+            create(gravelmonResource(name), MegaShowdownCompat.registerMemoryItem(type))
+        } else heldItem(name, GEBMemoryItem(type))
         if (!GravelsExtendedBattles.CONFIG.implementedTypes.contains(type)) return item
         memories.add(item)
         return item
     }
 
-    fun registerTeraShardItem(name: String): Item {
-        val type = name.replace("_tera_shard".toRegex(), "")
-        val item = heldItem(name, GEBTeraShardItem(type))
-        if (!GravelsExtendedBattles.CONFIG.implementedTypes.contains(type)) return item
+    fun registerTeraShardItem(name: String, type: ElementalType): Item {
+        val item : Item = if(megaShowdownIsLoaded()) {
+            create(gravelmonResource(name), MegaShowdownCompat.registerTeraShardItem(type))
+        } else heldItem(name, GEBTeraShardItem(type.name))
+        if (!GravelsExtendedBattles.CONFIG.implementedTypes.contains(type.name)) return item
         teraShards.add(item)
         teraShardsByType[type] = item
         return item

@@ -14,6 +14,7 @@ loom {
 
 dependencies {
     minecraft("com.mojang:minecraft:${property("minecraft_version")}")
+    modImplementation("dev.architectury:architectury:${property("architectury_version")}")
     mappings(loom.officialMojangMappings())
     modImplementation("com.cobblemon:mod:${property("cobblemon_version")}") { isTransitive = false }
 
@@ -21,6 +22,7 @@ dependencies {
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${property("junit_version")}")
 
     val midnightlib = "eu.midnightdust:midnightlib:${property("midnightlib_version")}-fabric"
+    modImplementation("maven.modrinth:cobblemon-mega-showdown:${property("megashowdown_fabric")}")
     modImplementation(midnightlib) {
         exclude(
             group = "com.terraformersmc",

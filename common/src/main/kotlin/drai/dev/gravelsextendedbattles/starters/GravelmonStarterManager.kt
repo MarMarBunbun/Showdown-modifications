@@ -17,10 +17,11 @@ object GravelmonStarterManager {
                 .toList()
             if(starters.isEmpty()) return@forEach
             val newCategory = StarterCategory(
-                starterCategory.name,
-                starterCategory.order,
-                starterCategory.displayName,
-                starters,
+                name = starterCategory.name,
+                order = starterCategory.order,
+                displayName = starterCategory.displayName,
+                pokemon = starters,
+                false
             )
             finalCategories.add(newCategory)
         }

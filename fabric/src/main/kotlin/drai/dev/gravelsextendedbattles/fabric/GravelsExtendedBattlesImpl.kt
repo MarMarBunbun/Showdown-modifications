@@ -34,7 +34,7 @@ import java.util.function.Consumer
 object GravelsExtendedBattlesImpl: ModInitializer {
 
     override fun onInitialize() {
-        GravelsExtendedBattles.initialize()
+        if(!GravelsExtendedBattles.megaShowdownIsLoaded()) GravelsExtendedBattles.initialize()
         GravelsExtendedBattles.builtinPacks.forEach {
             val mod = FabricLoader.getInstance().getModContainer(GravelsExtendedBattles.MOD_ID).get()
             val resourcePackActivationType = when (it.activationBehaviour) {
@@ -85,6 +85,11 @@ object GravelsExtendedBattlesImpl: ModInitializer {
                 }
                 )
             })
+    }
+
+    @JvmStatic
+    fun modIsLoaded(modId: String) : Boolean {
+        return FabricLoader.getInstance().isModLoaded("mega_showdown")
     }
 
     fun registerBrewingRecipes() {

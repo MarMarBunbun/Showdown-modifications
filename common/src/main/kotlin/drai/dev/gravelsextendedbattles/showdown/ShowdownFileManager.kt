@@ -9,10 +9,7 @@ import java.nio.file.StandardCopyOption
 object ShowdownFileManager {
 
     private val showdownFiles = listOf(
-        "abilities.js",
         "conditions.js",
-        "items.js",
-        "moves.js",
         "pokedex.js",
         "scripts.js",
         "tags.js"

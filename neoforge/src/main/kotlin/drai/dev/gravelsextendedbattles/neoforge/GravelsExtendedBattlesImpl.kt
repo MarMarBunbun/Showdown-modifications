@@ -31,12 +31,13 @@ import net.neoforged.neoforge.event.village.VillagerTradesEvent
 import net.neoforged.neoforge.registries.RegisterEvent
 import thedarkcolour.kotlinforforge.neoforge.forge.MOD_BUS
 import java.util.*
+import kotlin.text.get
 
 @Mod(Cobblemon.MODID)
 object GravelsExtendedBattlesImpl {
     init {
         with(MOD_BUS) {
-            GravelsExtendedBattles.initialize()
+            if(!GravelsExtendedBattles.megaShowdownIsLoaded()) GravelsExtendedBattles.initialize()
             addListener(::onAddPackFindersEvent)
         }
         with(NeoForge.EVENT_BUS) {
@@ -97,6 +98,11 @@ object GravelsExtendedBattlesImpl {
 //                }
 //            }
         }
+    }
+
+    @JvmStatic
+    fun modIsLoaded(modId: String) : Boolean {
+        return ModList.get().isLoaded("mega_showdown")
     }
 
     @JvmStatic

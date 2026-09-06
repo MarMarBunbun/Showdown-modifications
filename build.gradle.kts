@@ -22,6 +22,7 @@ allprojects {
         maven("https://maven.midnightdust.eu/releases")
         maven("https://api.modrinth.com/maven")
         maven("https://cursemaven.com")
+        maven("https://maven.wispforest.io/releases")
     }
 
     tasks {

@@ -1,6 +1,7 @@
 {
   "required": true,
   "package": "drai.dev.gravelsextendedbattles.mixin",
+  "plugin": "drai.dev.gravelsextendedbattles.mixin.MegaShowdownMixinPlugin",
   "compatibilityLevel": "JAVA_21",
   "minVersion": "0.8",
   "injectors": {
@@ -38,6 +39,11 @@
     "accessors.ServerCommonPacketListenerImplAccessor",
     "accessors.SimplePokedexDefAccessor",
     "accessors.SpeciesAccessor",
-    "invokers.TeraTypesInvoker"
+    "invokers.TeraTypesInvoker",
+    "megashowdown.ElementalZCrystalAccessor",
+    "megashowdown.FormChangeHeldItemAccessor",
+    "megashowdown.GlowHandlerMixin",
+    "megashowdown.MegaShowdownMixin",
+    "megashowdown.TeraTypeHelperMixin"
   ]
 }
