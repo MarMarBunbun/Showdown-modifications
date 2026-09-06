@@ -11,6 +11,12 @@
   "icon": "assets/example/icon.png",
   "environment": "*",
   "entrypoints": {
+    "client": [
+      {
+        "value": "drai.dev.gravelsextendedbattles.client.GravelsExtendedBattlesClient",
+        "adapter": "kotlin"
+      }
+    ],
     "main": [
       {
         "value": "drai.dev.gravelsextendedbattles.fabric.GravelsExtendedBattlesImpl",

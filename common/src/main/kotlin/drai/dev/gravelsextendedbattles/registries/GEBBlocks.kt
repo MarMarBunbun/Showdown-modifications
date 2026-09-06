@@ -73,7 +73,7 @@ object GEBBlocks : PlatformRegistry<Registry<Block>, ResourceKey<Registry<Block>
 
         TypeGemClusterBlock.gemToClusterMap[gemBlock] = gemClusterBlock
 
-        typeGemBlocks[resourceLocation] = gemClusterBlock
+        typeGemClusters[resourceLocation] = gemClusterBlock
         CobblemonBlocksAccessor.getTypeGemClusters()[resourceLocation] = gemClusterBlock
 
         return gemClusterBlock
