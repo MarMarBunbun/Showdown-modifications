@@ -1,4 +1,4 @@
-{
+﻿{
   "parent": "minecraft:block/cross",
   "ambientocclusion": false,
   "gui_light": "front",
