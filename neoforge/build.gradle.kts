@@ -26,6 +26,14 @@ val shadowBundle: Configuration by configurations.creating {
     isCanBeResolved = true
 }
 
+configurations.configureEach {
+    resolutionStrategy.eachDependency {
+        if (requested.group == "org.ow2.asm") {
+            useVersion("9.8")
+        }
+    }
+}
+
 dependencies {
     minecraft("net.minecraft:minecraft:${property("minecraft_version")}")
     mappings(loom.officialMojangMappings())
@@ -46,8 +54,6 @@ dependencies {
     val midnightlib = "eu.midnightdust:midnightlib:${property("midnightlib_version")}-neoforge"
     modImplementation(midnightlib)
     include(midnightlib)
-    modImplementation("maven.modrinth:cobblemon-mega-showdown:${property("megashowdown_fabric")}")
-    modImplementation("dev.architectury:architectury:${property("architectury_version")}")
 }
 
 tasks {

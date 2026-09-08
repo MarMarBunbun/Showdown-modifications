@@ -157,32 +157,17 @@ const Abilities = {
   },
   alchemicpower: {
     onAllyFaint(target) {
-      if (!this.effectState.target.hp)
+      if (!this.effectState.target.hp && !target.getAbility().flags["notrace"] && target.ability !== "noability")
         return;
       const ability = target.getAbility();
-      const additionalBannedAbilities = [
-        "alchemicpower",
-		"noability",
-        "flowergift",
-        "forecast",
-        "hungerswitch",
-        "illusion",
-        "imposter",
-        "neutralizinggas",
-        "powerofalchemy",
-        "receiver",
-        "trace",
-        "wonderguard"
-      ];
-      if (target.getAbility().isPermanent || additionalBannedAbilities.includes(target.ability))
-        return;
       if (this.effectState.target.setAbility(ability)) {
         this.add("-ability", this.effectState.target, ability, "[from] ability: Alchemic Power", "[of] " + target);
       }
     },
 	name: "Alchemic POwer",
 	rating: 2,
-	num: 3004
+	num: 3004,
+    flags: { notrace: 1}
   },
   allseeing: {
     onResidualOrder: 28,
@@ -3294,35 +3279,6 @@ const Abilities = {
     rating: 3,
     num: 3116
   },
-  powerofalchemy: {
-    onAllyFaint(target) {
-      if (!this.effectState.target.hp)
-        return;
-      const ability = target.getAbility();
-      const additionalBannedAbilities = [
-        "alchemicpower",
-		"noability",
-        "flowergift",
-        "forecast",
-        "hungerswitch",
-        "illusion",
-        "imposter",
-        "neutralizinggas",
-        "powerofalchemy",
-        "receiver",
-        "trace",
-        "wonderguard"
-      ];
-      if (target.getAbility().isPermanent || additionalBannedAbilities.includes(target.ability))
-        return;
-      if (this.effectState.target.setAbility(ability)) {
-        this.add("-ability", this.effectState.target, ability, "[from] ability: Power of Alchemy", "[of] " + target);
-      }
-    },
-    name: "Power of Alchemy",
-    rating: 0,
-    num: 223
-  },
   premonition: {
 	onModifySpA(relayVar, source, target, move) {
       if (move.id === "futuresight") {
@@ -3499,35 +3455,6 @@ const Abilities = {
     name: "Reactive Shielding",
     rating: 2.5,
     num: 3210
-  },
-  receiver: {
-    onAllyFaint(target) {
-      if (!this.effectState.target.hp)
-        return;
-      const ability = target.getAbility();
-      const additionalBannedAbilities = [
-        "alchemicpower",
-		"noability",
-        "flowergift",
-        "forecast",
-        "hungerswitch",
-        "illusion",
-        "imposter",
-        "neutralizinggas",
-        "powerofalchemy",
-        "receiver",
-        "trace",
-        "wonderguard"
-      ];
-      if (target.getAbility().isPermanent || additionalBannedAbilities.includes(target.ability))
-        return;
-      if (this.effectState.target.setAbility(ability)) {
-        this.add("-ability", this.effectState.target, ability, "[from] ability: Receiver", "[of] " + target);
-      }
-    },
-    name: "Receiver",
-    rating: 0,
-    num: 3122
   },
   regalia: {
     onModifyTypePriority: -1,
@@ -4057,7 +3984,8 @@ const Abilities = {
 	onAnyFaint(target) {
       if (!this.effectState.target.hp) return;
       const ability = target.getAbility();
-      if (ability.flags['noreceiver'] || ability.id === 'noability') return;
+      if (!this.effectState.target.hp && !target.getAbility().flags["notrace"] && target.ability !== "noability")
+        return;
       if (this.effectState.target.setAbility(ability)) {
         this.add('-ability', this.effectState.target, ability, '[from] ability: Seance', '[of] ' + target);
       }
@@ -4376,47 +4304,6 @@ const Abilities = {
 	name: "Toxic Voice",
 	rating: 1.5,
 	num: 3250
-  },
-  trace: {
-    onStart(pokemon) {
-      if (pokemon.adjacentFoes().some((foeActive) => foeActive.ability === "noability")) {
-        this.effectState.gaveUp = true;
-      }
-      if (pokemon.hasItem("Ability Shield")) {
-        this.add("-block", pokemon, "item: Ability Shield");
-        this.effectState.gaveUp = true;
-      }
-    },
-    onUpdate(pokemon) {
-      if (!pokemon.isStarted || this.effectState.gaveUp)
-        return;
-      const additionalBannedAbilities = [
-        // Zen Mode included here for compatability with Gen 5-6
-        "alchemicpower",
-		"noability",
-        "flowergift",
-        "forecast",
-        "hungerswitch",
-        "illusion",
-        "imposter",
-        "neutralizinggas",
-        "powerofalchemy",
-        "receiver",
-        "trace",
-        "zenmode"
-      ];
-      const possibleTargets = pokemon.adjacentFoes().filter((target2) => !target2.getAbility().isPermanent && !additionalBannedAbilities.includes(target2.ability));
-      if (!possibleTargets.length)
-        return;
-      const target = this.sample(possibleTargets);
-      const ability = target.getAbility();
-      if (pokemon.setAbility(ability)) {
-        this.add("-ability", pokemon, ability, "[from] ability: Trace", "[of] " + target);
-      }
-    },
-    name: "Trace",
-    rating: 2.5,
-    num: 36
   },
   transcendence: {
     onStart(source) {

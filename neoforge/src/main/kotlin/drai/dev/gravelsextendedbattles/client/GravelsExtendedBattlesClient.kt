@@ -18,7 +18,6 @@ import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent
 object GravelsExtendedBattlesClient {
 
     @SubscribeEvent
-    @JvmStatic
     fun onClientSetup(event: FMLClientSetupEvent) {
         registerBlockRenderType(RenderType.cutout(), GEBBlocks.FROST_HEAL,
             *GEBBlocks.typeGemClusters.values.toTypedArray())

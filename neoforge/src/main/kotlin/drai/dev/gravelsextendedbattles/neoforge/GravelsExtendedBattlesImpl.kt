@@ -33,7 +33,7 @@ import thedarkcolour.kotlinforforge.neoforge.forge.MOD_BUS
 import java.util.*
 import kotlin.text.get
 
-@Mod(Cobblemon.MODID)
+@Mod(GravelsExtendedBattles.MOD_ID)
 object GravelsExtendedBattlesImpl {
     init {
         with(MOD_BUS) {
