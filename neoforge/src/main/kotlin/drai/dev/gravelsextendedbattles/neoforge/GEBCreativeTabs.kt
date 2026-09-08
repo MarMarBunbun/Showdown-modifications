@@ -74,7 +74,7 @@ object GEBCreativeTabs {
                 GEBItems.SOUND_GEM_BLOCK,
                 GEBItems.WIND_GEM_BLOCK
             ).forEach { block ->
-                event.insertAfter(ItemStack(CobblemonItems.TYPE_GEM_CLUSTER_FAIRY),ItemStack(block),CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS)
+                event.insertAfter(ItemStack(CobblemonItems.TYPE_GEM_BLOCK_FAIRY),ItemStack(block),CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS)
             }
         }
 
@@ -101,7 +101,7 @@ object GEBCreativeTabs {
                 DataComponents.CUSTOM_MODEL_DATA,
                 CustomModelData(i)
             )
-            event.insertAfter(ItemStack(CobblemonItems.TYPE_GEM_CLUSTER_FAIRY), stack, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS)
+            event.insertBefore(ItemStack(CobblemonItems.TYPE_GEM_CORE), stack, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS)
         }
     }
 }

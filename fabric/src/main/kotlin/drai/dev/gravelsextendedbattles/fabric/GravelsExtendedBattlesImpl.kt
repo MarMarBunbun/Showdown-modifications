@@ -2,6 +2,7 @@ package drai.dev.gravelsextendedbattles.fabric
 
 import com.cobblemon.mod.common.CobblemonVillagerProfessions.NURSE
 import com.cobblemon.mod.common.ResourcePackActivationBehaviour
+import com.github.yajatkaul.mega_showdown.MegaShowdown
 import drai.dev.gravelsextendedbattles.GravelsExtendedBattles
 import drai.dev.gravelsextendedbattles.data.GEBDataProvider
 import drai.dev.gravelsextendedbattles.gravelmonResource
@@ -10,10 +11,12 @@ import drai.dev.gravelsextendedbattles.registries.GEBItems
 import net.fabricmc.api.ModInitializer
 import net.fabricmc.fabric.api.`object`.builder.v1.trade.TradeOfferHelper
 import net.fabricmc.fabric.api.resource.IdentifiableResourceReloadListener
+import net.fabricmc.fabric.api.resource.ResourceManagerHelper
 import net.fabricmc.fabric.api.resource.ResourcePackActivationType
 import net.fabricmc.fabric.impl.resource.loader.ResourceManagerHelperImpl
 import net.fabricmc.loader.api.FabricLoader
 import net.minecraft.core.Registry
+import net.minecraft.network.chat.Component
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.server.packs.PackType
 import net.minecraft.server.packs.resources.PreparableReloadListener

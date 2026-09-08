@@ -57,7 +57,6 @@ object GravelsExtendedBattles {
     val CONFIG: GEBConfig = GEBConfig()
     @JvmField
     val fossils: MutableMap<ResourceLocation, Fossil> = HashMap()
-
     @JvmStatic
     val builtinPacks = listOf(
         CobblemonPack(id = "placeholdersprites", name = "Placeholder Sprites for Unmodeled Pokemon", packType = PackType.CLIENT_RESOURCES, activationBehaviour = ResourcePackActivationBehaviour.DEFAULT_ENABLED),
