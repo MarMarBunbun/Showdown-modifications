@@ -5,9 +5,9 @@ import drai.dev.gravelsextendedbattles.GravelsExtendedBattles
 import drai.dev.gravelsextendedbattles.additions.types.Type
 import kotlin.text.equals
 
-class TypeMoveSubstitution(originalMove: String, replacementMove: String, val type: Type) : MoveSubstitution(originalMove, replacementMove) {
+class TypeMoveSubstitution(originalMove: String, replacementMove: String, var type: Type) : MoveSubstitution(originalMove, replacementMove) {
     override fun shouldSubstitute(): Boolean {
-        return GravelsExtendedBattles.CONFIG.implementedTypes.none { it.equals(this.type.name, ignoreCase = true) }
+        return GravelsExtendedBattles.CONFIG.implementedTypes.any { it.equals(this.type.name, ignoreCase = true) }
     }
 
     companion object {

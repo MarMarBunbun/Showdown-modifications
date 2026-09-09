@@ -1,0 +1,6 @@
+{
+  "originalMove": "echoedvoice",
+  "replacementMove": "echoedvoicesound",
+  "type": "sound",
+  "variant": "type"
+}

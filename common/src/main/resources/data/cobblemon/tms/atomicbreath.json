@@ -1,0 +1,15 @@
+{
+  "moveName": "atomicbreath",
+  "obtainMethods": [
+    {
+      "variant": "cobblemon:default"
+    }
+  ],
+  "type": "nuclear",
+  "recipe": [
+    {
+      "item": "gravelmon:nuclear_gem",
+      "count": 7
+    }
+  ]
+}

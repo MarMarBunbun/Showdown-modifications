@@ -1,0 +1,11 @@
+{
+  "moveName": "singularity",
+  "obtainMethods": [],
+  "type": "psychic",
+  "recipe": [
+    {
+      "item": "cobblemon:psychic_gem",
+      "count": 1
+    }
+  ]
+}

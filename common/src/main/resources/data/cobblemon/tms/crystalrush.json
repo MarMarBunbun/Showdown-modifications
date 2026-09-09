@@ -1,0 +1,15 @@
+{
+  "moveName": "crystalrush",
+  "obtainMethods": [
+    {
+      "variant": "cobblemon:default"
+    }
+  ],
+  "type": "crystal",
+  "recipe": [
+    {
+      "item": "gravelmon:crystal_gem",
+      "count": 6
+    }
+  ]
+}

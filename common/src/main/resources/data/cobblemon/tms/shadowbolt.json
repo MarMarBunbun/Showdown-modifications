@@ -1,0 +1,19 @@
+{
+  "moveName": "shadowbolt",
+  "obtainMethods": [
+    {
+      "variant": "cobblemon:unlockable"
+    }
+  ],
+  "type": "shadow",
+  "recipe": [
+    {
+      "item": "gravelmon:shadow_gem",
+      "count": 1
+    },
+    {
+      "item": "cobblemon:electric_gem",
+      "count": 1
+    }
+  ]
+}

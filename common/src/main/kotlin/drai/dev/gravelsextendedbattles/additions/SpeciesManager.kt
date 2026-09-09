@@ -1,6 +1,9 @@
 package drai.dev.gravelsextendedbattles.additions
 
 import com.cobblemon.mod.common.api.pokemon.PokemonSpecies
+import com.cobblemon.mod.common.api.storage.player.adapter.TMMoveJsonBackend
+import com.cobblemon.mod.common.api.tms.TMMoveManager
+import com.cobblemon.mod.common.api.tms.TechnicalMachines
 import com.cobblemon.mod.common.pokemon.Species
 import drai.dev.gravelsextendedbattles.GravelsExtendedBattles
 import drai.dev.gravelsextendedbattles.additions.evolutions.AdditionalEvolution

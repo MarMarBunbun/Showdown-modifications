@@ -1,0 +1,15 @@
+{
+  "moveName": "darkwhispers",
+  "obtainMethods": [
+    {
+      "variant": "cobblemon:default"
+    }
+  ],
+  "type": "eldritch",
+  "recipe": [
+    {
+      "item": "gravelmon:eldritch_gem",
+      "count": 4
+    }
+  ]
+}

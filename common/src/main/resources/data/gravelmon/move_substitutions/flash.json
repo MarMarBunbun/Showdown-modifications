@@ -1,0 +1,6 @@
+{
+  "originalMove": "flash",
+  "replacementMove": "flashlight",
+  "type": "light",
+  "variant": "type"
+}

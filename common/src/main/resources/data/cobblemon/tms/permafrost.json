@@ -1,0 +1,11 @@
+{
+  "moveName": "permafrost",
+  "obtainMethods": [],
+  "type": "ice",
+  "recipe": [
+    {
+      "item": "cobblemon:ice_gem",
+      "count": 2
+    }
+  ]
+}

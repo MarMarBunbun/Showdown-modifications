@@ -1,0 +1,11 @@
+{
+  "moveName": "spiritaway",
+  "obtainMethods": [],
+  "type": "fairy",
+  "recipe": [
+    {
+      "item": "cobblemon:fairy_gem",
+      "count": 3
+    }
+  ]
+}

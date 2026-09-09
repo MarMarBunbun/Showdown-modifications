@@ -1,0 +1,15 @@
+{
+  "moveName": "guardianleaf",
+  "obtainMethods": [
+    {
+      "variant": "cobblemon:unlockable"
+    }
+  ],
+  "type": "grass",
+  "recipe": [
+    {
+      "item": "cobblemon:grass_gem",
+      "count": 1
+    }
+  ]
+}

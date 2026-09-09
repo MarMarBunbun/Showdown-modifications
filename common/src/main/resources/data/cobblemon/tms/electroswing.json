@@ -1,0 +1,19 @@
+{
+  "moveName": "electroswing",
+  "obtainMethods": [
+    {
+      "variant": "cobblemon:unlockable"
+    }
+  ],
+  "type": "sound",
+  "recipe": [
+    {
+      "item": "gravelmon:sound_gem",
+      "count": 1
+    },
+    {
+      "item": "cobblemon:electric_gem",
+      "count": 1
+    }
+  ]
+}

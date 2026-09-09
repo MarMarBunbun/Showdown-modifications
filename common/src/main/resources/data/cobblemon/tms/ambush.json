@@ -1,0 +1,11 @@
+{
+  "moveName": "ambush",
+  "obtainMethods": [],
+  "type": "dark",
+  "recipe": [
+    {
+      "item": "cobblemon:dark_gem",
+      "count": 5
+    }
+  ]
+}

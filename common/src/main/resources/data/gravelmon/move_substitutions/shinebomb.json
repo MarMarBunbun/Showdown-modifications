@@ -1,0 +1,6 @@
+{
+  "originalMove": "shinebomb",
+  "replacementMove": "shinebomblight",
+  "type": "light",
+  "variant": "type"
+}

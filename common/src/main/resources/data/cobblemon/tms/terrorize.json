@@ -1,0 +1,19 @@
+{
+  "moveName": "terrorize",
+  "obtainMethods": [
+    {
+      "variant": "cobblemon:unlockable"
+    }
+  ],
+  "type": "ghost",
+  "recipe": [
+    {
+      "item": "cobblemon:ghost_gem",
+      "count": 5
+    },
+    {
+      "item": "cobblemon:psychic_gem",
+      "count": 3
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "moveName": "fallout",
+  "obtainMethods": [
+    {
+      "variant": "cobblemon:unlockable"
+    }
+  ],
+  "type": "nuclear",
+  "recipe": [
+    {
+      "item": "gravelmon:nuclear_gem",
+      "count": 1
+    }
+  ]
+}

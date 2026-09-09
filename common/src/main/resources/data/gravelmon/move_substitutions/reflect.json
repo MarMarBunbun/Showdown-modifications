@@ -1,0 +1,6 @@
+{
+  "originalMove": "reflect",
+  "replacementMove": "reflectlight",
+  "type": "light",
+  "variant": "type"
+}

@@ -1,6 +1,6 @@
 package drai.dev.gravelsextendedbattles.mixin;
 
-import drai.dev.gravelsextendedbattles.*;
+import dev.architectury.platform.Platform;
 import org.objectweb.asm.tree.ClassNode;
 import org.spongepowered.asm.mixin.extensibility.IMixinConfigPlugin;
 import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
@@ -10,7 +10,8 @@ import java.util.Set;
 
 public class MegaShowdownMixinPlugin implements IMixinConfigPlugin {
 
-    private static final String MEGA_SHOWDOWN = "megashowdown.";
+    private static final String MEGA_SHOWDOWN_PACKAGE =
+            "drai.dev.gravelsextendedbattles.mixin.megashowdown.";
 
     @Override
     public void onLoad(String mixinPackage) {
@@ -23,8 +24,8 @@ public class MegaShowdownMixinPlugin implements IMixinConfigPlugin {
 
     @Override
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
-        if (mixinClassName.startsWith(MEGA_SHOWDOWN)) {
-            return GravelsExtendedBattles.megaShowdownIsLoaded();
+        if (mixinClassName.startsWith(MEGA_SHOWDOWN_PACKAGE)) {
+            return Platform.isModLoaded("mega_showdown");
         }
 
         return true;
@@ -55,9 +56,5 @@ public class MegaShowdownMixinPlugin implements IMixinConfigPlugin {
             String mixinClassName,
             IMixinInfo mixinInfo
     ) {
-    }
-
-    private boolean isMegaShowdownLoaded() {
-        return false;
     }
 }

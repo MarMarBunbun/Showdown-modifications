@@ -1,0 +1,19 @@
+{
+  "moveName": "carbonize",
+  "obtainMethods": [
+    {
+      "variant": "cobblemon:unlockable"
+    }
+  ],
+  "type": "steel",
+  "recipe": [
+    {
+      "item": "cobblemon:steel_gem",
+      "count": 1
+    },
+    {
+      "item": "cobblemon:fire_gem",
+      "count": 1
+    }
+  ]
+}

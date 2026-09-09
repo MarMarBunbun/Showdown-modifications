@@ -1,0 +1,15 @@
+{
+  "moveName": "fiesta",
+  "obtainMethods": [
+    {
+      "variant": "cobblemon:unlockable"
+    }
+  ],
+  "type": "normal",
+  "recipe": [
+    {
+      "item": "cobblemon:normal_gem",
+      "count": 6
+    }
+  ]
+}

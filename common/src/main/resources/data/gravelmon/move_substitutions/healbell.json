@@ -1,0 +1,6 @@
+{
+  "originalMove": "healbell",
+  "replacementMove": "healbellsound",
+  "type": "sound",
+  "variant": "type"
+}

@@ -5,6 +5,8 @@ import com.cobblemon.mod.common.api.data.DataRegistry
 import com.cobblemon.mod.common.api.data.JsonDataRegistry
 import com.cobblemon.mod.common.util.server
 import drai.dev.gravelsextendedbattles.additions.evolutions.AdditionalEvolutions
+import drai.dev.gravelsextendedbattles.additions.moves.addition.MoveAdditions
+import drai.dev.gravelsextendedbattles.additions.moves.substitution.MoveSubstitutions
 import drai.dev.gravelsextendedbattles.additions.types.TypeChanges
 import net.minecraft.server.packs.PackType
 import net.minecraft.server.packs.resources.ResourceManager
@@ -17,6 +19,8 @@ object GEBDataProvider {
     fun registerDefaults() {
         this.register(TypeChanges, true)
         this.register(AdditionalEvolutions, true)
+        this.register(MoveSubstitutions, true)
+        this.register(MoveAdditions, true)
     }
 
     fun <T : DataRegistry> register(registry: T, reloadable: Boolean): T {

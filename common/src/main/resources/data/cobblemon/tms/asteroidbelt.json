@@ -1,0 +1,15 @@
+{
+  "moveName": "asteroidbelt",
+  "obtainMethods": [
+    {
+      "variant": "cobblemon:unlockable"
+    }
+  ],
+  "type": "rock",
+  "recipe": [
+    {
+      "item": "cobblemon:rock_gem",
+      "count": 4
+    }
+  ]
+}

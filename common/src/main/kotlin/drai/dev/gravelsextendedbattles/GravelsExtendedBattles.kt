@@ -11,6 +11,7 @@ import com.cobblemon.mod.common.api.habitats.HabitatPool
 import com.cobblemon.mod.common.api.habitats.HabitatPools
 import com.cobblemon.mod.common.api.pokedex.Dexes
 import com.cobblemon.mod.common.api.pokemon.PokemonSpecies
+import com.cobblemon.mod.common.api.tms.TechnicalMachines
 import com.cobblemon.mod.common.api.types.ElementalTypes
 import com.cobblemon.mod.common.api.types.tera.TeraTypes
 import com.cobblemon.mod.common.client.CobblemonPack
@@ -96,6 +97,11 @@ object GravelsExtendedBattles {
 
         StarterDataLoader.observable.subscribe(Priority.LOWEST) {
             GravelmonStarterManager.processStarters()
+        }
+
+        TechnicalMachines.observable.subscribe(Priority.LOWEST) {
+            MoveSubstitutions.tmsFinished = true
+            MoveSubstitutions.applyMoveSubstitutions()
         }
 
         observable.subscribe(Priority.LOWEST) {

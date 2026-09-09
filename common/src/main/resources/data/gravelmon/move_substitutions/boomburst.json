@@ -1,0 +1,6 @@
+{
+  "originalMove": "boomburst",
+  "replacementMove": "boomburstsound",
+  "type": "sound",
+  "variant": "type"
+}

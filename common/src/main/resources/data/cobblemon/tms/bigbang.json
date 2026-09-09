@@ -1,0 +1,27 @@
+{
+  "moveName": "bigbang",
+  "obtainMethods": [
+    {
+      "variant": "cobblemon:unlockable"
+    }
+  ],
+  "type": "cosmic",
+  "recipe": [
+    {
+      "item": "gravelmon:cosmic_gem",
+      "count": 5
+    },
+    {
+      "item": "cobblemon:fire_gem",
+      "count": 3
+    },
+    {
+      "item": "cobblemon:ice_gem",
+      "count": 3
+    },
+    {
+      "item": "cobblemon:electric_gem",
+      "count": 3
+    }
+  ]
+}

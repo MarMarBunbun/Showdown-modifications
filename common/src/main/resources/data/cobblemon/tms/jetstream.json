@@ -1,0 +1,11 @@
+{
+  "moveName": "jetstream",
+  "obtainMethods": [],
+  "type": "dragon",
+  "recipe": [
+    {
+      "item": "cobblemon:dragon_gem",
+      "count": 1
+    }
+  ]
+}

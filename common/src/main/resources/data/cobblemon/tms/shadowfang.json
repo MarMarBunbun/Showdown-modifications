@@ -1,0 +1,19 @@
+{
+  "moveName": "shadowfang",
+  "obtainMethods": [
+    {
+      "variant": "cobblemon:default"
+    }
+  ],
+  "type": "shadow",
+  "recipe": [
+    {
+      "item": "gravelmon:shadow_gem",
+      "count": 5
+    },
+    {
+      "item": "cobblemon:dark_gem",
+      "count": 1
+    }
+  ]
+}

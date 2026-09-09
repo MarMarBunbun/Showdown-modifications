@@ -1,0 +1,6 @@
+{
+  "originalMove": "atomsplit",
+  "replacementMove": "atomsplitnuclear",
+  "type": "nuclear",
+  "variant": "type"
+}

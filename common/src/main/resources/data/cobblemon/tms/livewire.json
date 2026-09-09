@@ -1,0 +1,11 @@
+{
+  "moveName": "livewire",
+  "obtainMethods": [],
+  "type": "electric",
+  "recipe": [
+    {
+      "item": "cobblemon:electric_gem",
+      "count": 1
+    }
+  ]
+}

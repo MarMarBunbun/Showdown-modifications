@@ -1,0 +1,15 @@
+{
+  "moveName": "mentalanguish",
+  "obtainMethods": [
+    {
+      "variant": "cobblemon:default"
+    }
+  ],
+  "type": "eldritch",
+  "recipe": [
+    {
+      "item": "gravelmon:eldritch_gem",
+      "count": 5
+    }
+  ]
+}

@@ -26,14 +26,6 @@ val shadowBundle: Configuration by configurations.creating {
     isCanBeResolved = true
 }
 
-configurations.configureEach {
-    resolutionStrategy.eachDependency {
-        if (requested.group == "org.ow2.asm") {
-            useVersion("9.8")
-        }
-    }
-}
-
 dependencies {
     minecraft("net.minecraft:minecraft:${property("minecraft_version")}")
     mappings(loom.officialMojangMappings())

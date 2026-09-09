@@ -8,6 +8,9 @@ import com.google.gson.GsonBuilder
 import com.google.gson.JsonDeserializationContext
 import com.google.gson.JsonDeserializer
 import com.google.gson.JsonElement
+import com.google.gson.JsonParseException
+import drai.dev.gravelsextendedbattles.additions.types.TypeAdapter
+import drai.dev.gravelsextendedbattles.additions.types.Type as GravelmonType
 import java.lang.reflect.Type
 import kotlin.collections.set
 import kotlin.reflect.KClass
@@ -22,6 +25,7 @@ object MoveSubstitutionAdapter : JsonDeserializer<MoveSubstitution> {
 
     val gson: Gson by lazy {
         GsonBuilder()
+            .registerTypeAdapter(GravelmonType::class.java, TypeAdapter)
             .setPrettyPrinting()
             .create()
     }

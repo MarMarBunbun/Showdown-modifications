@@ -4,7 +4,6 @@ import com.cobblemon.mod.common.api.data.JsonDataRegistry
 import com.cobblemon.mod.common.api.reactive.SimpleObservable
 import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken
-import drai.dev.gravelsextendedbattles.additions.SpeciesManager
 import drai.dev.gravelsextendedbattles.additions.moves.MoveManager
 import drai.dev.gravelsextendedbattles.gravelmonResource
 import net.minecraft.resources.ResourceLocation
@@ -13,6 +12,7 @@ import net.minecraft.server.packs.PackType
 
 object MoveSubstitutions : JsonDataRegistry<MoveSubstitution> {
     var speciesFinished: Boolean = false
+    var tmsFinished: Boolean = false
     override val gson = GsonBuilder()
         .setPrettyPrinting()
         .registerTypeAdapter(MoveSubstitution::class.java, MoveSubstitutionAdapter)
@@ -39,10 +39,11 @@ object MoveSubstitutions : JsonDataRegistry<MoveSubstitution> {
     }
 
     fun applyMoveSubstitutions() {
-        if(speciesFinished && moveSubstitutionsReady) {
-            MoveManager.processFormEvolutionAdditions(moveSubstitutions)
+        if(speciesFinished && moveSubstitutionsReady && tmsFinished) {
+            MoveManager.processMoveSubstitutions(moveSubstitutions)
             moveSubstitutionsReady = false
             speciesFinished = false
+            tmsFinished = false
         }
     }
 }

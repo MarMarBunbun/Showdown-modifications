@@ -1,0 +1,19 @@
+{
+  "moveName": "deepyawn",
+  "obtainMethods": [
+    {
+      "variant": "cobblemon:unlockable"
+    }
+  ],
+  "type": "normal",
+  "recipe": [
+    {
+      "item": "cobblemon:normal_gem",
+      "count": 1
+    },
+    {
+      "item": "cobblemon:psychic_gem",
+      "count": 1
+    }
+  ]
+}

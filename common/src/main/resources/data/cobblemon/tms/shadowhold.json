@@ -1,0 +1,15 @@
+{
+  "moveName": "shadowhold",
+  "obtainMethods": [
+    {
+      "variant": "cobblemon:default"
+    }
+  ],
+  "type": "shadow",
+  "recipe": [
+    {
+      "item": "gravelmon:shadow_gem",
+      "count": 7
+    }
+  ]
+}

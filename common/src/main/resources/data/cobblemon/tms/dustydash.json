@@ -1,0 +1,15 @@
+{
+  "moveName": "dustydash",
+  "obtainMethods": [
+    {
+      "variant": "cobblemon:unlockable"
+    }
+  ],
+  "type": "ground",
+  "recipe": [
+    {
+      "item": "cobblemon:ground_gem",
+      "count": 1
+    }
+  ]
+}

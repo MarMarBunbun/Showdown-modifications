@@ -15,6 +15,7 @@ import net.minecraft.server.packs.repository.KnownPack
 import net.minecraft.server.packs.repository.Pack
 import net.minecraft.server.packs.repository.Pack.Position
 import net.minecraft.server.packs.repository.PackSource
+import net.minecraft.core.registries.Registries
 import net.minecraft.util.RandomSource
 import net.minecraft.world.entity.Entity
 import net.minecraft.world.entity.npc.VillagerProfession
@@ -30,14 +31,18 @@ import net.neoforged.neoforge.common.NeoForge
 import net.neoforged.neoforge.event.AddPackFindersEvent
 import net.neoforged.neoforge.event.village.VillagerTradesEvent
 import net.neoforged.neoforge.registries.RegisterEvent
-import thedarkcolour.kotlinforforge.neoforge.forge.MOD_BUS
 import java.util.*
 import kotlin.text.get
 
 @Mod(GravelsExtendedBattles.MOD_ID)
 object GravelsExtendedBattlesImpl {
+    private val modBus = ModList.get()
+        .getModContainerById(GravelsExtendedBattles.MOD_ID)
+        .orElseThrow()
+        .eventBus ?: error("Gravels Extended Battles does not have a NeoForge mod event bus")
+
     init {
-        with(MOD_BUS) {
+        with(modBus) {
             if(!GravelsExtendedBattles.megaShowdownIsLoaded()) GravelsExtendedBattles.initialize()
             addListener(::onAddPackFindersEvent)
         }
@@ -74,14 +79,14 @@ object GravelsExtendedBattlesImpl {
 
     @JvmStatic
     fun registerItems() {
-        with(MOD_BUS) {
+        with(modBus) {
             addListener<RegisterEvent> { event ->
-                event.register(GEBBlocks.resourceKey) { helper ->
+                event.register(Registries.BLOCK) { helper ->
                     GEBBlocks.register { identifier, item -> helper.register(identifier, item) }
                 }
             }
             addListener<RegisterEvent> { event ->
-                event.register(GEBItems.resourceKey) { helper ->
+                event.register(Registries.ITEM) { helper ->
                     GEBItems.register { identifier, item -> helper.register(identifier, item) }
                 }
             }

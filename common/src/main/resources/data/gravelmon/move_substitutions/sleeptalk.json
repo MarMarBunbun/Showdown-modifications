@@ -1,0 +1,6 @@
+{
+  "originalMove": "sleeptalk",
+  "replacementMove": "sleeptalksound",
+  "type": "sound",
+  "variant": "type"
+}

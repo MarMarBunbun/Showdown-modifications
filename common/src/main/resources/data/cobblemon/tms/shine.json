@@ -1,0 +1,15 @@
+{
+  "moveName": "shine",
+  "obtainMethods": [
+    {
+      "variant": "cobblemon:default"
+    }
+  ],
+  "type": "light",
+  "recipe": [
+    {
+      "item": "gravelmon:light_gem",
+      "count": 4
+    }
+  ]
+}

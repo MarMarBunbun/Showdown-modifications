@@ -1,0 +1,15 @@
+{
+  "moveName": "cometshower",
+  "obtainMethods": [
+    {
+      "variant": "cobblemon:unlockable"
+    }
+  ],
+  "type": "cosmic",
+  "recipe": [
+    {
+      "item": "gravelmon:cosmic_gem",
+      "count": 3
+    }
+  ]
+}

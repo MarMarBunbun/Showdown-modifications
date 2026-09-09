@@ -1,0 +1,6 @@
+{
+  "originalMove": "balanceseal",
+  "replacementMove": "balanceseallight",
+  "type": "light",
+  "variant": "type"
+}

@@ -2,8 +2,11 @@ package drai.dev.gravelsextendedbattles.additions.types
 
 import com.cobblemon.mod.common.api.types.ElementalType
 import com.cobblemon.mod.common.api.types.ElementalTypes
+import drai.dev.gravelsextendedbattles.GravelsExtendedBattles
+import drai.dev.gravelsextendedbattles.mixin.accessors.ElementalTypesAccessor
 import net.minecraft.ChatFormatting
 import net.minecraft.network.chat.Component
+import org.jetbrains.annotations.Unmodifiable
 
 object GravelmonElementalTypes {
     var TYPE_COUNT: Int = 18
@@ -141,5 +144,13 @@ object GravelmonElementalTypes {
     fun touch() {
         GravelmonElementalTypes.BLOOD
         //do nothing except load clinit
+    }
+
+    @JvmStatic
+    fun getImplementedTypes(): @Unmodifiable List<ElementalType> {
+        var filteredType =(ElementalTypes as Any as ElementalTypesAccessor).getAllTypes().stream()
+            .filter { type: ElementalType? -> GravelsExtendedBattles.CONFIG.implementedTypes.contains(type!!.name.lowercase()) }
+            .toList()
+        return filteredType
     }
 }

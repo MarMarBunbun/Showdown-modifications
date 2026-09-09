@@ -1,0 +1,19 @@
+{
+  "moveName": "dryice",
+  "obtainMethods": [
+    {
+      "variant": "cobblemon:unlockable"
+    }
+  ],
+  "type": "ice",
+  "recipe": [
+    {
+      "item": "cobblemon:ice_gem",
+      "count": 1
+    },
+    {
+      "item": "cobblemon:fire_gem",
+      "count": 1
+    }
+  ]
+}

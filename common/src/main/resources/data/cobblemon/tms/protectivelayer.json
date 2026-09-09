@@ -1,0 +1,15 @@
+{
+  "moveName": "protectivelayer",
+  "obtainMethods": [
+    {
+      "variant": "cobblemon:default"
+    }
+  ],
+  "type": "slime",
+  "recipe": [
+    {
+      "item": "gravelmon:slime_gem",
+      "count": 5
+    }
+  ]
+}

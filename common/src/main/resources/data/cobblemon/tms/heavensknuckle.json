@@ -1,0 +1,15 @@
+{
+  "moveName": "heavensknuckle",
+  "obtainMethods": [
+    {
+      "variant": "cobblemon:unlockable"
+    }
+  ],
+  "type": "light",
+  "recipe": [
+    {
+      "item": "gravelmon:light_gem",
+      "count": 2
+    }
+  ]
+}

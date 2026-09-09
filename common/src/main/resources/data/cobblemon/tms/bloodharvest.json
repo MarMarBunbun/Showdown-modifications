@@ -1,0 +1,15 @@
+{
+  "moveName": "bloodharvest",
+  "obtainMethods": [
+    {
+      "variant": "cobblemon:default"
+    }
+  ],
+  "type": "blood",
+  "recipe": [
+    {
+      "item": "gravelmon:blood_gem",
+      "count": 8
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "moveName": "karmabeam",
+  "obtainMethods": [],
+  "type": "ghost",
+  "recipe": [
+    {
+      "item": "cobblemon:ghost_gem",
+      "count": 4
+    }
+  ]
+}

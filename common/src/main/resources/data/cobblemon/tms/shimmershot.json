@@ -1,0 +1,15 @@
+{
+  "moveName": "shimmershot",
+  "obtainMethods": [
+    {
+      "variant": "cobblemon:default"
+    }
+  ],
+  "type": "mystery",
+  "recipe": [
+    {
+      "item": "gravelmon:mystery_gem",
+      "count": 5
+    }
+  ]
+}
