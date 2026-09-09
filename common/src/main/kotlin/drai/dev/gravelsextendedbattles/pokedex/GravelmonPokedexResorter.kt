@@ -81,20 +81,43 @@ object GravelmonPokedexResorter {
     }
 
     fun processPokedexResorting(nationalDexEntries: MutableList<PokedexEntry?>): MutableList<PokedexEntry?> {
+        if (sortedSpecies.isEmpty() && PokemonSpecies.species.isNotEmpty()) {
+            resort(PokemonSpecies)
+        }
+
+        val entriesBySpecies = HashMap<ResourceLocation, PokedexEntry>()
+        val unmatchedEntries = java.util.ArrayList<PokedexEntry?>()
+
+        nationalDexEntries.forEach { entry ->
+            if (entry == null) {
+                unmatchedEntries.add(null)
+            } else {
+                entriesBySpecies[entry.speciesId] = entry
+            }
+        }
+
         val sortedEntries = java.util.ArrayList<PokedexEntry?>()
-        val pokemonSpecies = PokemonSpecies
-        val mappedEntries = HashMap<ResourceLocation?, PokedexEntry?>()
-        nationalDexEntries.forEach{ entry: PokedexEntry? ->
-            val species = pokemonSpecies.getByIdentifier(entry!!.speciesId) ?: return@forEach
-            mappedEntries[species.resourceIdentifier] = entry
-        }
-        for (i in sortedSpecies.indices) {
-            val sortedSpeciesEntry = sortedSpecies[i]
-            val species = sortedSpeciesEntry.species
-            val entry = mappedEntries[species.resourceIdentifier] ?: continue
+        val sortedSpeciesIds = HashSet<ResourceLocation>()
+
+        sortedSpecies.forEach { node ->
+            val speciesId = node.species.resourceIdentifier
+            val entry = entriesBySpecies[speciesId] ?: return@forEach
+
             sortedEntries.add(entry)
+            sortedSpeciesIds.add(speciesId)
         }
-        if (sortedEntries.isEmpty()) return nationalDexEntries
+
+        nationalDexEntries.forEach { entry ->
+            if (entry != null && entry.speciesId !in sortedSpeciesIds) {
+                sortedEntries.add(entry)
+            }
+        }
+
+        if (sortedEntries.isEmpty()) {
+            return nationalDexEntries
+        }
+
+        sortedEntries.addAll(unmatchedEntries)
         return sortedEntries
     }
 }

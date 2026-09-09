@@ -127,10 +127,6 @@ object GravelsExtendedBattles {
 
     private fun pokemonSpeciesHooks() {
         PokemonSpecies.observable.subscribe(Priority.LOWEST) {
-            speciesFinished = true
-            applyGravelmonExtensions()
-        }
-        PokemonSpecies.observable.subscribe(Priority.LOWEST) {
             AdditionalEvolutions.speciesFinished = true
             AdditionalEvolutions.applyAdditionalEvolutions()
         }
@@ -146,6 +142,10 @@ object GravelsExtendedBattles {
             MoveSubstitutions.speciesFinished = true
             MoveSubstitutions.applyMoveSubstitutions()
         }
+        PokemonSpecies.observable.subscribe(Priority.LOWEST) {
+            speciesFinished = true
+            applyGravelmonExtensions()
+        }
     }
 
     fun applyGravelmonExtensions() {
@@ -153,11 +153,12 @@ object GravelsExtendedBattles {
         val pokemonSpecies = PokemonSpecies
         val dexes = Dexes
 
+        BanListManager.banPokemon(pokemonSpecies, (pokemonSpecies as PokemonSpeciesAccessor))
+
         if (CONFIG.enableDexResort) {
             GravelmonPokedexResorter.resort(pokemonSpecies)
         }
 
-        BanListManager.banPokemon(pokemonSpecies, (pokemonSpecies as PokemonSpeciesAccessor))
         GravelmonPokedexResorter.processPokedexBans(dexes)
 
 //        if (CONFIG.enableAutomaticMoveInsertion) GravelmonMoveSubstitution.substituteMoves()

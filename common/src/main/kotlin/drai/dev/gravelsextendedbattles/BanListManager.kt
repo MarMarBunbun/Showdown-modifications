@@ -13,12 +13,8 @@ object BanListManager {
 
     fun banPokemon(pokemonSpecies: PokemonSpecies, accessor: PokemonSpeciesAccessor) {
         val currentSpecies = PokemonSpeciesAccessor.getSpeciesByIdentifier()
-//        val speciesToBeRemoved = getSpeciesToBeRemoved(currentSpecies)
         PokemonSpeciesAccessor.getSpeciesByDex().clear()
 
-//        for ((key) in speciesToBeRemoved) {
-//            currentSpecies.remove(key)
-//        }
         for (species in currentSpecies.values) {
             if (species != null) {
                 PokemonSpeciesAccessor.getSpeciesByDex().remove(species.resourceIdentifier.namespace, species.nationalPokedexNumber)
@@ -49,11 +45,6 @@ object BanListManager {
                 }
             }
         }
-
-//        val speciesToBeRemoved = currentSpecies.values.filter { species -> species.forms.isEmpty() }.toSet()
-//        speciesToBeRemoved.forEach { species ->
-//            currentSpecies.remove(species.resourceIdentifier)
-//        }
 
         //todo maybe override the base species with the next first form that's still allowed
     }
