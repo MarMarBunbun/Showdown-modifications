@@ -1,0 +1,19 @@
+{
+  "moveName": "perfectglare",
+  "obtainMethods": [
+    {
+      "variant": "cobblemon:unlockable"
+    }
+  ],
+  "type": "normal",
+  "recipe": [
+    {
+      "item": "cobblemon:normal_gem",
+      "count": 1
+    },
+    {
+      "item": "cobblemon:electric_gem",
+      "count": 1
+    }
+  ]
+}

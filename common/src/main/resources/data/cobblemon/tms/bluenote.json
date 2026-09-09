@@ -1,0 +1,15 @@
+{
+  "moveName": "bluenote",
+  "obtainMethods": [
+    {
+      "variant": "cobblemon:unlockable"
+    }
+  ],
+  "type": "sound",
+  "recipe": [
+    {
+      "item": "gravelmon:sound_gem",
+      "count": 1
+    }
+  ]
+}

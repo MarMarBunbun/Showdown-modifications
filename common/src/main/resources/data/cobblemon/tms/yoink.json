@@ -1,0 +1,15 @@
+{
+  "moveName": "yoink",
+  "obtainMethods": [
+    {
+      "variant": "cobblemon:default"
+    }
+  ],
+  "type": "sound",
+  "recipe": [
+    {
+      "item": "gravelmon:sound_gem",
+      "count": 4
+    }
+  ]
+}

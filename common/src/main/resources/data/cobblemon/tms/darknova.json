@@ -1,0 +1,11 @@
+{
+  "moveName": "darknova",
+  "obtainMethods": [],
+  "type": "dark",
+  "recipe": [
+    {
+      "item": "cobblemon:dark_gem",
+      "count": 4
+    }
+  ]
+}

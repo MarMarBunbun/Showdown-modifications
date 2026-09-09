@@ -1,0 +1,15 @@
+{
+	flags: { protect: 1, mirror: 1, bypasssub: 1, allyanim: 1, legendary: 1 },
+  num: 391,
+  accuracy: true,
+  basePower: 0,
+  category: "Status",
+  name: "Heart Swap",
+  pp: 10,
+  priority: 0,
+  secondary: null,
+  target: "normal",
+  type: "Psychic",
+  zMove: { effect: "crit2" },
+  contestType: "Clever",
+}

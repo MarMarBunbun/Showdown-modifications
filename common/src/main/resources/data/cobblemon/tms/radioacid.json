@@ -1,0 +1,15 @@
+{
+  "moveName": "radioacid",
+  "obtainMethods": [
+    {
+      "variant": "cobblemon:default"
+    }
+  ],
+  "type": "nuclear",
+  "recipe": [
+    {
+      "item": "gravelmon:nuclear_gem",
+      "count": 6
+    }
+  ]
+}

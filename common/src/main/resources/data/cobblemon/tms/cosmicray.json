@@ -1,0 +1,15 @@
+{
+  "moveName": "cosmicray",
+  "obtainMethods": [
+    {
+      "variant": "cobblemon:default"
+    }
+  ],
+  "type": "cosmic",
+  "recipe": [
+    {
+      "item": "gravelmon:cosmic_gem",
+      "count": 7
+    }
+  ]
+}

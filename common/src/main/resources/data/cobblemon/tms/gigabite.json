@@ -1,0 +1,19 @@
+{
+  "moveName": "gigabite",
+  "obtainMethods": [
+    {
+      "variant": "cobblemon:default"
+    }
+  ],
+  "type": "digital",
+  "recipe": [
+    {
+      "item": "gravelmon:digital_gem",
+      "count": 6
+    },
+    {
+      "item": "cobblemon:dark_gem",
+      "count": 1
+    }
+  ]
+}

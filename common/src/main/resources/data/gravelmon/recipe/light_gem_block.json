@@ -1,0 +1,43 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "gravelmon:light_gem"
+    }
+  },
+  "result": {
+    "id": "gravelmon:light_gem_block",
+    "count": 1
+  },
+  "criteria": {
+    "has_light_gem": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gravelmon:light_gem"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "gravelmon:light_gem_block"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_light_gem",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "moveName": "cactussmash",
+  "obtainMethods": [
+    {
+      "variant": "cobblemon:unlockable"
+    }
+  ],
+  "type": "grass",
+  "recipe": [
+    {
+      "item": "cobblemon:grass_gem",
+      "count": 5
+    },
+    {
+      "item": "cobblemon:poison_gem",
+      "count": 3
+    }
+  ]
+}

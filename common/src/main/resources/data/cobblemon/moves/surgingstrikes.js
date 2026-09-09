@@ -1,0 +1,17 @@
+{
+	flags: { contact: 1, protect: 1, mirror: 1, punch: 1, legendary: 1 },
+  num: 818,
+  accuracy: 100,
+  basePower: 25,
+  category: "Physical",
+  name: "Surging Strikes",
+  pp: 5,
+  priority: 0,
+  willCrit: true,
+  multihit: 3,
+  secondary: null,
+  target: "normal",
+  type: "Water",
+  zMove: { basePower: 140 },
+  maxMove: { basePower: 130 },
+}

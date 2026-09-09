@@ -1,0 +1,16 @@
+{
+	flags: { metronome: 1, magic: 1 },
+  num: 100,
+  accuracy: true,
+  basePower: 0,
+  category: "Status",
+  name: "Teleport",
+  pp: 20,
+  priority: -6,
+  selfSwitch: true,
+  secondary: null,
+  target: "self",
+  type: "Psychic",
+  zMove: { effect: "heal" },
+  contestType: "Cool",
+}

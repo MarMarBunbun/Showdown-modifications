@@ -1,0 +1,15 @@
+{
+  "moveName": "stretch",
+  "obtainMethods": [
+    {
+      "variant": "cobblemon:unlockable"
+    }
+  ],
+  "type": "fighting",
+  "recipe": [
+    {
+      "item": "cobblemon:fighting_gem",
+      "count": 1
+    }
+  ]
+}

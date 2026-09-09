@@ -1,0 +1,19 @@
+{
+  "moveName": "tikitorch",
+  "obtainMethods": [
+    {
+      "variant": "cobblemon:unlockable"
+    }
+  ],
+  "type": "grass",
+  "recipe": [
+    {
+      "item": "cobblemon:grass_gem",
+      "count": 1
+    },
+    {
+      "item": "cobblemon:fire_gem",
+      "count": 1
+    }
+  ]
+}

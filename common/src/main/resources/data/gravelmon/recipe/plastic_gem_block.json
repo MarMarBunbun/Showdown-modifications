@@ -1,0 +1,43 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "gravelmon:plastic_gem"
+    }
+  },
+  "result": {
+    "id": "gravelmon:plastic_gem_block",
+    "count": 1
+  },
+  "criteria": {
+    "has_plastic_gem": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gravelmon:plastic_gem"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "gravelmon:plastic_gem_block"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_plastic_gem",
+      "has_the_recipe"
+    ]
+  ]
+}

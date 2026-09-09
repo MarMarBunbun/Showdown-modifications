@@ -1,0 +1,15 @@
+{
+	flags: { protect: 1, mirror: 1, metronome: 1, legendary: 1 },
+  num: 463,
+  accuracy: 75,
+  basePower: 100,
+  category: "Special",
+  name: "Magma Storm",
+  pp: 5,
+  priority: 0,
+  volatileStatus: "partiallytrapped",
+  secondary: null,
+  target: "normal",
+  type: "Fire",
+  contestType: "Tough",
+}

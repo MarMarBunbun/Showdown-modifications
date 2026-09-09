@@ -1,0 +1,15 @@
+{
+  "moveName": "hairpinturn",
+  "obtainMethods": [
+    {
+      "variant": "cobblemon:unlockable"
+    }
+  ],
+  "type": "flying",
+  "recipe": [
+    {
+      "item": "cobblemon:flying_gem",
+      "count": 1
+    }
+  ]
+}

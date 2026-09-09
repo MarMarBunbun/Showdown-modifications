@@ -1,0 +1,19 @@
+{
+  "moveName": "aromawind",
+  "obtainMethods": [
+    {
+      "variant": "cobblemon:unlockable"
+    }
+  ],
+  "type": "grass",
+  "recipe": [
+    {
+      "item": "cobblemon:grass_gem",
+      "count": 1
+    },
+    {
+      "item": "cobblemon:psychic_gem",
+      "count": 1
+    }
+  ]
+}

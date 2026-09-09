@@ -1,0 +1,19 @@
+{
+  "moveName": "toxifume",
+  "obtainMethods": [
+    {
+      "variant": "cobblemon:unlockable"
+    }
+  ],
+  "type": "ice",
+  "recipe": [
+    {
+      "item": "cobblemon:ice_gem",
+      "count": 1
+    },
+    {
+      "item": "cobblemon:poison_gem",
+      "count": 1
+    }
+  ]
+}

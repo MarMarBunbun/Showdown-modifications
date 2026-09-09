@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cross",
+  "ambientocclusion": false,
+  "gui_light": "front",
+  "textures": {
+    "cross": "gravelmon:block/type_gems/medium_nuclear_gem_bud"
+  }
+}

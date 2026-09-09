@@ -1,0 +1,15 @@
+{
+	flags: { protect: 1, mirror: 1, beam: 1, magic: 1 },
+  num: 888,
+  accuracy: 100,
+  basePower: 40,
+  category: "Special",
+  name: "Twin Beam",
+  pp: 10,
+  priority: 0,
+  multihit: 2,
+  secondary: null,
+  target: "normal",
+  type: "Psychic",
+  contestType: "Cool",
+}

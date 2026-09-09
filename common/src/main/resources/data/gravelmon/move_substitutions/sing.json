@@ -1,0 +1,6 @@
+{
+  "originalMove": "sing",
+  "replacementMove": "singsound",
+  "type": "sound",
+  "variant": "type"
+}

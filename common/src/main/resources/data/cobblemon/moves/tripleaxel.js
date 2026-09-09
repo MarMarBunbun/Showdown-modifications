@@ -1,0 +1,17 @@
+{
+	flags: { contact: 1, protect: 1, mirror: 1, kick: 1 },
+  num: 813,
+  accuracy: 90,
+  basePower: 20,
+  category: "Physical",
+  name: "Triple Axel",
+  pp: 10,
+  priority: 0,
+  multihit: 3,
+  multiaccuracy: true,
+  secondary: null,
+  target: "normal",
+  type: "Ice",
+  zMove: { basePower: 120 },
+  maxMove: { basePower: 140 },
+}

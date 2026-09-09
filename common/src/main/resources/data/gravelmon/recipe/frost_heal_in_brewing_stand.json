@@ -1,0 +1,12 @@
+{
+  "type": "cobblemon:brewing_stand",
+  "input": {
+    "item": "cobblemon:yache_berry"
+  },
+  "bottle": {
+    "item": "minecraft:glass_bottle"
+  },
+  "result": {
+    "id": "gravelmon:frost_heal"
+  }
+}

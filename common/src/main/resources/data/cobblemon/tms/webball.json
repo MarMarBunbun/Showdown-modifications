@@ -1,0 +1,15 @@
+{
+  "moveName": "webball",
+  "obtainMethods": [
+    {
+      "variant": "cobblemon:unlockable"
+    }
+  ],
+  "type": "bug",
+  "recipe": [
+    {
+      "item": "cobblemon:bug_gem",
+      "count": 3
+    }
+  ]
+}

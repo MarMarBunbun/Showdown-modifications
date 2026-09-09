@@ -1,0 +1,43 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "gravelmon:cosmic_gem"
+    }
+  },
+  "result": {
+    "id": "gravelmon:cosmic_gem_block",
+    "count": 1
+  },
+  "criteria": {
+    "has_cosmic_gem": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gravelmon:cosmic_gem"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "gravelmon:cosmic_gem_block"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_cosmic_gem",
+      "has_the_recipe"
+    ]
+  ]
+}

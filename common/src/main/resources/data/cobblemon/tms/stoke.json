@@ -1,0 +1,11 @@
+{
+  "moveName": "stoke",
+  "obtainMethods": [],
+  "type": "fire",
+  "recipe": [
+    {
+      "item": "cobblemon:fire_gem",
+      "count": 1
+    }
+  ]
+}

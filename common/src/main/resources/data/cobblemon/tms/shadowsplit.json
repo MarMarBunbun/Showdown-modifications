@@ -1,0 +1,15 @@
+{
+  "moveName": "shadowsplit",
+  "obtainMethods": [
+    {
+      "variant": "cobblemon:unlockable"
+    }
+  ],
+  "type": "ghost",
+  "recipe": [
+    {
+      "item": "cobblemon:ghost_gem",
+      "count": 1
+    }
+  ]
+}

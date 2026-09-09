@@ -1,0 +1,6 @@
+{
+  "originalMove": "round",
+  "replacementMove": "roundsound",
+  "type": "sound",
+  "variant": "type"
+}

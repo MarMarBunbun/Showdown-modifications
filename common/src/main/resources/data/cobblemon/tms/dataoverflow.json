@@ -1,0 +1,15 @@
+{
+  "moveName": "dataoverflow",
+  "obtainMethods": [
+    {
+      "variant": "cobblemon:default"
+    }
+  ],
+  "type": "digital",
+  "recipe": [
+    {
+      "item": "gravelmon:digital_gem",
+      "count": 5
+    }
+  ]
+}

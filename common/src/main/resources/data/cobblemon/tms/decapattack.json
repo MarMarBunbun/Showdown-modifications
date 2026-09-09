@@ -1,0 +1,11 @@
+{
+  "moveName": "decapattack",
+  "obtainMethods": [],
+  "type": "bug",
+  "recipe": [
+    {
+      "item": "cobblemon:bug_gem",
+      "count": 4
+    }
+  ]
+}

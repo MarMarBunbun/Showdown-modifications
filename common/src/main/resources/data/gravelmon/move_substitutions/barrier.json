@@ -1,0 +1,6 @@
+{
+  "originalMove": "barrier",
+  "replacementMove": "barrierlight",
+  "type": "light",
+  "variant": "type"
+}

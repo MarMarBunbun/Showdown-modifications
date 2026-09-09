@@ -1,0 +1,18 @@
+{
+	flags: { contact: 1, protect: 1, mirror: 1, kick: 1 },
+  num: 167,
+  accuracy: 90,
+  basePower: 10,
+  category: "Physical",
+  name: "Triple Kick",
+  pp: 10,
+  priority: 0,
+  multihit: 3,
+  multiaccuracy: true,
+  secondary: null,
+  target: "normal",
+  type: "Fighting",
+  zMove: { basePower: 120 },
+  maxMove: { basePower: 80 },
+  contestType: "Cool",
+}

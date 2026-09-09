@@ -1,0 +1,19 @@
+{
+  "moveName": "depthcharge",
+  "obtainMethods": [
+    {
+      "variant": "cobblemon:unlockable"
+    }
+  ],
+  "type": "water",
+  "recipe": [
+    {
+      "item": "cobblemon:water_gem",
+      "count": 3
+    },
+    {
+      "item": "cobblemon:electric_gem",
+      "count": 2
+    }
+  ]
+}

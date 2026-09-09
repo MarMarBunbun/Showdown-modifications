@@ -1,0 +1,15 @@
+{
+  "moveName": "grimebuster",
+  "obtainMethods": [
+    {
+      "variant": "cobblemon:unlockable"
+    }
+  ],
+  "type": "poison",
+  "recipe": [
+    {
+      "item": "cobblemon:poison_gem",
+      "count": 1
+    }
+  ]
+}

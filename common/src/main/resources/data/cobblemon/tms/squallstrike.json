@@ -1,0 +1,15 @@
+{
+  "moveName": "squallstrike",
+  "obtainMethods": [
+    {
+      "variant": "cobblemon:default"
+    }
+  ],
+  "type": "wind",
+  "recipe": [
+    {
+      "item": "gravelmon:wind_gem",
+      "count": 8
+    }
+  ]
+}

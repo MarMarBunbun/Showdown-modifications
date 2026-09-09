@@ -1,0 +1,43 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "gravelmon:nuclear_gem"
+    }
+  },
+  "result": {
+    "id": "gravelmon:nuclear_gem_block",
+    "count": 1
+  },
+  "criteria": {
+    "has_nuclear_gem": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gravelmon:nuclear_gem"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "gravelmon:nuclear_gem_block"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_nuclear_gem",
+      "has_the_recipe"
+    ]
+  ]
+}

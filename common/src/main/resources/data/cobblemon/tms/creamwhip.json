@@ -1,0 +1,15 @@
+{
+  "moveName": "creamwhip",
+  "obtainMethods": [
+    {
+      "variant": "cobblemon:unlockable"
+    }
+  ],
+  "type": "ice",
+  "recipe": [
+    {
+      "item": "cobblemon:ice_gem",
+      "count": 4
+    }
+  ]
+}

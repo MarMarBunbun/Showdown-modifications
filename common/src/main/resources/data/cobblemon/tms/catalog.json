@@ -1,0 +1,11 @@
+{
+  "moveName": "catalog",
+  "obtainMethods": [],
+  "type": "normal",
+  "recipe": [
+    {
+      "item": "cobblemon:normal_gem",
+      "count": 2
+    }
+  ]
+}

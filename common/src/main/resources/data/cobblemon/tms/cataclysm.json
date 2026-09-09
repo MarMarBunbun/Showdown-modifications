@@ -1,0 +1,19 @@
+{
+  "moveName": "cataclysm",
+  "obtainMethods": [
+    {
+      "variant": "cobblemon:unlockable"
+    }
+  ],
+  "type": "dark",
+  "recipe": [
+    {
+      "item": "cobblemon:dark_gem",
+      "count": 1
+    },
+    {
+      "item": "cobblemon:fire_gem",
+      "count": 1
+    }
+  ]
+}

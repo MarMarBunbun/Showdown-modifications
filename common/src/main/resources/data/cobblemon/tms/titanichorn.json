@@ -1,0 +1,15 @@
+{
+  "moveName": "titanichorn",
+  "obtainMethods": [
+    {
+      "variant": "cobblemon:unlockable"
+    }
+  ],
+  "type": "steel",
+  "recipe": [
+    {
+      "item": "cobblemon:steel_gem",
+      "count": 1
+    }
+  ]
+}

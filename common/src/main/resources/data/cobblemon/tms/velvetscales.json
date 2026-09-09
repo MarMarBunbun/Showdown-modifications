@@ -1,0 +1,15 @@
+{
+  "moveName": "velvetscales",
+  "obtainMethods": [
+    {
+      "variant": "cobblemon:unlockable"
+    }
+  ],
+  "type": "dragon",
+  "recipe": [
+    {
+      "item": "cobblemon:dragon_gem",
+      "count": 1
+    }
+  ]
+}

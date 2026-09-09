@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "id": "gravels_extended_battles",
+  "version": "${version}",
+  "name": "Gravel's Extended Battles",
+  "description": "Adds more features to your cobblemon experience.",
+  "authors": [
+    "Drai, MarMarBunBun"
+  ],
+  "license": "MIT License",
+  "icon": "icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      {
+        "value": "drai.dev.gravelsextendedbattles.client.GravelsExtendedBattlesClient",
+        "adapter": "kotlin"
+      }
+    ],
+    "main": [
+      {
+        "value": "drai.dev.gravelsextendedbattles.fabric.GravelsExtendedBattlesImpl",
+        "adapter": "kotlin"
+      }
+    ],
+    "fabric-datagen": [
+      {
+        "value": "drai.dev.gravelsextendedbattles.data.GEBFabricDataGenerator",
+        "adapter": "kotlin"
+      }
+    ]
+  },
+  "mixins": [
+    "gravels_extended_battles_common.mixins.json",
+    "gravels_extended_battles_fabric.mixins.json"
+  ],
+  "depends": {
+    "minecraft": "1.21.1",
+    "cobblemon": ">=1.8.0 <1.9.0"
+  }
+}

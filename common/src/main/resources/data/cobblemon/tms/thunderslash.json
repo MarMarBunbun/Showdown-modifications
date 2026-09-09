@@ -1,0 +1,15 @@
+{
+  "moveName": "thunderslash",
+  "obtainMethods": [
+    {
+      "variant": "cobblemon:unlockable"
+    }
+  ],
+  "type": "electric",
+  "recipe": [
+    {
+      "item": "cobblemon:electric_gem",
+      "count": 3
+    }
+  ]
+}

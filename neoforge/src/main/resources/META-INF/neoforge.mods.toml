@@ -1,0 +1,39 @@
+modLoader="kotlinforforge"
+loaderVersion="[5.10,)"
+#issueTrackerURL = "A valid URL to your issue tracker where people can open bug tickets"
+license = "MIT License"
+[[mixins]]
+config = "gravels_extended_battles_neoforge.mixins.json"
+[[mixins]]
+config = "gravels_extended_battles_common.mixins.json"
+[[mods]]
+modId = "gravels_extended_battles"
+version = "${version}"
+displayName = "Gravel's Extended Battles"
+authors = "Drai, MarMarBunbun"
+logoFile="icon.png"
+description = '''
+Adds more features to your cobblemon experience.
+'''
+#logoFile = ""
+
+[[dependencies.gravels_extended_battles]]
+modId = "minecraft"
+mandatory = true
+versionRange = "[1.21.1]"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.gravels_extended_battles]]
+modId = "neoforge"
+mandatory = true
+versionRange = "[21.1.182,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.gravels_extended_battles]]
+modId = "cobblemon"
+mandatory = true
+versionRange = "[1.8.0,)"
+ordering = "AFTER"
+side = "BOTH"

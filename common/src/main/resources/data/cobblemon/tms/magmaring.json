@@ -1,0 +1,15 @@
+{
+  "moveName": "magmaring",
+  "obtainMethods": [
+    {
+      "variant": "cobblemon:unlockable"
+    }
+  ],
+  "type": "fire",
+  "recipe": [
+    {
+      "item": "cobblemon:fire_gem",
+      "count": 1
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+	flags: { protect: 1, mirror: 1, nonsky: 1, metronome: 1, legendary: 1 },
+  num: 616,
+  accuracy: 100,
+  basePower: 90,
+  category: "Physical",
+  isNonstandard: "Past",
+  name: "Land's Wrath",
+  pp: 10,
+  priority: 0,
+  secondary: null,
+  target: "allAdjacentFoes",
+  type: "Ground",
+  zMove: { basePower: 185 },
+  contestType: "Beautiful",
+}

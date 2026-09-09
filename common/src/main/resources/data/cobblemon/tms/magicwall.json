@@ -1,0 +1,15 @@
+{
+  "moveName": "magicwall",
+  "obtainMethods": [
+    {
+      "variant": "cobblemon:unlockable"
+    }
+  ],
+  "type": "fairy",
+  "recipe": [
+    {
+      "item": "cobblemon:fairy_gem",
+      "count": 2
+    }
+  ]
+}

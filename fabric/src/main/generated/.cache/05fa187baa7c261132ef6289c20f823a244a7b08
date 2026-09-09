@@ -1,0 +1,14 @@
+// 1.21.1	2026-08-29T17:05:42.0583541	Cobblemon Multi-platform Fabric MDK/Type Gems Loot Tables
+e556ca1c80c4fc73129f20eac6f24cf4603a4930 data\gravelmon\loot_table\blocks\digital_gem_block.json
+1b52540f58d4f3b233a043565a91561ba9ad5d04 data\gravelmon\loot_table\blocks\light_gem_block.json
+29f736c3553d744c76130e0a14151070e66244d6 data\gravelmon\loot_table\blocks\crystal_gem_block.json
+8d6e076a578355caf7da51e6a3a1abd4a4607903 data\gravelmon\loot_table\blocks\nuclear_gem_block.json
+848681c1f532850817a2e2999e46183feb323007 data\gravelmon\loot_table\blocks\sound_gem_block.json
+9f1516b2ba05a4d5d887ee86d493119179843c43 data\gravelmon\loot_table\blocks\shadow_gem_block.json
+ab6dd8d52fa4f0b20421defa8df6e1924b3d688f data\gravelmon\loot_table\blocks\plastic_gem_block.json
+a67a14968a39f91bffe4d73d7ea350c27828da05 data\gravelmon\loot_table\blocks\eldritch_gem_block.json
+12054fcb4689fc9a3e27f14043cb1034f182c1ec data\gravelmon\loot_table\blocks\mystery_gem_block.json
+bcef9f3d20bc589ff8648630e65b901b53f28cc5 data\gravelmon\loot_table\blocks\cosmic_gem_block.json
+fcfa4f34445b9296191dea0055aa89ac9bb9980e data\gravelmon\loot_table\blocks\wind_gem_block.json
+92bd345a4a0e22b949accb492f2689093508ff29 data\gravelmon\loot_table\blocks\slime_gem_block.json
+ed6691cb4a47b7bed3621a9759f3aa32fd97a86c data\gravelmon\loot_table\blocks\blood_gem_block.json

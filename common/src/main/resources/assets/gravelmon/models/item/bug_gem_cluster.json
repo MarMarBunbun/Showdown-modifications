@@ -1,0 +1,37 @@
+{
+    "parent":  "minecraft:item/generated",
+    "textures":  {
+                     "layer0":  "cobblemon:block/type_gems/bug_gem_cluster"
+                 },
+  "display": {
+    "head": {
+      "translation": [ 0, 14, -5 ]
+    }
+  },
+    "overrides":  [
+                      {
+                          "predicate":  {
+                                            "custom_model_data":  0
+                                        },
+                          "model":  "cobblemon:item/small_bug_gem_bud"
+                      },
+                      {
+                          "predicate":  {
+                                            "custom_model_data":  1
+                                        },
+                          "model":  "cobblemon:item/medium_bug_gem_bud"
+                      },
+                      {
+                          "predicate":  {
+                                            "custom_model_data":  2
+                                        },
+                          "model":  "cobblemon:item/large_bug_gem_bud"
+                      },
+                      {
+                          "predicate":  {
+                                            "custom_model_data":  3
+                                        },
+                          "model":  "cobblemon:item/bug_gem_cluster"
+                      }
+                  ]
+}

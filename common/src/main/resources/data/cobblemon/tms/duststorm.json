@@ -1,0 +1,15 @@
+{
+  "moveName": "duststorm",
+  "obtainMethods": [
+    {
+      "variant": "cobblemon:unlockable"
+    }
+  ],
+  "type": "ground",
+  "recipe": [
+    {
+      "item": "cobblemon:ground_gem",
+      "count": 2
+    }
+  ]
+}

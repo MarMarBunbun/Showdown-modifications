@@ -1,0 +1,15 @@
+{
+	flags: { protect: 1, mirror: 1, legendary: 1 },
+  num: 717,
+  accuracy: 90,
+  basePower: 0,
+  category: "Special",
+  isNonstandard: "Past",
+  name: "Nature's Madness",
+  pp: 10,
+  priority: 0,
+  secondary: null,
+  target: "normal",
+  type: "Fairy",
+  contestType: "Tough",
+}

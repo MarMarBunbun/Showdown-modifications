@@ -1,0 +1,15 @@
+{
+  "moveName": "foambullets",
+  "obtainMethods": [
+    {
+      "variant": "cobblemon:default"
+    }
+  ],
+  "type": "plastic",
+  "recipe": [
+    {
+      "item": "gravelmon:plastic_gem",
+      "count": 5
+    }
+  ]
+}

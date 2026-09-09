@@ -1,0 +1,19 @@
+{
+  "moveName": "nuclearfang",
+  "obtainMethods": [
+    {
+      "variant": "cobblemon:default"
+    }
+  ],
+  "type": "nuclear",
+  "recipe": [
+    {
+      "item": "gravelmon:nuclear_gem",
+      "count": 5
+    },
+    {
+      "item": "cobblemon:dark_gem",
+      "count": 1
+    }
+  ]
+}

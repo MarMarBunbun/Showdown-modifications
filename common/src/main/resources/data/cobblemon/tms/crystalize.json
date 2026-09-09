@@ -1,0 +1,19 @@
+{
+  "moveName": "crystalize",
+  "obtainMethods": [
+    {
+      "variant": "cobblemon:unlockable"
+    }
+  ],
+  "type": "rock",
+  "recipe": [
+    {
+      "item": "cobblemon:rock_gem",
+      "count": 1
+    },
+    {
+      "item": "cobblemon:ice_gem",
+      "count": 1
+    }
+  ]
+}

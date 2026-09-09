@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "gravelmon:block/type_gems/light_gem_block"
+    }
+  }
+}
