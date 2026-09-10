@@ -10,6 +10,7 @@ import com.cobblemon.mod.common.api.fossil.Fossils.observable
 import com.cobblemon.mod.common.api.habitats.HabitatPool
 import com.cobblemon.mod.common.api.habitats.HabitatPools
 import com.cobblemon.mod.common.api.pokedex.Dexes
+import com.cobblemon.mod.common.api.pokedex.entry.DexEntries
 import com.cobblemon.mod.common.api.pokemon.PokemonSpecies
 import com.cobblemon.mod.common.api.tms.TechnicalMachines
 import com.cobblemon.mod.common.api.types.ElementalTypes
@@ -49,6 +50,7 @@ import kotlin.collections.HashMap
 
 
 object GravelsExtendedBattles {
+    private var dexEntriesFinished: Boolean = false
     private var habitatsFinished: Boolean = false
     var speciesFinished: Boolean = false
     private var dexesFinished: Boolean = false
@@ -89,6 +91,10 @@ object GravelsExtendedBattles {
         pokemonSpeciesHooks()
         PokemonSpecies.observable.subscribe(Priority.LOWEST) {
 //            GEBItems.registerBerryIntegrations()
+        }
+        DexEntries.observable.subscribe(Priority.LOWEST) {
+            dexEntriesFinished = true
+            applyGravelmonExtensions()
         }
         Dexes.observable.subscribe(Priority.LOWEST) {
             dexesFinished = true
@@ -153,7 +159,7 @@ object GravelsExtendedBattles {
     }
 
     fun applyGravelmonExtensions() {
-        if (!speciesFinished || !dexesFinished || !habitatsFinished) return
+        if (!speciesFinished || !dexesFinished || !habitatsFinished || !dexEntriesFinished) return
         val pokemonSpecies = PokemonSpecies
         val dexes = Dexes
 
@@ -168,6 +174,7 @@ object GravelsExtendedBattles {
 //        if (CONFIG.enableAutomaticMoveInsertion) GravelmonMoveSubstitution.substituteMoves()
         speciesFinished = false
         dexesFinished = false
+        dexEntriesFinished = false
         habitatsFinished = false
     }
 

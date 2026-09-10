@@ -2,6 +2,7 @@ package drai.dev.gravelsextendedbattles.pokedex
 
 import com.cobblemon.mod.common.api.pokedex.Dexes
 import com.cobblemon.mod.common.api.pokedex.def.AggregatePokedexDef
+import com.cobblemon.mod.common.api.pokedex.entry.DexEntries
 import com.cobblemon.mod.common.api.pokedex.entry.PokedexEntry
 import com.cobblemon.mod.common.api.pokedex.entry.PokedexForm
 import com.cobblemon.mod.common.api.pokemon.PokemonSpecies
@@ -19,8 +20,25 @@ object GravelmonPokedexResorter {
 
     fun processPokedexBans(dexes: Dexes) {
         val pokemonSpecies = PokemonSpecies
-        val currentSpecies = PokemonSpeciesAccessor.getSpeciesByIdentifier().values
         val allDexes = ArrayList(dexes.dexEntryMap.entries)
+        val currentEntries = HashMap<ResourceLocation, PokedexEntry>()
+        currentEntries.putAll(DexEntries.entries)
+        currentEntries.forEach loop@{ (location, entry) ->
+            val species = pokemonSpecies.getByName(entry.speciesId.path)
+            if (species == null) {
+                DexEntries.entries.remove(location)
+                return@loop
+            }
+            val currentForms = entry.forms.toMutableList()
+            currentForms.forEach {
+                val form = species.getForm(mutableSetOf(it.displayForm.lowercase()))
+                if (BanListManager.pokemonShouldBeRemoved(form) || (form.name.equals("Normal", ignoreCase = true))&&!it.displayForm.equals("normal", ignoreCase = true)) {
+                    entry.forms.remove(it)
+                }
+            }
+            val shouldRemoveIfNoForms = entry.forms.isEmpty()
+            if (shouldRemoveIfNoForms) DexEntries.entries.remove(location)
+        }
         for ((key, dexDef) in allDexes) {
             if (dexDef is AggregatePokedexDef) continue
             val entries = java.util.ArrayList(dexDef.getEntries())
@@ -28,47 +46,13 @@ object GravelmonPokedexResorter {
             for (i in entries.indices) {
                 resourceLocationEntries.add(entries[i].id)
             }
-            for (entry in entries) {
-                val species = pokemonSpecies.getByName(
-                    entry.speciesId.path.split("-".toRegex()).dropLastWhile { it.isEmpty() }
-                        .toTypedArray()[0].split(" ".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()[0]
-                )
-                if (species == null || !currentSpecies.contains(species)) {
-                    resourceLocationEntries.removeIf { currentEntry: ResourceLocation ->
-                        currentEntry.path.equals(entry.id.path, ignoreCase = true)
-                                && currentEntry.namespace.equals(entry.id.namespace, ignoreCase = true)
-                    }
-                    continue
-                }
-                val shouldRemoveIfNoForms = entry.forms.isNotEmpty()
-                val formsToRemove = entry.forms.stream().filter { pokedexForm: PokedexForm? ->
-                    val form = species.getForm(mutableSetOf(pokedexForm!!.displayForm))
-                    val formNames =
-                        species.forms.stream().map { formData -> formData.name }.toList()
-                    if (!pokedexForm.displayForm.equals("normal", ignoreCase = true) && !formNames.contains(
-                            pokedexForm.displayForm
-                        )
-                    ) return@filter true
-                    if (BanListManager.pokemonShouldBeRemoved(form)) {
-                        return@filter true
-                    }
-                    false
-                }.toList()
-                for (form in formsToRemove) {
-                    entry.forms.remove(form)
-                }
-                if (shouldRemoveIfNoForms && entry.forms.isEmpty()) {
-                    resourceLocationEntries.removeIf { currentEntry: ResourceLocation ->
-                        currentEntry.path.equals(entry.id.path, ignoreCase = true)
-                                && currentEntry.namespace.equals(entry.id.namespace, ignoreCase = true)
-                    }
-                }
-            }
             (dexDef as Any as SimplePokedexDefAccessor).setEntries(resourceLocationEntries)
             if (resourceLocationEntries.isEmpty()) {
                 dexes.dexEntryMap.remove(key)
             }
         }
+    }
+
         //seems to do absolutely nothing
 //        for (dex in allDexes) {
 //            if (dex.value.id.path.equals("national", ignoreCase = true)) continue
@@ -78,7 +62,6 @@ object GravelmonPokedexResorter {
 //                dex.value.getEntries().add(currentEntries[i])
 //            }
 //        }
-    }
 
     fun processPokedexResorting(nationalDexEntries: MutableList<PokedexEntry?>): MutableList<PokedexEntry?> {
         if (sortedSpecies.isEmpty() && PokemonSpecies.species.isNotEmpty()) {

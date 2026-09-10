@@ -20,8 +20,10 @@ public class HiddenAbilityTypeMixin {
 
         if (str != null && str.startsWith("h:")) {
             String abilityString = str.substring(2);
-            var ability = Abilities.getOrDummy(abilityString);
-
+            var ability = Abilities.get(abilityString);
+            if(ability == null){
+                ability = Abilities.get("keeneye");
+            }
             cir.setReturnValue(new HiddenAbility(ability));
             cir.cancel();
         }

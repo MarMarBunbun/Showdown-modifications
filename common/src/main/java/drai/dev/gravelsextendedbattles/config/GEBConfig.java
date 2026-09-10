@@ -18,19 +18,13 @@ public class GEBConfig extends MidnightConfig {
     public static List<String> allowedLabels = new ArrayList<>(); 
     @Entry(name = "Spawn Modifiers (Formatted as <label>:<modifier number>, eg 'delta:1.5'): ")
     public static List<String> spawnModifiers = new ArrayList<>(); 
-    @Entry(name = "Passwords: ")
-    public static List<String> passwords = new ArrayList<>(); 
     @Entry(name = "Allowed Types: ")
     public static List<String> implementedTypes = new ArrayList<>(getInitForTypes());
     @Entry(name = "Original Fangame Typings: ")
     public static boolean enableFangameTypechart = false;
     @Entry(name = "Re-sort pokedex in evolution order: ")
     public static boolean resortPokedexInEvolutionOrder = false;
-    @Entry(name = "Add Starters to the starter screen: ")
-    public static boolean addStartersToTheStarterScreen = true;
-    @Entry(name = "Enable automatic move insertion: ")
-    public static boolean enableAutomaticMoveInsertion = true;
-    @Entry(name = "Enable automatic move insertion: ")
+    @Entry(name = "Enable outputting showdown logs: ")
     public static boolean battleDebugging = false;
     @Entry(name = "Banned Pokemon: ")
     public static List<String> bannedPokemon = new ArrayList<>();
@@ -50,10 +44,6 @@ public class GEBConfig extends MidnightConfig {
         return resortPokedexInEvolutionOrder;
     }
     
-    public boolean getAutomaticMoveInsertion() {
-        return enableAutomaticMoveInsertion;
-    }
-
     public List<String> getBannedLabels() {
         return bannedLabels;
     }
@@ -74,22 +64,10 @@ public class GEBConfig extends MidnightConfig {
         }).toList();
     }
 
-    
     public List<String> getImplementedTypes() {
         return implementedTypes;
     }
 
-    
-    public List<String> getPasswords() {
-        return passwords;
-    }
-
-    
-    public boolean getShouldAddStarters() {
-        return addStartersToTheStarterScreen;
-    }
-
-    
     public boolean unmuteBattleLogs() {
         return battleDebugging;
     }
