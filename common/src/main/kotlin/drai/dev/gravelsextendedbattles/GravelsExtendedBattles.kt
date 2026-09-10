@@ -10,6 +10,7 @@ import com.cobblemon.mod.common.api.fossil.Fossils.observable
 import com.cobblemon.mod.common.api.habitats.HabitatPool
 import com.cobblemon.mod.common.api.habitats.HabitatPools
 import com.cobblemon.mod.common.api.pokedex.Dexes
+import com.cobblemon.mod.common.api.pokedex.entry.DexEntries
 import com.cobblemon.mod.common.api.pokemon.PokemonSpecies
 import com.cobblemon.mod.common.api.tms.TechnicalMachines
 import com.cobblemon.mod.common.api.types.ElementalTypes
@@ -31,6 +32,7 @@ import drai.dev.gravelsextendedbattles.data.GEBDataProvider
 import drai.dev.gravelsextendedbattles.fossils.GEBLootPoolManager
 import drai.dev.gravelsextendedbattles.mixin.accessors.PokemonSpeciesAccessor
 import drai.dev.gravelsextendedbattles.pokedex.GravelmonPokedexResorter
+import drai.dev.gravelsextendedbattles.registries.GEBItems
 import drai.dev.gravelsextendedbattles.starters.GravelmonStarterManager
 import eu.midnightdust.lib.config.MidnightConfig
 import net.minecraft.advancements.critereon.ItemPredicate
@@ -48,6 +50,7 @@ import kotlin.collections.HashMap
 
 
 object GravelsExtendedBattles {
+    private var dexEntriesFinished: Boolean = false
     private var habitatsFinished: Boolean = false
     var speciesFinished: Boolean = false
     private var dexesFinished: Boolean = false
@@ -86,6 +89,13 @@ object GravelsExtendedBattles {
 
     private fun registerCobblemonEventHooks() {
         pokemonSpeciesHooks()
+        PokemonSpecies.observable.subscribe(Priority.LOWEST) {
+//            GEBItems.registerBerryIntegrations()
+        }
+        DexEntries.observable.subscribe(Priority.LOWEST) {
+            dexEntriesFinished = true
+            applyGravelmonExtensions()
+        }
         Dexes.observable.subscribe(Priority.LOWEST) {
             dexesFinished = true
             applyGravelmonExtensions()
@@ -127,10 +137,6 @@ object GravelsExtendedBattles {
 
     private fun pokemonSpeciesHooks() {
         PokemonSpecies.observable.subscribe(Priority.LOWEST) {
-            speciesFinished = true
-            applyGravelmonExtensions()
-        }
-        PokemonSpecies.observable.subscribe(Priority.LOWEST) {
             AdditionalEvolutions.speciesFinished = true
             AdditionalEvolutions.applyAdditionalEvolutions()
         }
@@ -146,23 +152,29 @@ object GravelsExtendedBattles {
             MoveSubstitutions.speciesFinished = true
             MoveSubstitutions.applyMoveSubstitutions()
         }
+        PokemonSpecies.observable.subscribe(Priority.LOWEST) {
+            speciesFinished = true
+            applyGravelmonExtensions()
+        }
     }
 
     fun applyGravelmonExtensions() {
-        if (!speciesFinished || !dexesFinished || !habitatsFinished) return
+        if (!speciesFinished || !dexesFinished || !habitatsFinished || !dexEntriesFinished) return
         val pokemonSpecies = PokemonSpecies
         val dexes = Dexes
+
+        BanListManager.banPokemon(pokemonSpecies, (pokemonSpecies as PokemonSpeciesAccessor))
 
         if (CONFIG.enableDexResort) {
             GravelmonPokedexResorter.resort(pokemonSpecies)
         }
 
-        BanListManager.banPokemon(pokemonSpecies, (pokemonSpecies as PokemonSpeciesAccessor))
         GravelmonPokedexResorter.processPokedexBans(dexes)
 
 //        if (CONFIG.enableAutomaticMoveInsertion) GravelmonMoveSubstitution.substituteMoves()
         speciesFinished = false
         dexesFinished = false
+        dexEntriesFinished = false
         habitatsFinished = false
     }
 

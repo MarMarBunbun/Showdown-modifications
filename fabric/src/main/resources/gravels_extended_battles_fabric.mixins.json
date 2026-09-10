@@ -1,6 +1,7 @@
 {
   "required": true,
   "package": "drai.dev.gravelsextendedbattles.fabric.mixin",
+  "plugin": "drai.dev.gravelsextendedbattles.fabric.mixin.MegaShowdownMixinPlugin",
   "compatibilityLevel": "JAVA_21",
   "minVersion": "0.8",
   "mixins": [

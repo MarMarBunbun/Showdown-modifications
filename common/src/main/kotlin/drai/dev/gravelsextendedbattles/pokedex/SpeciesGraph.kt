@@ -12,12 +12,23 @@ object SpeciesGraph {
     private val speciesWithMultiplePreEvolutions = mutableListOf<EvolutionNode>()
 
     fun sortPokemonSpecies(pokemonSpecies: PokemonSpecies): List<EvolutionNode> {
+        nodes.clear()
+        speciesWithMultiplePreEvolutions.clear()
         val species = pokemonSpecies.species
         sortedSpecies = ArrayList()
         species.forEach(::addPokemon)
 
         species.forEach { species ->
             val name = species.name.lowercase()
+
+            species.preEvolution?.let { preEvolution ->
+                addEvolution(
+                    fromName = preEvolution.species.name,
+                    fromForm = null,
+                    toName = name,
+                    toForm = null
+                )
+            }
 
             species.evolutions.forEach { evolution ->
                 val result = evolution.result
@@ -83,16 +94,20 @@ object SpeciesGraph {
         toName: String?,
         toForm: String?
     ) {
-        val fromKey = fromForm?.let { "$fromName-$it" } ?: fromName
-        val toKey = toForm?.let { "$toName-$it" } ?: toName
-
         if (toName == null) {
             GravelsExtendedBattles.LOGGER.log(
                 Level.WARN,
-                "Invalid evolution result for evolution of $fromKey"
+                "Invalid evolution result for evolution of $fromName"
             )
             return
         }
+
+        val normalizedFromName = normalizeName(fromName)
+        val normalizedToName = normalizeName(toName)
+        val fromKey = fromForm?.let { "$normalizedFromName-${normalizeName(it)}" }
+            ?: normalizedFromName
+        val toKey = toForm?.let { "$normalizedToName-${normalizeName(it)}" }
+            ?: normalizedToName
 
         if (fromKey == toKey) {
             return
@@ -210,12 +225,14 @@ object SpeciesGraph {
 
     private fun updateDexNumbers() {
         var dexNumber = 0
+        val visited = HashSet<EvolutionNode>()
 
         sortedSpecies.forEach { node ->
-            if (isBeginningNode(node)) {
+            if (isBeginningNode(node) && visited.add(node)) {
                 dexNumber = updateDexNumbersRecursive(
                     node,
-                    dexNumber
+                    dexNumber,
+                    visited
                 )
             }
         }
@@ -223,17 +240,17 @@ object SpeciesGraph {
 
     private fun updateDexNumbersRecursive(
         node: EvolutionNode,
-        currentDexNumber: Int
+        currentDexNumber: Int,
+        visited: MutableSet<EvolutionNode>
     ): Int {
         var dexNumber = currentDexNumber + 1
 
         node.setPokedexNumber(dexNumber)
 
         node.evolutions.forEach { evolution ->
-            dexNumber = updateDexNumbersRecursive(
-                evolution,
-                dexNumber
-            )
+            if (visited.add(evolution)) {
+                dexNumber = updateDexNumbersRecursive(evolution, dexNumber, visited)
+            }
         }
 
         return dexNumber
@@ -298,4 +315,7 @@ object SpeciesGraph {
                 "primal" !in formData.aspects &&
                 "alola-totem" !in formData.aspects &&
                 "gmax" !in formData.aspects
+
+    private fun normalizeName(name: String): String =
+        name.substringAfterLast(':').lowercase()
 }

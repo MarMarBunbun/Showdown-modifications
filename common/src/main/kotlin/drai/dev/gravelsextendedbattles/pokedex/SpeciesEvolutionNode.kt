@@ -3,7 +3,7 @@ package drai.dev.gravelsextendedbattles.pokedex
 import com.cobblemon.mod.common.api.pokemon.evolution.Evolution
 import com.cobblemon.mod.common.pokemon.Species
 
-data class SpeciesEvolutionNode(
+class SpeciesEvolutionNode(
     override var sortingNumber: Int,
     override val species: Species,
     override val evolutions: MutableList<EvolutionNode> = ArrayList(),

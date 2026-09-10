@@ -29,6 +29,9 @@ dependencies {
             module = "modmenu"
         )
     }
+    // NightConfig - bundled into the mod
+    implementation("com.electronwill.night-config:core:${property("nightConfigVersion")}")
+    implementation("com.electronwill.night-config:toml:${property("nightConfigVersion")}")
 }
 
 tasks.test {

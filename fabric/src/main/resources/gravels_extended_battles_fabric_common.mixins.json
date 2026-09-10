@@ -1,7 +1,7 @@
 {
   "required": true,
   "package": "drai.dev.gravelsextendedbattles.mixin",
-  "plugin": "drai.dev.gravelsextendedbattles.mixin.MegaShowdownMixinPlugin",
+  "plugin": "drai.dev.gravelsextendedbattles.fabric.mixin.MegaShowdownMixinPlugin",
   "compatibilityLevel": "JAVA_21",
   "minVersion": "0.8",
   "injectors": {
@@ -17,9 +17,11 @@
     "CobblemonPreEvolutionAdapterMixin",
     "CobblemonRequirementAdapterMixin",
     "CobblemonSpawnPoolsMixin",
+    "CommonAbilityTypeMixin",
     "ElementalTypesMixin",
     "FormDataMixin",
     "HabitatPoolsMixin",
+    "HiddenAbilityTypeMixin",
     "NationalDexMixin",
     "PokemonHerdSpawnDetailMixin",
     "ShowdownThreadMixin",
@@ -28,6 +30,7 @@
     "TechnicalMachinesMixin",
     "TeraTypesMixin",
     "accessors.CobblemonBlocksAccessor",
+    "accessors.CobblemonItemsAccessor",
     "accessors.ElementalTypesAccessor",
     "accessors.FormDataAccessor",
     "accessors.LevelRequirementAccessor",
