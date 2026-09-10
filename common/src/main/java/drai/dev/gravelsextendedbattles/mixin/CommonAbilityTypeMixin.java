@@ -21,7 +21,10 @@ public class CommonAbilityTypeMixin {
         }
 
         String str = element.getAsString();
-        var ability = Abilities.getOrDummy(str);
+        var ability = Abilities.get(str);
+        if(ability == null){
+            ability = Abilities.get("keeneye");
+        }
 
         cir.setReturnValue(new CommonAbility(ability));
         cir.cancel();
