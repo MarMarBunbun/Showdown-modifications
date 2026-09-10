@@ -5,7 +5,7 @@ license = "MIT License"
 [[mixins]]
 config = "gravels_extended_battles_neoforge.mixins.json"
 [[mixins]]
-config = "gravels_extended_battles_common.mixins.json"
+config = "gravels_extended_battles_neoforge_common.mixins.json"
 [[mods]]
 modId = "gravels_extended_battles"
 version = "${version}"

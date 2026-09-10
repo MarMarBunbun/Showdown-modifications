@@ -92,7 +92,7 @@ object GravelsExtendedBattlesImpl: ModInitializer {
 
     @JvmStatic
     fun modIsLoaded(modId: String) : Boolean {
-        return FabricLoader.getInstance().isModLoaded("mega_showdown")
+        return FabricLoader.getInstance().isModLoaded(modId)
     }
 
     fun registerBrewingRecipes() {

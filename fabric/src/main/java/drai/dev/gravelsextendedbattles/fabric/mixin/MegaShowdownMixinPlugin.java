@@ -1,12 +1,10 @@
-package drai.dev.gravelsextendedbattles.mixin;
+package drai.dev.gravelsextendedbattles.fabric.mixin;
 
-import dev.architectury.platform.Platform;
-import org.objectweb.asm.tree.ClassNode;
-import org.spongepowered.asm.mixin.extensibility.IMixinConfigPlugin;
-import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
+import net.fabricmc.loader.api.FabricLoader;
+import org.objectweb.asm.tree.*;
+import org.spongepowered.asm.mixin.extensibility.*;
 
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class MegaShowdownMixinPlugin implements IMixinConfigPlugin {
 
@@ -25,7 +23,7 @@ public class MegaShowdownMixinPlugin implements IMixinConfigPlugin {
     @Override
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
         if (mixinClassName.startsWith(MEGA_SHOWDOWN_PACKAGE)) {
-            return Platform.isModLoaded("mega_showdown");
+            return FabricLoader.getInstance().isModLoaded("mega_showdown");
         }
 
         return true;

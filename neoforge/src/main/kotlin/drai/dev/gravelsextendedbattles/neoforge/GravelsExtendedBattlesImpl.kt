@@ -108,7 +108,7 @@ object GravelsExtendedBattlesImpl {
 
     @JvmStatic
     fun modIsLoaded(modId: String) : Boolean {
-        return ModList.get().isLoaded("mega_showdown")
+        return ModList.get().isLoaded(modId)
     }
 
     @JvmStatic

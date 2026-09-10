@@ -2,6 +2,7 @@ package drai.dev.gravelsextendedbattles.registries
 
 import com.cobblemon.mod.common.CobblemonBlocks
 import com.cobblemon.mod.common.CobblemonSounds
+import com.cobblemon.mod.common.block.BerryBlock
 import com.cobblemon.mod.common.block.StackableItemBlock
 import com.cobblemon.mod.common.block.TypeGemClusterBlock
 import com.cobblemon.mod.common.platform.PlatformRegistry
@@ -14,6 +15,7 @@ import net.minecraft.core.registries.Registries
 import net.minecraft.resources.ResourceKey
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.level.block.Block
+import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.block.SoundType
 import net.minecraft.world.level.block.state.BlockBehaviour
 import net.minecraft.world.level.material.MapColor
@@ -53,8 +55,30 @@ object GEBBlocks : PlatformRegistry<Registry<Block>, ResourceKey<Registry<Block>
     val SLIME_GEM_CLUSTER = typeGemCluster("slime_gem_cluster", SLIME_GEM_BLOCK, gravelmonResource("slime_gem"), MapColor.COLOR_LIGHT_GREEN )
     val SOUND_GEM_CLUSTER = typeGemCluster("sound_gem_cluster", SOUND_GEM_BLOCK, gravelmonResource("sound_gem"), MapColor.COLOR_LIGHT_GRAY )
     val WIND_GEM_CLUSTER = typeGemCluster("wind_gem_cluster", WIND_GEM_BLOCK, gravelmonResource("wind_gem"), MapColor.COLOR_LIGHT_BLUE )
+
+//    val AVOCA_BERRY = berryBlock("avoca")
+//    val BENASI_BERRY = berryBlock("benasi")
+//    val CARABA_BERRY = berryBlock("caraba")
+//    val CHUVA_BERRY = berryBlock("chuva")
+//    val DRASH_BERRY = berryBlock("drash")
+//    val JIMACA_BERRY = berryBlock("jimaca")
+//    val MELIRUN_BERRY = berryBlock("melirun")
+//    val NINIKU_BERRY = berryBlock("niniku")
+//    val OKAB_BERRY = berryBlock("okab")
+//    val TABAKO_BERRY = berryBlock("tabako")
+//    val TUNAB_BERRY = berryBlock("tunab")
+//    val VALUM_BERRY = berryBlock("valum")
+//    val HAFLI_BERRY = berryBlock("hafli")
+
+    private fun berryBlock(name: String): BerryBlock {
+        val identifier = gravelmonResource("${name}_berry")
+        val block = this.create(identifier.path, BerryBlock(identifier, BlockBehaviour.Properties.ofFullCopy(Blocks.WHEAT).dynamicShape().sound(CobblemonSounds.BERRY_BUSH_SOUNDS).strength(0.2F)))
+        CobblemonBlocksAccessor.getBerries()[identifier] = block
+        return block
+    }
     
     val FROST_HEAL = create(gravelmonResource("frost_heal"), StackableItemBlock(BlockBehaviour.Properties.of().sound(SoundType.CANDLE).mapColor(MapColor.NONE).noOcclusion(), StackableItemBlock.StackableItemBlockType.STATUS_RESTORE))
+
 
     private fun typeGemBlock(name: String, mapColor: MapColor): Block {
         val resourceLocation = gravelmonResource(name)

@@ -31,6 +31,7 @@ import drai.dev.gravelsextendedbattles.data.GEBDataProvider
 import drai.dev.gravelsextendedbattles.fossils.GEBLootPoolManager
 import drai.dev.gravelsextendedbattles.mixin.accessors.PokemonSpeciesAccessor
 import drai.dev.gravelsextendedbattles.pokedex.GravelmonPokedexResorter
+import drai.dev.gravelsextendedbattles.registries.GEBItems
 import drai.dev.gravelsextendedbattles.starters.GravelmonStarterManager
 import eu.midnightdust.lib.config.MidnightConfig
 import net.minecraft.advancements.critereon.ItemPredicate
@@ -86,6 +87,9 @@ object GravelsExtendedBattles {
 
     private fun registerCobblemonEventHooks() {
         pokemonSpeciesHooks()
+        PokemonSpecies.observable.subscribe(Priority.LOWEST) {
+//            GEBItems.registerBerryIntegrations()
+        }
         Dexes.observable.subscribe(Priority.LOWEST) {
             dexesFinished = true
             applyGravelmonExtensions()

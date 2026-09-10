@@ -1,11 +1,15 @@
 package drai.dev.gravelsextendedbattles.registries
 
+import com.cobblemon.mod.common.Cobblemon
 import com.cobblemon.mod.common.CobblemonBlocks
 import com.cobblemon.mod.common.CobblemonItems
 import com.cobblemon.mod.common.api.moves.Moves
 import com.cobblemon.mod.common.api.types.ElementalType
 import com.cobblemon.mod.common.api.types.ElementalTypes
+import com.cobblemon.mod.common.block.BerryBlock
 import com.cobblemon.mod.common.item.GemItem
+import com.cobblemon.mod.common.item.berry.BerryItem
+import com.cobblemon.mod.common.item.berry.StatusCuringBerryItem
 import com.cobblemon.mod.common.item.interactive.StatusCureItem
 import com.cobblemon.mod.common.platform.PlatformRegistry
 import com.cobblemon.mod.common.pokemon.helditem.CobblemonHeldItemManager
@@ -20,6 +24,7 @@ import drai.dev.gravelsextendedbattles.items.GEBArceusPlateItem
 import drai.dev.gravelsextendedbattles.items.GEBMemoryItem
 import drai.dev.gravelsextendedbattles.items.GEBTeraShardItem
 import drai.dev.gravelsextendedbattles.items.GEBZCrystal
+import drai.dev.gravelsextendedbattles.mixin.accessors.CobblemonItemsAccessor
 import drai.dev.gravelsextendedbattles.msd.MegaShowdownCompat
 import net.minecraft.core.Registry
 import net.minecraft.core.registries.BuiltInRegistries
@@ -29,10 +34,12 @@ import net.minecraft.world.item.BlockItem
 import net.minecraft.world.item.Item
 import net.minecraft.world.item.Rarity
 import net.minecraft.world.level.block.Block
+import kotlin.collections.set
 
 object GEBItems : PlatformRegistry<Registry<Item>, ResourceKey<Registry<Item>>, Item>() {
     @JvmField
     val teraShardsByType = mutableMapOf<ElementalType, Item>()
+    private var berriesRegistered = false
     override val registry: Registry<Item> = BuiltInRegistries.ITEM
     override val resourceKey: ResourceKey<Registry<Item>> = Registries.ITEM
 
@@ -151,6 +158,20 @@ object GEBItems : PlatformRegistry<Registry<Item>, ResourceKey<Registry<Item>>, 
     val SNOWY_SEED = heldItem("snowy_seed", Item(Item.Properties()));
     val SHINING_SEED = heldItem("shining_seed", Item(Item.Properties()));
 
+//    val AVOCA_BERRY = berryItem("avoca", GEBBlocks.AVOCA_BERRY)
+//    val BENASI_BERRY = berryItem("benasi", GEBBlocks.BENASI_BERRY)
+//    val CARABA_BERRY = berryItem("caraba", GEBBlocks.CARABA_BERRY)
+//    val CHUVA_BERRY = berryItem("chuva", GEBBlocks.CHUVA_BERRY)
+//    val DRASH_BERRY = berryItem("drash", GEBBlocks.DRASH_BERRY)
+//    val JIMACA_BERRY = berryItem("jimaca", GEBBlocks.JIMACA_BERRY)
+//    val MELIRUN_BERRY = berryItem("melirun", GEBBlocks.MELIRUN_BERRY)
+//    val NINIKU_BERRY = berryItem("niniku", GEBBlocks.NINIKU_BERRY)
+//    val OKAB_BERRY = berryItem("okab", GEBBlocks.OKAB_BERRY)
+//    val TABAKO_BERRY = berryItem("tabako", GEBBlocks.TABAKO_BERRY)
+//    val TUNAB_BERRY = berryItem("tunab", GEBBlocks.TUNAB_BERRY)
+//    val VALUM_BERRY = berryItem("valum", GEBBlocks.VALUM_BERRY)
+//    val HAFLI_BERRY = berryItem("hafli", GEBBlocks.HAFLI_BERRY)
+
     //TODO aprijuice items and pokedexes
 
 
@@ -209,4 +230,41 @@ object GEBItems : PlatformRegistry<Registry<Item>, ResourceKey<Registry<Item>>, 
 
     private fun blockItem(name: String, block: Block, rarity: Rarity = Rarity.COMMON): BlockItem = this.create(gravelmonResource(name), BlockItem(block, Item.Properties().rarity(rarity)))
 
+//    @JvmStatic
+//    fun registerBerryIntegrations() {
+//        if (berriesRegistered) return
+//        berriesRegistered = true
+//
+//        listOf(
+//            "avoca" to AVOCA_BERRY,
+//            "benasi" to BENASI_BERRY,
+//            "caraba" to CARABA_BERRY,
+//            "chuva" to CHUVA_BERRY,
+//            "drash" to DRASH_BERRY,
+//            "jimaca" to JIMACA_BERRY,
+//            "melirun" to MELIRUN_BERRY,
+//            "niniku" to NINIKU_BERRY,
+//            "okab" to OKAB_BERRY,
+//            "tabako" to TABAKO_BERRY,
+//            "tunab" to TUNAB_BERRY,
+//            "valum" to VALUM_BERRY,
+//            "hafli" to HAFLI_BERRY,
+//        ).forEach { item ->
+//            CobblemonItemsAccessor.getBerries()[cobblemonResource("${item.first}_berry")] = item.second
+//            Cobblemon.implementation.registerCompostable(item.second, .65f)
+//        }
+//    }
+//
+//    private fun berryItem(name: String, berryBlock: BerryBlock): BerryItem {
+//        val finalName = "${name}_berry"
+//        val item = this.create(finalName, BerryItem(berryBlock))
+//        return item
+//    }
+//
+//    @JvmStatic
+//    fun berryItem(name: String, berryItem: BerryItem): BerryItem {
+//        val finalName = "${name}_berry"
+//        val item = this.create(finalName, berryItem)
+//        return item
+//    }
 }

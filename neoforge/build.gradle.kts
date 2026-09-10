@@ -46,6 +46,7 @@ dependencies {
     val midnightlib = "eu.midnightdust:midnightlib:${property("midnightlib_version")}-neoforge"
     modImplementation(midnightlib)
     include(midnightlib)
+    modImplementation ("maven.modrinth:lhGA9TYQ:1IiqEQGl")
 }
 
 tasks {
