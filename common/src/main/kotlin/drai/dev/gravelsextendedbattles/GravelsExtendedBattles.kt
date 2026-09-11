@@ -34,7 +34,6 @@ import drai.dev.gravelsextendedbattles.mixin.accessors.PokemonSpeciesAccessor
 import drai.dev.gravelsextendedbattles.pokedex.GravelmonPokedexResorter
 import drai.dev.gravelsextendedbattles.registries.GEBItems
 import drai.dev.gravelsextendedbattles.starters.GravelmonStarterManager
-import eu.midnightdust.lib.config.MidnightConfig
 import net.minecraft.advancements.critereon.ItemPredicate
 import net.minecraft.core.Holder
 import net.minecraft.core.HolderSet
@@ -58,7 +57,7 @@ object GravelsExtendedBattles {
     @JvmField
     val LOGGER: Logger = LogManager.getLogger()
     @JvmField
-    val CONFIG: GEBConfig = GEBConfig()
+    val CONFIG: GEBConfig = GEBConfig
     @JvmField
     val fossils: MutableMap<ResourceLocation, Fossil> = HashMap()
     @JvmStatic
@@ -68,8 +67,7 @@ object GravelsExtendedBattles {
     @JvmStatic
     fun initialize() {
         LOGGER.info("Initializing Gravels Extended Battles")
-        initTypes()
-        MidnightConfig.init("gravelmon", GEBConfig::class.java)
+//        MidnightConfig.init("gravelmon", GEBConfig::class.java)
         GEBDataProvider.registerDefaults()
 
         GravelmonStatus.registerStatus()
@@ -77,14 +75,6 @@ object GravelsExtendedBattles {
         registerCobblemonEventHooks()
         registerItems()
         registerVillagerTrades()
-    }
-
-    private fun initTypes() {
-//        ElementalTypes.BUG;
-//        val bug = ElementalTypes.get("bug") ?: throw IllegalStateException("Bug elemental type not found")
-//        val bugTera = TeraTypes.forElementalType(bug)
-//        GravelmonElementalTypes.touch()
-//        GravelmonTeraTypes.touch()
     }
 
     private fun registerCobblemonEventHooks() {
@@ -165,7 +155,7 @@ object GravelsExtendedBattles {
 
         BanListManager.banPokemon(pokemonSpecies, (pokemonSpecies as PokemonSpeciesAccessor))
 
-        if (CONFIG.enableDexResort) {
+        if (CONFIG.getEnableDexResort()) {
             GravelmonPokedexResorter.resort(pokemonSpecies)
         }
 

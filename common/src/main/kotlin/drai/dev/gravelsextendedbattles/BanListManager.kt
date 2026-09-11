@@ -51,7 +51,7 @@ object BanListManager {
 
     //I want to make a method that checks if a species should be removed by passing the species object
     fun pokemonShouldBeRemoved(formData: FormData): Boolean {
-        val isIndividuallyBanned = GravelsExtendedBattles.CONFIG.bannedPokemonProperties
+        val isIndividuallyBanned = GravelsExtendedBattles.CONFIG.getBannedPokemonProperties()
             .any { renderablePokemon -> renderablePokemon.form == formData }
         if(isIndividuallyBanned) return true
         val labels = formData.labels

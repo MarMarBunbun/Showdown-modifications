@@ -36,7 +36,7 @@ object ShowdownFileManager {
     }
 
     private fun injectTypeChart(showdownFolder: Path) {
-        if (GravelsExtendedBattles.CONFIG.enableOriginalFanGameTypings) {
+        if (GravelsExtendedBattles.CONFIG.enableFangameTypechart) {
             exportResource(showdownFolder, FAN_GAME_TYPE_CHART)
 
             val source = showdownFolder.resolve(FAN_GAME_TYPE_CHART)
@@ -131,7 +131,7 @@ object ShowdownFileManager {
             """.trimIndent()
         )
 
-        injectRefinedMegaCheck(file)
+//        injectRefinedMegaCheck(file)
     }
 
     private fun injectPokemon(simFolder: Path) {

@@ -21,14 +21,14 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter-api:${property("junit_version")}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${property("junit_version")}")
 
-    val midnightlib = "eu.midnightdust:midnightlib:${property("midnightlib_version")}-fabric"
+//    val midnightlib = "eu.midnightdust:midnightlib:${property("midnightlib_version")}-fabric"
     modImplementation("maven.modrinth:cobblemon-mega-showdown:${property("megashowdown_fabric")}")
-    modImplementation(midnightlib) {
-        exclude(
-            group = "com.terraformersmc",
-            module = "modmenu"
-        )
-    }
+//    modImplementation(midnightlib) {
+//        exclude(
+//            group = "com.terraformersmc",
+//            module = "modmenu"
+//        )
+//    }
     // NightConfig - bundled into the mod
     implementation("com.electronwill.night-config:core:${property("nightConfigVersion")}")
     implementation("com.electronwill.night-config:toml:${property("nightConfigVersion")}")

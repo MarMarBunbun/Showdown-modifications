@@ -23,6 +23,7 @@
     "HabitatPoolsMixin",
     "HiddenAbilityTypeMixin",
     "NationalDexMixin",
+    "AbilityPoolMixin",
     "PokemonHerdSpawnDetailMixin",
     "ShowdownThreadMixin",
     "SpawnDetailMixin",

@@ -13,6 +13,7 @@
     "client.TypeWidgetMixin"
   ],
   "mixins": [
+    "AbilityPoolMixin",
     "BattleManagerMixin",
     "CobblemonPreEvolutionAdapterMixin",
     "CobblemonRequirementAdapterMixin",

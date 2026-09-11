@@ -24,7 +24,7 @@ object GravelmonSpawnDetailsManager {
     private fun getBoostsForSpecies(properties: PokemonProperties): MutableList<SpawnModifier> {
         val labels = getLabelsFromProperties(properties)
         if (labels.isEmpty()) return mutableListOf()
-        return ArrayList(GravelsExtendedBattles.CONFIG.spawnModifiers.stream()
+        return ArrayList(GravelsExtendedBattles.CONFIG.getSpawnModifiers().stream()
             .filter { spawnModifier -> labels.contains(spawnModifier.label) }.toList())
     }
 

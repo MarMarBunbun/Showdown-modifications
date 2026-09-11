@@ -45,22 +45,15 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter-api:${property("junit_version")}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${property("junit_version")}")
 
-    val midnightlib = "eu.midnightdust:midnightlib:${property("midnightlib_version")}-fabric"
-    modImplementation(midnightlib) {
-        exclude(
-            group = "com.terraformersmc",
-            module = "modmenu"
-        )
-    }
-    include(midnightlib) {
-        exclude(
-            group = "com.terraformersmc",
-            module = "modmenu"
-        )
-    }
     modImplementation("maven.modrinth:cobblemon-mega-showdown:${property("megashowdown_fabric")}")
     modImplementation("io.wispforest:accessories-fabric:1.1.0-beta.52+1.21.1")
     modImplementation("dev.architectury:architectury-fabric:${property("architectury_version")}")
+
+    // NightConfig - bundled into the mod
+    implementation("com.electronwill.night-config:core:${property("nightConfigVersion")}")
+    implementation("com.electronwill.night-config:toml:${property("nightConfigVersion")}")
+    shadowCommon("com.electronwill.night-config:core:${property("nightConfigVersion")}")
+    shadowCommon("com.electronwill.night-config:toml:${property("nightConfigVersion")}")
 }
 fabricApi {
     configureDataGeneration() {

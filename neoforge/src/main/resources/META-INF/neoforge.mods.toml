@@ -8,7 +8,7 @@ config = "gravels_extended_battles_neoforge.mixins.json"
 config = "gravels_extended_battles_neoforge_common.mixins.json"
 [[mods]]
 modId = "gravels_extended_battles"
-version = "${version}"
+version = "2.0.0-Alpha.14"
 displayName = "Gravel's Extended Battles"
 authors = "Drai, MarMarBunbun"
 logoFile="icon.png"

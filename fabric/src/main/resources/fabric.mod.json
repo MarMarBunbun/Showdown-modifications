@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "gravels_extended_battles",
-  "version": "${version}",
+  "version": "2.0.0-Alpha.14",
   "name": "Gravel's Extended Battles",
   "description": "Adds more features to your cobblemon experience.",
   "authors": [

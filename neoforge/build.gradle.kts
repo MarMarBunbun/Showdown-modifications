@@ -43,9 +43,9 @@ dependencies {
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:${property("junit_version")}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${property("junit_version")}")
-    val midnightlib = "eu.midnightdust:midnightlib:${property("midnightlib_version")}-neoforge"
-    modImplementation(midnightlib)
-    include(midnightlib)
+//    val midnightlib = "eu.midnightdust:midnightlib:${property("midnightlib_version")}-neoforge"
+//    modImplementation(midnightlib)
+//    include(midnightlib)
     modImplementation ("maven.modrinth:lhGA9TYQ:1IiqEQGl")
 }
 
