@@ -8,7 +8,7 @@ config = "gravels_extended_battles_neoforge.mixins.json"
 config = "gravels_extended_battles_neoforge_common.mixins.json"
 [[mods]]
 modId = "gravels_extended_battles"
-version = "2.0.0-Alpha.14"
+version = "2.0.0-Alpha.15"
 displayName = "Gravel's Extended Battles"
 authors = "Drai, MarMarBunbun"
 logoFile="icon.png"
@@ -35,5 +35,12 @@ side = "BOTH"
 modId = "cobblemon"
 mandatory = true
 versionRange = "[1.8.0,)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.gravels_extended_battles]]
+modId = "mega_showdown"
+mandatory = false
+versionRange = "[1.0.2+1.8+1.21.,)"
 ordering = "AFTER"
 side = "BOTH"

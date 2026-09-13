@@ -43,7 +43,7 @@ object GravelsExtendedBattlesImpl {
 
     init {
         with(modBus) {
-            if(!GravelsExtendedBattles.megaShowdownIsLoaded()) GravelsExtendedBattles.initialize()
+            GravelsExtendedBattles.initialize()
             addListener(::onAddPackFindersEvent)
         }
         with(NeoForge.EVENT_BUS) {

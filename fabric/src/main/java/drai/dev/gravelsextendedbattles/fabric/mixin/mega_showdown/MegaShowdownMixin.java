@@ -1,7 +1,6 @@
-package drai.dev.gravelsextendedbattles.mixin.megashowdown;
+package drai.dev.gravelsextendedbattles.fabric.mixin.mega_showdown;
 
 import com.github.yajatkaul.mega_showdown.*;
-import dev.architectury.platform.*;
 import drai.dev.gravelsextendedbattles.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;

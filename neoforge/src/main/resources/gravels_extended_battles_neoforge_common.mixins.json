@@ -49,7 +49,6 @@
     "megashowdown.ElementalZCrystalAccessor",
     "megashowdown.FormChangeHeldItemAccessor",
     "megashowdown.GlowHandlerMixin",
-    "megashowdown.MegaShowdownMixin",
     "megashowdown.TeraTypeHelperMixin"
   ]
 }

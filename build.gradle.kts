@@ -23,6 +23,10 @@ allprojects {
         maven("https://api.modrinth.com/maven")
         maven("https://cursemaven.com")
         maven("https://maven.wispforest.io/releases")
+        maven("https://thedarkcolour.github.io/KotlinForForge/")
+
+        maven("https://maven.su5ed.dev/releases")
+        maven("https://maven.fabricmc.net")
     }
 
     tasks {
