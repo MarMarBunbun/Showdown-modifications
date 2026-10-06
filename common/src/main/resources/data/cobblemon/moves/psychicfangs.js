@@ -7,6 +7,11 @@
   name: "Psychic Fangs",
   pp: 10,
   priority: 0,
+  onTryHit(pokemon) {
+      pokemon.side.removeSideCondition("reflect");
+      pokemon.side.removeSideCondition("lightscreen");
+      pokemon.side.removeSideCondition("auroraveil");
+    },
   secondary: null,
   target: "normal",
   type: "Psychic",

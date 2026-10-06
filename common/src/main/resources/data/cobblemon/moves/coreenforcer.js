@@ -8,6 +8,20 @@
   name: "Core Enforcer",
   pp: 10,
   priority: 0,
+  onHit(target) {
+      if (target.getAbility().flags["cantsuppress"])
+        return;
+      if (target.newlySwitched || this.queue.willMove(target))
+        return;
+      target.addVolatile("gastroacid");
+    },
+  onAfterSubDamage(damage, target) {
+      if (target.getAbility().flags["cantsuppress"])
+        return;
+      if (target.newlySwitched || this.queue.willMove(target))
+        return;
+      target.addVolatile("gastroacid");
+    },
   secondary: null,
   target: "allAdjacentFoes",
   type: "Dragon",

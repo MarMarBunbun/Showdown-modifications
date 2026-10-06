@@ -8,6 +8,8 @@ import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
 
+import static drai.dev.gravelsextendedbattles.mixinimpl.AbilityPoolInjections.redirectHiddenAbilityParseFromJSON;
+
 @Mixin(HiddenAbilityType.class)
 public class HiddenAbilityTypeMixin {
     @Inject(
@@ -16,18 +18,6 @@ public class HiddenAbilityTypeMixin {
             cancellable = true
     )
     private void initialize(JsonElement element, CallbackInfoReturnable<HiddenAbility> cir){
-        String str = element.isJsonPrimitive() ? element.getAsString() : null;
-
-        if (str != null && str.startsWith("h:")) {
-            String abilityString = str.substring(2);
-            var ability = Abilities.get(abilityString);
-            if(ability == null){
-                ability = Abilities.get("keeneye");
-            }
-            cir.setReturnValue(new HiddenAbility(ability));
-            cir.cancel();
-        }
-        cir.setReturnValue(null);
-        cir.cancel();
+        redirectHiddenAbilityParseFromJSON(element, cir);
     }
 }

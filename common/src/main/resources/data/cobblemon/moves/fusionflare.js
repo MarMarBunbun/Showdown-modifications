@@ -7,6 +7,12 @@
   name: "Fusion Flare",
   pp: 5,
   priority: 0,
+  onBasePower(basePower, pokemon) {
+      if (this.lastSuccessfulMoveThisTurn === "fusionbolt") {
+        this.debug("double power");
+        return this.chainModify(2);
+      }
+    },
   secondary: null,
   target: "normal",
   type: "Fire",

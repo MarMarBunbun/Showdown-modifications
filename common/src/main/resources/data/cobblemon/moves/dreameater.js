@@ -8,6 +8,9 @@
   pp: 15,
   priority: 0,
   drain: [1, 2],
+  onTryImmunity(target) {
+      return target.status === "slp" || target.hasAbility("comatose");
+    },
   secondary: null,
   target: "normal",
   type: "Psychic",

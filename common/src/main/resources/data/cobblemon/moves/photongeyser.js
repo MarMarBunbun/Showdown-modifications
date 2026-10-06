@@ -7,6 +7,10 @@
   name: "Photon Geyser",
   pp: 5,
   priority: 0,
+  onModifyMove(move, pokemon) {
+      if (pokemon.getStat("atk", false, true) > pokemon.getStat("spa", false, true))
+        move.category = "Physical";
+    },
   ignoreAbility: true,
   secondary: null,
   target: "normal",

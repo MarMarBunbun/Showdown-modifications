@@ -2,12 +2,9 @@ package drai.dev.gravelsextendedbattles
 
 import com.cobblemon.mod.common.api.pokemon.PokemonProperties
 import com.cobblemon.mod.common.api.pokemon.PokemonSpecies
-import com.cobblemon.mod.common.api.pokemon.PokemonSpecies.getByName
 import com.cobblemon.mod.common.api.pokemon.evolution.Evolution
 import com.cobblemon.mod.common.pokemon.FormData
-import com.cobblemon.mod.common.pokemon.Species
 import drai.dev.gravelsextendedbattles.mixin.accessors.PokemonSpeciesAccessor
-import net.minecraft.resources.ResourceLocation
 
 object BanListManager {
 
@@ -17,13 +14,13 @@ object BanListManager {
 
         for (species in currentSpecies.values) {
             if (species != null) {
-                PokemonSpeciesAccessor.getSpeciesByDex().remove(species.resourceIdentifier.namespace, species.nationalPokedexNumber)
-                PokemonSpeciesAccessor.getSpeciesByDex().put(species.resourceIdentifier.namespace, species.nationalPokedexNumber, species)
-                if(pokemonShouldBeRemoved(species.standardForm)) { }
+//                PokemonSpeciesAccessor.getSpeciesByDex().remove(species.resourceIdentifier.namespace, species.nationalPokedexNumber)
+//                PokemonSpeciesAccessor.getSpeciesByDex().put(species.resourceIdentifier.namespace, species.nationalPokedexNumber, species)
+//                if(pokemonShouldBeRemoved(species.standardForm.aspects, species.standardForm)) { }
                 val forms = ArrayList<FormData>(species.forms)
                 for (formData in forms) {
-                    if (pokemonShouldBeRemoved(formData)) {
-                        species.forms.remove(formData)
+                    if (pokemonShouldBeRemoved(formData.aspects, formData)) {
+//                        species.forms.remove(formData)
                         continue
                     }
 
@@ -50,7 +47,11 @@ object BanListManager {
     }
 
     //I want to make a method that checks if a species should be removed by passing the species object
-    fun pokemonShouldBeRemoved(formData: FormData): Boolean {
+    fun pokemonShouldBeRemoved(aspects: MutableList<String>, formData: FormData): Boolean {
+//        aspects.remove("alpha")
+//        aspects.remove("valencian")
+//        val aspectsMatch = formData.aspects.containsAll(aspects) && aspects.containsAll(formData.aspects)
+//        if(aspects.isNotEmpty() && !aspectsMatch) return true
         val isIndividuallyBanned = GravelsExtendedBattles.CONFIG.getBannedPokemonProperties()
             .any { renderablePokemon -> renderablePokemon.form == formData }
         if(isIndividuallyBanned) return true
@@ -72,6 +73,6 @@ object BanListManager {
     }
 
     fun pokemonShouldBeRemoved(pokemonProperties: PokemonProperties): Boolean {
-        return pokemonShouldBeRemoved(pokemonProperties.asRenderablePokemon().form)
+        return pokemonShouldBeRemoved(pokemonProperties.aspects.toMutableList(), pokemonProperties.asRenderablePokemon().form)
     }
 }

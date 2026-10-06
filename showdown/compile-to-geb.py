@@ -818,6 +818,12 @@ def extract_top_level_field(
                 else:
                     i = j
 
+                if parsed_name == field_name:
+                    method_text = content[property_start:i].strip()
+                    if not method_text.endswith(","):
+                        method_text += ","
+                    candidate = method_text
+
             continue
 
         if char in "{[":

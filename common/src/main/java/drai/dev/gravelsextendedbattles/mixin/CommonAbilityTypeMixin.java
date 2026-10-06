@@ -7,6 +7,8 @@ import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
 
+import static drai.dev.gravelsextendedbattles.mixinimpl.AbilityPoolInjections.redirectCommonAbilityParseFromJSON;
+
 @Mixin(CommonAbilityType.class)
 public class CommonAbilityTypeMixin {
     @Inject(
@@ -15,18 +17,6 @@ public class CommonAbilityTypeMixin {
             cancellable = true
     )
     private void initialize(JsonElement element, CallbackInfoReturnable<CommonAbility> cir){
-        if (!element.isJsonPrimitive()) {
-            cir.setReturnValue(null);
-            cir.cancel();
-        }
-
-        String str = element.getAsString();
-        var ability = Abilities.get(str);
-        if(ability == null){
-            ability = Abilities.get("keeneye");
-        }
-
-        cir.setReturnValue(new CommonAbility(ability));
-        cir.cancel();
+        redirectCommonAbilityParseFromJSON(element, cir);
     }
 }

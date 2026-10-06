@@ -8,6 +8,12 @@
   pp: 15,
   priority: 0,
   secondary: null,
+  onBasePower(basePower, source) {
+      if (this.field.isTerrain("electricterrain")) {
+        this.debug("psyblade electric terrain boost");
+        return this.chainModify(1.5);
+      }
+    },
   target: "normal",
   type: "Psychic",
 }

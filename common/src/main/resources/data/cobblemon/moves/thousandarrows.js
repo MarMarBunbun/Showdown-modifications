@@ -8,6 +8,16 @@
   name: "Thousand Arrows",
   pp: 10,
   priority: 0,
+  onEffectiveness(typeMod, target, type, move) {
+      if (move.type !== "Ground")
+        return;
+      if (!target)
+        return;
+      if (!target.runImmunity("Ground")) {
+        if (target.hasType("Flying"))
+          return 0;
+      }
+    },
   volatileStatus: "smackdown",
   ignoreImmunity: { "Ground": true },
   secondary: null,

@@ -4,10 +4,8 @@ import com.cobblemon.mod.common.api.pokedex.Dexes
 import com.cobblemon.mod.common.api.pokedex.def.AggregatePokedexDef
 import com.cobblemon.mod.common.api.pokedex.entry.DexEntries
 import com.cobblemon.mod.common.api.pokedex.entry.PokedexEntry
-import com.cobblemon.mod.common.api.pokedex.entry.PokedexForm
 import com.cobblemon.mod.common.api.pokemon.PokemonSpecies
 import drai.dev.gravelsextendedbattles.BanListManager
-import drai.dev.gravelsextendedbattles.mixin.accessors.PokemonSpeciesAccessor
 import drai.dev.gravelsextendedbattles.mixin.accessors.SimplePokedexDefAccessor
 import net.minecraft.resources.ResourceLocation
 
@@ -31,8 +29,8 @@ object GravelmonPokedexResorter {
             }
             val currentForms = entry.forms.toMutableList()
             currentForms.forEach {
-                val form = species.getForm(mutableSetOf(it.displayForm.lowercase()))
-                if (BanListManager.pokemonShouldBeRemoved(form) || (form.name.equals("Normal", ignoreCase = true))&&!it.displayForm.equals("normal", ignoreCase = true)) {
+                val form = species.getFormByName(it.displayForm)
+                if (BanListManager.pokemonShouldBeRemoved(form.aspects,form) && form.name.equals(it.displayForm, ignoreCase = true)) {
                     entry.forms.remove(it)
                 }
             }

@@ -9,6 +9,7 @@ import com.github.yajatkaul.mega_showdown.item.custom.tera.*;
 import com.github.yajatkaul.mega_showdown.item.custom.z.*;
 import com.github.yajatkaul.mega_showdown.utils.*;
 import drai.dev.gravelsextendedbattles.*;
+import drai.dev.gravelsextendedbattles.items.msd.*;
 import net.minecraft.resources.*;
 import net.minecraft.world.item.*;
 
@@ -23,7 +24,7 @@ public class MegaShowdownCompat {
     }
 
     public static Item registerZCrystal(String name, ElementalType type) {
-        return new ElementalZCrystal(
+        return new GravelmonMSDZCrystalItem(
                 new Item.Properties()
                         .component(
                                 MegaShowdownDataComponents.REGISTRY_TYPE_COMPONENT.get(),
@@ -69,7 +70,7 @@ public class MegaShowdownCompat {
             String effectId,
             boolean tradable
     ) {
-        return new FormChangeHeldItem(
+        return new GravelmonMSDFormChangeHeldItem(
                 new Item.Properties().arch$tab(MegaShowdownTabs.FORM_TAB),
                 revertAspect,
                 applyAspect,

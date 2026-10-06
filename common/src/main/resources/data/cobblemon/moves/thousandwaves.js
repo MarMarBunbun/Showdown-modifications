@@ -8,6 +8,10 @@
   name: "Thousand Waves",
   pp: 10,
   priority: 0,
+  onHit(target, source, move) {
+      if (source.isActive)
+        target.addVolatile("trapped", source, move, "trapper");
+    },
   secondary: null,
   target: "allAdjacentFoes",
   type: "Ground",

@@ -7,6 +7,11 @@
   name: "Bleakwind Storm",
   pp: 10,
   priority: 0,
+  onModifyMove(move, pokemon, target) {
+      if (target && ["raindance", "primordialsea"].includes(target.effectiveWeather())) {
+        move.accuracy = true;
+      }
+    },
   secondary: {
       chance: 30,
       boosts: {

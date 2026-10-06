@@ -3,6 +3,13 @@
   num: 462,
   accuracy: 100,
   basePower: 0,
+  basePowerCallback(pokemon, target) {
+      const hp = target.hp;
+      const maxHP = target.maxhp;
+      const bp = Math.floor(Math.floor((120 * (100 * Math.floor(hp * 4096 / maxHP)) + 2048 - 1) / 4096) / 100) || 1;
+      this.debug("BP for " + hp + "/" + maxHP + " HP: " + bp);
+      return bp;
+    },
   category: "Physical",
   name: "Crush Grip",
   pp: 5,

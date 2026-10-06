@@ -3,6 +3,9 @@
   num: 813,
   accuracy: 90,
   basePower: 20,
+  basePowerCallback(pokemon, target, move) {
+      return 20 * move.hit;
+    },
   category: "Physical",
   name: "Triple Axel",
   pp: 10,

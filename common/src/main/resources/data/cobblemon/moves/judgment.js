@@ -7,6 +7,14 @@
   name: "Judgment",
   pp: 10,
   priority: 0,
+  onModifyType(move, pokemon) {
+      if (pokemon.ignoringItem())
+        return;
+      const item = pokemon.getItem();
+      if (item.id && item.onPlate && !item.zMove) {
+        move.type = item.onPlate;
+      }
+    },
   secondary: null,
   target: "normal",
   type: "Normal",

@@ -14,6 +14,22 @@
   name: "Solar Beam",
   pp: 10,
   priority: 0,
+  onTryMove(attacker, defender, move) {
+      if (attacker.removeVolatile(move.id)) {
+        return;
+      }
+      this.add("-prepare", attacker, move.name);
+      if (["sunnyday", "desolateland"].includes(attacker.effectiveWeather())) {
+        this.attrLastMove("[still]");
+        this.addMove("-anim", attacker, move.name, defender);
+        return;
+      }
+      if (!this.runEvent("ChargeMove", attacker, defender, move)) {
+        return;
+      }
+      attacker.addVolatile("twoturnmove", defender);
+      return null;
+    },
   secondary: null,
   target: "normal",
   type: "Grass",

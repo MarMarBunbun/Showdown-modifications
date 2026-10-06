@@ -3,6 +3,9 @@
   num: 167,
   accuracy: 90,
   basePower: 10,
+  basePowerCallback(pokemon, target, move) {
+      return 10 * move.hit;
+    },
   category: "Physical",
   name: "Triple Kick",
   pp: 10,

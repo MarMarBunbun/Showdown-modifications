@@ -7,6 +7,12 @@
   name: "Fake Out",
   pp: 10,
   priority: 3,
+  onTry(source) {
+      if (source.activeMoveActions > 1) {
+        this.hint("Fake Out only works on your first turn out.");
+        return false;
+      }
+    },
   secondary: {
       chance: 100,
       volatileStatus: "flinch"

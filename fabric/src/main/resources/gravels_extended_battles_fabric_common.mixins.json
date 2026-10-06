@@ -23,6 +23,7 @@
     "FormDataMixin",
     "HabitatPoolsMixin",
     "HiddenAbilityTypeMixin",
+    "accessors.StarterDataLoaderAccessor",
     "NationalDexMixin",
     "PokemonHerdSpawnDetailMixin",
     "ShowdownThreadMixin",
@@ -48,7 +49,6 @@
     "invokers.TeraTypesInvoker",
     "megashowdown.ElementalZCrystalAccessor",
     "megashowdown.FormChangeHeldItemAccessor",
-    "megashowdown.GlowHandlerMixin",
     "megashowdown.TeraTypeHelperMixin"
   ]
 }

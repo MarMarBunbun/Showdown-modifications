@@ -8,6 +8,9 @@
   pp: 10,
   priority: 0,
   hasCrashDamage: true,
+  onMoveFail(target, source, move) {
+      this.damage(source.baseMaxhp / 2, source, source, this.dex.conditions.get("High Jump Kick"));
+    },
   secondary: null,
   target: "normal",
   type: "Fighting",

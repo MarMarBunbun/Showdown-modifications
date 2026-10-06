@@ -7,6 +7,9 @@
   name: "Teleport",
   pp: 20,
   priority: -6,
+  onTry(source) {
+      return !!this.canSwitch(source.side);
+    },
   selfSwitch: true,
   secondary: null,
   target: "self",

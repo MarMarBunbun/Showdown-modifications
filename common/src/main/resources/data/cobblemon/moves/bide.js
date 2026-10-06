@@ -10,6 +10,10 @@
   priority: 1,
   volatileStatus: "bide",
   ignoreImmunity: true,
+  beforeMoveCallback(pokemon) {
+      if (pokemon.volatiles["bide"])
+        return true;
+    },
   condition: {
       duration: 3,
       onLockMove: "bide",

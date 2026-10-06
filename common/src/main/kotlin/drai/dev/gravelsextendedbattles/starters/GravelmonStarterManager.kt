@@ -2,14 +2,16 @@ package drai.dev.gravelsextendedbattles.starters
 
 import com.cobblemon.mod.common.Cobblemon.starterConfig
 import com.cobblemon.mod.common.config.starter.StarterCategory
+import com.cobblemon.mod.common.data.StarterDataLoader
 import com.cobblemon.mod.common.util.adapters.LearnsetAdapter
 import drai.dev.gravelsextendedbattles.BanListManager
+import drai.dev.gravelsextendedbattles.mixin.accessors.StarterDataLoaderAccessor
 
 object GravelmonStarterManager {
     fun processStarters()
     {
-        val starterConfig = starterConfig
-        val currentStarters: MutableList<StarterCategory> = starterConfig.starters
+        val starterConfig = StarterDataLoaderAccessor.getCategories()
+        val currentStarters = ArrayList(starterConfig)
         val finalCategories: MutableList<StarterCategory> = ArrayList()
         currentStarters.forEach { starterCategory: StarterCategory ->
             val starters = starterCategory.pokemon.stream()
@@ -25,6 +27,6 @@ object GravelmonStarterManager {
             )
             finalCategories.add(newCategory)
         }
-        starterConfig.starters = ArrayList(finalCategories)
+        StarterDataLoaderAccessor.setCategories(finalCategories)
     }
 }

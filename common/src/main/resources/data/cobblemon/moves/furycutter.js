@@ -3,6 +3,14 @@
   num: 210,
   accuracy: 95,
   basePower: 40,
+  basePowerCallback(pokemon, target, move) {
+      if (!pokemon.volatiles["furycutter"] || move.hit === 1) {
+        pokemon.addVolatile("furycutter");
+      }
+      const bp = this.clampIntRange(move.basePower * pokemon.volatiles["furycutter"].multiplier, 1, 160);
+      this.debug("BP: " + bp);
+      return bp;
+    },
   category: "Physical",
   name: "Fury Cutter",
   pp: 20,

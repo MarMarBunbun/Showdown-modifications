@@ -8,8 +8,10 @@ import java.util.*;
 
 public class MegaShowdownMixinPlugin implements IMixinConfigPlugin {
 
-    private static final String MEGA_SHOWDOWN_PACKAGE =
-            "drai.dev.gravelsextendedbattles.mixin.megashowdown.";
+    private static final Set<String> MEGA_SHOWDOWN_PACKAGES = Set.of(
+            "drai.dev.gravelsextendedbattles.mixin.megashowdown.",
+            "drai.dev.gravelsextendedbattles.fabric.mixin.mega_showdown."
+    );
 
     @Override
     public void onLoad(String mixinPackage) {
@@ -22,7 +24,7 @@ public class MegaShowdownMixinPlugin implements IMixinConfigPlugin {
 
     @Override
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
-        if (mixinClassName.startsWith(MEGA_SHOWDOWN_PACKAGE)) {
+        if (MEGA_SHOWDOWN_PACKAGES.stream().anyMatch(mixinClassName::startsWith)) {
             return FabricLoader.getInstance().isModLoaded("mega_showdown");
         }
 

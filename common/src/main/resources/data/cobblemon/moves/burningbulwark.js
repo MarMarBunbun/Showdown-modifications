@@ -9,6 +9,12 @@
   priority: 4,
   stallingMove: true,
   volatileStatus: "burningbulwark",
+  onPrepareHit(pokemon) {
+      return !!this.queue.willAct() && this.runEvent("StallMove", pokemon);
+    },
+  onHit(pokemon) {
+      pokemon.addVolatile("stall");
+    },
   condition: {
       duration: 1,
       onStart(target) {

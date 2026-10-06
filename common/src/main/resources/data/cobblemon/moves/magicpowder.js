@@ -7,6 +7,11 @@
   name: "Magic Powder",
   pp: 20,
   priority: 0,
+  onHit(target) {
+      if (target.getTypes().join() === "Psychic" || !target.setType("Psychic"))
+        return false;
+      this.add("-start", target, "typechange", "Psychic");
+    },
   secondary: null,
   target: "normal",
   type: "Psychic",

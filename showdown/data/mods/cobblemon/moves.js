@@ -1196,7 +1196,7 @@ const Moves = {
     type: "Cosmic",
     contestType: "Beautiful"
   },
-  biggeestbang: {
+  biggestbang: {
     num: 3774,
     accuracy: true,
     basePower: 200,
@@ -9352,7 +9352,7 @@ const Moves = {
     zMove: { boost: { spe: 1 } },
     contestType: "Cute"
   },
-  icewolflcaw: {
+  icewolfclaw: {
     num: 3610,
     accuracy: 100,
     basePower: 35,
@@ -18182,7 +18182,7 @@ const Moves = {
     accuracy: true,
     basePower: 0,
     category: "Status",
-    name: "Tailwind",
+    name: "Tailwind Wind",
     pp: 15,
     priority: 0,
     flags: { snatch: 1, wind: 1 },

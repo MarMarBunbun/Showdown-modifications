@@ -17,6 +17,17 @@
   name: "Geomancy",
   pp: 10,
   priority: 0,
+  onTryMove(attacker, defender, move) {
+      if (attacker.removeVolatile(move.id)) {
+        return;
+      }
+      this.add("-prepare", attacker, move.name);
+      if (!this.runEvent("ChargeMove", attacker, defender, move)) {
+        return;
+      }
+      attacker.addVolatile("twoturnmove", defender);
+      return null;
+    },
   boosts: {
       spa: 2,
       spd: 2,

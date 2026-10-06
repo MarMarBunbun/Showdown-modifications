@@ -3,7 +3,7 @@
     accuracy: true,
     basePower: 0,
     category: "Status",
-    name: "Tailwind",
+    name: "Tailwind Wind",
     pp: 15,
     priority: 0,
     flags: { snatch: 1, wind: 1 },

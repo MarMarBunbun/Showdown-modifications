@@ -7,6 +7,20 @@
   name: "Ceaseless Edge",
   pp: 15,
   priority: 0,
+  onAfterHit(target, source, move) {
+      if (!move.hasSheerForce && source.hp) {
+        for (const side of source.side.foeSidesWithConditions()) {
+          side.addSideCondition("spikes");
+        }
+      }
+    },
+  onAfterSubDamage(damage, target, source, move) {
+      if (!move.hasSheerForce && source.hp) {
+        for (const side of source.side.foeSidesWithConditions()) {
+          side.addSideCondition("spikes");
+        }
+      }
+    },
   secondary: {},
   target: "normal",
   type: "Dark",

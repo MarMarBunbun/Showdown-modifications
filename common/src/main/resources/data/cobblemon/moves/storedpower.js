@@ -3,6 +3,11 @@
   num: 500,
   accuracy: 100,
   basePower: 20,
+  basePowerCallback(pokemon, target, move) {
+      const bp = move.basePower + 20 * pokemon.positiveBoosts();
+      this.debug("BP: " + bp);
+      return bp;
+    },
   category: "Special",
   name: "Stored Power",
   pp: 10,

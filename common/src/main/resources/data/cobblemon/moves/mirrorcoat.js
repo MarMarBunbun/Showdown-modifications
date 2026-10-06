@@ -3,10 +3,24 @@
   num: 243,
   accuracy: 100,
   basePower: 0,
+  damageCallback(pokemon) {
+      if (!pokemon.volatiles["mirrorcoat"])
+        return 0;
+      return pokemon.volatiles["mirrorcoat"].damage || 1;
+    },
   category: "Special",
   name: "Mirror Coat",
   pp: 20,
   priority: -5,
+  beforeTurnCallback(pokemon) {
+      pokemon.addVolatile("mirrorcoat");
+    },
+  onTry(source) {
+      if (!source.volatiles["mirrorcoat"])
+        return false;
+      if (source.volatiles["mirrorcoat"].slot === null)
+        return false;
+    },
   condition: {
       duration: 1,
       noCopy: true,

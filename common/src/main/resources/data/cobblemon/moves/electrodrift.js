@@ -7,6 +7,12 @@
   name: "Electro Drift",
   pp: 5,
   priority: 0,
+  onBasePower(basePower, source, target, move) {
+      if (target.runEffectiveness(move) > 0) {
+        this.debug(`electro drift super effective buff`);
+        return this.chainModify([5461, 4096]);
+      }
+    },
   secondary: null,
   target: "normal",
   type: "Electric",

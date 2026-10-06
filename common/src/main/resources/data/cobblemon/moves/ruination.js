@@ -3,6 +3,9 @@
   num: 877,
   accuracy: 90,
   basePower: 0,
+  damageCallback(pokemon, target) {
+      return this.clampIntRange(Math.floor(target.getUndynamaxedHP() / 2), 1);
+    },
   category: "Special",
   name: "Ruination",
   pp: 10,

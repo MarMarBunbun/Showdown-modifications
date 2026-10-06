@@ -7,6 +7,13 @@
   name: "Lunar Dance",
   pp: 10,
   priority: 0,
+  onTryHit(source) {
+      if (!this.canSwitch(source.side)) {
+        this.attrLastMove("[still]");
+        this.add("-fail", source);
+        return this.NOT_FAIL;
+      }
+    },
   selfdestruct: "ifHit",
   slotCondition: "lunardance",
   condition: {

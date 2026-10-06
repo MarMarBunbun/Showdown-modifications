@@ -7,6 +7,12 @@
   name: "First Impression",
   pp: 10,
   priority: 2,
+  onTry(source) {
+      if (source.activeMoveActions > 1) {
+        this.hint("First Impression only works on your first turn out.");
+        return false;
+      }
+    },
   secondary: null,
   target: "normal",
   type: "Bug",

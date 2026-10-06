@@ -3,6 +3,9 @@
   num: 149,
   accuracy: 100,
   basePower: 0,
+  damageCallback(pokemon) {
+      return this.random(50, 151) * pokemon.level / 100;
+    },
   category: "Special",
   isNonstandard: "Past",
   name: "Psywave",

@@ -3,6 +3,11 @@
   num: 820,
   accuracy: 100,
   basePower: 150,
+  basePowerCallback(pokemon, target, move) {
+      const bp = move.basePower * pokemon.hp / pokemon.maxhp;
+      this.debug("BP: " + bp);
+      return bp;
+    },
   category: "Special",
   name: "Dragon Energy",
   pp: 5,

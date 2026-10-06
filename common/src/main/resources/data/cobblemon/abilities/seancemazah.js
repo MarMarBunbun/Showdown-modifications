@@ -2,7 +2,8 @@
 	onAnyFaint(target) {
       if (!this.effectState.target.hp) return;
       const ability = target.getAbility();
-      if (ability.flags['noreceiver'] || ability.id === 'noability') return;
+      if (!this.effectState.target.hp && !target.getAbility().flags["notrace"] && target.ability !== "noability")
+        return;
       if (this.effectState.target.setAbility(ability)) {
         this.add('-ability', this.effectState.target, ability, '[from] ability: Seance', '[of] ' + target);
       }

@@ -8,6 +8,11 @@
   name: "Techno Blast",
   pp: 5,
   priority: 0,
+  onModifyType(move, pokemon) {
+      if (pokemon.ignoringItem())
+        return;
+      move.type = this.runEvent("Drive", pokemon, null, move, "Normal");
+    },
   secondary: null,
   target: "normal",
   type: "Normal",
