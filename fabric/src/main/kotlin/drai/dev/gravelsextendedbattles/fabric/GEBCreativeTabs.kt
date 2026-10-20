@@ -98,8 +98,7 @@ object GEBCreativeTabs {
                 DataComponents.BLOCK_STATE,
                 BlockItemStateProperties.EMPTY
                     .with(TypeGemClusterBlock.STAGE, i)
-                    .with(TypeGemClusterBlock.SHOULD_GROW, false)
-                    .with(TypeGemClusterBlock.STUNTED, false)
+                    .with(TypeGemClusterBlock.GROWTH_TYPE, TypeGemClusterBlock.GrowthType.DECORATION)
             )
             stack.set(
                 DataComponents.CUSTOM_MODEL_DATA,

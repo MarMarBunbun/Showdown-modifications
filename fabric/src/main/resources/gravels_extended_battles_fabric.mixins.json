@@ -6,6 +6,8 @@
   "minVersion": "0.8",
   "mixins": [
     "CobblemonFabricMixin",
+    "FolderRepositorySourceAccessor",
+    "PackRepositoryMixin",
     "mega_showdown.MegaShowdownMixin"
   ]
 }

@@ -19,6 +19,7 @@
     "CobblemonRequirementAdapterMixin",
     "CobblemonSpawnPoolsMixin",
     "CommonAbilityTypeMixin",
+    "DexEvolutionDisplayMixin",
     "ElementalTypesMixin",
     "FormDataMixin",
     "HabitatPoolsMixin",

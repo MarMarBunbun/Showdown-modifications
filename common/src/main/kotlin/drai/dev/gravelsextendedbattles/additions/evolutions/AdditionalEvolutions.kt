@@ -1,6 +1,6 @@
 package drai.dev.gravelsextendedbattles.additions.evolutions
 
-import com.cobblemon.mod.common.api.data.JsonDataRegistry
+import drai.dev.gravelsextendedbattles.additions.LenientJsonDataRegistry
 import com.cobblemon.mod.common.api.pokemon.PokemonSpecies
 import com.cobblemon.mod.common.api.reactive.SimpleObservable
 import com.google.gson.GsonBuilder
@@ -14,7 +14,7 @@ import net.minecraft.resources.ResourceLocation
 import net.minecraft.server.level.ServerPlayer
 import net.minecraft.server.packs.PackType
 
-object AdditionalEvolutions : JsonDataRegistry<AdditionalEvolution> {
+object AdditionalEvolutions : LenientJsonDataRegistry<AdditionalEvolution> {
     var speciesFinished: Boolean = false
     override val gson = GsonBuilder()
         .setPrettyPrinting()

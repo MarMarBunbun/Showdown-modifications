@@ -1,0 +1,15 @@
+{
+	flags: { protect: 1, mirror: 1, metronome: 1, slicing: 1, magic: 1, blade: 1 },
+  num: 427,
+  accuracy: 100,
+  basePower: 70,
+  category: "Physical",
+  name: "Psycho Cut",
+  pp: 20,
+  priority: 0,
+  critRatio: 2,
+  secondary: null,
+  target: "normal",
+  type: "Psychic",
+  contestType: "Cool",
+}

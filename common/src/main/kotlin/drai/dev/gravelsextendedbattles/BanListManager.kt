@@ -5,8 +5,28 @@ import com.cobblemon.mod.common.api.pokemon.PokemonSpecies
 import com.cobblemon.mod.common.api.pokemon.evolution.Evolution
 import com.cobblemon.mod.common.pokemon.FormData
 import drai.dev.gravelsextendedbattles.mixin.accessors.PokemonSpeciesAccessor
+import drai.dev.gravelsextendedbattles.ondemand.SpeciesExistence
 
 object BanListManager {
+    /**
+     * Set once Cobblemon has loaded its species (a world was opened). Before that nothing can be said about whether a species exists, so the
+     * existence check passes and only the ban list applies as it always did (see [SpeciesExistence]).
+     */
+    @Volatile
+    @JvmField
+    var speciesLoaded: Boolean = false
+
+    /** Whether the species the [properties] name exist, and the form with the aspects they ask for. True until the species have loaded. */
+    @JvmStatic
+    fun speciesExist(properties: PokemonProperties): Boolean =
+        SpeciesExistence.exists(speciesLoaded, properties.species, properties.aspects) { name ->
+            PokemonSpecies.getByName(name)?.let { species ->
+                // The standard form is a form without aspects, whether or not the species lists it.
+                val forms: List<Set<String>> = species.forms.map { it.aspects.toSet() }
+                if (forms.any { it.isEmpty() }) forms else forms + listOf(emptySet<String>())
+            }
+        }
+
 
     fun banPokemon(pokemonSpecies: PokemonSpecies, accessor: PokemonSpeciesAccessor) {
         val currentSpecies = PokemonSpeciesAccessor.getSpeciesByIdentifier()
@@ -73,6 +93,8 @@ object BanListManager {
     }
 
     fun pokemonShouldBeRemoved(pokemonProperties: PokemonProperties): Boolean {
+        // A Pokemon the selection left out counts as removed, on top of every ban-list check below.
+        if (!speciesExist(pokemonProperties)) return true
         return pokemonShouldBeRemoved(pokemonProperties.aspects.toMutableList(), pokemonProperties.asRenderablePokemon().form)
     }
 }

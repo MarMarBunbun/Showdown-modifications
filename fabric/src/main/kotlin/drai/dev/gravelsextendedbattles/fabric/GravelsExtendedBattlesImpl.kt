@@ -5,6 +5,8 @@ import com.cobblemon.mod.common.ResourcePackActivationBehaviour
 import com.github.yajatkaul.mega_showdown.MegaShowdown
 import drai.dev.gravelsextendedbattles.GravelsExtendedBattles
 import drai.dev.gravelsextendedbattles.data.GEBDataProvider
+import drai.dev.gravelsextendedbattles.ondemand.sync.SelectionCodePayload
+import drai.dev.gravelsextendedbattles.ondemand.sync.SelectionSync
 import drai.dev.gravelsextendedbattles.gravelmonResource
 import drai.dev.gravelsextendedbattles.registries.GEBBlocks
 import drai.dev.gravelsextendedbattles.registries.GEBItems
@@ -50,6 +52,26 @@ object GravelsExtendedBattlesImpl: ModInitializer {
             ResourceManagerHelperImpl.registerBuiltinResourcePack(id, subPath, mod, it.displayName, resourcePackActivationType)
         }
         GEBCreativeTabs.initCreativeTabs()
+        registerSelectionSync()
+        // The dig-site loot of the downloaded pack (and the fossils GEB itself adds) joins the loot tables as they load.
+        net.fabricmc.fabric.api.loot.v3.LootTableEvents.MODIFY.register { key, tableBuilder, _, _ ->
+            drai.dev.gravelsextendedbattles.fossils.GEBLootPoolManager.processFossilAdditions(key.location(), tableBuilder)
+        }
+    }
+
+    /**
+     * The join-time warning (plan, section 8): the payload is known on both sides, and each player who joins is sent the code this side runs with.
+     * The client half is registered in the client entrypoint.
+     */
+    private fun registerSelectionSync() {
+        net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry.playS2C()
+            .register(SelectionCodePayload.TYPE, SelectionCodePayload.CODEC)
+        net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.JOIN.register { handler, sender, _ ->
+            val code = SelectionSync.codeToSend(GravelsExtendedBattles.CONFIG.selectionCode) ?: return@register
+            if (net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking.canSend(handler.player, SelectionCodePayload.TYPE)) {
+                sender.sendPacket(SelectionCodePayload(code))
+            }
+        }
     }
 
     @JvmStatic
@@ -94,6 +116,16 @@ object GravelsExtendedBattlesImpl: ModInitializer {
     fun modIsLoaded(modId: String) : Boolean {
         return FabricLoader.getInstance().isModLoaded(modId)
     }
+
+    @JvmStatic
+    fun gameDirectory(): java.nio.file.Path = FabricLoader.getInstance().gameDir
+
+    @JvmStatic
+    fun modVersion(modId: String): String? =
+        FabricLoader.getInstance().getModContainer(modId).map { it.metadata.version.friendlyString }.orElse(null)
+
+    @JvmStatic
+    fun isDedicatedServer(): Boolean = FabricLoader.getInstance().environmentType == net.fabricmc.api.EnvType.SERVER
 
     fun registerBrewingRecipes() {
 //        PotionBrewing.Builder.BUILD.register {  }(Potions.AWKWARD, Items.FEATHER, FROST_HEAL);

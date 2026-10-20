@@ -1,0 +1,29 @@
+﻿{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "gravelmon:block/type_gems/blood_gem_cluster"
+  },
+  "display": {
+    "head": {
+      "translation": [0, 14, -5]
+    }
+  },
+  "overrides": [
+    {
+      "predicate": { "custom_model_data": 0 },
+      "model": "gravelmon:item/small_blood_gem_bud"
+    },
+    {
+      "predicate": { "custom_model_data": 1 },
+      "model": "gravelmon:item/medium_blood_gem_bud"
+    },
+    {
+      "predicate": { "custom_model_data": 2 },
+      "model": "gravelmon:item/large_blood_gem_bud"
+    },
+    {
+      "predicate": { "custom_model_data": 3 },
+      "model": "gravelmon:item/blood_gem_cluster"
+    }
+  ]
+}

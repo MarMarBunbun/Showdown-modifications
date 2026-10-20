@@ -1,0 +1,17 @@
+{
+  "aspectShaderMap": {
+    "msd:tera_cosmic": "purple",
+    "msd:tera_crystal": "teal",
+    "msd:tera_digital": "green",
+    "msd:tera_light": "yellow",
+    "msd:tera_nuclear": "lime",
+    "msd:tera_plastic": "orange",
+    "msd:tera_mystery": "teal",
+    "msd:tera_shadow": "black",
+    "msd:tera_slime": "lime",
+    "msd:tera_sound": "gray",
+    "msd:tera_wind": "light_blue",
+    "msd:tera_eldritch": "indigo",
+    "msd:tera_blood": "red"
+  }
+}

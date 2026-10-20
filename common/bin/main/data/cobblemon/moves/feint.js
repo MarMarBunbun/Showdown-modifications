@@ -1,0 +1,15 @@
+{
+	flags: { mirror: 1, noassist: 1, failcopycat: 1, speed: 1 },
+  num: 364,
+  accuracy: 100,
+  basePower: 30,
+  category: "Physical",
+  name: "Feint",
+  pp: 10,
+  priority: 2,
+  breaksProtect: true,
+  secondary: null,
+  target: "normal",
+  type: "Normal",
+  contestType: "Clever",
+}

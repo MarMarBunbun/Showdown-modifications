@@ -1,6 +1,6 @@
 package drai.dev.gravelsextendedbattles.additions.moves.addition
 
-import com.cobblemon.mod.common.api.data.JsonDataRegistry
+import drai.dev.gravelsextendedbattles.additions.LenientJsonDataRegistry
 import com.cobblemon.mod.common.api.reactive.SimpleObservable
 import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken
@@ -11,7 +11,7 @@ import net.minecraft.resources.ResourceLocation
 import net.minecraft.server.level.ServerPlayer
 import net.minecraft.server.packs.PackType
 
-object MoveAdditions : JsonDataRegistry<MoveAddition> {
+object MoveAdditions : LenientJsonDataRegistry<MoveAddition> {
     var speciesFinished: Boolean = false
     override val gson = GsonBuilder()
         .setPrettyPrinting()

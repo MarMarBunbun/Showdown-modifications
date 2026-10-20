@@ -12,6 +12,11 @@ architectury {
 loom {
     enableTransitiveAccessWideners.set(true)
     silentMojangMappingsLicense()
+
+    // OpenAL Soft logs a harmless timeout error whenever the audio device stalls; keep it out of the dev console.
+    runs.configureEach {
+        environmentVariable("ALSOFT_LOGLEVEL", "0")
+    }
 }
 
 repositories {

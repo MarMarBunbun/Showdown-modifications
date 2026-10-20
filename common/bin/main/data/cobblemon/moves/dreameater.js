@@ -1,0 +1,18 @@
+{
+	flags: { protect: 1, mirror: 1, heal: 1, metronome: 1, magic: 1 },
+  num: 138,
+  accuracy: 100,
+  basePower: 100,
+  category: "Special",
+  name: "Dream Eater",
+  pp: 15,
+  priority: 0,
+  drain: [1, 2],
+  onTryImmunity(target) {
+      return target.status === "slp" || target.hasAbility("comatose");
+    },
+  secondary: null,
+  target: "normal",
+  type: "Psychic",
+  contestType: "Clever",
+}

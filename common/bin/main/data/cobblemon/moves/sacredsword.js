@@ -1,0 +1,16 @@
+{
+	flags: { contact: 1, protect: 1, mirror: 1, metronome: 1, slicing: 1, legendary: 1, magic: 1 },
+  num: 533,
+  accuracy: 100,
+  basePower: 90,
+  category: "Physical",
+  name: "Sacred Sword",
+  pp: 15,
+  priority: 0,
+  ignoreEvasion: true,
+  ignoreDefensive: true,
+  secondary: null,
+  target: "normal",
+  type: "Fighting",
+  contestType: "Cool",
+}

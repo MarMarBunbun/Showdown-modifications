@@ -1,0 +1,15 @@
+{
+	flags: { contact: 1, protect: 1, mirror: 1, legendary: 1 },
+  num: 713,
+  accuracy: 100,
+  basePower: 100,
+  category: "Physical",
+  name: "Sunsteel Strike",
+  pp: 5,
+  priority: 0,
+  ignoreAbility: true,
+  secondary: null,
+  target: "normal",
+  type: "Steel",
+  contestType: "Cool",
+}

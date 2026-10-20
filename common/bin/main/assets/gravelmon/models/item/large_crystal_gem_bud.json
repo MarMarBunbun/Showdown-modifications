@@ -1,0 +1,11 @@
+﻿{
+  "parent": "minecraft:item/amethyst_bud",
+  "textures": {
+    "layer0": "gravelmon:block/type_gems/large_crystal_gem_bud"
+  },
+  "display": {
+    "fixed": {
+      "translation": [0, 4, 0]
+    }
+  }
+}

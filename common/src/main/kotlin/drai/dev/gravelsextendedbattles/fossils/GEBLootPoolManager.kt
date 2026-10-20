@@ -4,6 +4,8 @@ import drai.dev.gravelsextendedbattles.BanListManager
 import drai.dev.gravelsextendedbattles.GravelsExtendedBattles
 import drai.dev.gravelsextendedbattles.mixin.accessors.LootItemAccessor
 import drai.dev.gravelsextendedbattles.mixin.accessors.LootPoolAccessor
+import drai.dev.gravelsextendedbattles.ondemand.FossilLoot
+import drai.dev.gravelsextendedbattles.ondemand.OnDemandStartup
 import net.minecraft.core.Holder
 import net.minecraft.core.registries.BuiltInRegistries
 import net.minecraft.resources.ResourceLocation
@@ -20,6 +22,41 @@ object GEBLootPoolManager {
     private val lootPools: MutableList<Array<LootPool>> = ArrayList()
     private val fossilLootPoolAdditions: MutableMap<ResourceLocation, MutableList<Item>> = HashMap()
     val lootPoolAdditions: MutableMap<ResourceLocation, MutableList<Item>> = HashMap()
+
+    private var packAdditionsRead = false
+
+    /**
+     * Adds the dig-site loot of the downloaded pack (`fossil_loot.json`, built from the site for the enabled Pokemon) to the queue, once. It is
+     * read when the first loot table loads, which is after items are registered, so the item ids can be looked up. A fossil whose Pokemon a ban-list
+     * entry removes is not added; the file already leaves out every Pokemon the selection removed.
+     */
+    @Synchronized
+    private fun readPackAdditions() {
+        if (packAdditionsRead) return
+        packAdditionsRead = true
+        val file = OnDemandStartup.packDir?.resolve(FossilLoot.PATH) ?: return
+        if (!java.nio.file.Files.isRegularFile(file)) return
+        val additions = try {
+            FossilLoot.parse(java.nio.file.Files.readString(file))
+        } catch (e: java.io.IOException) {
+            GravelsExtendedBattles.LOGGER.warn("The fossil loot of the downloaded pack could not be read: {}", e.message)
+            return
+        }
+        for (addition in additions) {
+            val table = ResourceLocation.tryParse(addition.table) ?: continue
+            for (name in addition.items) {
+                val id = ResourceLocation.tryParse(name) ?: continue
+                val item = BuiltInRegistries.ITEM.getOptional(id).orElse(null)
+                if (item == null) {
+                    GravelsExtendedBattles.LOGGER.warn("The fossil loot names {}, which the mod does not register.", name)
+                    continue
+                }
+                val fossil = GravelsExtendedBattles.fossils[id]
+                if (fossil != null && BanListManager.pokemonShouldBeRemoved(fossil.result)) continue
+                fossilLootPoolAdditions.computeIfAbsent(table) { arrayListOf() }.add(item)
+            }
+        }
+    }
 
     fun addUncommonItemToLootPool(lootTableResourceLocation: ResourceLocation, item: Item) = fossilLootPoolAdditions.computeIfAbsent(lootTableResourceLocation) { arrayListOf() }.add(item)
     fun addLootPools(lootPool: Array<LootPool>) = lootPools.add(lootPool)
@@ -61,6 +98,7 @@ object GEBLootPoolManager {
     }
     
     fun processFossilAdditions(id: ResourceLocation?, tableBuilder: Consumer<LootPool?>) {
+        readPackAdditions()
         if (fossilLootPoolAdditions.containsKey(id)) {
             val poolBuilder = LootPool.Builder()
             fossilLootPoolAdditions[id]?.forEach(Consumer { item -> poolBuilder.add(LootItem.lootTableItem(item).setWeight(2)) })
@@ -74,6 +112,7 @@ object GEBLootPoolManager {
     }
 
     fun processFossilAdditions(id: ResourceLocation, tableBuilder: LootTable.Builder) {
+        readPackAdditions()
         if (fossilLootPoolAdditions.containsKey(id)) {
             val poolBuilder = LootPool.Builder()
             fossilLootPoolAdditions[id]?.forEach(Consumer { item -> poolBuilder.add(LootItem.lootTableItem(item).setWeight(2)) })

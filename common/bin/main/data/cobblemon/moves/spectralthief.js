@@ -1,0 +1,16 @@
+{
+	flags: { contact: 1, protect: 1, mirror: 1, bypasssub: 1, legendary: 1 },
+  num: 712,
+  accuracy: 100,
+  basePower: 90,
+  category: "Physical",
+  isNonstandard: "Past",
+  name: "Spectral Thief",
+  pp: 10,
+  priority: 0,
+  stealsBoosts: true,
+  secondary: null,
+  target: "normal",
+  type: "Ghost",
+  contestType: "Cool",
+}

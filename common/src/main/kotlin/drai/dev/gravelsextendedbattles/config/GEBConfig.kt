@@ -4,7 +4,10 @@ import com.cobblemon.mod.common.api.pokemon.PokemonProperties
 import com.cobblemon.mod.common.pokemon.RenderablePokemon
 import com.electronwill.nightconfig.core.file.CommentedFileConfig
 import com.electronwill.nightconfig.core.file.FileNotFoundAction
+import com.electronwill.nightconfig.core.io.ParsingException
+import java.nio.file.Files
 import java.nio.file.Path
+import java.nio.file.StandardCopyOption
 
 object GEBConfig {
 
@@ -13,9 +16,30 @@ object GEBConfig {
 
     private lateinit var config: CommentedFileConfig
 
+    /**
+     * The Pokemon selection made on https://submit.gravelmon.com/pokemon-selector (a `GMS3.` code). Gravelmon downloads only
+     * what it names. Empty until one is made: a client asks for it at startup, a dedicated server refuses to start without it.
+     */
+    @JvmField
+    var selectionCode: String = ""
+
+    /** Which implementation of the Pokemon is built: `rebalanced` (the default) or `faithful`. */
+    @JvmField
+    var rules: String = "rebalanced"
+
+    /** One-shot: when true, the next start downloads everything again, ignoring caches. Reset to false once the update has succeeded. */
+    @JvmField
+    var forceUpdate: Boolean = false
+
+    /** Every Gravelmon item gets its recipes, textures, ores and models, not only the ones the selected Pokemon need. */
+    @JvmField
+    var allItems: Boolean = false
+
+    // Empty by default: what exists is decided by the selection (selectionCode), whose presets say whether unmodeled Pokemon are included.
+    // A config file written earlier keeps the labels it has.
     @JvmField
     var bannedLabels: MutableList<String> =
-        mutableListOf("not_modeled", "joke")
+        mutableListOf()
 
     @JvmField
     var allowedLabels: MutableList<String> =
@@ -51,12 +75,28 @@ object GEBConfig {
      */
     @JvmStatic
     fun load() {
-        config = CommentedFileConfig
-            .builder(CONFIG_PATH)
-            .onFileNotFound(FileNotFoundAction.CREATE_EMPTY)
-            .build()
+        config = buildConfig()
 
-        config.load()
+        try {
+            config.load()
+        } catch (e: ParsingException) {
+            // A hand-edited file with invalid TOML (e.g. a key defined twice) must not stop the game from starting:
+            // keep a copy of it and carry on with the defaults, which are written back below.
+            val backup = CONFIG_PATH.resolveSibling(CONFIG_PATH.fileName.toString() + ".broken")
+            println("Gravel's Extended Battles: could not parse $CONFIG_PATH (${e.message}); moved it to $backup and using defaults.")
+            config.close()
+            Files.move(CONFIG_PATH, backup, StandardCopyOption.REPLACE_EXISTING)
+            config = buildConfig()
+            config.load()
+        }
+
+        selectionCode = config.getOrElse("selectionCode", selectionCode)
+
+        rules = config.getOrElse("rules", rules)
+
+        forceUpdate = config.getOrElse("forceUpdate", forceUpdate)
+
+        allItems = config.getOrElse("allItems", allItems)
 
         bannedLabels = config.getOrElse(
             "bannedLabels",
@@ -98,11 +138,29 @@ object GEBConfig {
             bannedPokemon
         )
 
-        writeValues()
+        try {
+            writeValues()
+        } catch (e: Exception) {
+            // Writing back the defaults and comments is a convenience: a file that cannot be written must not stop the game from starting.
+            println("Gravel's Extended Battles: could not write ${configFile()} (${e.message}).")
+        }
     }
 
+    // Synchronous: the default asynchronous config writes on a daemon thread after a delay and drops any error, so a value saved
+    // just before the game stops (or a write that fails, e.g. while another program holds the file) was silently lost.
+    private fun buildConfig(): CommentedFileConfig =
+        CommentedFileConfig
+            .builder(CONFIG_PATH)
+            .onFileNotFound(FileNotFoundAction.CREATE_EMPTY)
+            .sync()
+            .build()
+
+    /** The config file, as an absolute path, for messages. */
+    @JvmStatic
+    fun configFile(): Path = CONFIG_PATH.toAbsolutePath().normalize()
+
     /**
-     * Saves the current configuration to disk.
+     * Saves the current configuration to disk, before returning. Throws when the file cannot be written.
      */
     @JvmStatic
     fun save() {
@@ -115,6 +173,10 @@ object GEBConfig {
 
     private fun writeValues() {
         config.bulkCommentedUpdate {
+            it.set<String>("selectionCode", selectionCode)
+            it.set<String>("rules", rules)
+            it.set<Boolean>("forceUpdate", forceUpdate)
+            it.set<Boolean>("allItems", allItems)
             it.set<MutableList<String>>("bannedLabels", bannedLabels)
             it.set<MutableList<String>>("allowedLabels", allowedLabels)
             it.set<MutableList<String>>("spawnModifiers", spawnModifiers)
@@ -129,6 +191,26 @@ object GEBConfig {
             )
             it.set<Boolean>("battleDebugging", battleDebugging)
             it.set<MutableList<String>>("bannedPokemon", bannedPokemon)
+
+            it.setComment(
+                listOf("selectionCode"),
+                "Which Pokemon to download: the code made at https://submit.gravelmon.com/pokemon-selector. A client asks for it when it is empty; a dedicated server will not start without it. Changing it re-downloads what is needed on the next start. Pokemon of a species you leave out are permanently deleted from your worlds, so back them up first."
+            )
+
+            it.setComment(
+                listOf("rules"),
+                "Which version of the Pokemon to build: \"rebalanced\" (the default) or \"faithful\"."
+            )
+
+            it.setComment(
+                listOf("forceUpdate"),
+                "Set to true to make the next start download the Pokemon data and models again, ignoring everything cached (for example after editing the model repository by hand). It resets itself to false once the update has succeeded."
+            )
+
+            it.setComment(
+                listOf("allItems"),
+                "Set to true to get every Gravelmon item (its recipes, textures, ores and models), not only the ones the Pokemon of your selection need. Every item is always registered either way, so worlds and servers are not affected. Changing it rebuilds the pack on the next start."
+            )
 
             it.setComment(
                 listOf("bannedLabels"),

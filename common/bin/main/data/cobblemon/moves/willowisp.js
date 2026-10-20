@@ -1,0 +1,16 @@
+{
+	flags: { protect: 1, reflectable: 1, mirror: 1, metronome: 1, magic: 1 },
+  num: 261,
+  accuracy: 85,
+  basePower: 0,
+  category: "Status",
+  name: "Will-O-Wisp",
+  pp: 15,
+  priority: 0,
+  status: "brn",
+  secondary: null,
+  target: "normal",
+  type: "Fire",
+  zMove: { boost: { atk: 1 } },
+  contestType: "Beautiful",
+}

@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "gravelmon:block/type_gems/nuclear_gem_block"
+    }
+  }
+}

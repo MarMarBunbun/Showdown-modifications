@@ -1,0 +1,15 @@
+{
+	flags: { protect: 1, mirror: 1, hm: 1 },
+  num: 250,
+  accuracy: 85,
+  basePower: 35,
+  category: "Special",
+  name: "Whirlpool",
+  pp: 15,
+  priority: 0,
+  volatileStatus: "partiallytrapped",
+  secondary: null,
+  target: "normal",
+  type: "Water",
+  contestType: "Beautiful",
+}
