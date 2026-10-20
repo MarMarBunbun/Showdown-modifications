@@ -4,9 +4,6 @@ import com.cobblemon.mod.common.Cobblemon.LOGGER
 import com.cobblemon.mod.common.api.data.DataRegistry
 import com.cobblemon.mod.common.api.data.JsonDataRegistry
 import com.cobblemon.mod.common.util.server
-import drai.dev.gravelsextendedbattles.additions.abilities.AbilityChanges
-import drai.dev.gravelsextendedbattles.additions.drops.DropChanges
-import drai.dev.gravelsextendedbattles.additions.preevolutions.PreEvolutionChanges
 import drai.dev.gravelsextendedbattles.additions.evolutions.AdditionalEvolutions
 import drai.dev.gravelsextendedbattles.additions.moves.addition.MoveAdditions
 import drai.dev.gravelsextendedbattles.additions.moves.substitution.MoveSubstitutions
@@ -24,9 +21,6 @@ object GEBDataProvider {
         this.register(AdditionalEvolutions, true)
         this.register(MoveSubstitutions, true)
         this.register(MoveAdditions, true)
-        this.register(AbilityChanges, true)
-        this.register(DropChanges, true)
-        this.register(PreEvolutionChanges, true)
     }
 
     fun <T : DataRegistry> register(registry: T, reloadable: Boolean): T {

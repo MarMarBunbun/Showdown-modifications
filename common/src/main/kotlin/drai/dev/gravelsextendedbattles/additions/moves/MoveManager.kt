@@ -3,7 +3,6 @@ package drai.dev.gravelsextendedbattles.additions.moves
 import com.cobblemon.mod.common.api.moves.MoveTemplate
 import com.cobblemon.mod.common.api.moves.Moves.getByName
 import com.cobblemon.mod.common.api.tms.TechnicalMachines
-import drai.dev.gravelsextendedbattles.additions.SpeciesManager
 import drai.dev.gravelsextendedbattles.additions.moves.addition.MoveAddition
 import drai.dev.gravelsextendedbattles.additions.moves.substitution.MoveSubstitution
 import drai.dev.gravelsextendedbattles.additions.moves.substitution.TypeMoveSubstitution
@@ -62,17 +61,6 @@ object MoveManager {
                     ?.firstOrNull { it.newMoveTemplate != null }
                     ?: return@forEach
                 val newMove = substitution.newMoveTemplate ?: return@forEach
-                val newMoveAlreadyHasTM = TechnicalMachines.tmMap.any { (otherLocation, otherTm) ->
-                    otherLocation != resourceLocation && otherTm.moveName == newMove
-                }
-                if (newMoveAlreadyHasTM) {
-                    // Another TM already teaches the new move; keeping both would add identical stacks to the creative tab.
-                    TechnicalMachines.tmMap.remove(resourceLocation)
-                    if (TechnicalMachines.moveToTM[tm.moveName] === tm) {
-                        TechnicalMachines.moveToTM.remove(tm.moveName)
-                    }
-                    return@forEach
-                }
                 val newRecipe = tm.recipe?.map { recipe ->
                     val typeSubstitution = substitution as? TypeMoveSubstitution
                     val oldGem = typeSubstitution?.let { findTypeGem(tm.type) }
@@ -121,28 +109,24 @@ object MoveManager {
 
     fun processMoveAdditions(moveAdditions: MutableSet<MoveAddition>) {
         moveAdditions.forEach { moveAddition: MoveAddition ->
-            // Never another Pokemon's learnset: a recipient that does not exist (disabled, banned) is skipped, and an alternate form that
-            // learns the species' moves gets its own copy first, so the base form does not learn them too.
-            val moves = SpeciesManager.resolve(moveAddition.recipient)?.let(SpeciesManager::ownLearnset) ?: return@forEach
+            val moves = moveAddition.recipient.asRenderablePokemon().form.moves
             moveAddition.learnsetEntries.forEach { learnsetEntry ->
                 val condition = learnsetEntry.split(":")[0]
-                val move = getByName(learnsetEntry.split(":").getOrNull(1) ?: return@forEach) ?: return@forEach
-                // An entry the learnset already has is not added twice (a change can list the whole learnset).
-                fun MutableList<MoveTemplate>.addNew() { if (move !in this) add(move) }
+                val move = getByName(learnsetEntry.split(":")[1]) ?: return@forEach
                 if (condition.equals("tm", ignoreCase = true)) {
-                    moves.tmMoves.addNew()
+                    moves.tmMoves.add(move)
                 } else if (condition.equals("egg", ignoreCase = true)) {
-                    moves.eggMoves.addNew()
+                    moves.eggMoves.add(move)
                 } else if (condition.equals("tutor", ignoreCase = true)) {
-                    moves.tutorMoves.addNew()
+                    moves.tutorMoves.add(move)
                 } else if (condition.equals("legacy", ignoreCase = true)) {
-                    moves.legacyMoves.addNew()
+                    moves.legacyMoves.add(move)
                 } else if (condition.equals("special", ignoreCase = true)) {
-                    moves.specialMoves.addNew()
+                    moves.specialMoves.add(move)
                 } else if (condition.equals("form_change", ignoreCase = true)) {
-                    moves.formChangeMoves.addNew()
+                    moves.formChangeMoves.add(move)
                 } else if (NumberUtils.isCreatable(condition)) {
-                    moves.levelUpMoves.computeIfAbsent(condition.toInt()) { ArrayList() }.addNew()
+                    moves.levelUpMoves.computeIfAbsent(condition.toInt()) { ArrayList() }.add(move)
                 }
             }
         }

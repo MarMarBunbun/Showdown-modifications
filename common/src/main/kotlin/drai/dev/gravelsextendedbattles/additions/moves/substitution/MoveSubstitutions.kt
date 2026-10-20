@@ -1,6 +1,6 @@
 package drai.dev.gravelsextendedbattles.additions.moves.substitution
 
-import drai.dev.gravelsextendedbattles.additions.LenientJsonDataRegistry
+import com.cobblemon.mod.common.api.data.JsonDataRegistry
 import com.cobblemon.mod.common.api.reactive.SimpleObservable
 import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken
@@ -10,7 +10,7 @@ import net.minecraft.resources.ResourceLocation
 import net.minecraft.server.level.ServerPlayer
 import net.minecraft.server.packs.PackType
 
-object MoveSubstitutions : LenientJsonDataRegistry<MoveSubstitution> {
+object MoveSubstitutions : JsonDataRegistry<MoveSubstitution> {
     var speciesFinished: Boolean = false
     var tmsFinished: Boolean = false
     override val gson = GsonBuilder()

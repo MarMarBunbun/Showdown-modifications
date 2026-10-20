@@ -18,9 +18,6 @@ import com.cobblemon.mod.common.api.types.tera.TeraTypes
 import com.cobblemon.mod.common.client.CobblemonPack
 import com.cobblemon.mod.common.data.StarterDataLoader
 import dev.architectury.injectables.annotations.ExpectPlatform
-import drai.dev.gravelsextendedbattles.additions.abilities.AbilityChanges
-import drai.dev.gravelsextendedbattles.additions.drops.DropChanges
-import drai.dev.gravelsextendedbattles.additions.preevolutions.PreEvolutionChanges
 import drai.dev.gravelsextendedbattles.additions.evolutions.AdditionalEvolutions
 import drai.dev.gravelsextendedbattles.additions.moves.addition.MoveAdditions
 import drai.dev.gravelsextendedbattles.additions.moves.substitution.MoveSubstitution
@@ -34,7 +31,6 @@ import drai.dev.gravelsextendedbattles.config.GEBConfig
 import drai.dev.gravelsextendedbattles.data.GEBDataProvider
 import drai.dev.gravelsextendedbattles.fossils.GEBLootPoolManager
 import drai.dev.gravelsextendedbattles.mixin.accessors.PokemonSpeciesAccessor
-import drai.dev.gravelsextendedbattles.ondemand.OnDemandStartup
 import drai.dev.gravelsextendedbattles.pokedex.GravelmonPokedexResorter
 import drai.dev.gravelsextendedbattles.registries.GEBItems
 import drai.dev.gravelsextendedbattles.starters.GravelmonStarterManager
@@ -71,8 +67,6 @@ object GravelsExtendedBattles {
     @JvmStatic
     fun initialize() {
         LOGGER.info("Initializing Gravels Extended Battles")
-        // Before anything is registered: the Pokemon Gravelmon offers are downloaded for the player's selection (a no-op without Gravelmon).
-        OnDemandStartup.run()
 //        MidnightConfig.init("gravelmon", GEBConfig::class.java)
         GEBDataProvider.registerDefaults()
 
@@ -84,10 +78,6 @@ object GravelsExtendedBattles {
     }
 
     private fun registerCobblemonEventHooks() {
-        // First of all, so every other listener of the same event already sees the species as loaded (the timing guard of BanListManager).
-        PokemonSpecies.observable.subscribe(Priority.HIGHEST) {
-            BanListManager.speciesLoaded = true
-        }
         pokemonSpeciesHooks()
         PokemonSpecies.observable.subscribe(Priority.LOWEST) {
 //            GEBItems.registerBerryIntegrations()
@@ -149,18 +139,6 @@ object GravelsExtendedBattles {
             MoveAdditions.applyMoveAdditions()
         }
         PokemonSpecies.observable.subscribe(Priority.LOWEST) {
-            AbilityChanges.speciesFinished = true
-            AbilityChanges.applyAbilityChanges()
-        }
-        PokemonSpecies.observable.subscribe(Priority.LOWEST) {
-            DropChanges.speciesFinished = true
-            DropChanges.applyDropChanges()
-        }
-        PokemonSpecies.observable.subscribe(Priority.LOWEST) {
-            PreEvolutionChanges.speciesFinished = true
-            PreEvolutionChanges.applyPreEvolutionChanges()
-        }
-        PokemonSpecies.observable.subscribe(Priority.LOWEST) {
             MoveSubstitutions.speciesFinished = true
             MoveSubstitutions.applyMoveSubstitutions()
         }
@@ -202,26 +180,6 @@ object GravelsExtendedBattles {
     @ExpectPlatform
     @JvmStatic
     fun modIsLoaded(modId: String) : Boolean {
-        throw AssertionError()
-    }
-
-    /** `<gamedir>`: where the downloaded pack and its state live. */
-    @ExpectPlatform
-    @JvmStatic
-    fun gameDirectory(): java.nio.file.Path {
-        throw AssertionError()
-    }
-
-    /** The version of a loaded mod as the loader reports it, or null when it is not loaded. */
-    @ExpectPlatform
-    @JvmStatic
-    fun modVersion(modId: String): String? {
-        throw AssertionError()
-    }
-
-    @ExpectPlatform
-    @JvmStatic
-    fun isDedicatedServer(): Boolean {
         throw AssertionError()
     }
 
