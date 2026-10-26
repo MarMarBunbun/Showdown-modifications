@@ -18,6 +18,8 @@ object SelectorData {
          * Null when the download has none at all (a server that cannot tell), which is not the same as every form being `none`.
          */
         val statuses: Map<String, String>? = null,
+        /** The download's `speciesNames`: `<game>#<name>` to `<name>_<game>` for every twin species ([TwinNames]); empty from an older site. */
+        val speciesNames: Map<String, String> = emptyMap(),
     ) {
         /** The forms as the selection sees them, each with its status. */
         fun selectableForms(): List<Gms3.SelectableForm> = forms.mapNotNull { form -> selectableForm(form, statuses ?: emptyMap()) }
@@ -55,7 +57,10 @@ object SelectorData {
         val statuses = JsonTrees.obj(root, "statuses")?.entrySet()
             ?.mapNotNull { (formId, value) -> value.takeIf { it.isJsonPrimitive && it.asJsonPrimitive.isString }?.asString?.let { formId to it } }
             ?.toMap()
-        return Species(revision(root), forms.mapNotNull { it.takeIf { form -> form.isJsonObject }?.asJsonObject }, priorities, statuses)
+        val speciesNames = JsonTrees.obj(root, "speciesNames")?.entrySet()
+            ?.mapNotNull { (key, value) -> value.takeIf { it.isJsonPrimitive && it.asJsonPrimitive.isString }?.asString?.let { key to it } }
+            ?.toMap() ?: emptyMap()
+        return Species(revision(root), forms.mapNotNull { it.takeIf { form -> form.isJsonObject }?.asJsonObject }, priorities, statuses, speciesNames)
     }
 
     fun parseGames(text: String): Games {

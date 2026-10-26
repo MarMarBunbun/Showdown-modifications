@@ -52,13 +52,17 @@ object PackDataBuilder {
         val resolved = Gms3.resolve(selection, selectable)
         val enabledIds = resolved.enabled.map { it.formId }.toSet()
         val disabledIds = resolved.disabled.map { it.formId }.toSet()
+        // The selection works with the site's form ids; every file is built with the twin species renamed ([TwinNames]).
+        val names = species.speciesNames
         val kept: List<JsonObject> = DexNumbers.assign(species.forms.filter { JsonTrees.string(it, "formId") !in disabledIds }, species.gamePriorities)
+            .map { TwinNames.apply(it, names) }
 
         fun nameOf(form: JsonObject) = JsonTrees.obj(form, "species")?.let { JsonTrees.string(it, "name") }?.lowercase()
         val keptNames = kept.mapNotNull(::nameOf).toSet()
-        val leftOut = species.forms.filter { JsonTrees.string(it, "formId") in disabledIds }.mapNotNull(::nameOf).toSet() - keptNames
+        val leftOut = species.forms.filter { JsonTrees.string(it, "formId") in disabledIds }
+            .map { TwinNames.apply(it, names) }.mapNotNull(::nameOf).toSet() - keptNames
         val speciesBuilt = SpeciesFileBuilder.build(kept, rules, leftOut, implementedTypes)
-        val starters = ExtrasBuilder.filterStarters(games.games, selection.g.toSet(), enabledIds)
+        val starters = TwinNames.starters(ExtrasBuilder.filterStarters(games.games, selection.g.toSet(), enabledIds), names)
         val extrasBuilt = ExtrasBuilder.build(kept, starters, species.gamePriorities, rules, leftOut, implementedTypes)
 
         val files = LinkedHashMap<String, String>()
