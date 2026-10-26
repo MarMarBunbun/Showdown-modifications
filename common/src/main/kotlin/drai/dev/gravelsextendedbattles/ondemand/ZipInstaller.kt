@@ -120,24 +120,36 @@ object ZipInstaller {
          * which the state file keeps as the manifest of what a later run may delete. An install path that is not a plain relative path
          * under `assets/`, or a file the zip lacks, aborts before anything is written. [progress] is told how many files are done of how many.
          */
-        fun install(plan: PrunePlanner.Plan, pack: Path, progress: (done: Int, total: Int) -> Unit = { _, _ -> }): List<String> {
+        fun install(
+            plan: PrunePlanner.Plan,
+            pack: Path,
+            speciesNames: Map<String, String> = emptyMap(),
+            progress: (done: Int, total: Int) -> Unit = { _, _ -> },
+        ): List<String> {
             if (!plan.sound) throw InstallException("The tree is inconsistent: ${plan.issues.first().message}")
             val packRoot = pack.toAbsolutePath().normalize()
             val jobs = plan.install.map { item ->
                 if (!InstallManifests.isValidInstallPath(item.to)) throw InstallException("${item.from} installs to an invalid path: ${item.to}")
                 val source = files[item.from] ?: throw InstallException("${item.from} is listed but missing from the zip.")
-                Triple(source, inside(packRoot, item.to), item.to)
+                Job(source, inside(packRoot, item.to), item)
             }
             var total = 0L
-            jobs.forEachIndexed { index, (source, destination, _) ->
-                Files.createDirectories(destination.parent)
-                total += write(source, destination)
+            jobs.forEachIndexed { index, job ->
+                Files.createDirectories(job.destination.parent)
+                total += write(job.source, job.destination)
                 if (total > MAX_TOTAL_BYTES) throw InstallException("The zip is larger than the limit.")
-                if (isPoser(destination)) stripEmptyPoseEntries(destination)
+                if (isPoser(job.destination)) stripEmptyPoseEntries(job.destination)
+                // A resolver of a twin species names it as the data files do ([TwinNames]).
+                if (TwinNames.mayRename(job.item.from, job.item.to, speciesNames)) {
+                    TwinNames.renamedResolver(Files.readString(job.destination), job.item.from.substringBefore('/'), speciesNames)
+                        ?.let { Files.writeString(job.destination, it) }
+                }
                 progress(index + 1, jobs.size)
             }
-            return jobs.map { it.third }.sorted()
+            return jobs.map { it.item.to }.sorted()
         }
+
+        private inner class Job(val source: ZipEntry, val destination: Path, val item: PrunePlanner.Install)
 
         /** Copies one entry to [destination], checking its size and CRC. Returns the bytes written. */
         private fun write(entry: ZipEntry, destination: Path): Long {

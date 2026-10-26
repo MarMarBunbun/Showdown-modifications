@@ -164,8 +164,10 @@ class OnDemandRunner(
         val enabledForms = Gms3.resolve(speciesData.applicable(selection), speciesData.selectableForms()).enabled
         val siteItems = ItemSelection.of(itemsData, speciesData, enabledForms, settings.allItems)
         // The textures of the items the selection needs come from the zip too, so they decide a reinstall like the Pokemon do.
+        // The twin names are written into resolvers as they are installed, so a change of them installs those again.
         val enabledKey = Staleness.enabledKey(enabledForms) +
-            if (siteItems.registered == 0) "" else "+items-" + sha256((siteItems.needed.sorted() + siteItems.folders.sorted()).joinToString("\n"))
+            (if (siteItems.registered == 0) "" else "+items-" + sha256((siteItems.needed.sorted() + siteItems.folders.sorted()).joinToString("\n"))) +
+            (if (speciesData.speciesNames.isEmpty()) "" else "+twins-" + sha256(speciesData.speciesNames.toSortedMap().entries.joinToString("\n")))
         val zipNeeded = !settings.dedicatedServer && (Staleness.zipNeeded(state, settings.modVersion, hash) || state.enabledKey != enabledKey || !installed)
         // The item files follow the items the selection needs (and `allItems`), which the enabled key covers.
         val dataNeeded = Staleness.dataNeeded(state, species.etag, hash, rules.name.lowercase(), typesKey, PackDataBuilder.REVISION) || games.etag != state.gamesEtag || !installed ||
@@ -526,9 +528,10 @@ class OnDemandRunner(
             models = ZipInstaller.open(folder.zipFor(settings.modVersion)).use { zip ->
                 val plan = PrunePlanner.plan(enabled, zip.readFolders(), siteItems.folders)
                 val wanted = plan.install.map { it.to }.toSet()
-                val added = plan.copy(install = plan.install.filter { it.to !in oldModels })
+                val names = speciesData.speciesNames
+                val added = plan.copy(install = plan.install.filter { it.to !in oldModels || TwinNames.mayRename(it.from, it.to, names) })
                 step("Installing Pokemon models…", 0.0)
-                zip.install(added, pack) { done, total -> prompt?.progress("Installing Pokemon models… $done/$total", done.toDouble() / total) }
+                zip.install(added, pack, names) { done, total -> prompt?.progress("Installing Pokemon models… $done/$total", done.toDouble() / total) }
                 folder.deleteFiles(pack, (oldModels - wanted - SOUNDS_PATH).toList())
                 log("[on demand] models: ${added.install.size} file(s) installed, ${(oldModels - wanted - SOUNDS_PATH).size} removed, ${wanted.size - added.install.size} kept.")
                 val sounds = SoundsJsonBuilder.generate(wanted)
@@ -621,7 +624,7 @@ class OnDemandRunner(
             step("Installing Pokemon models…", 0.0)
             log("[on demand] installing ${plan.install.size} files for ${enabled.size} Pokemon forms.")
             var lastPercent = -1
-            models.install(plan, target) { done, total ->
+            models.install(plan, target, species.speciesNames) { done, total ->
                 val percent = done * 100 / total
                 if (percent != lastPercent) {
                     lastPercent = percent

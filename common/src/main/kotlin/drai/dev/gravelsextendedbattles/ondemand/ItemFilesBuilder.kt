@@ -90,13 +90,14 @@ object ItemFilesBuilder {
         return named
     }
 
-    private fun itemsUsedBy(form: JsonObject): List<String> {
-        val additions = JsonTrees.obj(form, "addition")?.let { JsonTrees.obj(it, "additions") }
+    private fun itemsUsedBy(form: JsonObject, leftOut: Set<String> = emptySet()): List<String> {
+        fun built(data: JsonObject?) = data?.let { SpeciesFileBuilder.withoutLeftOutEvolutions(it, leftOut) }
+        val additions = built(JsonTrees.obj(form, "addition")?.let { JsonTrees.obj(it, "additions") })
         val herd = JsonTrees.objects(form, "spawns").flatMap { spawn ->
             val entry = JsonTrees.obj(spawn, "entry") ?: return@flatMap emptyList()
             JsonTrees.objects(entry, "herdablePokemon").flatMap { dropTable(it.get("dropTable")) }
         }
-        return itemsNamedBy(JsonTrees.obj(form, "species")) + itemsNamedBy(additions) + herd
+        return itemsNamedBy(built(JsonTrees.obj(form, "species"))) + itemsNamedBy(additions) + herd
     }
 
     private fun gravelmonId(name: String): String = if (':' in name) name else "gravelmon:$name"
@@ -139,11 +140,21 @@ object ItemFilesBuilder {
             if (id in live) needed += id
         }
 
+        // What nothing may evolve into, as the species files are built (`PackDataBuilder`): the species whose forms are all left out.
+        fun isVanilla(form: JsonObject) = JsonTrees.string(form, "source") == "cobblemon"
+        fun nameOf(form: JsonObject) = JsonTrees.obj(form, "species")?.let { JsonTrees.string(it, "name") }?.lowercase()
+        val (disabled, kept) = forms.partition { !isVanilla(it) && JsonTrees.string(it, "formId") !in enabled }
+        val leftOut = disabled.mapNotNull(::nameOf).toSet() - kept.mapNotNull(::nameOf).toSet()
+
         for (form in forms) {
             val formId = JsonTrees.string(form, "formId") ?: continue
-            for (id in itemsUsedBy(form)) {
-                usedByAny += id
-                if (formId in enabled && live[id]?.type == "basic") need(id)
+            itemsUsedBy(form).forEach { usedByAny += it }
+            // A vanilla form is always there, so the items its addition uses (Slowpoke's tail) are needed whatever the selection; an
+            // evolution into a left-out species is not built, so neither is what only it uses.
+            if (formId in enabled || isVanilla(form)) {
+                for (id in itemsUsedBy(form, leftOut)) {
+                    if (live[id]?.type == "basic") need(id)
+                }
             }
             val species = JsonTrees.obj(form, "species") ?: continue
             JsonTrees.obj(species, "mega")?.let { mega ->

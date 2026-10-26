@@ -25,6 +25,8 @@ sealed class SpeciesChanges {
         val forms: List<JsonObject>,
         val removed: List<String>,
         val statuses: Map<String, String>?,
+        /** The whole `speciesNames` map ([TwinNames]); null from an older site, which keeps the cached one. */
+        val speciesNames: JsonObject? = null,
     ) : SpeciesChanges() {
         /** Nothing changed: the cached copy is the current download. */
         val isEmpty: Boolean get() = forms.isEmpty() && removed.isEmpty() && dataRevision == since
@@ -60,6 +62,7 @@ sealed class SpeciesChanges {
                     formId to (value.takeIf { it.isJsonPrimitive && it.asJsonPrimitive.isString }?.asString
                         ?: throw JsonParseException("The status of $formId is not text"))
                 },
+                speciesNames = JsonTrees.obj(root, "speciesNames"),
             )
         }
 
@@ -100,6 +103,7 @@ sealed class SpeciesChanges {
                 delta.statuses?.forEach { (formId, status) -> if (status == "none") statuses.remove(formId) else statuses[formId] = status }
                 result.add("statuses", JsonObject().also { obj -> statuses.forEach { (formId, status) -> obj.addProperty(formId, status) } })
             }
+            (delta.speciesNames ?: JsonTrees.obj(root, "speciesNames"))?.let { result.add("speciesNames", it) }
             return JsonText.render(JsonTrees.plain(result))
         }
     }
